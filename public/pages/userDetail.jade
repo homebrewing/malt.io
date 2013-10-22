@@ -1,0 +1,17 @@
+div(data-bind="if: page() == 'userDetail'")
+    div(class="user-profile", data-bind="with: userDetail.user()")
+        h2
+            img.avatar(data-bind="attr: { src: image.replace(/SIZE/, 64) }")
+            span(data-bind="text: name")
+        hr
+        div.row
+            div.col-md-5
+                h3 Location
+                div#user-detail-map
+                h3 Recipes (<span data-bind="text: recipeCount"></span> recipes)
+                div(data-bind="foreach: $root.userDetail.recipes()")
+                    mixin recipeCard(false)
+            div.col-md-7
+                h3 Public Actions
+                div(data-bind="foreach: $root.userDetail.actions()")
+                    include actions

@@ -1,0 +1,50 @@
+div(data-bind="if: page() == 'recipeDetail'")
+    div(class="recipe-detail", data-bind="with: recipeDetail")
+        .jumbotron
+            .container
+                h1(data-bind="editable: edit(), editableText: recipe().name")
+                h2(data-bind="editable: edit(), editableText: recipe().description")
+                p
+                    | Style:&nbsp;
+                    span(data-bind="text: recipe().style || 'No style'")
+                p(data-bind="if: $root.metric()")
+                    | Batch size:&nbsp;
+                    span(data-bind="editable: edit(), editableText: recipe().batchSize, type: 'fixed1'")
+                    | &nbsp;liters
+                    br
+                    | Boil size:&nbsp;
+                    span(data-bind="editable: edit(), editableText: recipe().boilSize, type: 'fixed1'")
+                    | &nbsp;liters
+                p(data-bind="ifnot: $root.metric()")
+                    | Batch size:&nbsp;
+                    span(data-bind="editable: edit(), editableText: recipe().batchSizeGallons, type: 'fixed1'")
+                    | &nbsp;gallons
+                    br
+                    | Boil size:&nbsp;
+                    span(data-bind="editable: edit(), editableText: recipe().boilSizeGallons, type: 'fixed1'")
+                    | &nbsp;gallons
+                .btn-toolbar
+                    .btn-group
+                        button.btn.btn-default(data-bind="click: toggleEdit")
+                            i.icon-edit
+                            | &nbsp;Edit
+                        button.btn.btn-default
+                            i.icon-share
+                            | &nbsp;Clone
+                        button.btn.btn-default
+                            i.icon-fire
+                            | &nbsp;Brew
+                        button.btn.btn-default
+                            i.icon-signal
+                            | &nbsp;Scale
+                        button.btn.btn-default
+                            i.icon-time
+                            | &nbsp;History
+                        button.btn.btn-default
+                            i.icon-globe
+                            | &nbsp;Widget
+                        button.btn.btn-default
+                            i.icon-download-alt
+                            | &nbsp;Export
+        p(data-bind="text: name")
+        p More coming soon!

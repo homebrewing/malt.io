@@ -1,0 +1,52 @@
+!!!
+html
+    head
+        link(rel="stylesheet", href="/styles/bootstrap.min.css")
+        link(rel="stylesheet", href="http://fonts.googleapis.com/css?family=Germania+One")
+        link(rel="stylesheet", href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css")
+        link(rel="stylesheet", href="/styles/main.css")
+    body(style="margin-top: 64px;")
+        .navbar.navbar-inverse.navbar-fixed-top
+            .navbar-inner
+                .container
+                    a.navbar-brand(href="/") <span style="">Malt<span style="opacity: 0.5">.io</span></span>
+                    ul.nav.navbar-nav
+                        li: a(href="/dashboard") dashboard
+                        li: a(href="/recipes") recipes
+                        li: a(href="/users") users
+                    ul.nav.navbar-nav.pull-right(data-bind="ifnot: user()")
+                        li: a(data-bind="click: login") login / register
+                    ul.nav.navbar-nav.pull-right(data-bind="if: user()")
+                        li.dropdown
+                            a(class="dropdown-toggle", data-toggle="dropdown")
+                                img.user(data-bind="attr: { src: user().image.replace(/SIZE/, 18) }")
+                                span(data-bind="text: user().name")
+                                b.caret
+                            ul.dropdown-menu
+                                li: a(href="/account") My account
+                                li: a(data-bind="click: logout") Log out
+                    ul.nav.navbar-nav.pull-right
+                        li
+                            .btn-group(data-toggle="buttons")
+                                label.btn.btn-default.btn-sm.active(data-bind="click: function () { metric(true) }")
+                                    input(type="radio", name="metric")
+                                    | &nbsp;Metric
+                                label.btn.btn-default.btn-sm(data-bind="click: function () { metric(false) }")
+                                    input(type="radio", name="metric")
+                                    | U.S.
+
+        div#contentContainer.container
+            != yield
+
+        .footer
+            .container Copyright &copy; 2013 Malt.io
+
+        script(src="/scripts/jquery-2.0.3.min.js")
+        script(src="/scripts/bootstrap.min.js")
+        script(src="/scripts/knockout-2.3.0.js")
+        script(src="/scripts/knockout.mapping-2.4.1.js")
+        script(src="/scripts/davis.min.js")
+        script(src="/scripts/moment.min.js")
+        script(src="/scripts/brauhaus.min.js")
+        script(src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA7bBRbj46VC1Ly3doCnmLp3a-k0k9oWnI&sensor=false")
+        script(src="/scripts/main.js")

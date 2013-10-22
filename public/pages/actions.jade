@@ -1,0 +1,24 @@
+.action
+    a(data-bind="attr: { href: '/users/' + user.name }")
+        img.user(data-bind="attr: { src: user.image.replace(/SIZE/, 14) }")
+        span(data-bind="text: user.name")
+
+    // ko if: type == 'recipe-created'
+    | &nbsp;created a recipe&nbsp;
+    span(data-bind="text: moment(created).fromNow()")
+    .content
+        span.srm(data-bind="style: { backgroundColor: Brauhaus.srmToCss(data.color) }")
+        a(data-bind="text: data.name, attr: { href: '/users/' + user.name + '/recipes/' + data.slug }")
+        | &nbsp;-&nbsp;
+        span(data-bind="text: data.description || 'No description'")
+    // /ko
+
+    // ko if: type == 'recipe-updated'
+    | &nbsp;updated a recipe&nbsp;
+    span(data-bind="text: moment(created).fromNow()")
+    .content
+        span.srm(data-bind="style: { backgroundColor: Brauhaus.srmToCss(data.color) }")
+        a(data-bind="text: data.name, attr: { href: '/users/' + user.name + '/recipes/' + data.slug }")
+        | &nbsp;-&nbsp;
+        span(data-bind="text: data.description || 'No description'")
+    // /ko

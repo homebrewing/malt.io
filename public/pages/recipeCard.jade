@@ -1,0 +1,14 @@
+mixin recipeCard(showUser)
+    .recipe
+        h4: a(data-bind="text: data.name, attr: { href: '/users/' + user.name + '/recipes/' + $data.slug }")
+        if showUser
+            h5.user: a(data-bind="text: user.name, attr: { href: '/users/' + user.name }")
+        p(data-bind="text: data.description")
+        .btn-group
+            button.btn.disabled
+                span.srm(data-bind="style: { backgroundColor: Brauhaus.srmToCss(data.color) }")
+                span(data-bind="text: Math.round(parseFloat(data.color)) + '&deg; SRM'")
+            button.btn.disabled
+                span(data-bind="text: parseFloat(data.ibu).toFixed(1) + ' IBU'")
+            button.btn.disabled
+                span(data-bind="text: parseFloat(data.abv).toFixed(1) + ' ABV'")

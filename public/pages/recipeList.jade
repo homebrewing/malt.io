@@ -1,0 +1,6 @@
+div(data-bind="if: page() == 'recipeList'")
+    div.row(id="recipe-list", data-bind="foreach: recipeList.recipes()")
+        mixin recipeCard(true)
+    ul.pager
+        li.previous(data-bind="attr: { class: recipeList.page() > 0 ? 'previous' : 'previous disabled' }"): a(data-bind="attr: { href: recipeList.baseUrl() + recipeList.prevPage() }") Previous
+        li.next: a(data-bind="attr: { href: recipeList.baseUrl() + recipeList.nextPage() }") Next

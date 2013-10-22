@@ -1,0 +1,10 @@
+div(data-bind="if: page() == 'userList'")
+    div.row(id="user-list", data-bind="foreach: userList.users")
+        div.col-md-3.user-list-item
+            a(data-bind="attr: { href: '/users/' + name }")
+                img.avatar-small(data-bind="attr: { src: image.replace(/SIZE/, 32) }")
+            h6: a(data-bind="attr: { href: '/users/' + name }, text: name")
+            span(data-bind="text: recipeCount + ' recipes'")
+    ul.pager
+        li.previous(data-bind="attr: { class: userList.page() > 0 ? 'previous' : 'previous disabled' }"): a(data-bind="attr: { href: '/users' + userList.prevPage() }") Previous
+        li.next: a(data-bind="attr: { href: '/users' + userList.nextPage() }") Next
