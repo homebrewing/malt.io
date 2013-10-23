@@ -202,30 +202,102 @@ class RecipeListViewModel extends PagedViewModel
             @recipes recipes
             done?()
 
+class FermentableModel
+    constructor: (recipe, apiFermentable) ->
+        self = this
+
+        @recipe = recipe
+
+        for property in ['color', 'late', 'name', 'weight', 'yield']
+            @[property] = ko.observable apiFermentable[property]
+            @[property].subscribe ->
+                self.recipe.calculate()
+
+        for property in ['weight']
+            do (property) ->
+                self[property + 'Lb'] = ko.computed
+                    read: ->
+                        if isNaN self[property]() then undefined else
+                            Brauhaus.kgToLbOz(self[property]()).lb
+
+                    write: (value) ->
+                        lbs = value + (self[property + 'Oz']() / 16.0)
+                        kg = Brauhaus.lbToKg lbs
+                        self[property] kg
+
+                self[property + 'Oz'] = ko.computed
+                    read: ->
+                        if isNaN self[property]() then undefined else
+                            Brauhaus.kgToLbOz(self[property]()).oz
+
+                    write: (value) ->
+                        lbs = self[property + 'Lb']() + (value / 16.0)
+                        kg = Brauhaus.lbToKg lbs
+                        self[property] kg
+
+        @colorEbc = ko.computed
+            read: ->
+                if isNaN self.color() then undefined else
+                    Brauhaus.srmToEbc self.color()
+
+            write: (value) ->
+                srm = if isNaN value then undefined else
+                    Brauhaus.ebcToSrm value
+                self.color srm
+
+        @ppg = ko.computed
+            read: ->
+                if isNaN self.yield() then undefined else
+                    new Brauhaus.Fermentable(self.toJSON()).ppg()
+
+            write: ->
+                0
+
+    toJSON: ->
+        color: @color()
+        late: @late()
+        name: @name()
+        weight: @weight()
+        yield: @yield()
+
 class RecipeModel
     constructor: (apiRecipe) ->
         self = this
 
-        for property in ['name', 'description', 'style', 'batchSize', 'boilSize']
+        for property in ['name', 'description', 'style', 'batchSize', 'boilSize', 'og', 'fg', 'ibu', 'abv']
             @[property] = ko.observable apiRecipe.data[property]
 
         for property in ['batchSize', 'boilSize']
             do (property) ->
                 self[property + 'Gallons'] = ko.computed
                     read: ->
-                        if isNaN self[property]()
-                            undefined
-                        else
+                        if isNaN self[property]() then undefined else
                             Brauhaus.litersToGallons self[property]()
 
                     write: (value) ->
-                        liters = if isNaN value
-                            undefined
-                        else
+                        liters = if isNaN value then undefined else
                             Brauhaus.gallonsToLiters parseFloat(value)
 
                         self[property] liters
 
+        @fermentables = ko.observableArray (new FermentableModel(self, x) for x in apiRecipe.fermentables or [])
+
+    toJSON: ->
+        name: @name()
+        description: @description()
+        style: @style()
+        batchSize: @batchSize()
+        boilSize: @boilSize()
+        fermentables: (x.toJSON() for x in @fermentables())
+
+    calculate: ->
+        temp = new Brauhaus.Recipe @toJSON()
+        temp.calculate()
+
+        @og temp.og
+        @fg temp.fg
+        @ibu temp.ibu
+        @abv temp.abv
 
 class RecipeDetailViewModel
     constructor: ->
@@ -236,6 +308,7 @@ class RecipeDetailViewModel
         Maltio.get 'public/users', {names: username}, (users) =>
             Maltio.get 'public/recipes', {userIds: users[0].id, slugs: slug}, (recipes) =>
                 @recipe new RecipeModel(recipes[0])
+                @recipe().calculate()
                 done?()
 
     toggleEdit: ->
@@ -369,6 +442,10 @@ ko.bindingHandlers.editableText =
             value = switch allBindings.type
                 when 'fixed1', 'fixed2'
                     parseFloat value
+                when 'int'
+                    parseInt value
+                when 'bool'
+                    value.toLowercase() in ['true', 'yes', 'on']
                 else value
 
             observable value
@@ -380,6 +457,9 @@ ko.bindingHandlers.editableText =
         value = switch allBindings.type
             when 'fixed1' then value.toFixed 1
             when 'fixed2' then value.toFixed 2
+            when 'int' then Math.round value
+            when 'bool'
+                if value then 'yes' else ''
             else value
 
         $(element).text value

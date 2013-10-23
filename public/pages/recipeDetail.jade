@@ -46,5 +46,58 @@ div(data-bind="if: page() == 'recipeDetail'")
                         button.btn.btn-default
                             i.icon-download-alt
                             | &nbsp;Export
-        p(data-bind="text: name")
-        p More coming soon!
+        section
+            h2 Fermentable Sugars
+            .col-md-10.panel.panel-default
+                table.table.table-striped
+                    thead
+                        tr
+                            // ko if: $root.metric()
+                            th Kg
+                            // /ko
+                            // ko ifnot: $root.metric()
+                            th Lb
+                            th Oz
+                            // /ko
+                            th Name
+                            th Late
+                            // ko if: $root.metric()
+                            th Yield
+                            // /ko
+                            // ko ifnot: $root.metric()
+                            th PPG
+                            // /ko
+                            th Color
+                    tbody(data-bind="foreach: recipe().fermentables()")
+                        tr
+                            // ko if: $root.metric()
+                            td(data-bind="editable: $parent.edit(), editableText: weight, type: 'fixed2'")
+                            // /ko
+                            // ko ifnot: $root.metric()
+                            td(data-bind="editable: $parent.edit(), editableText: weightLb, type: 'int'")
+                            td(data-bind="editable: $parent.edit(), editableText: weightOz, type: 'int'")
+                            // /ko
+                            td(data-bind="editable: $parent.edit(), editableText: name")
+                            td(data-bind="editable: $parent.edit(), editableText: late, type: 'bool'")
+                            // ko if: $root.metric()
+                            td(data-bind="editable: $parent.edit(), editableText: yield")
+                            // /ko
+                            // ko ifnot: $root.metric()
+                            td(data-bind="editable: $parent.edit(), editableText: ppg, type: 'int'")
+                            // /ko
+                            td
+                                span.srm(data-bind="style: { backgroundColor: Brauhaus.srmToCss(color()) }")
+                                // ko if: $root.metric()
+                                span(data-bind="editable: $parent.edit(), editableText: colorEbc, type: 'fixed1'")
+                                | &deg; EBC
+                                // /ko
+                                // ko ifnot: $root.metric()
+                                span(data-bind="editable: $parent.edit(), editableText: color, type: 'fixed1'")
+                                | &deg; SRM
+                                // /ko
+            .col-md-2
+                h5 Original Gravity
+                span(data-bind="text: recipe().og().toFixed(3)")
+                h5 Final Gravity
+                span(data-bind="text: recipe().fg().toFixed(3)")
+
