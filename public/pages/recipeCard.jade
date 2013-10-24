@@ -7,7 +7,8 @@ mixin recipeCard(showUser)
         .btn-group
             button.btn.disabled
                 span.srm(data-bind="style: { backgroundColor: Brauhaus.srmToCss(data.color) }")
-                span(data-bind="text: Math.round(parseFloat(data.color)) + '&deg; SRM'")
+                span(data-bind="text: Math.round(parseFloat(data.color))")
+                | &deg; SRM
             button.btn.disabled
                 span(data-bind="text: parseFloat(data.ibu).toFixed(1) + ' IBU'")
             button.btn.disabled
