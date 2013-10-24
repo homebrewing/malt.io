@@ -264,7 +264,12 @@ class RecipeModel
     constructor: (apiRecipe) ->
         self = this
 
-        for property in ['name', 'description', 'style', 'batchSize', 'boilSize', 'og', 'fg', 'ibu', 'abv']
+        for property in ['name', 'description', 'style', 'batchSize', 'boilSize']
+            @[property] = ko.observable apiRecipe.data[property]
+            @[property].subscribe ->
+                self.calculate()
+
+        for property in ['og', 'fg', 'ibu', 'abv']
             @[property] = ko.observable apiRecipe.data[property]
 
         for property in ['batchSize', 'boilSize']
@@ -281,6 +286,8 @@ class RecipeModel
                         self[property] liters
 
         @fermentables = ko.observableArray (new FermentableModel(self, x) for x in apiRecipe.fermentables or [])
+        @fermentables.subscribe ->
+            self.calculate()
 
     toJSON: ->
         name: @name()
@@ -289,6 +296,14 @@ class RecipeModel
         batchSize: @batchSize()
         boilSize: @boilSize()
         fermentables: (x.toJSON() for x in @fermentables())
+
+    addFermentable: (name, yieldAmt, srm) ->
+        @fermentables.push new FermentableModel(this,
+            name: name
+            weight: 1.0
+            yield: yieldAmt
+            color: srm
+        )
 
     calculate: ->
         temp = new Brauhaus.Recipe @toJSON()
@@ -300,6 +315,15 @@ class RecipeModel
         @abv temp.abv
 
 class RecipeDetailViewModel
+    fermentableTemplates: [
+        ['Malt extract', [
+            ['Extra pale liquid extract', 80, 2],
+            ['Extra light dry extract', 90, 2.5],
+            ['Pale liquid extract', 76, 4],
+            ['Maris Otter liquid extract', 78, 4.5]
+        ]]
+    ]
+
     constructor: ->
         @edit = ko.observable false
         @recipe = ko.observable()

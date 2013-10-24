@@ -48,6 +48,22 @@ div(data-bind="if: page() == 'recipeDetail'")
                             | &nbsp;Export
         section
             h2 Fermentable Sugars
+            .btn-toolbar(data-bind="with: recipe()")
+                .btn-group
+                    button.btn.btn-default(data-bind="click: addFermentable.bind($data, 'New fermentable', 75, 4)"): i.icon-plus-sign
+                // ko foreach: {data: $parent.fermentableTemplates, as: 'templateName'}
+                .btn-group
+                    button.btn.btn-default.dropdown-toggle(data-toggle="dropdown")
+                        span(data-bind="text: templateName[0]")
+                        span.caret
+                    ul.dropdown-menu(role="menu")
+                        // ko foreach: {data: templateName[1], as: 'template'}
+                        li
+                            a(data-bind="click: $root.recipeDetail.recipe().addFermentable.bind($root.recipeDetail.recipe(), template[0], template[1], template[2])")
+                                span.srm(data-bind="style: { backgroundColor: Brauhaus.srmToCss(template[2]) }")
+                                span(data-bind="text: template[0]")
+                        // /ko
+                // /ko
             .col-md-10.panel.panel-default
                 table.table.table-striped
                     thead
@@ -68,7 +84,7 @@ div(data-bind="if: page() == 'recipeDetail'")
                             th PPG
                             // /ko
                             th Color
-                    tbody(data-bind="foreach: recipe().fermentables()")
+                    tbody(data-bind="foreach: recipe().fermentables")
                         tr
                             // ko if: $root.metric()
                             td(data-bind="editable: $parent.edit(), editableText: weight, type: 'fixed2'")
