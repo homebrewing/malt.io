@@ -199,7 +199,7 @@ class RecipeListViewModel extends PagedViewModel
             options.userIds = @user.id
 
         Maltio.get 'public/recipes', options, (recipes) =>
-            @recipes recipes
+            @recipes (new RecipeModel(recipe) for recipe in recipes)
             done?()
 
 class FermentableModel
@@ -253,6 +253,8 @@ class FermentableModel
             write: ->
                 0
 
+        @weightPercent = ko.observable 0
+
     toJSON: ->
         color: @color()
         late: @late()
@@ -260,17 +262,77 @@ class FermentableModel
         weight: @weight()
         yield: @yield()
 
-class RecipeModel
-    constructor: (apiRecipe) ->
+class SpiceModel
+    constructor: (recipe, apiSpice) ->
         self = this
 
+        @recipe = recipe
+
+        for property in ['aa', 'form', 'name', 'time', 'use', 'weight']
+            @[property] = ko.observable apiSpice[property]
+            @[property].subscribe ->
+                self.recipe.calculate()
+
+        self['weightG'] = ko.computed
+            read: ->
+                if isNaN self.weight() then undefined else
+                    self.weight() * 1000
+
+            write: (value) ->
+                self.weight(value / 1000)
+
+        self['weightOz'] = ko.computed
+            read: ->
+                if isNaN self.weight() then undefined else
+                    Brauhaus.kgToLb(self.weight()) * 16.0
+
+            write: (value) ->
+                kg = Brauhaus.lbToKg(value / 16.0)
+                self.weight kg
+
+    toJSON: ->
+        aa: @aa()
+        form: @form()
+        name: @name()
+        time: @time()
+        use: @use()
+        weight: @weight()
+
+class YeastModel
+    constructor: (recipe, apiYeast) ->
+        self = this
+
+        @recipe = recipe
+
+        for property in ['attenuation', 'form', 'name', 'type']
+            @[property] = ko.observable apiYeast[property]
+            @[property].subscribe ->
+                self.recipe.calculate()
+
+    toJSON: ->
+        attenuation: @attenuation()
+        form: @form()
+        name: @name()
+        type: @type()
+
+class RecipeModel
+    @calculatedValues = ['og', 'ogPlato', 'fg', 'fgPlato', 'ibu', 'abv', 'color', 'bv', 'calories']
+
+    constructor: (apiResponse) ->
+        self = this
+
+        @user = apiResponse.user
+        @slug = apiResponse.slug
+
+        apiRecipe = apiResponse.data
+
         for property in ['name', 'description', 'style', 'batchSize', 'boilSize']
-            @[property] = ko.observable apiRecipe.data[property]
+            @[property] = ko.observable apiRecipe[property]
             @[property].subscribe ->
                 self.calculate()
 
-        for property in ['og', 'fg', 'ibu', 'abv']
-            @[property] = ko.observable apiRecipe.data[property]
+        for property in RecipeModel.calculatedValues
+            @[property] = ko.observable apiRecipe[property]
 
         for property in ['batchSize', 'boilSize']
             do (property) ->
@@ -285,8 +347,27 @@ class RecipeModel
 
                         self[property] liters
 
-        @fermentables = ko.observableArray (new FermentableModel(self, x) for x in apiRecipe.fermentables or [])
+        @colorEbc = ko.computed
+            read: ->
+                if isNaN self.color() then undefined else
+                    Brauhaus.srmToEbc self.color()
+
+            write: (value) ->
+                srm = if isNaN value then undefined else
+                    Brauhaus.ebcToSrm value
+                self.color srm
+
+        @fermentables = ko.observableArray()
+        @fermentables (new FermentableModel(self, x) for x in apiRecipe.fermentables or [])
         @fermentables.subscribe ->
+            self.calculate()
+
+        @spices = ko.observableArray (new SpiceModel(self, x) for x in apiRecipe.spices or [])
+        @spices.subscribe ->
+            self.calculate()
+
+        @yeast = ko.observableArray (new YeastModel(self, x) for x in apiRecipe.yeast or [])
+        @yeast.subscribe ->
             self.calculate()
 
     toJSON: ->
@@ -296,6 +377,8 @@ class RecipeModel
         batchSize: @batchSize()
         boilSize: @boilSize()
         fermentables: (x.toJSON() for x in @fermentables())
+        spices: (x.toJSON() for x in @spices())
+        yeast: (x.toJSON() for x in @yeast())
 
     addFermentable: (name, yieldAmt, srm) ->
         @fermentables.push new FermentableModel(this,
@@ -305,14 +388,46 @@ class RecipeModel
             color: srm
         )
 
+    addSpice: (name, aa) ->
+        @spices.push new SpiceModel(this,
+            aa: aa,
+            form: 'pellet'
+            name: name
+            time: 60
+            use: 'boil'
+            weight: 0.028
+        )
+
+    addYeast: (name, attenuation, form, type) ->
+        @yeast.push new YeastModel(this,
+            attenuation: attenuation
+            form: form
+            name: name
+            type: type
+        )
+
     calculate: ->
+        if @_updating then return
+        @_updating = true
+
         temp = new Brauhaus.Recipe @toJSON()
         temp.calculate()
 
-        @og temp.og
-        @fg temp.fg
-        @ibu temp.ibu
-        @abv temp.abv
+        for property in RecipeModel.calculatedValues
+            @[property] temp[property]
+
+        # Update fermentable ordering and weight percentages
+        total = 0
+        for item in @fermentables()
+            total += item.weight()
+
+        for item in @fermentables()
+            item.weightPercent item.weight() / total * 100
+
+        @fermentables.sort (left, right) ->
+            if left.weight() > right.weight() then -1 else 1
+
+        @_updating = false
 
 class RecipeDetailViewModel
     fermentableTemplates: [

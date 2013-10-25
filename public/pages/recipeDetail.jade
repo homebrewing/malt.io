@@ -46,60 +46,63 @@ div(data-bind="if: page() == 'recipeDetail'")
                         button.btn.btn-default
                             i.icon-download-alt
                             | &nbsp;Export
-        section
+        section.clearfix
             h2 Fermentable Sugars
-            .btn-toolbar(data-bind="with: recipe()")
-                .btn-group
-                    button.btn.btn-default(data-bind="click: addFermentable.bind($data, 'New fermentable', 75, 4)"): i.icon-plus-sign
-                // ko foreach: {data: $parent.fermentableTemplates, as: 'templateName'}
-                .btn-group
-                    button.btn.btn-default.dropdown-toggle(data-toggle="dropdown")
-                        span(data-bind="text: templateName[0]")
-                        span.caret
-                    ul.dropdown-menu(role="menu")
-                        // ko foreach: {data: templateName[1], as: 'template'}
-                        li
-                            a(data-bind="click: $root.recipeDetail.recipe().addFermentable.bind($root.recipeDetail.recipe(), template[0], template[1], template[2])")
-                                span.srm(data-bind="style: { backgroundColor: Brauhaus.srmToCss(template[2]) }")
-                                span(data-bind="text: template[0]")
-                        // /ko
-                // /ko
-            .col-md-10.panel.panel-default
+            .toolbar(data-bind="if: edit()")
+                .btn-toolbar(data-bind="with: recipe()")
+                    .btn-group
+                        button.btn.btn-default(data-bind="click: addFermentable.bind($data, 'New fermentable', 75, 4)"): i.icon-plus-sign
+                    // ko foreach: {data: $parent.fermentableTemplates, as: 'templateName'}
+                    .btn-group
+                        button.btn.btn-default.dropdown-toggle(data-toggle="dropdown")
+                            span(data-bind="text: templateName[0]")
+                            span.caret
+                        ul.dropdown-menu(role="menu")
+                            // ko foreach: {data: templateName[1], as: 'template'}
+                            li
+                                a(data-bind="click: $root.recipeDetail.recipe().addFermentable.bind($root.recipeDetail.recipe(), template[0], template[1], template[2])")
+                                    span.srm(data-bind="style: { backgroundColor: Brauhaus.srmToCss(template[2]) }")
+                                    span(data-bind="text: template[0]")
+                            // /ko
+                    // /ko
+            .col-md-10.no-pad
                 table.table.table-striped
                     thead
                         tr
+                            th.col-md-1.num %
                             // ko if: $root.metric()
-                            th Kg
+                            th.col-md-1.num Kg
                             // /ko
                             // ko ifnot: $root.metric()
-                            th Lb
-                            th Oz
+                            th.col-md-1.num Lb
+                            th.col-md-1.num Oz
                             // /ko
                             th Name
-                            th Late
+                            th.col-md-1 Late
                             // ko if: $root.metric()
-                            th Yield
+                            th.col-md-1.num Yield
                             // /ko
                             // ko ifnot: $root.metric()
-                            th PPG
+                            th.col-md-1.num PPG
                             // /ko
-                            th Color
+                            th.col-md-2 Color
                     tbody(data-bind="foreach: recipe().fermentables")
                         tr
+                            td.num(data-bind="text: Math.round(weightPercent())")
                             // ko if: $root.metric()
-                            td(data-bind="editable: $parent.edit(), editableText: weight, type: 'fixed2'")
+                            td.num(data-bind="editable: $parent.edit(), editableText: weight, type: 'fixed2'")
                             // /ko
                             // ko ifnot: $root.metric()
-                            td(data-bind="editable: $parent.edit(), editableText: weightLb, type: 'int'")
-                            td(data-bind="editable: $parent.edit(), editableText: weightOz, type: 'int'")
+                            td.num(data-bind="editable: $parent.edit(), editableText: weightLb, type: 'int'")
+                            td.num(data-bind="editable: $parent.edit(), editableText: weightOz, type: 'int'")
                             // /ko
                             td(data-bind="editable: $parent.edit(), editableText: name")
                             td(data-bind="editable: $parent.edit(), editableText: late, type: 'bool'")
                             // ko if: $root.metric()
-                            td(data-bind="editable: $parent.edit(), editableText: yield")
+                            td.num(data-bind="editable: $parent.edit(), editableText: yield")
                             // /ko
                             // ko ifnot: $root.metric()
-                            td(data-bind="editable: $parent.edit(), editableText: ppg, type: 'int'")
+                            td.num(data-bind="editable: $parent.edit(), editableText: ppg, type: 'int'")
                             // /ko
                             td
                                 span.srm(data-bind="style: { backgroundColor: Brauhaus.srmToCss(color()) }")
@@ -114,6 +117,100 @@ div(data-bind="if: page() == 'recipeDetail'")
             .col-md-2
                 h5 Original Gravity
                 span(data-bind="text: recipe().og().toFixed(3)")
+                | &nbsp;(
+                span(data-bind="text: recipe().ogPlato().toFixed(1)")
+                | &deg; Plato)
                 h5 Final Gravity
                 span(data-bind="text: recipe().fg().toFixed(3)")
+                | &nbsp;(
+                span(data-bind="text: recipe().fgPlato().toFixed(1)")
+                | &deg; Plato)
+                h5 Color
+                span.srm(data-bind="style: { backgroundColor: Brauhaus.srmToCss(recipe().color()) }")
+                // ko if: $root.metric()
+                span(data-bind="text: recipe().colorEbc().toFixed(1)")
+                | &deg; EBC
+                // /ko
+                // ko ifnot: $root.metric()
+                span(data-bind="text: recipe().color().toFixed(1)")
+                | &deg; SRM
+                // /ko
+        section.clearfix
+            h2 Bittering &amp; Spices
+            .toolbar(data-bind="if: edit()")
+                .btn-toolbar(data-bind="with: recipe()")
+                    .btn-group
+                        button.btn.btn-default(data-bind="click: addSpice.bind($data, 'New spice', 4.5)"): i.icon-plus-sign
+            .col-md-10.no-pad
+                table.table.table-striped
+                    thead
+                        tr
+                            th.col-md-1 Use
+                            th.col-md-1.num Time
+                            // ko if: $root.metric()
+                            th.col-md-1.num Grams
+                            // /ko
+                            // ko ifnot: $root.metric()
+                            th.col-md-1.num Ounces
+                            // /ko
+                            th Name
+                            th.col-md-1 Form
+                            th.col-md-1.num AA%
+                    tbody(data-bind="foreach: recipe().spices")
+                        tr
+                            td(data-bind="editable: $parent.edit(), editableText: use")
+                            td.num(data-bind="editable: $parent.edit(), editableText: time, type: 'int'")
+                            // ko if: $root.metric()
+                            td.num(data-bind="editable: $parent.edit(), editableText: weightG, type: 'int'")
+                            // /ko
+                            // ko ifnot: $root.metric()
+                            td.num(data-bind="editable: $parent.edit(), editableText: weightOz, type: 'fixed2'")
+                            // /ko
+                            td(data-bind="editable: $parent.edit(), editableText: name")
+                            td(data-bind="editable: $parent.edit(), editableText: form")
+                            td.num(data-bind="editable: $parent.edit(), editableText: aa, type: 'fixed1'")
+            .col-md-2
+                h5 Bitterness
+                span(data-bind="text: recipe().ibu().toFixed(1)")
+                | &nbsp;IBU
+                h5 Balance
+                span(data-bind="text: recipe().bv().toFixed(2)")
+                | &nbsp;(
+                // ko if: recipe().bv() < .9
+                | sweet
+                // /ko
+                // ko if: recipe().bv() >= .9 && recipe().bv() <= 1.1
+                | balanced
+                // /ko
+                // ko if: recipe().bv() > 1.1
+                | bitter
+                // /ko
+                |)
+        section.clearfix
+            h2 Yeast &amp; Bugs
+            .toolbar(data-bind="if: edit()")
+                .btn-toolbar(data-bind="with: recipe()")
+                    .btn-group
+                        button.btn.btn-default(data-bind="click: addYeast.bind($data, 'New yeast', 75, 'liquid', 'ale')"): i.icon-plus-sign
+            .col-md-10.no-pad
+                table.table.table-striped
+                    thead
+                        tr
+                            th Strain
+                            th.col-md-1 Type
+                            th.col-md-1 Form
+                            th.col-md-1.num Attenuation
+                    tbody(data-bind="foreach: recipe().yeast")
+                        tr
+                            td(data-bind="editable: $parent.edit(), editableText: name")
+                            td(data-bind="editable: $parent.edit(), editableText: type")
+                            td(data-bind="editable: $parent.edit(), editableText: form")
+                            td.num(data-bind="editable: $parent.edit(), editableText: attenuation, type: 'int'")
+            .col-md-2
+                h5 Alcohol
+                span(data-bind="text: recipe().abv().toFixed(1)")
+                | % ABV
+                h5 Calories
+                span(data-bind="text: Math.round(recipe().calories())")
+                | &nbsp;per bottle
 

@@ -1,15 +1,21 @@
 mixin recipeCard(showUser)
     .recipe
-        h4: a(data-bind="text: data.name, attr: { href: '/users/' + user.name + '/recipes/' + $data.slug }")
+        h4: a(data-bind="text: name, attr: { href: '/users/' + user.name + '/recipes/' + slug }")
         if showUser
             h5.user: a(data-bind="text: user.name, attr: { href: '/users/' + user.name }")
-        p(data-bind="text: data.description")
+        p(data-bind="text: description")
         .btn-group
             button.btn.disabled
-                span.srm(data-bind="style: { backgroundColor: Brauhaus.srmToCss(data.color) }")
-                span(data-bind="text: Math.round(parseFloat(data.color))")
+                span.srm(data-bind="style: { backgroundColor: Brauhaus.srmToCss(color()) }")
+                // ko if: $root.metric()
+                span(data-bind="text: Math.round(parseFloat(colorEbc()))")
+                | &deg; EBC
+                // /ko
+                // ko ifnot: $root.metric()
+                span(data-bind="text: Math.round(parseFloat(color()))")
                 | &deg; SRM
+                // /ko
             button.btn.disabled
-                span(data-bind="text: parseFloat(data.ibu).toFixed(1) + ' IBU'")
+                span(data-bind="text: parseFloat(ibu()).toFixed(1) + ' IBU'")
             button.btn.disabled
-                span(data-bind="text: parseFloat(data.abv).toFixed(1) + ' ABV'")
+                span(data-bind="text: parseFloat(abv()).toFixed(1) + '% ABV'")
