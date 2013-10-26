@@ -1,3 +1,7 @@
+# Utilities
+capitalize = (value) ->
+    value.charAt(0).toUpperCase() + value.slice(1)
+
 ###
 Malt.io API client
 ###
@@ -326,7 +330,7 @@ class RecipeModel
 
         apiRecipe = apiResponse.data
 
-        for property in ['name', 'description', 'style', 'batchSize', 'boilSize']
+        for property in ['name', 'description', 'style', 'batchSize', 'boilSize', 'ibuMethod']
             @[property] = ko.observable apiRecipe[property]
             @[property].subscribe ->
                 self.calculate()
@@ -376,6 +380,7 @@ class RecipeModel
         style: @style()
         batchSize: @batchSize()
         boilSize: @boilSize()
+        ibuMethod: @ibuMethod()
         fermentables: (x.toJSON() for x in @fermentables())
         spices: (x.toJSON() for x in @spices())
         yeast: (x.toJSON() for x in @yeast())
@@ -388,6 +393,9 @@ class RecipeModel
             color: srm
         )
 
+    removeFermentable: (fermentable) ->
+        fermentable.recipe.fermentables.remove fermentable
+
     addSpice: (name, aa) ->
         @spices.push new SpiceModel(this,
             aa: aa,
@@ -398,6 +406,9 @@ class RecipeModel
             weight: 0.028
         )
 
+    removeSpice: (spice) ->
+        spice.recipe.spices.remove spice
+
     addYeast: (name, attenuation, form, type) ->
         @yeast.push new YeastModel(this,
             attenuation: attenuation
@@ -405,6 +416,9 @@ class RecipeModel
             name: name
             type: type
         )
+
+    removeYeast: (yeast) ->
+        yeast.recipe.yeast.remove yeast
 
     calculate: ->
         if @_updating then return
@@ -426,6 +440,12 @@ class RecipeModel
 
         @fermentables.sort (left, right) ->
             if left.weight() > right.weight() then -1 else 1
+
+        @spices.sort (left, right) ->
+            if left.time() > right.time() then -1 else 1
+
+        @yeast.sort (left, right) ->
+            if left.attenuation() > right.attenuation() then -1 else 1
 
         @_updating = false
 

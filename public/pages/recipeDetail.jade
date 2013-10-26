@@ -69,7 +69,7 @@ div(data-bind="if: page() == 'recipeDetail'")
                 table.table.table-striped
                     thead
                         tr
-                            th.col-md-1.num %
+                            th.col-md-1.num.fade %
                             // ko if: $root.metric()
                             th.col-md-1.num Kg
                             // /ko
@@ -86,9 +86,12 @@ div(data-bind="if: page() == 'recipeDetail'")
                             th.col-md-1.num PPG
                             // /ko
                             th.col-md-2 Color
+                            // ko if: edit()
+                            th(style="width: 24px")
+                            // /ko
                     tbody(data-bind="foreach: recipe().fermentables")
                         tr
-                            td.num(data-bind="text: Math.round(weightPercent())")
+                            td.num.fade(data-bind="text: Math.round(weightPercent())")
                             // ko if: $root.metric()
                             td.num(data-bind="editable: $parent.edit(), editableText: weight, type: 'fixed2'")
                             // /ko
@@ -114,6 +117,11 @@ div(data-bind="if: page() == 'recipeDetail'")
                                 span(data-bind="editable: $parent.edit(), editableText: color, type: 'fixed1'")
                                 | &deg; SRM
                                 // /ko
+                            // ko if: $parent.edit()
+                            td.remove
+                                a(data-bind="click: $parent.recipe().removeFermentable")
+                                    i.icon-remove
+                            // /ko
             .col-md-2
                 h5 Original Gravity
                 span(data-bind="text: recipe().og().toFixed(3)")
@@ -156,6 +164,9 @@ div(data-bind="if: page() == 'recipeDetail'")
                             th Name
                             th.col-md-1 Form
                             th.col-md-1.num AA%
+                            // ko if: edit()
+                            th(style="width: 24px")
+                            // /ko
                     tbody(data-bind="foreach: recipe().spices")
                         tr
                             td(data-bind="editable: $parent.edit(), editableText: use")
@@ -169,10 +180,29 @@ div(data-bind="if: page() == 'recipeDetail'")
                             td(data-bind="editable: $parent.edit(), editableText: name")
                             td(data-bind="editable: $parent.edit(), editableText: form")
                             td.num(data-bind="editable: $parent.edit(), editableText: aa, type: 'fixed1'")
+                            // ko if: $parent.edit()
+                            td.remove
+                                a(data-bind="click: $parent.recipe().removeSpice")
+                                    i.icon-remove
+                            // /ko
             .col-md-2
                 h5 Bitterness
                 span(data-bind="text: recipe().ibu().toFixed(1)")
                 | &nbsp;IBU
+                h5 Method
+                // ko if: edit()
+                .btn-group
+                    button.btn.btn-default.btn-sm.btn-dropdown(data-toggle="dropdown")
+                        span(data-bind="text: capitalize(recipe().ibuMethod())")
+                        | &nbsp;
+                        span.caret
+                    ul.dropdown-menu
+                        li: a(data-bind="click: function () { recipe().ibuMethod('tinseth') }") Tinseth
+                        li: a(data-bind="click: function () { recipe().ibuMethod('rager') }") Rager
+                // /ko
+                // ko ifnot: edit()
+                span(data-bind="text: capitalize(recipe().ibuMethod())")
+                // /ko
                 h5 Balance
                 span(data-bind="text: recipe().bv().toFixed(2)")
                 | &nbsp;(
@@ -186,6 +216,7 @@ div(data-bind="if: page() == 'recipeDetail'")
                 | bitter
                 // /ko
                 |)
+
         section.clearfix
             h2 Yeast &amp; Bugs
             .toolbar(data-bind="if: edit()")
@@ -200,12 +231,20 @@ div(data-bind="if: page() == 'recipeDetail'")
                             th.col-md-1 Type
                             th.col-md-1 Form
                             th.col-md-1.num Attenuation
+                            // ko if: edit()
+                            th(style="width: 24px")
+                            // /ko
                     tbody(data-bind="foreach: recipe().yeast")
                         tr
                             td(data-bind="editable: $parent.edit(), editableText: name")
                             td(data-bind="editable: $parent.edit(), editableText: type")
                             td(data-bind="editable: $parent.edit(), editableText: form")
                             td.num(data-bind="editable: $parent.edit(), editableText: attenuation, type: 'int'")
+                            // ko if: $parent.edit()
+                            td.remove
+                                a(data-bind="click: $parent.recipe().removeYeast")
+                                    i.icon-remove
+                            // /ko
             .col-md-2
                 h5 Alcohol
                 span(data-bind="text: recipe().abv().toFixed(1)")
