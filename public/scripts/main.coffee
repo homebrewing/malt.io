@@ -167,7 +167,7 @@ class UserDetailViewModel
             @user users[0]
 
             Maltio.get 'public/recipes', {userIds: users[0].id, detail: true}, (recipes) =>
-                @recipes recipes
+                @recipes (new RecipeModel(recipe) for recipe in recipes)
 
             Maltio.get 'public/actions', {userIds: users[0].id}, (actions) =>
                 @actions actions
