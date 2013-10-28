@@ -102,7 +102,7 @@ div(data-bind="if: page() == 'recipeDetail'")
                             td(data-bind="editable: $parent.edit(), editableText: name")
                             td(data-bind="editable: $parent.edit(), editableText: late, type: 'bool'")
                             // ko if: $root.metric()
-                            td.num(data-bind="editable: $parent.edit(), editableText: yield")
+                            td.num(data-bind="editable: $parent.edit(), editableText: yield, type: 'int'")
                             // /ko
                             // ko ifnot: $root.metric()
                             td.num(data-bind="editable: $parent.edit(), editableText: ppg, type: 'int'")

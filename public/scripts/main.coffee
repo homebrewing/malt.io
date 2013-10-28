@@ -252,10 +252,12 @@ class FermentableModel
         @ppg = ko.computed
             read: ->
                 if isNaN self.yield() then undefined else
-                    new Brauhaus.Fermentable(self.toJSON()).ppg()
+                    Brauhaus.yieldToPpg self.yield()
 
-            write: ->
-                0
+            write: (value) ->
+                yieldAmount = if isNaN value then undefined else
+                    Brauhaus.ppgToYield value
+                self.yield yieldAmount
 
         @weightPercent = ko.observable 0
 
