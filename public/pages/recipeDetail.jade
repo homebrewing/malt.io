@@ -253,3 +253,56 @@ div(data-bind="if: page() == 'recipeDetail'")
                 span(data-bind="text: Math.round(recipe().calories())")
                 | &nbsp;per bottle
 
+        section.clearfix
+            h2 Priming &amp; Storage
+            .col-md-10.no-pad
+                table.table.table-striped
+                    thead
+                        tr
+                            th Fermentable
+                            th.col-md-1.num Grams
+                            th.col-md-1.num Ounces
+                            th.col-md-1.num Teaspoons
+                            th.col-md-1.num Cups
+                    tbody
+                        tr
+                            td Corn sugar
+                            td.num(data-bind="text: Math.round(recipe().primingCornSugar() * 1000)")
+                            td.num(data-bind="text: (Brauhaus.kgToLb(recipe().primingCornSugar()) * 16).toFixed(2)")
+                            td.num(data-bind="text: Math.round(recipe().primingCornSugar() * Brauhaus.RELATIVE_SUGAR_DENSITY.cornSugar * 240)")
+                            td.num(data-bind="text: (recipe().primingCornSugar() * Brauhaus.RELATIVE_SUGAR_DENSITY.cornSugar * 5).toFixed(2)")
+                        tr
+                            td Table sugar
+                            td.num(data-bind="text: Math.round(recipe().primingSugar() * 1000)")
+                            td.num(data-bind="text: (Brauhaus.kgToLb(recipe().primingSugar()) * 16).toFixed(2)")
+                            td.num(data-bind="text: Math.round(recipe().primingSugar() * Brauhaus.RELATIVE_SUGAR_DENSITY.sugar * 240)")
+                            td.num(data-bind="text: (recipe().primingSugar() * Brauhaus.RELATIVE_SUGAR_DENSITY.sugar * 5).toFixed(2)")
+                        tr
+                            td Honey
+                            td.num(data-bind="text: Math.round(recipe().primingHoney() * 1000)")
+                            td.num(data-bind="text: (Brauhaus.kgToLb(recipe().primingHoney()) * 16).toFixed(2)")
+                            td.num(data-bind="text: Math.round(recipe().primingHoney() * Brauhaus.RELATIVE_SUGAR_DENSITY.honey * 240)")
+                            td.num(data-bind="text: (recipe().primingHoney() * Brauhaus.RELATIVE_SUGAR_DENSITY.honey * 5).toFixed(2)")
+                        tr
+                            td Dry malt extract
+                            td.num(data-bind="text: Math.round(recipe().primingDme() * 1000)")
+                            td.num(data-bind="text: (Brauhaus.kgToLb(recipe().primingDme()) * 16).toFixed(2)")
+                            td.num(data-bind="text: Math.round(recipe().primingDme() * Brauhaus.RELATIVE_SUGAR_DENSITY.dme * 240)")
+                            td.num(data-bind="text: (recipe().primingDme() * Brauhaus.RELATIVE_SUGAR_DENSITY.dme * 5).toFixed(2)")
+
+            .col-md-2
+                h5 Temperature
+                // ko if: $root.metric()
+                span(data-bind="editable: edit, editableText: recipe().bottlingTemp, type: 'fixed1'")
+                | &nbsp;&deg;C
+                // /ko
+                // ko ifnot: $root.metric()
+                span(data-bind="editable: edit, editableText: recipe().bottlingTempF, type: 'fixed1'")
+                | &nbsp;&deg;F
+                // /ko
+                h5 Pressure
+                span(data-bind="editable: edit, editableText: recipe().bottlingPressure, type: 'fixed1'")
+                | &nbsp;Volumes
+                h5 Bottles
+                span(data-bind="text: Math.round(recipe().bottleCount())")
+

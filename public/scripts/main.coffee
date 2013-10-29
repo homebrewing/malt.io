@@ -322,7 +322,7 @@ class YeastModel
         type: @type()
 
 class RecipeModel
-    @calculatedValues = ['og', 'ogPlato', 'fg', 'fgPlato', 'ibu', 'abv', 'color', 'bv', 'calories']
+    @calculatedValues = ['og', 'ogPlato', 'fg', 'fgPlato', 'ibu', 'abv', 'color', 'bv', 'calories', 'primingCornSugar', 'primingDme', 'primingHoney', 'primingSugar']
 
     constructor: (apiResponse) ->
         self = this
@@ -332,7 +332,11 @@ class RecipeModel
 
         apiRecipe = apiResponse.data
 
-        for property in ['name', 'description', 'style', 'batchSize', 'boilSize', 'ibuMethod']
+        # Set some sane defaults
+        if apiRecipe.bottlingTemp is 0 then apiRecipe.bottlingTemp = Brauhaus.ROOM_TEMP
+        if apiRecipe.bottlingPressure is 0 then apiRecipe.bottlingPressure = 2.5
+
+        for property in ['name', 'description', 'style', 'batchSize', 'boilSize', 'ibuMethod', 'bottlingTemp', 'bottlingPressure']
             @[property] = ko.observable apiRecipe[property]
             @[property].subscribe ->
                 self.calculate()
@@ -353,6 +357,17 @@ class RecipeModel
 
                         self[property] liters
 
+        for property in ['bottlingTemp']
+            do (property) ->
+                self["#{property}F"] = ko.computed
+                    read: ->
+                        if isNaN self[property]() then undefined else
+                            Brauhaus.cToF self[property]()
+                    write: (value) ->
+                        c = if isNaN value then undefined else
+                            Brauhaus.fToC parseFloat(value)
+                        self[property] c
+
         @colorEbc = ko.computed
             read: ->
                 if isNaN self.color() then undefined else
@@ -362,6 +377,8 @@ class RecipeModel
                 srm = if isNaN value then undefined else
                     Brauhaus.ebcToSrm value
                 self.color srm
+
+        @bottleCount = ko.observable 0
 
         @fermentables = ko.observableArray()
         @fermentables (new FermentableModel(self, x) for x in apiRecipe.fermentables or [])
@@ -383,6 +400,8 @@ class RecipeModel
         batchSize: @batchSize()
         boilSize: @boilSize()
         ibuMethod: @ibuMethod()
+        bottlingTemp: @bottlingTemp()
+        bottlingPressure: @bottlingPressure()
         fermentables: (x.toJSON() for x in @fermentables())
         spices: (x.toJSON() for x in @spices())
         yeast: (x.toJSON() for x in @yeast())
@@ -439,6 +458,8 @@ class RecipeModel
 
         for item in @fermentables()
             item.weightPercent item.weight() / total * 100
+
+        @bottleCount temp.bottleCount()
 
         @fermentables.sort (left, right) ->
             if left.weight() > right.weight() then -1 else 1
