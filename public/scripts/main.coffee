@@ -322,7 +322,7 @@ class YeastModel
         type: @type()
 
 class RecipeModel
-    @calculatedValues = ['og', 'ogPlato', 'fg', 'fgPlato', 'ibu', 'abv', 'color', 'bv', 'calories', 'primingCornSugar', 'primingDme', 'primingHoney', 'primingSugar']
+    @calculatedValues = ['og', 'ogPlato', 'fg', 'fgPlato', 'ibu', 'abv', 'color', 'bv', 'calories', 'primingCornSugar', 'primingDme', 'primingHoney', 'primingSugar', 'boilStartTime', 'boilEndTime', 'brewDayDuration']
 
     constructor: (apiResponse) ->
         self = this
@@ -336,7 +336,7 @@ class RecipeModel
         if apiRecipe.bottlingTemp is 0 then apiRecipe.bottlingTemp = Brauhaus.ROOM_TEMP
         if apiRecipe.bottlingPressure is 0 then apiRecipe.bottlingPressure = 2.5
 
-        for property in ['name', 'description', 'style', 'batchSize', 'boilSize', 'ibuMethod', 'bottlingTemp', 'bottlingPressure']
+        for property in ['name', 'description', 'style', 'batchSize', 'boilSize', 'ibuMethod', 'bottlingTemp', 'bottlingPressure', 'mashEfficiency', 'steepEfficiency']
             @[property] = ko.observable apiRecipe[property]
             @[property].subscribe ->
                 self.calculate()
@@ -393,6 +393,9 @@ class RecipeModel
         @yeast.subscribe ->
             self.calculate()
 
+        @timeline = null
+        @timelineUs = null
+
     toJSON: ->
         name: @name()
         description: @description()
@@ -447,6 +450,8 @@ class RecipeModel
 
         temp = new Brauhaus.Recipe @toJSON()
         temp.calculate()
+        @timeline = temp.timeline(true)
+        @timelineUs = temp.timeline(false)
 
         for property in RecipeModel.calculatedValues
             @[property] temp[property]
@@ -471,6 +476,29 @@ class RecipeModel
             if left.attenuation() > right.attenuation() then -1 else 1
 
         @_updating = false
+
+    displayTimeline: (metric=true) ->
+        last = 0
+        timeline = []
+
+        for [min, desc] in metric and @timeline or @timelineUs
+            if min - last > 1440
+                timeline.push ['...', '']
+
+            last = min
+
+            if min < @boilStartTime()
+                min = 'boil'
+            else if min < @boilEndTime()
+                min = "-#{min - @boilEndTime()} minutes"
+            else if min is @boilEndTime()
+                min = "0 minutes"
+            else
+                min = Brauhaus.displayDuration(min - @boilEndTime(), 2)
+
+            timeline.push [min, desc]
+
+        timeline
 
 class RecipeDetailViewModel
     fermentableTemplates: [

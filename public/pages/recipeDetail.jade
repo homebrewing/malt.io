@@ -306,3 +306,38 @@ div(data-bind="if: page() == 'recipeDetail'")
                 h5 Bottles
                 span(data-bind="text: Math.round(recipe().bottleCount())")
 
+        section.clearfix
+            h2 Brewday Timeline
+            .col-md-10.no-pad.timeline
+                .line
+                ol.list-unstyled
+                    li
+                        span.label.label-inverse start
+                        span Get ready to brew!
+                    // ko foreach: recipe().displayTimeline($root.metric())
+                    li
+                        // ko if: $data[0] == '...'
+                        span.label.label-inverse.round ...
+                        span &nbsp;
+                        // /ko
+                        // ko ifnot: $data[0] == '...'
+                        span.label.label-primary(data-bind="attr: { class: ($index() == $parent.recipe().displayTimeline().length - 1) ? 'label label-inverse' : 'label label-primary'}, text: $data[0]")
+                        span(data-bind="text: $data[1]")
+                        // /ko
+                    // /ko
+            .col-md-2
+                h5 Mash Efficiency
+                span(data-bind="editable: edit, editableText: recipe().mashEfficiency, type: 'int'")
+                | %
+                h5 Steep Efficiency
+                span(data-bind="editable: edit, editableText: recipe().steepEfficiency, type: 'int'")
+                | %
+                h5 Brewday Time
+                span(data-bind="text: Brauhaus.displayDuration(recipe().brewDayDuration(), 2)")
+
+        section.clearfix
+            .license
+                | Creative Commons
+                img(src="/images/creativecommons.png")
+                | Attribution ShareAlike
+
