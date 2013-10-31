@@ -1,4 +1,4 @@
-
+include _pages/recipeCard
 
 div(data-bind="if: crumbs().length")
     ol.breadcrumb(data-bind="foreach: crumbs")
@@ -9,13 +9,10 @@ div(data-bind="if: crumbs().length")
         li.active(data-bind="text: $data[0]")
         // /ko
 
-div(data-bind="if: page() == 'home'")
-    p Home page!
+include _pages/home
 
 div(data-bind="if: page() == 'dashboard'")
-    p Dashboard!
-
-include _pages/recipeCard
+    p Dashboard coming soon...
 
 include _pages/userList
 include _pages/userDetail

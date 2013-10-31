@@ -621,8 +621,11 @@ class AppViewModel
                     self.user profile
 
             @get '/', (req) ->
-                self.page 'home'
-                self.crumbs []
+                self.recipeList.baseUrl '/recipes'
+                self.recipeList.setUser null, ->
+                    self.page 'home'
+                    self.crumbs []
+                    self.recipeList.page 0
 
         router.configure (config) ->
             # Make sure to load the current URL

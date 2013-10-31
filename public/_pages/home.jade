@@ -1,0 +1,8 @@
+div(data-bind="if: page() == 'home'")
+    .jumbotron
+        .container
+            h1 Malt.io v2
+            h3 Experimental - do not use!
+    h5 Top Recipes
+    div.row(id="recipe-list", data-bind="foreach: recipeList.recipes()")
+        mixin recipeCard(true)
