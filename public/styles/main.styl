@@ -38,12 +38,17 @@ td.num, th.num
     a
         cursor pointer
 
+    .navbar-inner
+        background linear-gradient(#3a3a3a, #303030 48%, #343434 48%, #222 51%, #111)
+        box-shadow 0 3px 10px rgba(0, 0, 0, 0.3)
+
     .navbar-brand
         color #ccc
         font-family 'Germania One'
         font-size 32px
         padding-top 18px
         padding-bottom 12px
+        padding-left 0
 
     .btn-group
         margin-top 10px
@@ -171,9 +176,46 @@ td.num, th.num
         width 2px
         background-color black
 
+.key
+    display inline-block
+    color black
+    background #ddd
+    border 1px solid #bbb
+    border-radius 3px
+    padding .1em .3em
+    margin 0
+    box-shadow inset 1px 1px rgba(255, 255, 255, 0.5), inset -1px -1px rgba(255, 255, 255, 0.5)
+
 .license
     text-align center
     margin 1em
+
+.footer-links
+    .container
+        padding 12px
+        margin 24px auto
+        background-color rgba(0, 0, 0, 0.05)
+        border-top 1px solid rgba(0, 0, 0, 0.1)
+        border-bottom 1px solid rgba(0, 0, 0, 0.1)
+
+        .footer-logo
+            display inline-block
+            font-family 'Germania One'
+            font-size 30pt
+            color transparent
+            margin-top 30px
+            margin-left 16px
+            text-shadow 1px 1px rgba(255, 255, 255, 0.3), -1px -1px rgba(0, 0, 0, 0.2)
+
+.footer
+    text-align center
+
+    .copyright
+        opacity 0.3
+
+#loading
+    text-align center
+    padding 3em
 
 #user-detail-map
     height 160px

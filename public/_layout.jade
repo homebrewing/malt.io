@@ -14,6 +14,8 @@ html
                         li: a(href="/dashboard") dashboard
                         li: a(href="/recipes") recipes
                         li: a(href="/users") users
+                        li: a(href="/developers") developers
+                        li: a(href="http://blog.malt.io/") blog
                     ul.nav.navbar-nav.pull-right(data-bind="ifnot: user()")
                         li: a(data-bind="click: login") login / register
                     ul.nav.navbar-nav.pull-right(data-bind="if: user()")
@@ -21,6 +23,7 @@ html
                             a(class="dropdown-toggle", data-toggle="dropdown")
                                 img.user(data-bind="attr: { src: user().image.replace(/SIZE/, 18) }")
                                 span(data-bind="text: user().name")
+                                | &nbsp;
                                 b.caret
                             ul.dropdown-menu
                                 li: a(href="/account") My account
@@ -35,11 +38,56 @@ html
                                     input(type="radio", name="metric")
                                     | U.S.
 
-        div#contentContainer.container
+        #loading
+            p
+                img(src="/images/ajax-loader.gif")
+            p Loading...
+
+        #contentContainer.container(style="display: none")
             != yield
 
+        .footer-links
+            .container
+                .col-md-2
+                    .footer-logo Malt.io
+                .col-md-2
+                    h5 Stores
+                    ul.list-unstyled
+                        li: a(href="http://www.austinhomebrew.com/") Austin Homebrew
+                        li: a(href="http://www.midwestsupplies.com/") Midwest Supplies
+                        li: a(href="http://morebeer.com/") More Beer
+                        li: a(href="http://www.northernbrewer.com/") Northern Brewer
+                .col-md-2
+                    h5 Magazines
+                    ul.list-unstyled
+                        li: a(href="http://www.ambrew.com/") American Brewer
+                        li: a(href="http://byo.com/") Brew Your Own
+                        li: a(href="http://www.homebrewersassociation.org/pages/zymurgy/current-issue") Zymurgy
+                .col-md-2
+                    h5 Forums
+                    ul.list-unstyled
+                        li: a(href="http://www.homebrewersassociation.org/forum/index.php") AHA Forums
+                        li: a(href="http://www.homebrewtalk.com/") Homebrew Talk
+                        li: a(href="http://forum.northernbrewer.com/") NB Forums
+                .col-md-2
+                    h5 Misc
+                    ul.list-unstyled
+                        li: a(href="/developers") Developers / API
+                        li: a(href="http://www.bjcp.org/") BJCP
+
         .footer
-            .container Copyright &copy; 2013 Malt.io
+            .container
+                .social
+                    div.g-plus(data-height="69", data-href="//plus.google.com/+Maltio", data-rel="publisher")
+                    a(href="//plus.google.com/+Maltio", rel="publisher", style="display: none;") Malt.io
+
+                p
+                    | Press&nbsp;
+                    span.key ?
+                    | &nbsp;for help with keyboard shortcuts
+                p.copyright
+                    | Copyright &copy; 2013 Daniel G. Taylor |&nbsp;
+                    a(href="https://github.com/homebrewing/malt.io") Malt.io on Github
 
         script(src="/scripts/jquery-2.0.3.min.js")
         script(src="/scripts/bootstrap.min.js")
@@ -50,3 +98,11 @@ html
         script(src="/scripts/brauhaus.min.js")
         script(src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA7bBRbj46VC1Ly3doCnmLp3a-k0k9oWnI&sensor=false")
         script(src="/scripts/main.js")
+        script.
+            $('#loading, #contentContainer').toggle();
+
+            (function() {
+                var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+                po.src = 'https://apis.google.com/js/plusone.js';
+                var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+            })();

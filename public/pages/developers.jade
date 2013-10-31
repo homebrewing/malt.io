@@ -1,0 +1,65 @@
+div(data-bind="if: page() == 'developers'")
+    h1 Developers Welcome <small>built with open source</small>
+    .row
+        .col-md-6
+            h5 Introduction
+            p <strong>Malt</strong>.io loves developers and loves open source. The projects below form the basis of this site, from low-level conversion and calculations to backend <abbr title="Application Programming Interfaces">APIs</abbr> and live-updating web pages. Help to build the next killer homebrewing app!
+        .col-md-6
+            h5 What is Open Source?
+            p Open source means that the entire computer code that is behind this website is open for anybody to download, share, add to or use in their own projects. <strong>Malt</strong>.io will always be open.
+    .row
+        .col-md-4
+            h2 Brauhaus.js
+            p <strong>Brauhaus</strong> is a javascript library for homebrew calculations that runs on both the server (<a href="http://nodejs.org/">Node.js</a>) and client (web browsers). It allows you to create and calculate recipes, do conversions, and much more.
+        .col-md-4
+            h2 Tapline
+            p <strong>Tapline</strong> is an API server that wraps Brauhaus and <a href="http://www.mongodb.org/">MongoDB</a> to provide authentication, authorization, users, stored recipes, and recipe calculation functionality on-demand from any client that can speak <abbr title="Representational State Transfer">REST</abbr> and <abbr title="Javascript Object Notation">JSON</abbr>.
+        .col-md-3
+            h2 Malt.io
+            p <strong>Malt</strong>.io is this website, which uses Tapline's API to fetch and store users and recipes. It also uses Brauhaus to live-update the page as you edit recipes on the site.
+    .row
+        .col-md-4
+            ul.list-unstyled
+                li
+                    i.icon-book &nbsp;
+                    a(href="https://github.com/homebrewing/brauhausjs#readme") Documentation
+                li
+                    i.icon-github-alt &nbsp;
+                    a(href="https://github.com/homebrewing/brauhausjs") Github Project
+                li
+                    i.icon-exclamation-sign &nbsp;
+                    a(href="https://github.com/homebrewing/brauhausjs/issues") Report Issue
+        .col-md-4
+            ul.list-unstyled
+                li
+                    i.icon-book &nbsp;
+                    a(href="https://github.com/homebrewing/tapline#readme") Documentation
+                li
+                    i.icon-github-alt &nbsp;
+                    a(href="https://github.com/homebrewing/tapline") Github Project
+                li
+                    i.icon-exclamation-sign &nbsp;
+                    a(href="https://github.com/homebrewing/tapline/issues") Report Issue
+        .col-md-4
+            ul.list-unstyled
+                li
+                    i.icon-book &nbsp;
+                    a(href="https://github.com/homebrewing/malt.io#readme") Documentation
+                li
+                    i.icon-github-alt &nbsp;
+                    a(href="https://github.com/homebrewing/malt.io") Github Project
+                li
+                    i.icon-exclamation-sign &nbsp;
+                    a(href="https://github.com/homebrewing/malt.io/issues") Report Issue
+    div
+        h3 Get Started <small>Brauhaus &amp; API playground</small>
+        p Take a look at the javascript below, and click the <strong>Result</strong> tab to see it executed. Batteries are included: <a href="http://jquery.com/">jQuery</a> and Brauhaus are already loaded.
+        .btn-toolbar
+            .btn-group
+                button.btn.btn-default(data-bind="click: function () { $root.example('danielgtaylor/wPYGw'); }") Brauhaus (Javascript)
+                button.btn.btn-default(data-bind="click: function () { $root.example('danielgtaylor/47Uqu'); }") Brauhaus (Coffeescript)
+            .btn-group
+                button.btn.btn-default API (Javascript)
+                button.btn.btn-default(data-bind="click: function () { $root.example('danielgtaylor/8HjcN'); }") API (Coffeescript)
+        br
+        iframe(width="100%", height="300", allowfullscreen="allowfullscreen", frameborder="0", data-bind="attr: { src: 'http://jsfiddle.net/' + $root.example() + '/embedded/js,result' }")

@@ -12,9 +12,14 @@ div(data-bind="if: crumbs().length")
 div(data-bind="if: page() == 'home'")
     p Home page!
 
+div(data-bind="if: page() == 'dashboard'")
+    p Dashboard!
+
 include pages/recipeCard
 
 include pages/userList
 include pages/userDetail
 include pages/recipeList
 include pages/recipeDetail
+
+include pages/developers

@@ -538,6 +538,8 @@ class AppViewModel
         @recipeList = new RecipeListViewModel()
         @recipeDetail = new RecipeDetailViewModel()
 
+        @example = ko.observable 'danielgtaylor/wPYGw'
+
         # Set logged in user from saved session
         if localStorage['user.id']
             @user
@@ -568,6 +570,10 @@ class AppViewModel
 
         # Page routing via HTML5 History states
         router = Davis ->
+            @get '/dashboard', (req) ->
+                self.page 'dashboard'
+                self.crumbs [['home', '/'], ['dashboard', '']]
+
             @get '/users/:username/recipes/:slug', (req) ->
                 self.recipeDetail.load req.params.username, req.params.slug, ->
                     self.page 'recipeDetail'
@@ -596,6 +602,10 @@ class AppViewModel
                     self.page 'recipeList'
                     self.crumbs [['home', '/'], ['recipes', '']]
                     self.recipeList.page parseInt(req.params.page) or 0
+
+            @get '/developers', (req) ->
+                self.page 'developers'
+                self.crumbs [['home', '/'], ['developers', '']]
 
             # Oauth Login Handling
             @get '/auth/callback', (req) ->
