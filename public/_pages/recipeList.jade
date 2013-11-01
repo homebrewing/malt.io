@@ -1,5 +1,28 @@
 div(data-bind="if: page() == 'recipeList'")
-    div.row(id="recipe-list", data-bind="foreach: recipeList.recipes()")
+    .controls
+        a.btn.btn-success.pull-left(style="margin-top: 3px; margin-right: 12px;", href="/new")
+            i.icon-plus-sign
+            | &nbsp;New recipe
+        ul.nav.nav-pills.pull-left
+            li: a(href="/recipes") All recipes
+            // ko if: $root.user()
+            li: a(data-bind="attr: { href: '/users/' + $root.user().name + '/recipes'}") My recipes
+            // /ko
+        .pull-right
+            .btn-group
+                button.btn.btn-default.dropdown-toggle(data-toggle="dropdown")
+                    i.icon-reorder
+                    | &nbsp;
+                    span(data-bind="text: recipeList.displaySort")
+                    | &nbsp;
+                    span.caret
+                ul.dropdown-menu
+                    li: a(data-bind="click: function () { recipeList.sort('name'); }") Name
+                    li: a(data-bind="click: function () { recipeList.sort('-created'); }") Newest
+                    li: a(data-bind="click: function () { recipeList.sort('created'); }") Oldest
+    .clearfix
+    br
+    .row(id="recipe-list", data-bind="foreach: recipeList.recipes()")
         mixin recipeCard(true)
     ul.pager
         li.previous(data-bind="attr: { class: recipeList.page() > 0 ? 'previous' : 'previous disabled' }"): a(data-bind="attr: { href: recipeList.baseUrl() + recipeList.prevPage() }") Previous

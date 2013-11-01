@@ -126,10 +126,11 @@ A generic paged view model that implements an update method
 to fetch and show new data anytime the page is modified.
 ###
 class PagedViewModel
-    constructor: ->
+    constructor: (defaultSort=null) ->
         # Paging variables
         @perPage = ko.observable 25
         @page = ko.observable 0
+        @sort = ko.observable defaultSort
 
         @page.extend notify: 'always'
 
@@ -146,6 +147,9 @@ class PagedViewModel
             @update()
 
         @page.subscribe (value) =>
+            @update()
+
+        @sort.subscribe (value) =>
             @update()
 
     update: (done) ->
@@ -185,10 +189,18 @@ class UserDetailViewModel
 
 class RecipeListViewModel extends PagedViewModel
     constructor: ->
-        super()
+        super '-created'
         @user = null
         @baseUrl = ko.observable '/recipes'
         @recipes = ko.observableArray()
+
+        @displaySort = ko.computed
+            read: =>
+                switch @sort()
+                    when 'created' then 'Oldest'
+                    when '-created' then 'Newest'
+                    when 'name' then 'Name'
+                    else 'Custom'
 
     # Set a user via a username, unset by passing null
     setUser: (username, done) ->
@@ -202,6 +214,7 @@ class RecipeListViewModel extends PagedViewModel
 
     update: (done) ->
         options =
+            sort: @sort()
             offset: @perPage() * @page()
             limit: @perPage()
             detail: true
