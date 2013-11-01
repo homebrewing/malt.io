@@ -35,13 +35,20 @@ class Maltio
         if @auth and path.substr(0, 6) isnt 'public'
             headers.Authorization = "bearer #{@auth}"
 
-        $.ajax
+        options =
             type: method
             headers: headers
             dataType: 'json'
             url: url
             data: data
             success: done
+
+        if method.toLowerCase() isnt 'get'
+            # Send JSON
+            options.data = JSON.stringify data
+            options.contentType = 'application/json; charset=UTF-8'
+
+        $.ajax options
 
     # Shortcuts for HTTP GET/POST/PUT/DELETE
     @get: (path, data, done) ->
@@ -327,6 +334,7 @@ class RecipeModel
     constructor: (apiResponse) ->
         self = this
 
+        @id = apiResponse.id
         @user = apiResponse.user
         @slug = apiResponse.slug
 
@@ -524,6 +532,14 @@ class RecipeDetailViewModel
     toggleEdit: ->
         @edit not @edit()
 
+    save: ->
+        if @recipe().id
+            Maltio.put "recipes/#{@recipe().id}", {recipe: @recipe().toJSON()}, (res) ->
+                console.log res
+        else
+            Maltio.post 'recipes', @recipe().toJSON(), (res) ->
+                console.log res
+
 class AppViewModel
     constructor: ->
         self = this
@@ -602,6 +618,18 @@ class AppViewModel
                     self.page 'recipeList'
                     self.crumbs [['home', '/'], ['recipes', '']]
                     self.recipeList.page parseInt(req.params.page) or 0
+
+            @get '/new', (req) ->
+                fakeRecipe =
+                    id: null
+                    user: self.user
+                    slug: 'no-slug-yet'
+                    data: new Brauhaus.Recipe()
+                self.recipeDetail.recipe new RecipeModel(fakeRecipe)
+                self.recipeDetail.recipe().calculate()
+                self.recipeDetail.edit true
+                self.page 'recipeDetail'
+                self.crumbs [['home', '/'], ['New Recipe', '']]
 
             @get '/developers', (req) ->
                 self.page 'developers'

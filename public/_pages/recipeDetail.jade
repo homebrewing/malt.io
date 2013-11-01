@@ -28,6 +28,9 @@ div(data-bind="if: page() == 'recipeDetail'")
                         button.btn.btn-default(data-bind="click: toggleEdit")
                             i.icon-edit
                             | &nbsp;Edit
+                        button.btn.btn-default(data-bind="click: save")
+                            i.icon-save
+                            | &nbsp;Save
                         button.btn.btn-default
                             i.icon-share
                             | &nbsp;Clone
