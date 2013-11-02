@@ -737,8 +737,15 @@ class RecipeDetailViewModel
             Maltio.put "recipes/#{@recipe().id}", {recipe: @recipe().toJSON()}, (res) ->
                 console.log res
         else
-            Maltio.post 'recipes', @recipe().toJSON(), (res) ->
+            Maltio.post 'recipes', {recipe: @recipe().toJSON()}, (res) ->
                 console.log res
+
+    clone: ->
+        Maltio.post 'recipes', {recipe: @recipe().toJSON()}, (res) ->
+            console.log res
+
+    delConfirm: ->
+        console.log 'Not implemented!'
 
     # Clear all recipe data
     clear: ->

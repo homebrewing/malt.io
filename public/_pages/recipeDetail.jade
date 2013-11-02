@@ -44,10 +44,15 @@ div(data-bind="if: page() == 'recipeDetail'")
                 // ko ifnot: edit
                 .btn-toolbar
                     .btn-group
+                        // ko if: recipe().user.name == $root.user().name
                         button.btn.btn-default(data-bind="click: toggleEdit")
                             i.icon-edit
                             | &nbsp;Edit
-                        button.btn.btn-default
+                        button.btn.btn-default(data-bind="click: delConfirm")
+                            i.icon-remove
+                            | &nbsp;Delete
+                        // /ko
+                        button.btn.btn-default(data-bind="click: clone")
                             i.icon-share
                             | &nbsp;Clone
                         button.btn.btn-default
