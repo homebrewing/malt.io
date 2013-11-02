@@ -10,9 +10,10 @@ class Maltio
     @version: 1
     @clientId: '5262cc03ba318e4ff21d7d6d'
     @host: 'https://api.malt.io'
-    # Uncomment the line below for local testing
+    @redirect: 'http://beta.malt.io/auth/callback'
+    # Uncomment the lines below for local testing
     #@host: 'http://localhost:2337'
-    @redirect: 'http://localhost:9000/auth/callback'
+    #@redirect: 'http://localhost:9000/auth/callback'
     @debug: true
 
     @authorizeUrl: ->
