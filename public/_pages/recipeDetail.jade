@@ -1,5 +1,23 @@
 div(data-bind="if: page() == 'recipeDetail'")
     div(class="recipe-detail", data-bind="with: recipeDetail")
+        // ko if: edit
+        .alert.alert-info.save
+            .btn-toolbar.pull-right
+                // ko if: recipe().id
+                button.btn.btn-default.btn-sm(data-bind="click: function () { location.reload(); }")
+                    i.icon-minus-sign
+                    | &nbsp;Cancel
+                // /ko
+                // ko ifnot: recipe().id
+                button.btn.btn-default.btn-sm(data-bind="click: clear")
+                    i.icon-minus-sign
+                    | &nbsp;Clear
+                // /ko
+                button.btn.btn-primary.btn-sm(data-bind="click: save")
+                    i.icon-save
+                    | &nbsp;Save recipe
+            p.hidden-xs You are currently editing this recipe. Your changes have not yet been saved.
+        // /ko
         .jumbotron
             .container
                 h1(data-bind="editable: edit(), editableText: recipe().name")
@@ -23,14 +41,12 @@ div(data-bind="if: page() == 'recipeDetail'")
                     | Boil size:&nbsp;
                     span(data-bind="editable: edit(), editableText: recipe().boilSizeGallons, type: 'fixed1'")
                     | &nbsp;gallons
+                // ko ifnot: edit
                 .btn-toolbar
                     .btn-group
                         button.btn.btn-default(data-bind="click: toggleEdit")
                             i.icon-edit
                             | &nbsp;Edit
-                        button.btn.btn-default(data-bind="click: save")
-                            i.icon-save
-                            | &nbsp;Save
                         button.btn.btn-default
                             i.icon-share
                             | &nbsp;Clone
@@ -49,6 +65,7 @@ div(data-bind="if: page() == 'recipeDetail'")
                         button.btn.btn-default
                             i.icon-download-alt
                             | &nbsp;Export
+                // /ko
         section.clearfix
             h2 Fermentable Sugars
             .toolbar(data-bind="if: edit()")
@@ -59,6 +76,7 @@ div(data-bind="if: page() == 'recipeDetail'")
                     .btn-group
                         button.btn.btn-default.dropdown-toggle(data-toggle="dropdown")
                             span(data-bind="text: templateName[0]")
+                            | &nbsp;
                             span.caret
                         ul.dropdown-menu(role="menu")
                             // ko foreach: {data: templateName[1], as: 'template'}
@@ -152,6 +170,25 @@ div(data-bind="if: page() == 'recipeDetail'")
                 .btn-toolbar(data-bind="with: recipe()")
                     .btn-group
                         button.btn.btn-default(data-bind="click: addSpice.bind($data, 'New spice', 4.5)"): i.icon-plus-sign
+                    // ko foreach: {data: $parent.spiceTemplates, as: 'templateName'}
+                    .btn-group
+                        button.btn.btn-default.dropdown-toggle(data-toggle="dropdown")
+                            span(data-bind="text: templateName[0]")
+                            | &nbsp;
+                            span.caret
+                        ul.dropdown-menu(role="menu")
+                            // ko foreach: {data: templateName[1], as: 'template'}
+                            li
+                                a(data-bind="click: $root.recipeDetail.recipe().addSpice.bind($root.recipeDetail.recipe(), template[0], template[1])")
+                                    // ko if: template[1] > 0
+                                    i.icon-asterisk(data-bind="css: { 'fade-hard': template[1] < 4 }")
+                                    i.icon-asterisk(data-bind="css: { 'fade-hard': template[1] < 8 }")
+                                    i.icon-asterisk(data-bind="css: { 'fade-hard': template[1] < 12 }")
+                                    | &nbsp;
+                                    // /ko
+                                    span(data-bind="text: template[0]")
+                            // /ko
+                    // /ko
             .col-md-10.no-pad
                 table.table.table-striped
                     thead
@@ -226,6 +263,19 @@ div(data-bind="if: page() == 'recipeDetail'")
                 .btn-toolbar(data-bind="with: recipe()")
                     .btn-group
                         button.btn.btn-default(data-bind="click: addYeast.bind($data, 'New yeast', 75, 'liquid', 'ale')"): i.icon-plus-sign
+                    // ko foreach: {data: $parent.yeastTemplates, as: 'templateName'}
+                    .btn-group
+                        button.btn.btn-default.dropdown-toggle(data-toggle="dropdown")
+                            span(data-bind="text: templateName[0]")
+                            | &nbsp;
+                            span.caret
+                        ul.dropdown-menu(role="menu")
+                            // ko foreach: {data: templateName[1], as: 'template'}
+                            li
+                                a(data-bind="click: $root.recipeDetail.recipe().addYeast.bind($root.recipeDetail.recipe(), template[0], template[1], template[2], template[3])")
+                                    span(data-bind="text: template[0]")
+                            // /ko
+                    // /ko
             .col-md-10.no-pad
                 table.table.table-striped
                     thead
