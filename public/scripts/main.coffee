@@ -805,7 +805,7 @@ class AppViewModel
                 delete localStorage['user.token']
 
         # Page routing via HTML5 History states
-        router = Davis ->
+        @router = Davis ->
             @get '/dashboard', (req) ->
                 self.page 'dashboard'
                 self.crumbs [['home', '/'], ['dashboard', '']]
@@ -863,6 +863,8 @@ class AppViewModel
                     profile.token = token
                     self.user profile
 
+                    Davis.location.assign '/dashboard'
+
             @get '/', (req) ->
                 self.recipeList.baseUrl '/recipes'
                 self.recipeList.setUser null, ->
@@ -870,11 +872,11 @@ class AppViewModel
                     self.crumbs []
                     self.recipeList.page 0
 
-        router.configure (config) ->
+        @router.configure (config) ->
             # Make sure to load the current URL
             config.generateRequestOnPageLoad = true
 
-            router.start()
+            self.router.start()
 
     login: ->
         location.href = Maltio.authorizeUrl()

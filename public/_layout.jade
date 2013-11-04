@@ -5,7 +5,7 @@ html
         link(rel="stylesheet", href="http://fonts.googleapis.com/css?family=Germania+One")
         link(rel="stylesheet", href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css")
         link(rel="stylesheet", href="/styles/main.css")
-    body(style="margin-top: 64px;")
+    body(style="margin-top: 50px;")
         .navbar.navbar-inverse.navbar-fixed-top
             .navbar-inner
                 .container
@@ -38,56 +38,56 @@ html
                                     input(type="radio", name="metric")
                                     | U.S.
 
-        #loading
-            p
-                img(src="/images/ajax-loader.gif")
-            p Loading...
+        #pageContainer.container
 
-        #contentContainer.container(style="display: none")
-            != yield
-
-        .footer-links
-            .container
-                .col-md-2
-                    .footer-logo Malt.io
-                .col-md-2
-                    h5 Stores
-                    ul.list-unstyled
-                        li: a(href="http://www.austinhomebrew.com/") Austin Homebrew
-                        li: a(href="http://www.midwestsupplies.com/") Midwest Supplies
-                        li: a(href="http://morebeer.com/") More Beer
-                        li: a(href="http://www.northernbrewer.com/") Northern Brewer
-                .col-md-2
-                    h5 Magazines
-                    ul.list-unstyled
-                        li: a(href="http://www.ambrew.com/") American Brewer
-                        li: a(href="http://byo.com/") Brew Your Own
-                        li: a(href="http://www.homebrewersassociation.org/pages/zymurgy/current-issue") Zymurgy
-                .col-md-2
-                    h5 Forums
-                    ul.list-unstyled
-                        li: a(href="http://www.homebrewersassociation.org/forum/index.php") AHA Forums
-                        li: a(href="http://www.homebrewtalk.com/") Homebrew Talk
-                        li: a(href="http://forum.northernbrewer.com/") NB Forums
-                .col-md-2
-                    h5 Misc
-                    ul.list-unstyled
-                        li: a(href="/developers") Developers / API
-                        li: a(href="http://www.bjcp.org/") BJCP
-
-        .footer
-            .container
-                .social
-                    div.g-plus(data-height="69", data-href="//plus.google.com/+Maltio", data-rel="publisher")
-                    a(href="//plus.google.com/+Maltio", rel="publisher", style="display: none;") Malt.io
-
+            #loading
                 p
-                    | Press&nbsp;
-                    span.key ?
-                    | &nbsp;for help with keyboard shortcuts
-                p.copyright
-                    | Copyright &copy; 2013 Daniel G. Taylor |&nbsp;
-                    a(href="https://github.com/homebrewing/malt.io") Malt.io on Github
+                    img(src="/images/ajax-loader.gif")
+                p Loading...
+
+            #contentContainer(style="display: none")
+                != yield
+
+            .footer-links.clearfix
+                    .col-md-2
+                        .footer-logo Malt.io
+                    .col-md-2
+                        h5 Stores
+                        ul.list-unstyled
+                            li: a(href="http://www.austinhomebrew.com/") Austin Homebrew
+                            li: a(href="http://www.midwestsupplies.com/") Midwest Supplies
+                            li: a(href="http://morebeer.com/") More Beer
+                            li: a(href="http://www.northernbrewer.com/") Northern Brewer
+                    .col-md-2
+                        h5 Magazines
+                        ul.list-unstyled
+                            li: a(href="http://www.ambrew.com/") American Brewer
+                            li: a(href="http://byo.com/") Brew Your Own
+                            li: a(href="http://www.homebrewersassociation.org/pages/zymurgy/current-issue") Zymurgy
+                    .col-md-2
+                        h5 Forums
+                        ul.list-unstyled
+                            li: a(href="http://www.homebrewersassociation.org/forum/index.php") AHA Forums
+                            li: a(href="http://www.homebrewtalk.com/") Homebrew Talk
+                            li: a(href="http://forum.northernbrewer.com/") NB Forums
+                    .col-md-2
+                        h5 Misc
+                        ul.list-unstyled
+                            li: a(href="/developers") Developers / API
+                            li: a(href="http://www.bjcp.org/") BJCP
+
+            .footer.clearfix
+                    .social
+                        div.g-plus(data-height="69", data-href="//plus.google.com/+Maltio", data-rel="publisher")
+                        a(href="//plus.google.com/+Maltio", rel="publisher", style="display: none;") Malt.io
+
+                    p
+                        | Press&nbsp;
+                        span.key ?
+                        | &nbsp;for help with keyboard shortcuts
+                    p.copyright
+                        | Copyright &copy; 2013 Daniel G. Taylor |&nbsp;
+                        a(href="https://github.com/homebrewing/malt.io") Malt.io on Github
 
         script(src="/scripts/jquery-2.0.3.min.js")
         script(src="/scripts/bootstrap.min.js")

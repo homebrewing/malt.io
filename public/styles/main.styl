@@ -1,5 +1,13 @@
 body
     color black
+    background #222 url(/images/debut_dark.png) top left repeat
+
+#pageContainer
+    background #ddd url(/images/gray_jean.png) top left repeat
+    padding-top 24px
+    margin-bottom 48px
+    border-bottom-left-radius 15px
+    border-bottom-right-radius 15px
 
 h1, h2
     font-family 'Germania One'
@@ -68,6 +76,19 @@ td.num, th.num
             &:hover
                 background-color #541
 
+.breadcrumb
+    border 1px solid rgba(0, 0, 0, 0.1)
+
+.jumbotron
+    background-color rgba(0, 0, 0, 0.1)
+
+.ellipsize
+    display inline-block
+    width 100%
+    white-space nowrap
+    overflow hidden
+    text-overflow ellipsis
+
 .user-list-item
     float left
     display block
@@ -105,6 +126,7 @@ td.num, th.num
 
 .recipe
     position relative
+    background-color rgba(255, 255, 255, 0.5)
     border 1px solid rgba(0, 0, 0, 0.1)
     border-radius 3px
     padding 12px
@@ -204,21 +226,20 @@ td.num, th.num
     margin 1em
 
 .footer-links
-    .container
-        padding 12px
-        margin 24px auto
-        background-color rgba(0, 0, 0, 0.05)
-        border-top 1px solid rgba(0, 0, 0, 0.1)
-        border-bottom 1px solid rgba(0, 0, 0, 0.1)
+    padding 12px
+    margin 24px auto
+    background-color rgba(0, 0, 0, 0.05)
+    border-top 1px solid rgba(0, 0, 0, 0.1)
+    border-bottom 1px solid rgba(0, 0, 0, 0.1)
 
-        .footer-logo
-            display inline-block
-            font-family 'Germania One'
-            font-size 30pt
-            color transparent
-            margin-top 30px
-            margin-left 16px
-            text-shadow 1px 1px rgba(255, 255, 255, 0.3), -1px -1px rgba(0, 0, 0, 0.2)
+    .footer-logo
+        display inline-block
+        font-family 'Germania One'
+        font-size 30pt
+        color transparent
+        margin-top 30px
+        margin-left 16px
+        text-shadow 1px 1px rgba(255, 255, 255, 0.3), -1px -1px rgba(0, 0, 0, 0.2)
 
 .footer
     text-align center
