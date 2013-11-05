@@ -67,7 +67,7 @@ div(data-bind="if: page() == 'recipeDetail'")
                         button.btn.btn-default
                             i.icon-globe
                             | &nbsp;Widget
-                        button.btn.btn-default
+                        button.btn.btn-default(data-bind="click: exportBeerXml")
                             i.icon-download-alt
                             | &nbsp;Export
                 // /ko

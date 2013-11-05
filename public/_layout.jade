@@ -9,34 +9,40 @@ html
         .navbar.navbar-inverse.navbar-fixed-top
             .navbar-inner
                 .container
+                    button.navbar-toggle(data-toggle="collapse", data-target="#main-nav")
+                        span.sr-only Toggle navigation
+                        span.icon-bar
+                        span.icon-bar
+                        span.icon-bar
                     a.navbar-brand(href="/") <span style="">Malt<span style="opacity: 0.5">.io</span></span>
-                    ul.nav.navbar-nav
-                        li: a(href="/dashboard") dashboard
-                        li: a(href="/recipes") recipes
-                        li: a(href="/users") users
-                        li: a(href="/developers") developers
-                        li: a(href="http://blog.malt.io/") blog
-                    ul.nav.navbar-nav.pull-right(data-bind="ifnot: user()")
-                        li: a(data-bind="click: login") login / register
-                    ul.nav.navbar-nav.pull-right(data-bind="if: user()")
-                        li.dropdown
-                            a(class="dropdown-toggle", data-toggle="dropdown")
-                                img.user(data-bind="attr: { src: user().image.replace(/SIZE/, 18) }")
-                                span(data-bind="text: user().name")
-                                | &nbsp;
-                                b.caret
-                            ul.dropdown-menu
-                                li: a(href="/account") My account
-                                li: a(data-bind="click: logout") Log out
-                    ul.nav.navbar-nav.pull-right
-                        li
-                            .btn-group(data-toggle="buttons")
-                                label.btn.btn-default.btn-sm.active(data-bind="click: function () { metric(true) }")
-                                    input(type="radio", name="metric")
-                                    | &nbsp;Metric
-                                label.btn.btn-default.btn-sm(data-bind="click: function () { metric(false) }")
-                                    input(type="radio", name="metric")
-                                    | U.S.
+                    .collapse.navbar-collapse(id="main-nav")
+                        ul.nav.navbar-nav
+                            li: a(href="/dashboard") dashboard
+                            li: a(href="/recipes") recipes
+                            li: a(href="/users") users
+                            li: a(href="/developers") developers
+                            li: a(href="http://blog.malt.io/") blog
+                        ul.nav.navbar-nav.navbar-right(data-bind="ifnot: user()")
+                            li: a(data-bind="click: login") login / register
+                        ul.nav.navbar-nav.navbar-right(data-bind="if: user()")
+                            li.dropdown
+                                a(class="dropdown-toggle", data-toggle="dropdown")
+                                    img.user(data-bind="attr: { src: user().image.replace(/SIZE/, 18) }")
+                                    span(data-bind="text: user().name")
+                                    | &nbsp;
+                                    b.caret
+                                ul.dropdown-menu
+                                    li: a(href="/account") My account
+                                    li: a(data-bind="click: logout") Log out
+                        ul.nav.navbar-nav.navbar-right(style="padding-right: 16px")
+                            li
+                                .btn-group(data-toggle="buttons")
+                                    label.btn.btn-default.btn-sm.active(data-bind="click: function () { metric(true) }")
+                                        input(type="radio", name="metric")
+                                        | &nbsp;Metric
+                                    label.btn.btn-default.btn-sm(data-bind="click: function () { metric(false) }")
+                                        input(type="radio", name="metric")
+                                        | U.S.
 
         #pageContainer.container
 
@@ -96,6 +102,8 @@ html
         script(src="/scripts/davis.min.js")
         script(src="/scripts/moment.min.js")
         script(src="/scripts/brauhaus.min.js")
+        script(src="/scripts/brauhaus-beerxml.min.js")
+        script(src="/scripts/FileSaver.js")
         script(src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA7bBRbj46VC1Ly3doCnmLp3a-k0k9oWnI&sensor=false")
         script(src="/scripts/main.js")
         script.

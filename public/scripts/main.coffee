@@ -500,6 +500,11 @@ class RecipeModel
 
         @_updating = false
 
+    toBeerXml: ->
+        temp = new Brauhaus.Recipe @toJSON()
+        temp.calculate()
+        temp.toBeerXml()
+
     displayTimeline: (metric=true) ->
         last = 0
         timeline = []
@@ -724,26 +729,38 @@ class RecipeDetailViewModel
         @recipe = ko.observable()
 
     load: (username, slug, done) ->
+        console.log "Loading recipe #{username}/#{slug}"
         Maltio.get 'public/users', {names: username}, (users) =>
             Maltio.get 'public/recipes', {userIds: users[0].id, slugs: slug}, (recipes) =>
-                @recipe new RecipeModel(recipes[0])
-                @recipe().calculate()
+                recipe = new RecipeModel(recipes[0])
+                recipe.calculate()
+                @recipe recipe
                 done?()
 
     toggleEdit: ->
         @edit not @edit()
 
     save: ->
+        postSave = (recipe) ->
+            console.log recipe
+            Davis.location.assign "/users/#{recipe.user.name}/recipes/#{recipe.slug}"
+
         if @recipe().id
-            Maltio.put "recipes/#{@recipe().id}", {recipe: @recipe().toJSON()}, (res) ->
-                console.log res
+            Maltio.put "recipes/#{@recipe().id}", {recipe: @recipe().toJSON()}, postSave
         else
-            Maltio.post 'recipes', {recipe: @recipe().toJSON()}, (res) ->
-                console.log res
+            Maltio.post 'recipes', {recipe: @recipe().toJSON()}, postSave
 
     clone: ->
         Maltio.post 'recipes', {recipe: @recipe().toJSON()}, (res) ->
             console.log res
+
+    exportBeerXml: ->
+        xml = @recipe().toBeerXml()
+
+        blob = new Blob [xml], type: 'text/xml'
+        url = URL.createObjectURL blob
+
+        window.saveAs blob, "#{@recipe().slug}.xml"
 
     delConfirm: ->
         console.log 'Not implemented!'

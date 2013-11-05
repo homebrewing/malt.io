@@ -5,4 +5,5 @@ div(data-bind="if: page() == 'home'")
             h3 Experimental - do not use!
     h5 Top Recipes
     div.row(id="recipe-list", data-bind="foreach: recipeList.recipes()")
-        mixin recipeCard(true)
+        .col-md-4
+            mixin recipeCard(true)
