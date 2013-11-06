@@ -1,22 +1,25 @@
-include _pages/recipeCard
+extends _layout
 
-div(data-bind="if: crumbs().length")
-    ol.breadcrumb(data-bind="foreach: crumbs")
-        // ko if: $data[1].length
-        li: a(data-bind="text: $data[0], attr: { href: $data[1] }")
-        // /ko
-        // ko ifnot: $data[1].length
-        li.active(data-bind="text: $data[0]")
-        // /ko
+block content
+    include _pages/recipeCard
 
-include _pages/home
+    div(data-bind="if: crumbs().length")
+        ol.breadcrumb(data-bind="foreach: crumbs")
+            // ko if: $data[1].length
+            li: a(data-bind="text: $data[0], attr: { href: $data[1] }")
+            // /ko
+            // ko ifnot: $data[1].length
+            li.active(data-bind="text: $data[0]")
+            // /ko
 
-div(data-bind="if: page() == 'dashboard'")
-    p Dashboard coming soon...
+    include _pages/home
 
-include _pages/userList
-include _pages/userDetail
-include _pages/recipeList
-include _pages/recipeDetail
+    div(data-bind="if: page() == 'dashboard'")
+        p Dashboard coming soon...
 
-include _pages/developers
+    include _pages/userList
+    include _pages/userDetail
+    include _pages/recipeList
+    include _pages/recipeDetail
+
+    include _pages/developers

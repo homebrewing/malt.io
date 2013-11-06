@@ -1,10 +1,9 @@
 !!!
 html
     head
-        link(rel="stylesheet", href="/styles/bootstrap.min.css")
         link(rel="stylesheet", href="http://fonts.googleapis.com/css?family=Germania+One")
         link(rel="stylesheet", href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css")
-        link(rel="stylesheet", href="/styles/main.css")
+        link(rel="stylesheet", href="/styles/combined.min.css?v=#{ts}")
     body(style="margin-top: 50px;")
         .navbar.navbar-inverse.navbar-fixed-top
             .navbar-inner
@@ -52,7 +51,7 @@ html
                 p Loading...
 
             #contentContainer(style="display: none")
-                != yield
+                block content
 
             .footer-links.clearfix
                     .col-md-2
@@ -95,19 +94,17 @@ html
                         | Copyright &copy; 2013 Daniel G. Taylor |&nbsp;
                         a(href="https://github.com/homebrewing/malt.io") Malt.io on Github
 
-        script(src="/scripts/jquery-2.0.3.min.js")
-        script(src="/scripts/bootstrap.min.js")
-        script(src="/scripts/knockout-3.0.0.js")
-        script(src="/scripts/knockout.mapping-2.4.1.js")
-        script(src="/scripts/davis.min.js")
-        script(src="/scripts/moment.min.js")
-        script(src="/scripts/brauhaus.min.js")
-        script(src="/scripts/brauhaus-beerxml.min.js")
-        script(src="/scripts/FileSaver.js")
-        script(src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA7bBRbj46VC1Ly3doCnmLp3a-k0k9oWnI&sensor=false")
-        script(src="/scripts/main.js")
+        script.
+            var ENV = "#{env}";
+        script(src="/scripts/combined.min.js?v=#{ts}")
         script.
             $('#loading, #contentContainer').toggle();
+
+            (function() {
+                var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+                po.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyA7bBRbj46VC1Ly3doCnmLp3a-k0k9oWnI&sensor=false';
+                var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+            })();
 
             (function() {
                 var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
