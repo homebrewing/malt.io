@@ -1,17 +1,22 @@
 # Utilities to draw maps
 class Mapping
-    @draw: (id, lat, lng) =>
-        mapOptions =
-          center: new google.maps.LatLng lat || 40.7142, lng || -74.0064
-          zoom: 11
-          mapTypeId: google.maps.MapTypeId.ROADMAP
-          mapTypeControl: false
-          streetViewControl: false
+    @loaded: ->
+        # Called when Google Maps has loaded asyncronously
 
+    @draw: (id, lat, lng) =>
         drawMap = ->
-            if !google?.maps
-                setTimeout drawMap, 250
-                return
+            if window.google is undefined or google.maps is undefined or google.maps.LatLng is undefined
+                console.log 'Waiting for Google Maps to load...'
+                return setTimeout drawMap, 250
+
+            console.log google.maps
+
+            mapOptions =
+                center: new google.maps.LatLng lat or 40.7142, lng or -74.0064
+                zoom: 11
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+                mapTypeControl: false
+                streetViewControl: false
 
             map = new google.maps.Map document.getElementById(id), mapOptions
 

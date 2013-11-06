@@ -94,20 +94,10 @@ html
                         | Copyright &copy; 2013 Daniel G. Taylor |&nbsp;
                         a(href="https://github.com/homebrewing/malt.io") Malt.io on Github
 
+        script(async, src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA7bBRbj46VC1Ly3doCnmLp3a-k0k9oWnI&sensor=false&callback=Mapping.loaded")
+        script(async, src="https://apis.google.com/js/plusone.js")
         script.
             var ENV = "#{env}";
         script(src="/scripts/combined.min.js?v=#{ts}")
         script.
             $('#loading, #contentContainer').toggle();
-
-            (function() {
-                var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
-                po.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyA7bBRbj46VC1Ly3doCnmLp3a-k0k9oWnI&sensor=false';
-                var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
-            })();
-
-            (function() {
-                var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
-                po.src = 'https://apis.google.com/js/plusone.js';
-                var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
-            })();
