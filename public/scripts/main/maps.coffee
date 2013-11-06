@@ -9,8 +9,6 @@ class Mapping
                 console.log 'Waiting for Google Maps to load...'
                 return setTimeout drawMap, 250
 
-            console.log google.maps
-
             mapOptions =
                 center: new google.maps.LatLng lat or 40.7142, lng or -74.0064
                 zoom: 11
