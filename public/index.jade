@@ -1,7 +1,7 @@
-extends _layout
+extends layout
 
 block content
-    include _pages/recipeCard
+    include pages/recipeCard
 
     div(data-bind="if: crumbs().length")
         ol.breadcrumb(data-bind="foreach: crumbs")
@@ -12,14 +12,14 @@ block content
             li.active(data-bind="text: $data[0]")
             // /ko
 
-    include _pages/home
+    include pages/home
 
     div(data-bind="if: page() == 'dashboard'")
         p Dashboard coming soon...
 
-    include _pages/userList
-    include _pages/userDetail
-    include _pages/recipeList
-    include _pages/recipeDetail
+    include pages/userList
+    include pages/userDetail
+    include pages/recipeList
+    include pages/recipeDetail
 
-    include _pages/developers
+    include pages/developers
