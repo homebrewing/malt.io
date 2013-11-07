@@ -233,7 +233,8 @@ class RecipeDetailViewModel
         window.saveAs blob, "#{@recipe().slug}.xml"
 
     delConfirm: ->
-        console.log 'Not implemented!'
+        Maltio.del "recipes/#{@recipe().id}", {}, (res) ->
+            Davis.location.assign '/recipes'
 
     # Clear all recipe data
     clear: ->
