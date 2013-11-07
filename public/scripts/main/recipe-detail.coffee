@@ -221,8 +221,9 @@ class RecipeDetailViewModel
             Maltio.post 'recipes', {recipe: @recipe().toJSON()}, postSave
 
     clone: ->
-        Maltio.post 'recipes', {recipe: @recipe().toJSON()}, (res) ->
-            console.log res
+        Maltio.post 'recipes', {recipe: @recipe().toJSON()}, (recipe) ->
+            console.log recipe
+            Davis.location.assign "/users/#{recipe.user.name}/recipes/#{recipe.slug}"
 
     exportBeerXml: ->
         xml = @recipe().toBeerXml()
