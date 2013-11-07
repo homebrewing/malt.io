@@ -4,7 +4,7 @@ div(data-bind="if: page() == 'recipeDetail'")
         .alert.alert-info.save
             .btn-toolbar.pull-right
                 // ko if: recipe().id
-                button.btn.btn-default.btn-sm(data-bind="click: function () { location.reload(); }")
+                button.btn.btn-default.btn-sm(data-bind="click: function () { Davis.location.assign(location.pathname); }")
                     i.icon-minus-sign
                     | &nbsp;Cancel
                 // /ko
