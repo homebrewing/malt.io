@@ -81,10 +81,10 @@ td.num, th.num
                 background-color #444
 
         .active
-            background-color #430
+            background-color #541
 
             &:hover
-                background-color #541
+                background-color #652
 
 .breadcrumb
     background-color rgba(255, 255, 255, 0.5)
@@ -139,9 +139,10 @@ td.num, th.num
     position relative
     background-color rgba(255, 255, 255, 0.8)
     border 1px solid rgba(0, 0, 0, 0.1)
-    border-radius 3px
+    border-radius 5px
+    border-top 3px solid transparent
     padding 12px
-    margin-bottom 1em
+    margin-bottom 24px
 
     h4
         padding 0
@@ -155,6 +156,29 @@ td.num, th.num
         margin 0
         padding 4px 8px
         border-bottom-left-radius 5px
+
+    .flavor
+        opacity 0.6
+
+    .flavor-bar
+        height 2px
+        background-color #ccc
+
+    .flavor-tab
+        position absolute
+        width 8px
+        height 8px
+        background-color #888
+        border-radius 4px
+        margin-top -5px
+        margin-left -4px
+
+    .stats
+        font-family monospace
+        opacity 0.6
+
+        td
+            padding 2px 6px
 
 .no-pad
     padding 0
@@ -257,6 +281,23 @@ td.num, th.num
 
     .copyright
         opacity 0.3
+
+.modal-backdrop.in
+    opacity 0.8
+
+.modal-content
+    border 10px solid rgba(255, 255, 255, 0.15)
+    box-shadow 0 0 15px rgba(0, 0, 0, 0.6)
+
+.modal-header
+    background linear-gradient(#3a3a3a, #303030 48%, #343434 48%, #222 51%, #111)
+    box-shadow 0 3px 10px rgba(0, 0, 0, 0.3)
+
+    h4
+        color white
+
+.modal-footer
+    background-color #f5f5f5
 
 #loading
     text-align center

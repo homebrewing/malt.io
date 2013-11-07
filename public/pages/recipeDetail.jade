@@ -44,27 +44,27 @@ div(data-bind="if: page() == 'recipeDetail'")
                 // ko ifnot: edit
                 .btn-toolbar
                     .btn-group
-                        // ko if: recipe().user.name == $root.user().name
+                        // ko if: recipe().user && $root.user() && recipe().user.name == $root.user().name
                         button.btn.btn-default(data-bind="click: toggleEdit")
                             i.icon-edit
                             | &nbsp;Edit
-                        button.btn.btn-default(data-bind="click: delConfirm")
+                        button.btn.btn-default(data-toggle="modal", data-target="#deleteRecipeDialog")
                             i.icon-remove
                             | &nbsp;Delete
                         // /ko
-                        button.btn.btn-default(data-bind="click: clone")
+                        button.btn.btn-default(data-toggle="modal", data-target="#cloneRecipeDialog")
                             i.icon-share
                             | &nbsp;Clone
-                        button.btn.btn-default
+                        button.btn.btn-default(disabled)
                             i.icon-fire
                             | &nbsp;Brew
-                        button.btn.btn-default
+                        button.btn.btn-default(disabled)
                             i.icon-signal
                             | &nbsp;Scale
-                        button.btn.btn-default
+                        button.btn.btn-default(disabled)
                             i.icon-time
                             | &nbsp;History
-                        button.btn.btn-default
+                        button.btn.btn-default(disabled)
                             i.icon-globe
                             | &nbsp;Widget
                         button.btn.btn-default(data-bind="click: exportBeerXml")
