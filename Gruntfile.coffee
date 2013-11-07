@@ -111,7 +111,7 @@ module.exports = (grunt) ->
                         ]
         watch:
             templates:
-                files: ['public/*.jade', 'public/_pages/*.jade']
+                files: ['public/*.jade', 'public/pages/*.jade']
                 tasks: ['jade']
             styles:
                 files: ['public/styles/*']
