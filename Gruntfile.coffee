@@ -117,7 +117,7 @@ module.exports = (grunt) ->
                 files: ['public/styles/*']
                 tasks: ['styles']
             scripts:
-                files: ['public/scripts/main/*']
+                files: ['public/scripts/main/**']
                 tasks: ['scripts']
 
     grunt.loadNpmTasks 'grunt-contrib-jade'
