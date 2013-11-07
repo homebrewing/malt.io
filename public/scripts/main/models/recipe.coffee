@@ -71,6 +71,7 @@ class RecipeModel
         @yeast.subscribe ->
             self.calculate()
 
+        @type = ko.observable 'boil'
         @timeline = null
         @timelineUs = null
 
@@ -129,6 +130,14 @@ class RecipeModel
 
         temp = new Brauhaus.Recipe @toJSON()
         temp.calculate()
+
+        @type if temp.timelineMap.fermentables.mash.length
+            'mash'
+        else if temp.timelineMap.fermentables.steep.length
+            'steep'
+        else
+            'boil'
+
         @timeline = temp.timeline(true)
         @timelineUs = temp.timeline(false)
 
@@ -172,7 +181,12 @@ class RecipeModel
             last = min
 
             if min < @boilStartTime()
-                min = 'boil'
+                min = @type()
+
+                # Create one large block for boil/steep/mash
+                if timeline.length
+                    timeline[timeline.length - 1][1] += "<br/>#{desc}"
+                    continue
             else if min < @boilEndTime()
                 min = "-#{min - @boilEndTime()} minutes"
             else if min is @boilEndTime()

@@ -380,7 +380,7 @@ div(data-bind="if: page() == 'recipeDetail'")
                         // /ko
                         // ko ifnot: $data[0] == '...'
                         span.label.label-primary(data-bind="attr: { class: ($index() == $parent.recipe().displayTimeline().length - 1) ? 'label label-inverse' : 'label label-primary'}, text: $data[0]")
-                        span(data-bind="text: $data[1]")
+                        span(data-bind="html: $data[1]")
                         // /ko
                     // /ko
             .col-md-2
