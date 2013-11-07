@@ -1,9 +1,16 @@
 !!!
 html
     head
+        meta(charset="utf-8")
         link(rel="stylesheet", href="http://fonts.googleapis.com/css?family=Germania+One")
-        link(rel="stylesheet", href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css")
         link(rel="stylesheet", href="/styles/combined.min.css?v=#{ts}")
+
+        script.
+            var ENV = "#{env}";
+
+        script(async, src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA7bBRbj46VC1Ly3doCnmLp3a-k0k9oWnI&sensor=false&callback=Mapping.loaded")
+        script(async, src="https://apis.google.com/js/plusone.js")
+        script(async, src="/scripts/combined.min.js?v=#{ts}")
     body(style="margin-top: 50px;")
         .navbar.navbar-inverse.navbar-fixed-top
             .navbar-inner
@@ -94,10 +101,4 @@ html
                         | Copyright &copy; 2013 Daniel G. Taylor |&nbsp;
                         a(href="https://github.com/homebrewing/malt.io") Malt.io on Github
 
-        script(async, src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA7bBRbj46VC1Ly3doCnmLp3a-k0k9oWnI&sensor=false&callback=Mapping.loaded")
-        script(async, src="https://apis.google.com/js/plusone.js")
-        script.
-            var ENV = "#{env}";
-        script(src="/scripts/combined.min.js?v=#{ts}")
-        script.
-            $('#loading, #contentContainer').toggle();
+        link(rel="stylesheet", href="http://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css")

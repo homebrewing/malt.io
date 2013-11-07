@@ -125,3 +125,6 @@ class AppViewModel
 # Start the application and routing
 window.app = new AppViewModel()
 ko.applyBindings window.app
+
+# Display the application and hide loading bar
+$('#loading, #contentContainer').toggle();
