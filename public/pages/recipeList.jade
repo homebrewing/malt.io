@@ -1,8 +1,11 @@
 div(data-bind="if: page() == 'recipeList'")
     .controls
         a.btn.btn-success.pull-left(style="margin-top: 3px; margin-right: 12px;", href="/new")
-            i.icon-plus-sign
+            i.fa.fa-plus-circle
             | &nbsp;New recipe
+        a.btn.btn-default.pull-left(style="margin-top: 3px; margin-right: 12px;", href="#", data-toggle="modal", data-target="#importRecipeDialog")
+            i.fa.fa-upload
+            | &nbsp;Import BeerXML
         ul.nav.nav-pills.pull-left
             li: a(href="/recipes") All recipes
             // ko if: $root.user()
@@ -11,7 +14,7 @@ div(data-bind="if: page() == 'recipeList'")
         .pull-right
             .btn-group
                 button.btn.btn-default.dropdown-toggle(data-toggle="dropdown")
-                    i.icon-reorder
+                    i.fa.fa-bars
                     | &nbsp;
                     span(data-bind="text: recipeList.displaySort")
                     | &nbsp;

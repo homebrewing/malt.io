@@ -5,16 +5,16 @@ div(data-bind="if: page() == 'recipeDetail'")
             .btn-toolbar.pull-right
                 // ko if: recipe().id
                 button.btn.btn-default.btn-sm(data-bind="click: function () { Davis.location.assign(location.pathname); }")
-                    i.icon-minus-sign
+                    i.fa.fa-minus-circle
                     | &nbsp;Cancel
                 // /ko
                 // ko ifnot: recipe().id
                 button.btn.btn-default.btn-sm(data-bind="click: clear")
-                    i.icon-minus-sign
+                    i.fa.fa-minus-circle
                     | &nbsp;Clear
                 // /ko
                 button.btn.btn-primary.btn-sm(data-bind="click: save")
-                    i.icon-save
+                    i.fa.fa-save
                     | &nbsp;Save recipe
             p.hidden-xs You are currently editing this recipe. Your changes have not yet been saved.
         // /ko
@@ -46,29 +46,29 @@ div(data-bind="if: page() == 'recipeDetail'")
                     .btn-group
                         // ko if: recipe().user && $root.user() && recipe().user.name == $root.user().name
                         button.btn.btn-default(data-bind="click: toggleEdit")
-                            i.icon-edit
+                            i.fa.fa-edit
                             | &nbsp;Edit
                         button.btn.btn-default(data-toggle="modal", data-target="#deleteRecipeDialog")
-                            i.icon-remove
+                            i.fa.fa-ban
                             | &nbsp;Delete
                         // /ko
                         button.btn.btn-default(data-toggle="modal", data-target="#cloneRecipeDialog")
-                            i.icon-share
+                            i.fa.fa-share-square
                             | &nbsp;Clone
                         button.btn.btn-default(disabled)
-                            i.icon-fire
+                            i.fa.fa-fire
                             | &nbsp;Brew
                         button.btn.btn-default(disabled)
-                            i.icon-signal
+                            i.fa.fa-signal
                             | &nbsp;Scale
                         button.btn.btn-default(disabled)
-                            i.icon-time
+                            i.fa.fa-clock-o
                             | &nbsp;History
                         button.btn.btn-default(disabled)
-                            i.icon-globe
+                            i.fa.fa-globe
                             | &nbsp;Widget
                         button.btn.btn-default(data-toggle="modal", data-target="#exportRecipeDialog")
-                            i.icon-download-alt
+                            i.fa.fa-download
                             | &nbsp;Export
                 // /ko
         section.clearfix
@@ -76,7 +76,7 @@ div(data-bind="if: page() == 'recipeDetail'")
             .toolbar(data-bind="if: edit()")
                 .btn-toolbar(data-bind="with: recipe()")
                     .btn-group
-                        button.btn.btn-default(data-bind="click: addFermentable.bind($data, 'New fermentable', 75, 4)"): i.icon-plus-sign
+                        button.btn.btn-default(data-bind="click: addFermentable.bind($data, 'New fermentable', 75, 4)"): i.fa.fa-plus-circle
                     // ko foreach: {data: $parent.fermentableTemplates, as: 'templateName'}
                     .btn-group
                         button.btn.btn-default.dropdown-toggle(data-toggle="dropdown")
@@ -146,7 +146,7 @@ div(data-bind="if: page() == 'recipeDetail'")
                             // ko if: $parent.edit()
                             td.remove
                                 a(data-bind="click: $parent.recipe().removeFermentable")
-                                    i.icon-remove
+                                    i.fa.fa-times-circle
                             // /ko
             .col-md-2
                 h5 Original Gravity
@@ -174,7 +174,7 @@ div(data-bind="if: page() == 'recipeDetail'")
             .toolbar(data-bind="if: edit()")
                 .btn-toolbar(data-bind="with: recipe()")
                     .btn-group
-                        button.btn.btn-default(data-bind="click: addSpice.bind($data, 'New spice', 4.5)"): i.icon-plus-sign
+                        button.btn.btn-default(data-bind="click: addSpice.bind($data, 'New spice', 4.5)"): i.fa.fa-plus-circle
                     // ko foreach: {data: $parent.spiceTemplates, as: 'templateName'}
                     .btn-group
                         button.btn.btn-default.dropdown-toggle(data-toggle="dropdown")
@@ -186,9 +186,9 @@ div(data-bind="if: page() == 'recipeDetail'")
                             li
                                 a(data-bind="click: $root.recipeDetail.recipe().addSpice.bind($root.recipeDetail.recipe(), template[0], template[1])")
                                     // ko if: template[1] > 0
-                                    i.icon-asterisk(data-bind="css: { 'fade-hard': template[1] < 4 }")
-                                    i.icon-asterisk(data-bind="css: { 'fade-hard': template[1] < 8 }")
-                                    i.icon-asterisk(data-bind="css: { 'fade-hard': template[1] < 12 }")
+                                    i.fa.fa-asterisk(data-bind="css: { 'fade-hard': template[1] < 4 }")
+                                    i.fa.fa-asterisk(data-bind="css: { 'fade-hard': template[1] < 8 }")
+                                    i.fa.fa-asterisk(data-bind="css: { 'fade-hard': template[1] < 12 }")
                                     | &nbsp;
                                     // /ko
                                     span(data-bind="text: template[0]")
@@ -228,7 +228,7 @@ div(data-bind="if: page() == 'recipeDetail'")
                             // ko if: $parent.edit()
                             td.remove
                                 a(data-bind="click: $parent.recipe().removeSpice")
-                                    i.icon-remove
+                                    i.fa.fa-times-circle
                             // /ko
             .col-md-2
                 h5 Bitterness
@@ -267,7 +267,7 @@ div(data-bind="if: page() == 'recipeDetail'")
             .toolbar(data-bind="if: edit()")
                 .btn-toolbar(data-bind="with: recipe()")
                     .btn-group
-                        button.btn.btn-default(data-bind="click: addYeast.bind($data, 'New yeast', 75, 'liquid', 'ale')"): i.icon-plus-sign
+                        button.btn.btn-default(data-bind="click: addYeast.bind($data, 'New yeast', 75, 'liquid', 'ale')"): i.fa.fa-plus-circle
                     // ko foreach: {data: $parent.yeastTemplates, as: 'templateName'}
                     .btn-group
                         button.btn.btn-default.dropdown-toggle(data-toggle="dropdown")
@@ -301,7 +301,7 @@ div(data-bind="if: page() == 'recipeDetail'")
                             // ko if: $parent.edit()
                             td.remove
                                 a(data-bind="click: $parent.recipe().removeYeast")
-                                    i.icon-remove
+                                    i.fa.fa-times-circle
                             // /ko
             .col-md-2
                 h5 Alcohol

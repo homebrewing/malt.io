@@ -6,7 +6,7 @@ div(data-bind="if: page() == 'developers'")
             p <strong>Malt</strong>.io loves developers and loves open source. The projects below form the basis of this site, from low-level conversion and calculations to backend <abbr title="Application Programming Interfaces">APIs</abbr> and live-updating web pages. Help to build the next killer homebrewing app!
         .col-md-6
             h5 What is Open Source?
-            p Open source means that the entire computer code that is behind this website is open for anybody to download, share, add to or use in their own projects. <strong>Malt</strong>.io will always be open.
+            p Open source means that the entire computer code that is behind this website is open for anybody to download, share, add to or use in their own projects. <strong>Malt</strong>.io will always be open. <a href="http://en.wikipedia.org/wiki/Open_source">Learn more about open source.</a>
     .row
         .col-md-4
             h2 Brauhaus.js
@@ -19,38 +19,47 @@ div(data-bind="if: page() == 'developers'")
             p <strong>Malt</strong>.io is this website, which uses Tapline's API to fetch and store users and recipes. It also uses Brauhaus to live-update the page as you edit recipes on the site.
     .row
         .col-md-4
-            ul.list-unstyled
+            ul.list-unstyled.buttons
                 li
-                    i.icon-book &nbsp;
-                    a(href="https://github.com/homebrewing/brauhausjs#readme") Documentation
+                    a.btn.btn-block.btn-lg.btn-primary(href="https://github.com/homebrewing/brauhausjs#readme")
+                        i.fa.fa-book &nbsp;
+                        | Brauhaus Documentation
                 li
-                    i.icon-github-alt &nbsp;
-                    a(href="https://github.com/homebrewing/brauhausjs") Github Project
+                    a.btn.btn-block.btn-warning(href="https://github.com/homebrewing/brauhausjs/issues")
+                        i.fa.fa-exclamation-circle &nbsp;
+                        | Report Brauhaus Issue
                 li
-                    i.icon-exclamation-sign &nbsp;
-                    a(href="https://github.com/homebrewing/brauhausjs/issues") Report Issue
+                    a.btn.btn-block.btn-inverse(href="https://github.com/homebrewing/brauhausjs")
+                        i.fa.fa-github-alt &nbsp;
+                        | Brauhaus Github Project
         .col-md-4
-            ul.list-unstyled
+            ul.list-unstyled.buttons
                 li
-                    i.icon-book &nbsp;
-                    a(href="https://github.com/homebrewing/tapline#readme") Documentation
+                    a.btn.btn-block.btn-lg.btn-primary(href="https://github.com/homebrewing/tapline#readme")
+                        i.fa.fa-book &nbsp;
+                        | Tapline Documentation
                 li
-                    i.icon-github-alt &nbsp;
-                    a(href="https://github.com/homebrewing/tapline") Github Project
+                    a.btn.btn-block.btn-warning(href="https://github.com/homebrewing/tapline/issues")
+                        i.fa.fa-exclamation-circle &nbsp;
+                        | Report Tapline Issue
                 li
-                    i.icon-exclamation-sign &nbsp;
-                    a(href="https://github.com/homebrewing/tapline/issues") Report Issue
+                    a.btn.btn-block.btn-inverse(href="https://github.com/homebrewing/tapline")
+                        i.fa.fa-github-alt &nbsp;
+                        | Tapline Github Project
         .col-md-4
-            ul.list-unstyled
+            ul.list-unstyled.buttons
                 li
-                    i.icon-book &nbsp;
-                    a(href="https://github.com/homebrewing/malt.io#readme") Documentation
+                    a.btn.btn-block.btn-lg.btn-primary(href="https://github.com/homebrewing/malt.io#readme")
+                        i.fa.fa-book &nbsp;
+                        | Malt.io Documentation
                 li
-                    i.icon-github-alt &nbsp;
-                    a(href="https://github.com/homebrewing/malt.io") Github Project
+                    a.btn.btn-block.btn-warning(href="https://github.com/homebrewing/malt.io/issues")
+                        i.fa.fa-exclamation-circle &nbsp;
+                        | Report Malt.io Issue
                 li
-                    i.icon-exclamation-sign &nbsp;
-                    a(href="https://github.com/homebrewing/malt.io/issues") Report Issue
+                    a.btn.btn-block.btn-inverse(href="https://github.com/homebrewing/malt.io")
+                        i.fa.fa-github-alt &nbsp;
+                        | Malt.io Github Project
     div
         h3 Get Started <small>Brauhaus &amp; API playground</small>
         p Take a look at the javascript below, and click the <strong>Result</strong> tab to see it executed. Batteries are included: <a href="http://jquery.com/">jQuery</a> and Brauhaus are already loaded.

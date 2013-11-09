@@ -1,3 +1,19 @@
+#importRecipeDialog.modal.fade(role="dialog", data-bind="with: recipeDetail")
+    .modal-dialog
+        .modal-content
+            .modal-header
+                button.close(type="button", data-dismiss="modal")
+                h4.modal-title Import Recipes
+            .modal-body
+                .alert.alert-warning This feature is in <strong>beta</strong> and not all BeerXML features are currently supported!
+                p.
+                    Drag files into this window to import BeerXML recipes.
+            .modal-footer
+                button.btn.btn-default(data-dismiss="modal") Cancel
+                button.btn.btn-success(data-dismiss="modal", data-bind="")
+                    i.fa.fa-upload
+                    | &nbsp;Import BeerXML
+
 #deleteRecipeDialog.modal.fade(role="dialog", data-bind="with: recipeDetail")
     .modal-dialog
         .modal-content
@@ -9,7 +25,7 @@
             .modal-footer
                 button.btn.btn-default(data-dismiss="modal") Cancel
                 button.btn.btn-danger(data-dismiss="modal", data-bind="click: delConfirm")
-                    i.icon-remove
+                    i.fa.fa-ban
                     | &nbsp;Delete
 
 #cloneRecipeDialog.modal.fade(role="dialog", data-bind="with: recipeDetail")
@@ -23,7 +39,7 @@
             .modal-footer
                 button.btn.btn-default(data-dismiss="modal") Cancel
                 button.btn.btn-primary(data-dismiss="modal", data-bind="click: clone")
-                    i.icon-share
+                    i.fa.fa-share-square
                     | &nbsp;Clone
 
 #exportRecipeDialog.modal.fade(role="dialog", data-bind="with: recipeDetail")
@@ -38,5 +54,5 @@
             .modal-footer
                 button.btn.btn-default(data-dismiss="modal") Cancel
                 button.btn.btn-primary(data-dismiss="modal", data-bind="click: exportBeerXml")
-                    i.icon-download-alt
+                    i.fa.fa-download
                     | &nbsp;Download BeerXML
