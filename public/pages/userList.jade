@@ -1,10 +1,12 @@
 div(data-bind="if: page() == 'userList'")
-    div.row(id="user-list", data-bind="foreach: userList.users")
-        div.col-md-3.user-list-item
-            a(data-bind="attr: { href: '/users/' + name }")
-                img.avatar-small(data-bind="attr: { src: image.replace(/SIZE/, 32) }")
-            h6: a(data-bind="attr: { href: '/users/' + name }, text: name")
-            span(data-bind="text: recipeCount + ' recipes'")
+    #user-list.row(data-bind="foreach: userList.users")
+        .col-md-3
+            .user-list-item
+                a.img(data-bind="attr: { href: '/users/' + name }")
+                    img(data-bind="attr: { src: image.replace(/SIZE/, 128) }")
+                h6: a(data-bind="attr: { href: '/users/' + name }, text: name")
+                p(data-bind="text: recipeCount + ' recipes'")
+                p Seattle, USA
     ul.pager
         li.previous(data-bind="attr: { class: userList.page() > 0 ? 'previous' : 'previous disabled' }"): a(data-bind="attr: { href: '/users' + userList.prevPage() }") Previous
         li.next: a(data-bind="attr: { href: '/users' + userList.nextPage() }") Next
