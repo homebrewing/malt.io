@@ -69,7 +69,15 @@ class AppViewModel
             @get '/users-?:page?', (req) ->
                 self.page 'userList'
                 self.crumbs [['home', '/'], ['users', '']]
+                self.userList.userIds null
                 self.userList.page parseInt(req.params.page) or 0
+
+            @get '/following-?:page?', (req) ->
+                self.page 'userList'
+                self.crumbs [['home', '/'], ['users', '']]
+                Maltio.get 'public/users', {ids: self.user().id}, (users) ->
+                    self.userList.userIds users[0].following
+                    self.userList.page parseInt(req.params.page) or 0
 
             @get '/recipes-?:page?', (req) ->
                 self.recipeList.baseUrl '/recipes'

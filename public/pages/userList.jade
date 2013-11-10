@@ -1,4 +1,26 @@
 div(data-bind="if: page() == 'userList'")
+    // ko if: userList.userIds() && userList.userIds().length == 0
+    .alert.alert-info You aren't following any other users. Showing all users instead.
+    // /ko
+    .controls
+        ul.nav.nav-pills.pull-left
+            li: a(href="/users") All users
+            // ko if: $root.user()
+            li: a(href="/following") Users I follow
+            // /ko
+        .pull-right
+            .btn-group
+                button.btn.btn-default.dropdown-toggle(data-toggle="dropdown")
+                    i.fa.fa-bars
+                    | &nbsp;
+                    span(data-bind="text: userList.displaySort")
+                    | &nbsp;
+                    span.caret
+                ul.dropdown-menu
+                    li: a(data-bind="click: function () { userList.sort('name'); }") Name
+                    li: a(data-bind="click: function () { userList.sort('-created'); }") Newest
+                    li: a(data-bind="click: function () { userList.sort('created'); }") Oldest
+    .clearfix
     #user-list.row(data-bind="foreach: userList.users")
         .col-md-3
             .user-list-item
