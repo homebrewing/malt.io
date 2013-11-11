@@ -149,9 +149,44 @@ ul.buttons
         margin 4px 0
 
 .user-profile
+    .header
+        -webkit-filter drop-shadow(0px 0px 1px rgba(0, 0, 0, 0.4))
+
+    h2
+        position absolute
+        padding-top 12px
+        padding-bottom 12px
+        margin-top -74px
+        margin-left 12px
+        min-width 300px
+        z-index 1
+        text-shadow 0px 0px 15px white
+        background-color white
+        border-radius 10px
+
+        small
+            color #666
+
     .avatar
-        margin-right 1em
-        border-radius 5px
+        float left
+        display inline-block
+        margin-top -40px
+        margin-bottom -40px
+        margin-left 6px
+        margin-right 20px
+        width 140px
+        height 140px
+        border 6px solid white
+        border-radius 70px
+
+        img
+            width 128px
+            height 128px
+            border-radius 64px
+            -webkit-filter sepia(40%) unquote("saturate(80%)") contrast(108%)
+            -moz-filter sepia(40%) unquote("saturate(80%)") contrast(108%)
+            -ms-filter sepia(40%) unquote("saturate(80%)") contrast(108%)
+            filter sepia(40%) unquote("saturate(80%)") contrast(108%)
 
 .srm
     display inline-block
@@ -339,8 +374,7 @@ body.modal-open, .modal-open .navbar-fixed-top
     padding 3em
 
 #user-detail-map
-    height 160px
-    border 1px solid rgba(0, 0, 0, 0.2)
+    height 200px
     border-radius 2px
 
 #recipe-list

@@ -28,7 +28,9 @@ div(data-bind="if: page() == 'userList'")
                     img(data-bind="attr: { src: image.replace(/SIZE/, 128) }")
                 h6: a(data-bind="attr: { href: '/users/' + name }, text: name")
                 p(data-bind="text: recipeCount + ' recipes'")
-                p Seattle, USA
+                p
+                    i.fa.fa-map-marker &nbsp;
+                    | Seattle, USA
     ul.pager
         li.previous(data-bind="attr: { class: userList.page() > 0 ? 'previous' : 'previous disabled' }"): a(data-bind="attr: { href: '/users' + userList.prevPage() }") Previous
         li.next: a(data-bind="attr: { href: '/users' + userList.nextPage() }") Next

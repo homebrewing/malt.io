@@ -15,6 +15,8 @@ class Mapping
                 mapTypeId: google.maps.MapTypeId.ROADMAP
                 mapTypeControl: false
                 streetViewControl: false
+                scrollwheel: false
+                draggableCursor: 'default'
 
             map = new google.maps.Map document.getElementById(id), mapOptions
 
