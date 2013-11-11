@@ -16,4 +16,4 @@ class UserDetailViewModel
 
             done?()
 
-            Mapping.draw 'user-detail-map', users[0].location[0], users[0].location[1]
+            Mapping.draw 'user-detail-map', users[0].location[1], users[0].location[0]
