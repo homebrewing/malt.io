@@ -22,6 +22,12 @@ urlRewrite = (rootDir, indexFile) ->
                 res.end resp.body
 
 module.exports = (grunt) ->
+    env = 'prod'
+    if grunt.option 'dev'
+        env = 'dev'
+    if grunt.option 'beta'
+        env = 'beta'
+
     grunt.initConfig
         pkg: grunt.file.readJSON 'package.json'
         jade:
@@ -29,7 +35,7 @@ module.exports = (grunt) ->
                 options:
                     data:
                         ts: Date.now()
-                        env: process.env.MALTIO_ENV or 'prod'
+                        env: env
                 files:
                     'www/index.html': ['public/index.jade']
         stylus:

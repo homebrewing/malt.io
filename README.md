@@ -20,6 +20,9 @@ Now you're ready to run the site!
 
 ```bash
 grunt
+
+# To run against a locally running Tapline
+grunt --dev
 ```
 
 The site is now running at http://localhost:9000/
