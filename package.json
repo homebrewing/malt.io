@@ -20,16 +20,17 @@
   "bugs": {
     "url": "https://github.com/homebrewing/malt.io/issues"
   },
-  "devDependencies": {
-    "grunt": "~0.4.1",
-    "grunt-contrib-coffee": "~0.7.0",
-    "grunt-contrib-uglify": "~0.2.5",
-    "grunt-contrib-jade": "~0.8.0",
-    "grunt-contrib-stylus": "~0.9.0",
-    "grunt-contrib-watch": "~0.5.3",
-    "grunt-contrib-connect": "~0.5.0",
-    "grunt-contrib-concat": "~0.3.0",
-    "grunt-contrib-copy": "~0.4.1",
-    "grunt-connect-rewrite": "~0.1.1"
+  "dependencies": {
+    "grunt": "~1.0.3",
+    "grunt-connect-rewrite": "~0.2.1",
+    "grunt-contrib-coffee": "~2.0.0",
+    "grunt-contrib-concat": "~1.0.1",
+    "grunt-contrib-copy": "~1.0.0",
+    "grunt-contrib-jade": "~1.0.0",
+    "grunt-contrib-stylus": "~1.2.0",
+    "grunt-contrib-uglify": "~4.0.0",
+    "grunt-contrib-watch": "~1.1.0",
+    "grunt-contrib-cssmin": "^3.0.0",
+    "serve-static": "^1.13.2"
   }
 }

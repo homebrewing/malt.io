@@ -1,11 +1,12 @@
 fs = require 'fs'
 url = require 'url'
+serveStatic = require 'serve-static'
 
 # Connect middleware to handle HTML5 pushState routing that redirects
 # requests for files which do not exist to index.html
 urlRewrite = (rootDir, indexFile) ->
     indexFile = indexFile or "index.html"
-    
+
     (req, res, next) ->
         path = url.parse(req.url).pathname
         fs.readFile "./" + rootDir + path, (err, buf) ->
@@ -110,10 +111,10 @@ module.exports = (grunt) ->
                 options:
                     port: 9000
                     base: 'www'
-                    middleware: (connect, options) ->
+                    middleware: () ->
                         [
                             urlRewrite('www', 'index.html'),
-                            connect.static(options.base)
+                            serveStatic('www')
                         ]
         watch:
             templates:

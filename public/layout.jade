@@ -1,6 +1,5 @@
-!!!
-html
-    head
+doctype html
+head
         meta(charset="utf-8")
         link(rel="stylesheet", href="http://fonts.googleapis.com/css?family=Germania+One")
         link(rel="stylesheet", href="/styles/combined.min.css?v=#{ts}")
@@ -8,7 +7,7 @@ html
         script.
             var ENV = "#{env}";
 
-        script(async, src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA7bBRbj46VC1Ly3doCnmLp3a-k0k9oWnI&sensor=false&callback=Mapping.loaded")
+        script(async, src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA7bBRbj46VC1Ly3doCnmLp3a-k0k9oWnI&sensor=false")
         script(async, src="https://apis.google.com/js/plusone.js")
         script(async, src="/scripts/combined.min.js?v=#{ts}")
     body(style="margin-top: 50px;")
