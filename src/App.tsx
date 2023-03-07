@@ -1011,210 +1011,223 @@ const App: Component = () => {
                 </Show>
               </h2>
 
-              <table>
-                <thead>
-                  <tr>
-                    <th>Name</th>
-                    <th class="right" style="width: 50px">
-                      &deg;C
-                    </th>
-                    <th class="right" style="width: 60px">
-                      Time
-                    </th>
-                    <th class="right" style="width: 40px">
-                      l/kg
-                    </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <For each={recipe.mashSteps}>
-                    {(step, i) => (
-                      <tr>
-                        <td>
-                          <Editable
-                            show={edit()}
-                            type="text"
-                            value={step.name}
-                            oninput={(e) =>
-                              setRecipe(
+              <div class="ingredient mash">
+                <div class="row header">
+                  <div class="name">Name</div>
+                  <div class="temp long">Temp</div>
+                  <div class="time right long">Time</div>
+                  <div class="ratio right long">Ratio</div>
+                  <Show when={edit()}>
+                    <div class="delete"></div>
+                  </Show>
+                  <div class="break"></div>
+                </div>
+                <For each={recipe.mashSteps}>
+                  {(step, i) => (
+                    <div class="row">
+                      <div class="name">
+                        <Editable
+                          show={edit()}
+                          type="text"
+                          value={step.name}
+                          oninput={(e) =>
+                            setRecipe(
+                              "mashSteps",
+                              i(),
+                              "name",
+                              e.currentTarget.value
+                            )
+                          }
+                        />
+                      </div>
+                      <div class="temp break-small">
+                        <Editable
+                          show={edit()}
+                          type="number"
+                          suffix="°C"
+                          value={step.temperature}
+                          oninput={(e) =>
+                            setRecipe(
+                              "mashSteps",
+                              i(),
+                              "temperature",
+                              parseInt(e.currentTarget.value)
+                            )
+                          }
+                        />
+                      </div>
+                      <div class="time break-small">
+                        <Editable
+                          show={edit()}
+                          type="number"
+                          suffix="m"
+                          value={step.duration}
+                          oninput={(e) =>
+                            setRecipe(
+                              "mashSteps",
+                              i(),
+                              "duration",
+                              parseInt(e.currentTarget.value)
+                            )
+                          }
+                        />
+                      </div>
+                      <div class="ratio break-small">
+                        <Editable
+                          show={edit()}
+                          type="number"
+                          value={step.waterGrainRatio}
+                          suffix="L/kg"
+                          oninput={(e) =>
+                            setRecipe(
+                              "mashSteps",
+                              i(),
+                              "waterGrainRatio",
+                              parseFloat(e.currentTarget.value)
+                            )
+                          }
+                        />
+                      </div>
+                      <Show when={edit()}>
+                        <div class="delete">
+                          <button
+                            onclick={() =>
+                              setRecipeNow(
                                 "mashSteps",
-                                i(),
-                                "name",
-                                e.currentTarget.value
+                                removeIndex(recipe.mashSteps, i())
                               )
                             }
-                          />
-                        </td>
-                        <td class="right">
-                          <Editable
-                            show={edit()}
-                            type="number"
-                            suffix="ºC"
-                            value={step.temperature}
-                            oninput={(e) =>
-                              setRecipe(
-                                "mashSteps",
-                                i(),
-                                "temperature",
-                                parseInt(e.currentTarget.value)
-                              )
-                            }
-                          />
-                        </td>
-                        <td class="right">
-                          <Editable
-                            show={edit()}
-                            type="number"
-                            suffix="m"
-                            value={step.duration}
-                            oninput={(e) =>
-                              setRecipe(
-                                "mashSteps",
-                                i(),
-                                "duration",
-                                parseInt(e.currentTarget.value)
-                              )
-                            }
-                          />
-                        </td>
-                        <td class="right">
-                          <Editable
-                            show={edit()}
-                            type="number"
-                            value={step.waterGrainRatio}
-                            oninput={(e) =>
-                              setRecipe(
-                                "mashSteps",
-                                i(),
-                                "waterGrainRatio",
-                                parseInt(e.currentTarget.value)
-                              )
-                            }
-                          />
-                        </td>
-                      </tr>
-                    )}
-                  </For>
-                </tbody>
-              </table>
+                          >
+                            ✕
+                          </button>
+                        </div>
+                      </Show>
+                      <div class="break"></div>
+                    </div>
+                  )}
+                </For>
+              </div>
             </div>
 
             <div>
               <h2>Target Water Profile</h2>
-              <table>
-                <thead>
-                  <tr>
-                    <th class="right">
-                      Ca<sup>2+</sup>
-                    </th>
-                    <th class="right">
-                      Mg<sup>2+</sup>
-                    </th>
-                    <th class="right">
-                      Na<sup>+</sup>
-                    </th>
-                    <th class="right">
-                      Cl<sup>-</sup>
-                    </th>
-                    <th class="right">
-                      SO<sub>4</sub>
-                      <sup>2-</sup>
-                    </th>
-                    <th class="right">
-                      HCO<sub>3</sub>
-                      <sup>-</sup>
-                    </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td class="right">
-                      <Editable
-                        show={edit()}
-                        type="number"
-                        value={recipe.water.ca}
-                        oninput={(e) =>
-                          setRecipe(
-                            "water",
-                            "ca",
-                            parseInt(e.currentTarget.value)
-                          )
-                        }
-                      />
-                    </td>
-                    <td class="right">
-                      <Editable
-                        show={edit()}
-                        type="number"
-                        value={recipe.water.mg}
-                        oninput={(e) =>
-                          setRecipe(
-                            "water",
-                            "mg",
-                            parseInt(e.currentTarget.value)
-                          )
-                        }
-                      />
-                    </td>
-                    <td class="right">
-                      <Editable
-                        show={edit()}
-                        type="number"
-                        value={recipe.water.na}
-                        oninput={(e) =>
-                          setRecipe(
-                            "water",
-                            "na",
-                            parseInt(e.currentTarget.value)
-                          )
-                        }
-                      />
-                    </td>
-                    <td class="right">
-                      <Editable
-                        show={edit()}
-                        type="number"
-                        value={recipe.water.cl}
-                        oninput={(e) =>
-                          setRecipe(
-                            "water",
-                            "cl",
-                            parseInt(e.currentTarget.value)
-                          )
-                        }
-                      />
-                    </td>
-                    <td class="right">
-                      <Editable
-                        show={edit()}
-                        type="number"
-                        value={recipe.water.so4}
-                        oninput={(e) =>
-                          setRecipe(
-                            "water",
-                            "so4",
-                            parseInt(e.currentTarget.value)
-                          )
-                        }
-                      />
-                    </td>
-                    <td class="right">
-                      <Editable
-                        show={edit()}
-                        type="number"
-                        value={recipe.water.hco3}
-                        oninput={(e) =>
-                          setRecipe(
-                            "water",
-                            "hco3",
-                            parseInt(e.currentTarget.value)
-                          )
-                        }
-                      />
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
+
+              <div class="ingredient water">
+                <div class="row header">
+                  <div class="ca right">
+                    Ca<sup>2+</sup>
+                  </div>
+                  <div class="mg right">
+                    Mg<sup>2+</sup>
+                  </div>
+                  <div class="na right">
+                    Na<sup>+</sup>
+                  </div>
+                  <div class="cl right">
+                    Cl<sup>-</sup>
+                  </div>
+                  <div class="so4 right">
+                    SO<sub>4</sub>
+                    <sup>2-</sup>
+                  </div>
+                  <div class="hco3 right">
+                    HCO<sub>3</sub>
+                    <sup>-</sup>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="ca right">
+                    <Editable
+                      show={edit()}
+                      type="number"
+                      value={recipe.water.ca}
+                      placeholder="0"
+                      oninput={(e) =>
+                        setRecipe(
+                          "water",
+                          "ca",
+                          parseInt(e.currentTarget.value)
+                        )
+                      }
+                    />
+                  </div>
+                  <div class="mg right">
+                    <Editable
+                      show={edit()}
+                      type="number"
+                      value={recipe.water.mg}
+                      placeholder="0"
+                      oninput={(e) =>
+                        setRecipe(
+                          "water",
+                          "mg",
+                          parseInt(e.currentTarget.value)
+                        )
+                      }
+                    />
+                  </div>
+                  <div class="na right">
+                    <Editable
+                      show={edit()}
+                      type="number"
+                      value={recipe.water.na}
+                      placeholder="0"
+                      oninput={(e) =>
+                        setRecipe(
+                          "water",
+                          "na",
+                          parseInt(e.currentTarget.value)
+                        )
+                      }
+                    />
+                  </div>
+                  <div class="cl right">
+                    <Editable
+                      show={edit()}
+                      type="number"
+                      value={recipe.water.cl}
+                      placeholder="0"
+                      oninput={(e) =>
+                        setRecipe(
+                          "water",
+                          "cl",
+                          parseInt(e.currentTarget.value)
+                        )
+                      }
+                    />
+                  </div>
+                  <div class="so4 right">
+                    <Editable
+                      show={edit()}
+                      type="number"
+                      value={recipe.water.so4}
+                      placeholder="0"
+                      oninput={(e) =>
+                        setRecipe(
+                          "water",
+                          "so4",
+                          parseInt(e.currentTarget.value)
+                        )
+                      }
+                    />
+                  </div>
+                  <div class="hco3 right">
+                    <Editable
+                      show={edit()}
+                      type="number"
+                      value={recipe.water.hco3}
+                      placeholder="0"
+                      oninput={(e) =>
+                        setRecipe(
+                          "water",
+                          "hco3",
+                          parseInt(e.currentTarget.value)
+                        )
+                      }
+                    />
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
           <p>

@@ -343,6 +343,27 @@ header label {
   width: 60px;
 }
 
+.mash .temp {
+  width: 52px;
+}
+
+.mash .time {
+  width: 48px;
+}
+
+.mash .ratio {
+  width: 68px;
+}
+
+.water .row {
+  flex-wrap: nowrap;
+  justify-content: space-evenly;
+}
+
+.water .row > div {
+  width: calc(16% - 2px);
+}
+
 .ingredient select {
   width: 100%;
 }
