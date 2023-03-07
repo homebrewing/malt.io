@@ -1,6 +1,35 @@
 import { Accessor, createEffect, on } from "solid-js";
 import { SetStoreFunction, Store, createStore } from "solid-js/store";
 
+export function createURLStore<T extends object>(
+  prefix: string,
+  marshal: (state: T) => string,
+  unmarshal: (state: string) => T,
+  init: T
+): [Store<T>, SetStoreFunction<T>] {
+  let urlState = init;
+  if (window.location.pathname.startsWith(prefix)) {
+    urlState = unmarshal(window.location.pathname.slice(prefix.length));
+  }
+
+  const [state, setState] = createStore<T>(urlState);
+
+  window.onpopstate = (e) => {
+    setState(unmarshal(window.location.pathname.slice(prefix.length)));
+  };
+
+  createEffect(() => {
+    // TODO: any way to avoid marshalling each time to determine if it's time
+    // to update the URL?
+    const url = prefix + marshal(state);
+    if (window.location.pathname !== url) {
+      window.history.pushState({}, "", url);
+    }
+  });
+
+  return [state, setState];
+}
+
 export function createLocalStore<T extends object>(
   name: string,
   init: T

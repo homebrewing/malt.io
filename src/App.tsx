@@ -29,7 +29,8 @@ import {
   createRecipe,
   createYeast,
 } from "./brauhaus/partials";
-import { createLocalStore, removeIndex } from "./utils";
+import { createLocalStore, createURLStore, removeIndex } from "./utils";
+import { crush, load } from "./crush";
 import { decodeBinary, encodeBinary } from "./binary";
 
 import { Base64 } from "js-base64";
@@ -39,32 +40,11 @@ import { Recipe } from "./brauhaus/types";
 import { StyleValue } from "./StyleValue";
 import { createStore } from "solid-js/store";
 import { debounce } from "@solid-primitives/scheduled";
-import { dictionary } from "./dict";
 import tulip from "./assets/tulip.svg";
 
 function contrast([r, b, g]: [number, number, number]): string {
   const yiq = (r * 299 + g * 587 + b * 114) / 1000;
   return yiq >= 128 ? "#000" : "#fff";
-}
-
-function crush(r: Recipe): string {
-  let b = encodeBinary(r);
-  console.log("binary", Base64.fromUint8Array(new Uint8Array(b), true));
-  const defBin = deflateRaw(b, {
-    level: 9,
-    dictionary,
-  });
-  const base64 = Base64.fromUint8Array(defBin, true);
-  console.log("defbin", base64);
-
-  const start = performance.now();
-  const i = new Inflate({ raw: true, dictionary });
-  i.push(defBin, true);
-  decodeBinary(i.result as Uint8Array);
-  console.log("inflate perf", performance.now() - start, "ms");
-  console.log(JSON.stringify(decodeBinary(i.result as Uint8Array)));
-
-  return base64;
 }
 
 const App: Component = () => {
@@ -83,8 +63,10 @@ const App: Component = () => {
   // TODO: Load from local storage
   const [bh, setBh] = createStore(createBrauhaus({}));
 
-  const [recipe, setRecipeNow] = createLocalStore(
-    "recipe",
+  const [recipe, setRecipeNow] = createURLStore(
+    "/r/",
+    crush,
+    load,
     createRecipe({
       name: "My Beer",
       fermentables: [
@@ -121,13 +103,7 @@ const App: Component = () => {
 
   // Put a small delay between updates to avoid thrashing and enable typing
   // or holding down numberical input adjustment buttons.
-
   const setRecipe = debounce(setRecipeNow as any, 200);
-
-  createEffect(() => {
-    console.log("Updating hash...");
-    window.location.hash = crush(recipe);
-  });
 
   const ebc = createMemo(() => {
     console.log("Calculating color...");
