@@ -1,9 +1,10 @@
-import { Inflate, deflateRaw } from "pako";
 import { decodeBinary, encodeBinary } from "./binary";
+import { fromUint8Array, toUint8Array } from "js-base64";
 
-import { Base64 } from "js-base64";
 import { Recipe } from "./brauhaus/types";
+import { deflateRaw } from "pako";
 import { dictionary } from "./dict";
+import { finflate } from "./uzip";
 
 export function crush(r: Recipe): string {
   let b = encodeBinary(r);
@@ -11,12 +12,21 @@ export function crush(r: Recipe): string {
     level: 9,
     dictionary,
   });
-  return Base64.fromUint8Array(defBin, true);
+  return fromUint8Array(defBin, true);
 }
 
 export function load(binary: string): Recipe {
-  const base64 = Base64.toUint8Array(binary);
-  const i = new Inflate({ raw: true, dictionary });
-  i.push(base64, true);
-  return decodeBinary(i.result as Uint8Array);
+  // let start = performance.now();
+  const b64 = toUint8Array(binary);
+  // console.log(performance.now() - start + "ms for base64");
+
+  // start = performance.now();
+  const bytes = finflate(b64, null, new TextEncoder().encode(dictionary));
+  // console.log(performance.now() - start + "ms for uzip+dict");
+
+  // start = performance.now();
+  const recipe = decodeBinary(bytes);
+  // console.log(performance.now() - start + "ms for decode");
+  // console.log(performance.now() - start + "ms for load");
+  return recipe;
 }
