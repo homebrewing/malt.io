@@ -1,4 +1,4 @@
-import { load } from "../src/crush";
+import { load } from "../../src/crush";
 
 class ElementHandler {
   constructor(ogtag) {
@@ -10,12 +10,9 @@ class ElementHandler {
 }
 
 export async function onRequest(context) {
-  console.log("Running function _middleware...");
   let res = await context.next();
 
-  const recipe = load(
-    "Y_etBJeuDCKS3o-ZGBQEeVGkF8jLBXAjeekF-zTGAE54wMvoMiBzBLi4YZUVsOL0YAAA"
-  );
+  const recipe = load(context.params.recipe);
 
   const ogtag = `
     <meta property="og:title" content="${recipe.name}" />
