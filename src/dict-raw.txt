@@ -119,7 +119,13 @@ Barleywine
 Porter
 International
 Sahti
-
+Goldpils
+Maltoferm
+Manuka Honey
+Red X
+Blackprinz
+Victory
+Plus
 
 Danstar
 
@@ -263,6 +269,38 @@ Scotch
 English
 Wood-Aged
 Oak-Aged
+
+Enzyme
+Protein Rest
+Saccharification Rest
+Beta Glucanase
+Beta-Glucanase
+Protease
+Peptidase
+Beta-Amylase
+Alpha-Amylase
+Maltase
+Lactase
+Invertase
+Dextrinase
+Infusion
+Decoction
+Temperature
+Steep
+Strike
+Top off
+Mash Out
+Sparge
+Lauter
+Boil
+Whirlpool
+Chill
+Ferment
+Vorlauf
+Siphon
+Transfer
+Rack
+Bottle Condition
 
 BSI
 American Microbrewery Ale (A-72) 5
@@ -529,7 +567,7 @@ London Ale (OYL-003) 67
 Lutra Kveik (OYL-071) 1,247
 New Jersey Ale (OYL-045) 1
 Pacific NW Ale (OYL-012) 24
-Saisonstein’s Monster (OYL-500) 358
+Saisonstein's Monster (OYL-500) 358
 Scottish Ale (OYL-015) 110
 Tropical IPA (OYL-200) 730
 Voss Kveik (OYL-061) 2,231
@@ -704,54 +742,54 @@ Trappist High Gravity (3787) 1,807
 West Yorkshire (1469) 957
 Whitbread Ale (1099) 641
 Other
-AEB · Fermoale 3
-AEB · Fermoale AY3 4
-AEB · Fermoale AY4 91
-Bio4 · American Ale (SY025) 177
-Bio4 · London ESB (SY030) 32
-Bio4 · Norwegian Kveik (SY081) 106
-Bio4 · Norwegian Kveik 2 (SY084) 30
-Bio4 · Superyeast High Gravity Ale (SY042) 4
-Bootleg Biology · Aurora (BBAUR) 18
-Bootleg Biology · Belgian Blend (BBXBELG) 9
-Bootleg Biology · Brulosophy Blend (BBXBRU1) 7
-Bootleg Biology · NEEPAH Blend (BBXNPA) 86
-Bootleg Biology · Oslo (OSLO) 189
-Bootleg Biology · S. Arlingtonesis (BB22204) 14
-Bootleg Biology · Saison Parfait (BBX0104) 93
-Brewferm · Blanche (Y015) 140
-Brewferm · Top 198
-Bulldog · American West (B5) 44
-Bulldog · Belgian Saison (B16) 66
-Bulldog · Belgian Trappix (B19) 26
-Bulldog · English Ale (B4) 109
-Bulldog · European Ale (B44) 29
-Bulldog · Universal Ale (B01) 24
-Coopers · Coopers Ale 540
-Mainiacal Yeast Labs · Arset 1
-Mainiacal Yeast Labs · Ebbegarden Kveik 7
-Mainiacal Yeast Labs · Espe 2
-Mainiacal Yeast Labs · Framgarden 3
-Mainiacal Yeast Labs · Granvin 1
-Mainiacal Yeast Labs · Juggernaut 6
-Mainiacal Yeast Labs · Midtbust 7
-Muntons · Gervin Ale (GV-12) 267
-Muntons · Premium Gold 270
-Real Brewers · Lucky No. 7 6
-Real Brewers · The Monk 4
-Real Brewers · The One 9
-Real Brewers · Ye Olde English 2
-Red Star · DADY 101
-Siebel Institute · Alt Ale (BRY 144) 3
-Siebel Institute · American Ale (BRY 96) 200
-Siebel Institute · Bavarian Weizen Ale (BRY 235) 5
-Siebel Institute · English Ale (BRY 264) 32
-Siebel Institute · German Kölsch (BRY 401) 6
-Siebel Institute · Trappist Ale (BRY 204) 5
-WHC Lab · Funky Pineapple 22
-WHC Lab · Kveik 311
-WHC Lab · Sanders 40
-WHC Lab · Saturated 53
+AEB Fermoale 3
+AEB Fermoale AY3 4
+AEB Fermoale AY4 91
+Bio4 American Ale (SY025) 177
+Bio4 London ESB (SY030) 32
+Bio4 Norwegian Kveik (SY081) 106
+Bio4 Norwegian Kveik 2 (SY084) 30
+Bio4 Superyeast High Gravity Ale (SY042) 4
+Bootleg Biology Aurora (BBAUR) 18
+Bootleg Biology Belgian Blend (BBXBELG) 9
+Bootleg Biology Brulosophy Blend (BBXBRU1) 7
+Bootleg Biology NEEPAH Blend (BBXNPA) 86
+Bootleg Biology Oslo (OSLO) 189
+Bootleg Biology S. Arlingtonesis (BB22204) 14
+Bootleg Biology Saison Parfait (BBX0104) 93
+Brewferm Blanche (Y015) 140
+Brewferm Top 198
+Bulldog American West (B5) 44
+Bulldog Belgian Saison (B16) 66
+Bulldog Belgian Trappix (B19) 26
+Bulldog English Ale (B4) 109
+Bulldog European Ale (B44) 29
+Bulldog Universal Ale (B01) 24
+Coopers Coopers Ale 540
+Mainiacal Yeast Labs Arset 1
+Mainiacal Yeast Labs Ebbegarden Kveik 7
+Mainiacal Yeast Labs Espe 2
+Mainiacal Yeast Labs Framgarden 3
+Mainiacal Yeast Labs Granvin 1
+Mainiacal Yeast Labs Juggernaut 6
+Mainiacal Yeast Labs Midtbust 7
+Muntons Gervin Ale (GV-12) 267
+Muntons Premium Gold 270
+Real Brewers Lucky No. 7 6
+Real Brewers The Monk 4
+Real Brewers The One 9
+Real Brewers Ye Olde English 2
+Red Star DADY 101
+Siebel Institute Alt Ale (BRY 144) 3
+Siebel Institute American Ale (BRY 96) 200
+Siebel Institute Bavarian Weizen Ale (BRY 235) 5
+Siebel Institute English Ale (BRY 264) 32
+Siebel Institute German Kölsch (BRY 401) 6
+Siebel Institute Trappist Ale (BRY 204) 5
+WHC Lab Funky Pineapple 22
+WHC Lab Kveik 311
+WHC Lab Sanders 40
+WHC Lab Saturated 53
 Lager
 Omega Yeast Labs
 American Lager (OYL-103) 45
@@ -805,70 +843,70 @@ Rocky Mountain Lager (2105) 29
 Staro Prague Lager (2782) 14
 Urquell Lager (2001) 253
 Other
-AEB · Fermolager Berlin 5
-AEB · Fermolager W 35
-BSI · Andechs Lager 9
-BSI · Augustiner Lager 18
-BSI · German Lager (3470) 121
-Brewferm · Lager (Y016) 374
-Bulldog · Amber Lager (B38) 19
-Bulldog · German Lager (B34) 45
-Bulldog · Steam Lager (B23) 17
-Crescat Labs · Bayernfest (CL011) 7
-Crescat Labs · Moravian Vale (CL010) 8
-Crossmyloof Brew · Californian 6
-Crossmyloof Brew · Hell 30
-East Coast Yeast · Baltic Lager (ECY22) 7
-East Coast Yeast · Munich Festbier (ECY15) 6
-Escarpment Labs · Biergarten Lager 15
-Escarpment Labs · Cali Common Lager 15
-Escarpment Labs · Copenhagen Lager 10
-Escarpment Labs · Czech Lager 26
-Escarpment Labs · Goldrush Lager 2
-Escarpment Labs · Isar Lager 65
-Escarpment Labs · Mexican Lager 23
-Escarpment Labs · Munich Lager 17
-Fermentis · Saflager German Lager (S-23) 4,642
-Fermentis · Saflager German Lager (W-34/70) 13,258
-Fermentis · Saflager Swiss Lager (S-189) 1,638
-GigaYeast · American Lager (GY030) 19
-GigaYeast · Czech Pilsner (GY002) 55
-GigaYeast · German Lager (GY045) 33
-GigaYeast · Golden Gate Lager (GY005) 12
-Imperial Yeast · Cablecar (L05) 158
-Imperial Yeast · Fest (L02) 12
-Imperial Yeast · Gateway (L11) 6
-Imperial Yeast · Global (L13) 380
-Imperial Yeast · Harvest (L17) 816
-Imperial Yeast · Pilgrimage (L26) 16
-Imperial Yeast · Que Bueno (L09) 87
-Imperial Yeast · Urkel (L28) 274
-Inland Island Yeast · German Monk Lager (INIS-711) 15
-Inland Island Yeast · Session Lager (INIS 701) 1
-Lallemand · LalBrew Diamond Lager 1,150
-Mangrove Jack's · Bavarian Lager (M76) 1,750
-Mangrove Jack's · Bohemian Lager (M84) 2,086
-Mangrove Jack's · Californian Lager (M54) 2,237
-RVA Yeast Labs · Czech Lager (RVA 304) 1
-RVA Yeast Labs · München Lager (RVA 302) 4
-RVA Yeast Labs · Oktoberfest Lager (RVA 303) 1
-Siebel Institute · American Lager (BRY 118) 4
-Siebel Institute · North European Lager (BRY 203) 6
+AEB Fermolager Berlin 5
+AEB Fermolager W 35
+BSI Andechs Lager 9
+BSI Augustiner Lager 18
+BSI German Lager (3470) 121
+Brewferm Lager (Y016) 374
+Bulldog Amber Lager (B38) 19
+Bulldog German Lager (B34) 45
+Bulldog Steam Lager (B23) 17
+Crescat Labs Bayernfest (CL011) 7
+Crescat Labs Moravian Vale (CL010) 8
+Crossmyloof Brew Californian 6
+Crossmyloof Brew Hell 30
+East Coast Yeast Baltic Lager (ECY22) 7
+East Coast Yeast Munich Festbier (ECY15) 6
+Escarpment Labs Biergarten Lager 15
+Escarpment Labs Cali Common Lager 15
+Escarpment Labs Copenhagen Lager 10
+Escarpment Labs Czech Lager 26
+Escarpment Labs Goldrush Lager 2
+Escarpment Labs Isar Lager 65
+Escarpment Labs Mexican Lager 23
+Escarpment Labs Munich Lager 17
+Fermentis Saflager German Lager (S-23) 4,642
+Fermentis Saflager German Lager (W-34/70) 13,258
+Fermentis Saflager Swiss Lager (S-189) 1,638
+GigaYeast American Lager (GY030) 19
+GigaYeast Czech Pilsner (GY002) 55
+GigaYeast German Lager (GY045) 33
+GigaYeast Golden Gate Lager (GY005) 12
+Imperial Yeast Cablecar (L05) 158
+Imperial Yeast Fest (L02) 12
+Imperial Yeast Gateway (L11) 6
+Imperial Yeast Global (L13) 380
+Imperial Yeast Harvest (L17) 816
+Imperial Yeast Pilgrimage (L26) 16
+Imperial Yeast Que Bueno (L09) 87
+Imperial Yeast Urkel (L28) 274
+Inland Island Yeast German Monk Lager (INIS-711) 15
+Inland Island Yeast Session Lager (INIS 701) 1
+Lallemand LalBrew Diamond Lager 1,150
+Mangrove Jack's Bavarian Lager (M76) 1,750
+Mangrove Jack's Bohemian Lager (M84) 2,086
+Mangrove Jack's Californian Lager (M54) 2,237
+RVA Yeast Labs Czech Lager (RVA 304) 1
+RVA Yeast Labs München Lager (RVA 302) 4
+RVA Yeast Labs Oktoberfest Lager (RVA 303) 1
+Siebel Institute American Lager (BRY 118) 4
+Siebel Institute North European Lager (BRY 203) 6
 Wheat
-AEB · Weiss Arome+ 7
-Bio4 · Heffeweizen Ale (SY055) 22
-Bulldog · Bavarian Wheat (B49) 43
-Crossmyloof Brew · Kristallweizen 15
-Fermentis · Safale Wheat Beer (WB-06) 5,062
-White Labs · Bavarian Weizen (WLP351) 365
-White Labs · Hefeweizen Ale (WLP300) 2,167
-White Labs · Hefeweizen IV Ale (WLP380) 614
-Wyeast · American Wheat (1010) 1,131
-Wyeast · Bavarian Wheat (3056) 427
-Wyeast · Bavarian Wheat (3638) 373
-Wyeast · Belgian Wheat (3942) 170
-Wyeast · German Wheat (3333) 241
-Wyeast · Weihenstephan Weizen (3068) 2,754
+AEB Weiss Arome+ 7
+Bio4 Heffeweizen Ale (SY055) 22
+Bulldog Bavarian Wheat (B49) 43
+Crossmyloof Brew Kristallweizen 15
+Fermentis Safale Wheat Beer (WB-06) 5,062
+White Labs Bavarian Weizen (WLP351) 365
+White Labs Hefeweizen Ale (WLP300) 2,167
+White Labs Hefeweizen IV Ale (WLP380) 614
+Wyeast American Wheat (1010) 1,131
+Wyeast Bavarian Wheat (3056) 427
+Wyeast Bavarian Wheat (3638) 373
+Wyeast Belgian Wheat (3942) 170
+Wyeast German Wheat (3333) 241
+Wyeast Weihenstephan Weizen (3068) 2,754
 Brett & Bacteria
 The Yeast Bay
 Amalgamation - Brett Super Blend (WLP4637) 47
@@ -890,89 +928,89 @@ Sour Blend (WLP4633) 62
 TYB House Sour Blend 2
 Transatlantic Berliner Blend (WLP4645) 1
 Other
-Bootleg Biology · Berliner Blend (BBXBRLN) 8
-Bootleg Biology · Funk Weapon #1 (BB0034A) 9
-Bootleg Biology · Funk Weapon #2 (BB0035C) 23
-Bootleg Biology · Funk Weapon #3 (BB0022) 36
-Bootleg Biology · Sour Solera Blend (BBXSS) 67
-Bootleg Biology · Sour Weapon L (BBXSWL) 7
-Bootleg Biology · Sour Weapon P (BBX0089) 10
-Bootleg Biology · The Mad Fermentationist Saison Blend (BBXMAD1) 95
-East Coast Yeast · Berliner Blend (ECY06) 3
-East Coast Yeast · Brett Blend #1 Anomala (ECY04) 7
-East Coast Yeast · Brett Blend #9 (ECY05) 10
-East Coast Yeast · Brett Nanus (ECY24) 2
-East Coast Yeast · BugFarm 2 (ECY45) 3
-East Coast Yeast · Farmhouse Brett (ECY03) 29
-Escarpment Labs · Belgian Sour Blend 12
-Escarpment Labs · Berliner Brett I 14
-Escarpment Labs · Brett B 10
-Escarpment Labs · Brett D 32
-Escarpment Labs · Brett Q 10
-Escarpment Labs · Brussels Brett 10
-Escarpment Labs · Lactobacillus Blend 38
-Escarpment Labs · Lactobacillus Blend 2.0 14
-Escarpment Labs · Lactobacillus Secondary Souring Blend 4
-Escarpment Labs · Lactobacillus brevis 8
-GigaYeast · Berliner Blend (GB122) 9
-GigaYeast · Farmhouse Sour (GB121) 13
-GigaYeast · Fast Souring Lacto (GB110) 50
-GigaYeast · Saison Sour (GB124) 5
-GigaYeast · Sour Cherry Funk (GB150) 10
-GigaYeast · Sour Plum Belgian (GB123) 1
-GigaYeast · Sweet Flemish Brett (GB144) 4
-Imperial Yeast · Sour Batch Kidz (F08) 94
-Imperial Yeast · Suburban Brett (W15) 71
-Inland Island Yeast · Brett Barrel III (INIS-913) 5
-Lallemand · WildBrew Helveticus Pitch 1
-Lallemand · WildBrew Wildbrew Sour Pitch 20
-Mainiacal Yeast Labs · MTF Blend 1
-Omega Yeast Labs · All the Bretts (OYL-218) 82
-Omega Yeast Labs · Brett Blend #1 Where Da Funk? (OYL-210) 48
-Omega Yeast Labs · Brett Blend #2 Bit O' Funk (OYL-211) 16
-Omega Yeast Labs · Brett Blend #3 Bring On Da Funk (OYL-212) 66
-Omega Yeast Labs · Brettanomyces Bruxellensis (OYL-202) 19
-Omega Yeast Labs · Brettanomyces Claussenii (OYL-201) 22
-Omega Yeast Labs · Brettanomyces Lambicus (OYL-203) 7
-Omega Yeast Labs · C2C American Farmhouse (OYL-217) 99
-Omega Yeast Labs · Lactobacillus Blend (OYL-605) 315
-White Labs · Belgian Sour Mix 1 (WLP655) 161
-White Labs · Berliner Weisse Blend (WLP630) 119
-White Labs · Brettanomyces Anomalus (WLP640) 5
-White Labs · Brettanomyces Bruxellensis (WLP650) 215
-White Labs · Brettanomyces Bruxellensis Trois Vrai (WLP648) 152
-White Labs · Brettanomyces Claussenii (WLP645) 216
-White Labs · Brettanomyces Lambicus (WLP653) 106
-White Labs · Lactobacillus Brevis (WLP672) 153
-White Labs · Lactobacillus Delbrueckii Bacteria (WLP677) 292
-Wyeast · Berliner Weisse Blend (3191) 58
-Wyeast · Brettanomyces Claussenii (5151-PC) 14
-Wyeast · Brettanomyces bruxellensis (5112) 163
-Wyeast · Brettanomyces lambicus (5526) 127
-Wyeast · Lactobacillus (5335) 303
-Wyeast · Lactobacillus brevis (5223-PC) 7
-Wyeast · Saison-Brett Blend (3031-PC) 47
+Bootleg Biology Berliner Blend (BBXBRLN) 8
+Bootleg Biology Funk Weapon #1 (BB0034A) 9
+Bootleg Biology Funk Weapon #2 (BB0035C) 23
+Bootleg Biology Funk Weapon #3 (BB0022) 36
+Bootleg Biology Sour Solera Blend (BBXSS) 67
+Bootleg Biology Sour Weapon L (BBXSWL) 7
+Bootleg Biology Sour Weapon P (BBX0089) 10
+Bootleg Biology The Mad Fermentationist Saison Blend (BBXMAD1) 95
+East Coast Yeast Berliner Blend (ECY06) 3
+East Coast Yeast Brett Blend #1 Anomala (ECY04) 7
+East Coast Yeast Brett Blend #9 (ECY05) 10
+East Coast Yeast Brett Nanus (ECY24) 2
+East Coast Yeast BugFarm 2 (ECY45) 3
+East Coast Yeast Farmhouse Brett (ECY03) 29
+Escarpment Labs Belgian Sour Blend 12
+Escarpment Labs Berliner Brett I 14
+Escarpment Labs Brett B 10
+Escarpment Labs Brett D 32
+Escarpment Labs Brett Q 10
+Escarpment Labs Brussels Brett 10
+Escarpment Labs Lactobacillus Blend 38
+Escarpment Labs Lactobacillus Blend 2.0 14
+Escarpment Labs Lactobacillus Secondary Souring Blend 4
+Escarpment Labs Lactobacillus brevis 8
+GigaYeast Berliner Blend (GB122) 9
+GigaYeast Farmhouse Sour (GB121) 13
+GigaYeast Fast Souring Lacto (GB110) 50
+GigaYeast Saison Sour (GB124) 5
+GigaYeast Sour Cherry Funk (GB150) 10
+GigaYeast Sour Plum Belgian (GB123) 1
+GigaYeast Sweet Flemish Brett (GB144) 4
+Imperial Yeast Sour Batch Kidz (F08) 94
+Imperial Yeast Suburban Brett (W15) 71
+Inland Island Yeast Brett Barrel III (INIS-913) 5
+Lallemand WildBrew Helveticus Pitch 1
+Lallemand WildBrew Wildbrew Sour Pitch 20
+Mainiacal Yeast Labs MTF Blend 1
+Omega Yeast Labs All the Bretts (OYL-218) 82
+Omega Yeast Labs Brett Blend #1 Where Da Funk? (OYL-210) 48
+Omega Yeast Labs Brett Blend #2 Bit O' Funk (OYL-211) 16
+Omega Yeast Labs Brett Blend #3 Bring On Da Funk (OYL-212) 66
+Omega Yeast Labs Brettanomyces Bruxellensis (OYL-202) 19
+Omega Yeast Labs Brettanomyces Claussenii (OYL-201) 22
+Omega Yeast Labs Brettanomyces Lambicus (OYL-203) 7
+Omega Yeast Labs C2C American Farmhouse (OYL-217) 99
+Omega Yeast Labs Lactobacillus Blend (OYL-605) 315
+White Labs Belgian Sour Mix 1 (WLP655) 161
+White Labs Berliner Weisse Blend (WLP630) 119
+White Labs Brettanomyces Anomalus (WLP640) 5
+White Labs Brettanomyces Bruxellensis (WLP650) 215
+White Labs Brettanomyces Bruxellensis Trois Vrai (WLP648) 152
+White Labs Brettanomyces Claussenii (WLP645) 216
+White Labs Brettanomyces Lambicus (WLP653) 106
+White Labs Lactobacillus Brevis (WLP672) 153
+White Labs Lactobacillus Delbrueckii Bacteria (WLP677) 292
+Wyeast Berliner Weisse Blend (3191) 58
+Wyeast Brettanomyces Claussenii (5151-PC) 14
+Wyeast Brettanomyces bruxellensis (5112) 163
+Wyeast Brettanomyces lambicus (5526) 127
+Wyeast Lactobacillus (5335) 303
+Wyeast Lactobacillus brevis (5223-PC) 7
+Wyeast Saison-Brett Blend (3031-PC) 47
 Wine & Cider
-BSI · Pasteur Champagne (1868) 19
-Bootleg Biology · Chardonnay (BB99301A) 18
-Fermentis · Safcider 61
-Imperial Yeast · Bubbles (A40) 3
-Lallemand · Lalvin 71B 113
-Lallemand · Lalvin EC-1118 314
-Lallemand · Lalvin ICV D47 1
-Lallemand · Lalvin V1116 5
-Mangrove Jack's · Cider (M02) 150
-Mangrove Jack's · Mead (M05) 221
-Red Star · Premier Blanc (UCD595) 84
-White Labs · Champagne (WLP715) 389
-White Labs · English Cider (WLP775) 66
-White Labs · Sake #7 (WLP705) 8
-White Labs · Sake #9 (WLP709) 4
-White Labs · Sweet Mead/Wine (WLP720) 176
-Wyeast · Cider (4766) 74
-Wyeast · Dry Mead (4632) 85
-Wyeast · Sake (WY4134) 6
-Wyeast · Sweet Mead (4184) 77
+BSI Pasteur Champagne (1868) 19
+Bootleg Biology Chardonnay (BB99301A) 18
+Fermentis Safcider 61
+Imperial Yeast Bubbles (A40) 3
+Lallemand Lalvin 71B 113
+Lallemand Lalvin EC-1118 314
+Lallemand Lalvin ICV D47 1
+Lallemand Lalvin V1116 5
+Mangrove Jack's Cider (M02) 150
+Mangrove Jack's Mead (M05) 221
+Red Star Premier Blanc (UCD595) 84
+White Labs Champagne (WLP715) 389
+White Labs English Cider (WLP775) 66
+White Labs Sake #7 (WLP705) 8
+White Labs Sake #9 (WLP709) 4
+White Labs Sweet Mead/Wine (WLP720) 176
+Wyeast Cider (4766) 74
+Wyeast Dry Mead (4632) 85
+Wyeast Sake (WY4134) 6
+Wyeast Sweet Mead (4184) 77
 Aroma
 Bittering
 Dual Purpose
@@ -1237,22 +1275,22 @@ CaraRed 12,926
 CaraRye 2,735
 CaraVienne 4,297
 CaraWheat 3,722
-Caramel/Crystal Malt – 10L 13,424
-Caramel/Crystal Malt – 120L 47,451
-Caramel/Crystal Malt – 140L 1,254
-Caramel/Crystal Malt – 150L 3,836
-Caramel/Crystal Malt – 15L 5,933
-Caramel/Crystal Malt – 20L 16,865
-Caramel/Crystal Malt – 30L 9,372
-Caramel/Crystal Malt – 40L 34,600
-Caramel/Crystal Malt – 45L 3,972
-Caramel/Crystal Malt – 50L 2,162
-Caramel/Crystal Malt – 55L 786
-Caramel/Crystal Malt – 60L 43,579
-Caramel/Crystal Malt – 70L 1,374
-Caramel/Crystal Malt – 75L 2,041
-Caramel/Crystal Malt – 80L 11,740
-Caramel/Crystal Malt – 90L 3,438
+Caramel/Crystal Malt 10L 13,424
+Caramel/Crystal Malt 120L 47,451
+Caramel/Crystal Malt 140L 1,254
+Caramel/Crystal Malt 150L 3,836
+Caramel/Crystal Malt 15L 5,933
+Caramel/Crystal Malt 20L 16,865
+Caramel/Crystal Malt 30L 9,372
+Caramel/Crystal Malt 40L 34,600
+Caramel/Crystal Malt 45L 3,972
+Caramel/Crystal Malt 50L 2,162
+Caramel/Crystal Malt 55L 786
+Caramel/Crystal Malt 60L 43,579
+Caramel/Crystal Malt 70L 1,374
+Caramel/Crystal Malt 75L 2,041
+Caramel/Crystal Malt 80L 11,740
+Caramel/Crystal Malt 90L 3,438
 Golden Naked Oats 6,208
 Toasted
 Abbey Malt 2,292

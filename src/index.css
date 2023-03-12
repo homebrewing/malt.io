@@ -4,6 +4,7 @@
   --primary: #188B7D;
   --secondary: #083D77;
   --warn: #E5625E;
+  --color-link: #083D77;
   --color-beer: red;
   --color: black;
   --muted: #aaa;
@@ -13,8 +14,21 @@
 
 body {
   font-family: sans-serif;
-  color: var(--color);
-  background-color: var(--bg-color);
+  color: #aaa;
+  background-color: #3a3a3a;
+}
+
+a {
+  color: var(--color-link);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+nav a:hover {
+  text-decoration: none;
 }
 
 select {
@@ -22,7 +36,7 @@ select {
   background-color: var(--bg-color);
 }
 
-button {
+button, .btn {
   cursor: pointer;
   color: var(--color);
   background-color: rgba(128, 128, 128, 0.4);
@@ -32,13 +46,65 @@ button {
   transition: filter 0.3s, color 0.3s, background-color 0.3s;
 }
 
-button:hover {
+button:hover, .btn:hover {
   filter: brightness(1.3);
 }
 
-button.primary {
+button.primary, .btn.primary {
   color: white;
   background: var(--primary);
+}
+
+button.secondary, .btn.secondary {
+  color: white;
+  background: var(--secondary);
+}
+
+button.warn, .btn.warn {
+  color: white;
+  background: var(--warn);
+}
+
+button.share {
+  position: relative;
+}
+
+button.share .icon {
+  display: inline-block;
+  transform: rotateY(180deg);
+  text-shadow: -1px 1px 2px rgba(0, 0, 0, 0.4);
+  z-index: 0;
+}
+
+button.share span.msg {
+  visibility: hidden;
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  padding-top: 4px;
+  color: white;
+  background: var(--primary);
+  border-radius: 3px;
+  z-index: 1;
+}
+
+button.share.active span.msg {
+  visibility: visible;
+  animation: fade-out 4s linear;
+}
+
+@keyframes fade-out {
+  0% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
 }
 
 .delete button:hover {
@@ -198,22 +264,19 @@ tfoot {
 }
 
 nav {
-  display: grid;
-  grid-template-columns: 200px 1fr;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
   align-items: center;
   color: white;
   background: linear-gradient(#3a3a3a, #303030 48%, #343434 48%, #222 51%, #111);
   padding: 6px 12px;
-  margin-bottom: 1.5em;
 }
 
 nav h1 {
   font-family: 'germania one', cursive, sans-serif;
   margin: 0;
-}
-
-nav > div {
-  justify-self: end;
 }
 
 nav a {
@@ -233,6 +296,9 @@ label {
 
 header label {
   font-size: 10pt;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .page {
@@ -241,14 +307,22 @@ header label {
   container-type: inline-size;
 }
 
+article {
+  color: var(--color);
+  background-color: var(--bg-color);
+  padding: 24px 0;
+}
+
+.batch, .boil {
+  width: 48px;
+}
+
 .ingredients {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(420px, 1fr));
   grid-gap: 24px;
   margin: 0 12px;
 }
-
-/* ------- */
 
 .ingredient {
   display: flex;
@@ -398,88 +472,43 @@ header label {
   display: none;
 }
 
-@container(width < 540px) {
-  .ingredients {
-    margin: 0;
-    grid-template-columns: 1fr;
-  }
-
-  .ingredient .break {
-    margin-top: -25px;
-  }
-
-  .break-small {
-    /* Reorder to the second row. */
-    order: 2;
-  }
-
-  .fermentable .yield {
-    margin-left: 56px;
-    width: 82px;
-  }
-
-  .fermentable .abv {
-    width: 62px;
-  }
-
-  .fermentable .footer .ebc {
-    display: flex;
-    align-items: baseline;
-    width: 72px;
-    margin-left: 12px;
-  }
-
-  .hops .weight {
-    margin-left: 56px;
-  }
-
-  .hops .footer .weight {
-    margin-left: 0;
-  }
-
-  .hops .form {
-    width: 75px;
-  }
-
-  .hops .alpha-acid {
-    width: 80px;
-  }
-
-  .hops .ibu {
-    width: 72px;
-  }
-
-  .yeasts .attenuation {
-    width: 120px;
-  }
-}
-
-.ingredients>div {
-  max-width: 100%;
-  min-width: 0;
-  container-type: inline-size;
-}
-
-@container(width > 540px) {
-  .short, .input[data-prefix-short]::before {
-    display: none;
-  }
-
-  .long {
-    display: block;
-  }
-}
-
-@media(max-width: 540px) {
-  .ingredients h2 {
-    padding: 6px 6px;
-  }
-}
-
 .row {
   display: flex;
   flex-direction: row;
   align-items: stretch;
+}
+
+footer {
+  padding: 12px;
+}
+
+footer .row {
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+footer .row div {
+  /* flex: 1; */
+}
+
+footer a {
+  color: #aaa;
+  white-space: nowrap;
+}
+
+footer a:hover {
+  color: #ccc;
+}
+
+footer .header {
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+footer ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
 .col {
@@ -505,6 +534,10 @@ header label {
 
 .muted {
   color: var(--muted);
+}
+
+.slightly-muted {
+  color: var(--slightly-muted);
 }
 
 .right {
@@ -549,15 +582,23 @@ header {
   padding: 0 12px;
 }
 
+.justify-center {
+  justify-content: center;
+}
+
 .recipe-info {
   flex: 3;
-  min-width: 250px;
+  min-width: 380px;
 }
 
 .glass {
   display: inline-block;
   position: relative;
   min-width: 128px;
+}
+
+.recipe-settings {
+  flex-wrap: wrap;
 }
 
 .recipe-settings input {
@@ -580,8 +621,8 @@ header {
 .style-value .label {
   width: 50px;
   color: white;
-  background: #083D77;
-  padding: 2px 4px;
+  background: var(--secondary);
+  padding: 3px 4px;
 }
 
 .style-value .range {
@@ -663,8 +704,94 @@ header {
   }
 }
 
+@container(width < 540px) {
+  .recipe-info {
+    min-width: 250px;
+  }
+
+  .ingredients {
+    margin: 0;
+    grid-template-columns: 1fr;
+  }
+
+  .ingredient .break {
+    margin-top: -25px;
+  }
+
+  .break-small {
+    /* Reorder to the second row. */
+    order: 2;
+  }
+
+  .fermentable .yield {
+    margin-left: 56px;
+    width: 82px;
+  }
+
+  .fermentable .abv {
+    width: 62px;
+  }
+
+  .fermentable .footer .ebc {
+    display: flex;
+    align-items: baseline;
+    width: 72px;
+    margin-left: 12px;
+  }
+
+  .hops .weight {
+    margin-left: 56px;
+  }
+
+  .hops .footer .weight {
+    margin-left: 0;
+  }
+
+  .hops .form {
+    width: 75px;
+  }
+
+  .hops .alpha-acid {
+    width: 80px;
+  }
+
+  .hops .ibu {
+    width: 72px;
+  }
+
+  .yeasts .attenuation {
+    width: 120px;
+  }
+}
+
+.ingredients>div {
+  max-width: 100%;
+  min-width: 0;
+  container-type: inline-size;
+}
+
+@container(width > 540px) {
+
+  .short,
+  .input[data-prefix-short]::before {
+    display: none;
+  }
+
+  .long {
+    display: block;
+  }
+}
+
+@media(max-width: 540px) {
+  .ingredients h2 {
+    padding: 6px 6px;
+  }
+}
+
 @media (prefers-color-scheme: dark) {
   body {
+    --primary: #157a6e;
+    --color-link: #66abf4;
     --color: #f5f5f5;
     --muted: #666;
     --slightly-muted: #aaa;

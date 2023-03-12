@@ -269,12 +269,12 @@ export function calculateHops(bh: Brauhaus, recipe: Recipe): HopStats {
     }
   }
 
-  for (let hop of recipe.hops) {
+  for (let [i, hop] of recipe.hops.entries()) {
     stats.grams += hop.grams;
 
     if (hop.use === "boil") {
       const hopIBU = caluclateIBU(hop, bh.ibuMethod, earlyOg, recipe.batchSize);
-      stats.ibuMap[hop.id] = hopIBU;
+      stats.ibuMap[i] = hopIBU;
       stats.ibu += hopIBU;
     }
   }

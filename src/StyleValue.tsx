@@ -26,10 +26,10 @@ export const StyleValue: Component<{
     const s: any = {};
 
     if (pct < 50) {
-      s["border-left"] = "4px solid var(--secondary)";
+      s["border-left"] = "4px solid var(--color-link)";
       s.left = `${pct.toFixed(1)}%`;
     } else {
-      s["border-right"] = "4px solid var(--secondary)";
+      s["border-right"] = "4px solid var(--color-link)";
       s.right = `${(100 - pct).toFixed(1)}%`;
     }
 
@@ -49,11 +49,12 @@ export const StyleValue: Component<{
           {format(props.value)}
           <span class="suffix">{props.suffix}</span>
           <Show when={props.altFunc}>
-            ({props.altFunc?.(props.value)}
-            <span class="suffix">{props.altSuffix}</span>)
+            <span class="slightly-muted">
+              ({props.altFunc?.(props.value)} {props.altSuffix})
+            </span>
           </Show>
         </div>
-        <div class="min">
+        <div class="min slightly-muted">
           {format(props.min)}
           <span class="suffix">{props.suffix}</span>
           <Show when={props.altFunc}>
@@ -61,7 +62,7 @@ export const StyleValue: Component<{
             <span class="suffix">{props.altSuffix}</span>)
           </Show>
         </div>
-        <div class="max">
+        <div class="max slightly-muted">
           {format(props.max)}
           <span class="suffix">{props.suffix}</span>
           <Show when={props.altFunc}>

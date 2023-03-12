@@ -71,14 +71,12 @@ const App: Component = () => {
       name: "My Beer",
       fermentables: [
         createFermentable({
-          id: 1,
           name: "Pale Ale Malt",
           grams: 4000,
           percentYield: Math.round(ppgToYield(37)),
           ebc: Math.round(srmToEbc(lovibondToSrm(1.8))),
         }),
         createFermentable({
-          id: 2,
           name: "Munich Malt",
           grams: 1000,
           percentYield: Math.round(ppgToYield(37)),
@@ -86,13 +84,12 @@ const App: Component = () => {
         }),
       ],
       hops: [
-        createHop({ id: 1, name: "Hallertau", grams: 28, aa: 4.5, time: 60 }),
-        createHop({ id: 2, name: "Hallertau", grams: 28, aa: 4.5, time: 10 }),
+        createHop({ name: "Hallertau", grams: 28, aa: 4.5, time: 60 }),
+        createHop({ name: "Hallertau", grams: 28, aa: 4.5, time: 10 }),
       ],
-      yeasts: [createYeast({ id: 1, name: "Safale S-33", attenuation: 72 })],
+      yeasts: [createYeast({ name: "Safale S-33", attenuation: 72 })],
       mashSteps: [
         createMashStep({
-          id: 1,
           name: "Saccharification",
           temperature: 68,
           duration: 60,
@@ -134,51 +131,31 @@ const App: Component = () => {
   });
 
   const addFermentable = () => {
-    // Find the first unused ID. This is slow to search but results in low ID
-    // numbers when things are removed.
-    let id = 1;
-    while (recipe.fermentables.find((f) => f.id === id)) {
-      id++;
-    }
     setRecipeNow("fermentables", [
       ...recipe.fermentables,
-      createFermentable({ id, name: "New Fermentable" }),
+      createFermentable({ name: "New Fermentable" }),
     ]);
   };
 
   const addHop = () => {
-    // Find the first unused ID. This is slow to search but results in low ID
-    // numbers when things are removed.
-    let id = 1;
-    while (recipe.hops.find((h) => h.id === id)) {
-      id++;
-    }
-    setRecipeNow("hops", [...recipe.hops, createHop({ id, name: "New Hop" })]);
+    setRecipeNow("hops", [...recipe.hops, createHop({ name: "New Hop" })]);
   };
 
   const addMisc = () => {
-    // Find the first unused ID. This is slow to search but results in low ID
-    // numbers when things are removed.
-    let id = 1;
-    while (recipe.miscs.find((h) => h.id === id)) {
-      id++;
-    }
-    setRecipeNow("miscs", [
-      ...recipe.miscs,
-      createMisc({ id, name: "New Misc" }),
-    ]);
+    setRecipeNow("miscs", [...recipe.miscs, createMisc({ name: "New Misc" })]);
   };
 
   const addYeast = () => {
-    // Find the first unused ID. This is slow to search but results in low ID
-    // numbers when things are removed.
-    let id = 1;
-    while (recipe.yeasts.find((h) => h.id === id)) {
-      id++;
-    }
     setRecipeNow("yeasts", [
       ...recipe.yeasts,
-      createYeast({ id, name: "New Yeast" }),
+      createYeast({ name: "New Yeast" }),
+    ]);
+  };
+
+  const addMashStep = () => {
+    setRecipeNow("mashSteps", [
+      ...recipe.mashSteps,
+      createMashStep({ name: "New Mash Step" }),
     ]);
   };
 
@@ -189,296 +166,336 @@ const App: Component = () => {
           Malt<span style="opacity: 0.65">.io</span>
         </h1>
         <div>
-          <a href="#">
-            <img
-              class="icon"
-              src="https://icongr.am/feather/file-plus.svg?size=24&color=999999"
-            />
-            New Recipe
+          <a href="/r/">
+            <span style="color: var(--primary); filter: brightness(1.3)">
+              ✚
+            </span>{" "}
+            New
           </a>
-          <a href="#">
-            <img
-              class="icon"
-              src="https://icongr.am/feather/package.svg?size=24&color=999999"
-            />
-            Import
-          </a>
-          <a href="#">
-            <img
-              class="icon"
-              src="https://icongr.am/feather/arrow-down-circle.svg?size=24&color=999999"
-            />
-            Export
-          </a>
-          <a href="#">
-            <img
-              class="icon"
-              src="https://icongr.am/feather/help-circle.svg?size=24&color=999999"
-            />
-            About
-          </a>
+          <a href="#">⚙️ Settings</a>
+          <a href="#">👤 About</a>
         </div>
       </nav>
-      <div>
-        <div class="row">
-          <input
-            type="checkbox"
-            checked={edit()}
-            onInput={() => setEdit(!edit())}
-          />
-          Edit mode
-        </div>
-        <article class="col gap">
-          <header>
-            <div class="glass-container">
-              <div
-                id="bubble"
-                onanimationend={(e) =>
-                  e.currentTarget.classList.remove("animated")
-                }
-              ></div>
-              <svg class="glass" width="128px" height="128px">
-                <use href={tulip + "#img"} />
-              </svg>
+      <article class="col gap">
+        <header>
+          <div class="glass-container col gap">
+            <div
+              id="bubble"
+              onanimationend={(e) =>
+                e.currentTarget.classList.remove("animated")
+              }
+            ></div>
+            <svg
+              class="glass"
+              width="160px"
+              height="160px"
+              style="margin: 0 -26px"
+            >
+              <use href={tulip + "#img"} />
+            </svg>
+          </div>
+          <div class="recipe-info col gap">
+            <div class="col">
+              <label>Recipe Name</label>
+              <Editable
+                class="germania large"
+                show={edit()}
+                type="text"
+                value={recipe.name}
+                placeholder="Untitled Brew"
+                oninput={(e) => setRecipe("name", e.currentTarget.value)}
+              />
             </div>
-            <div class="recipe-info col gap">
+            <div class="col">
+              <label>Description &amp; Notes</label>
+              <Editable
+                show={edit()}
+                type="text"
+                value={recipe.description}
+                placeholder="No description"
+                oninput={(e) => setRecipe("description", e.currentTarget.value)}
+              />
+            </div>
+            <div class="recipe-settings row gap">
               <div class="col">
-                <label>Recipe Name</label>
-                <Editable
-                  class="germania large"
-                  show={edit()}
-                  type="text"
-                  value={recipe.name}
-                  placeholder="Untitled Brew"
-                  oninput={(e) => setRecipe("name", e.currentTarget.value)}
-                />
+                <label>&nbsp;</label>
+                <div class="row">
+                  <input
+                    id="edit"
+                    type="checkbox"
+                    checked={edit()}
+                    onInput={() => setEdit(!edit())}
+                    hidden
+                  />
+                  <label
+                    class="btn"
+                    classList={{
+                      secondary: !edit(),
+                      primary: edit(),
+                    }}
+                    for="edit"
+                    style="padding: 6px 6px; margin: 0"
+                  >
+                    <Show when={edit()} fallback="🗂 Edit">
+                      💾 Save
+                    </Show>
+                  </label>
+                </div>
               </div>
               <div class="col">
-                <label>Description</label>
+                <label>&nbsp;</label>
+                <button
+                  class="share"
+                  onclick={(e) => {
+                    const share = {
+                      title: recipe.name,
+                      text: recipe.description,
+                      url: window.location.href,
+                    };
+                    if (navigator.canShare && navigator.canShare(share)) {
+                      navigator.share(share);
+                    } else {
+                      navigator.clipboard.writeText(window.location.href);
+                      e.currentTarget.classList.add("active");
+                    }
+                  }}
+                  onanimationend={(e) =>
+                    e.currentTarget.classList.remove("active")
+                  }
+                >
+                  <span class="msg">&check; Copied</span>
+                  <span class="icon">💬</span> Share
+                </button>
+              </div>
+              <div class="col">
+                <label>Type</label>
+                <select
+                  value={recipe.type}
+                  oninput={(e) => setRecipe("type", e.currentTarget.value)}
+                >
+                  <option>all grain</option>
+                  <option>partial mash</option>
+                  <option>extract</option>
+                </select>
+              </div>
+              <div class="batch col right">
+                <label>Batch</label>
                 <Editable
                   show={edit()}
-                  type="text"
-                  value={recipe.description}
-                  placeholder="No description"
+                  type="number"
+                  suffix="L"
+                  value={recipe.batchSize}
                   oninput={(e) =>
-                    setRecipe("description", e.currentTarget.value)
+                    setRecipe(
+                      "batchSize",
+                      parseInt(e.currentTarget.value || "0")
+                    )
+                  }
+                />
+              </div>
+              <div class="boil col right">
+                <label>Boil</label>
+                <Editable
+                  show={edit()}
+                  type="number"
+                  suffix="L"
+                  value={recipe.boilSize}
+                  oninput={(e) =>
+                    setRecipe(
+                      "boilSize",
+                      parseInt(e.currentTarget.value || "0")
+                    )
                   }
                 />
               </div>
             </div>
-            <div class="style col gap-small grow">
-              <StyleValue
-                label="ABV"
-                suffix="%"
-                min={2.0}
-                max={15.0}
-                value={stats().abv}
-                precision={1}
-              />
-              <StyleValue
-                label="OG"
-                min={1.0}
-                max={1.12}
-                value={stats().og}
-                precision={3}
-                altFunc={(v) => sgToPlato(v).toFixed(1)}
-                altSuffix="°P"
-              />
-              <StyleValue
-                label="FG"
-                min={0.992}
-                max={1.035}
-                value={stats().fg}
-                precision={3}
-                altFunc={(v) => sgToPlato(v).toFixed(1)}
-                altSuffix="°P"
-              />
-              <StyleValue
-                label="EBC"
-                min={1}
-                max={100}
-                value={ebc()}
-                precision={0}
-                altFunc={(v) => Math.round(ebcToSrm(v))}
-                altSuffix="SRM"
-              />
-              <StyleValue
-                label="IBU"
-                min={1}
-                max={120}
-                value={hopStats().ibu}
-                precision={0}
-              />
-              <div>No BJCP style selected</div>
-              <Show when={edit()}>
-                <button class="primary">Change target style</button>
-              </Show>
-            </div>
-          </header>
-          <div class="recipe-settings row">
-            <label>Batch size</label>
-            <Editable
-              show={edit()}
-              type="number"
-              suffix="L"
-              value={recipe.batchSize}
-              oninput={(e) =>
-                setRecipe("batchSize", parseInt(e.currentTarget.value || "0"))
-              }
-            />
-            <label>Boil Size</label>
-            <Editable
-              show={edit()}
-              type="number"
-              suffix="L"
-              value={recipe.boilSize}
-              oninput={(e) =>
-                setRecipe("boilSize", parseInt(e.currentTarget.value || "0"))
-              }
-            />
-            <label>Efficiency</label>
-            <Editable
-              show={edit()}
-              type="number"
-              suffix="﹪"
-              value={recipe.efficiency}
-              oninput={(e) =>
-                setRecipe("efficiency", parseInt(e.currentTarget.value || "0"))
-              }
-            />
           </div>
-          <div class="ingredients">
-            <div>
-              <h2>
-                Fermentable Sugars
-                <Show when={edit()}>
-                  <button class="primary" onClick={addFermentable}>
-                    &plus;
-                  </button>
-                </Show>
-              </h2>
+          <div class="style col gap-small grow">
+            <StyleValue
+              label="ABV"
+              suffix="%"
+              min={2.0}
+              max={15.0}
+              value={stats().abv}
+              precision={1}
+            />
+            <StyleValue
+              label="OG"
+              min={1.0}
+              max={1.12}
+              value={stats().og}
+              precision={3}
+              altFunc={(v) => sgToPlato(v).toFixed(1)}
+              altSuffix="°P"
+            />
+            <StyleValue
+              label="FG"
+              min={0.992}
+              max={1.035}
+              value={stats().fg}
+              precision={3}
+              altFunc={(v) => sgToPlato(v).toFixed(1)}
+              altSuffix="°P"
+            />
+            <StyleValue
+              label="EBC"
+              min={1}
+              max={100}
+              value={ebc()}
+              precision={0}
+              altFunc={(v) => Math.round(ebcToSrm(v))}
+              altSuffix="SRM"
+            />
+            <StyleValue
+              label="IBU"
+              min={1}
+              max={120}
+              value={hopStats().ibu}
+              precision={0}
+            />
+            <div>No BJCP style selected</div>
+            <Show when={edit()}>
+              <button class="primary">Change target style</button>
+            </Show>
+          </div>
+        </header>
 
-              <div class="ingredient fermentable">
-                <div class="row header">
-                  <div class="bill right muted">Bill</div>
-                  <div class="amount right">Amount</div>
-                  <div class="name">Name</div>
-                  <div class="yield right long">Yield</div>
-                  <div class="ebc right long">&deg;EBC</div>
-                  <div class="abv right long">ABV</div>
-                  <Show when={edit()}>
-                    <div class="delete"></div>
-                  </Show>
-                  <div class="break"></div>
-                </div>
-                <For each={recipe.fermentables}>
-                  {(fermentable, i) => (
-                    <div class="row">
-                      <div class="bill right muted">
-                        {Math.round(
-                          (fermentable.grams / stats().fermentableGrams) * 100
-                        )}
-                        ﹪
-                      </div>
-                      <div class="amount right">
-                        <Editable
-                          show={edit()}
-                          type="number"
-                          value={fermentable.grams}
-                          suffix="g"
-                          oninput={(e) =>
+        <div class="ingredients">
+          <div>
+            <h2>
+              🌾 Fermentable Sugars
+              <Show when={edit()}>
+                <button class="primary" onClick={addFermentable}>
+                  &plus;
+                </button>
+              </Show>
+            </h2>
+
+            <div class="ingredient fermentable">
+              <div class="row header">
+                <div class="bill right muted">Bill</div>
+                <div class="amount right">Amount</div>
+                <div class="name">Name</div>
+                <div class="yield right long">Yield</div>
+                <div class="ebc right long">&deg;EBC</div>
+                <div class="abv right long">ABV</div>
+                <Show when={edit()}>
+                  <div class="delete"></div>
+                </Show>
+                <div class="break"></div>
+              </div>
+              <For
+                each={recipe.fermentables}
+                fallback={<div>No fermentables.</div>}
+              >
+                {(fermentable, i) => (
+                  <div class="row">
+                    <div class="bill right muted">
+                      {Math.round(
+                        (fermentable.grams / stats().fermentableGrams) * 100
+                      )}
+                      ﹪
+                    </div>
+                    <div class="amount right">
+                      <Editable
+                        show={edit()}
+                        type="number"
+                        value={fermentable.grams}
+                        suffix="g"
+                        oninput={(e) =>
+                          setRecipeNow(
+                            "fermentables",
+                            i(),
+                            "grams",
+                            parseInt(e.currentTarget.value || "0")
+                          )
+                        }
+                      />
+                    </div>
+                    <div class="name">
+                      <Editable
+                        show={edit()}
+                        type="text"
+                        value={fermentable.name}
+                        oninput={(e) =>
+                          setRecipe(
+                            "fermentables",
+                            i(),
+                            "name",
+                            e.currentTarget.value
+                          )
+                        }
+                      />
+                    </div>
+                    <div class="yield right break-small">
+                      <Editable
+                        show={edit()}
+                        type="number"
+                        value={Math.round(fermentable.percentYield)}
+                        prefix="Yield"
+                        prefixShort={true}
+                        suffix="﹪"
+                        oninput={(e) =>
+                          setRecipe(
+                            "fermentables",
+                            i(),
+                            "percentYield",
+                            parseInt(e.currentTarget.value || "0")
+                          )
+                        }
+                      />
+                    </div>
+                    <div class="ebc right break-small">
+                      <input
+                        class="color"
+                        type="number"
+                        min="0"
+                        max="1000"
+                        style={{
+                          color: contrast(ebcToRgb(fermentable.ebc)),
+                          "background-color": ebcToCss(fermentable.ebc),
+                          width: "30px",
+                        }}
+                        value={Math.round(fermentable.ebc)}
+                        oninput={(e) =>
+                          setRecipe(
+                            "fermentables",
+                            i(),
+                            "ebc",
+                            parseInt(e.currentTarget.value || "0")
+                          )
+                        }
+                      />
+                      <span class="suffix short">&deg;EBC</span>
+                    </div>
+                    <div class="abv right break-small">
+                      {(
+                        stats().abv *
+                        (fermentable.grams / stats().fermentableGrams)
+                      ).toFixed(1)}
+                      <span class="suffix">﹪</span>
+                      <span class="suffix short">ABV</span>
+                    </div>
+                    <Show when={edit()}>
+                      <div class="delete">
+                        {" "}
+                        <button
+                          onclick={() =>
                             setRecipeNow(
                               "fermentables",
-                              i(),
-                              "grams",
-                              parseInt(e.currentTarget.value || "0")
+                              removeIndex(recipe.fermentables, i())
                             )
                           }
-                        />
+                        >
+                          ✕
+                        </button>
                       </div>
-                      <div class="name">
-                        <Editable
-                          show={edit()}
-                          type="text"
-                          value={fermentable.name}
-                          oninput={(e) =>
-                            setRecipe(
-                              "fermentables",
-                              i(),
-                              "name",
-                              e.currentTarget.value
-                            )
-                          }
-                        />
-                      </div>
-                      <div class="yield right break-small">
-                        <Editable
-                          show={edit()}
-                          type="number"
-                          value={Math.round(fermentable.percentYield)}
-                          prefix="Yield"
-                          prefixShort={true}
-                          suffix="﹪"
-                          oninput={(e) =>
-                            setRecipe(
-                              "fermentables",
-                              i(),
-                              "percentYield",
-                              parseInt(e.currentTarget.value || "0")
-                            )
-                          }
-                        />
-                      </div>
-                      <div class="ebc right break-small">
-                        <input
-                          class="color"
-                          type="number"
-                          min="0"
-                          max="1000"
-                          style={{
-                            color: contrast(ebcToRgb(fermentable.ebc)),
-                            "background-color": ebcToCss(fermentable.ebc),
-                            width: "30px",
-                          }}
-                          value={Math.round(fermentable.ebc)}
-                          oninput={(e) =>
-                            setRecipe(
-                              "fermentables",
-                              i(),
-                              "ebc",
-                              parseInt(e.currentTarget.value || "0")
-                            )
-                          }
-                        />
-                        <span class="suffix short">&deg;EBC</span>
-                      </div>
-                      <div class="abv right break-small">
-                        {(
-                          stats().abv *
-                          (fermentable.grams / stats().fermentableGrams)
-                        ).toFixed(1)}
-                        <span class="suffix">﹪</span>
-                        <span class="suffix short">ABV</span>
-                      </div>
-                      <Show when={edit()}>
-                        <div class="delete">
-                          {" "}
-                          <button
-                            onclick={() =>
-                              setRecipeNow(
-                                "fermentables",
-                                removeIndex(recipe.fermentables, i())
-                              )
-                            }
-                          >
-                            ✕
-                          </button>
-                        </div>
-                      </Show>
-                      <div class="break"></div>
-                    </div>
-                  )}
-                </For>
+                    </Show>
+                    <div class="break"></div>
+                  </div>
+                )}
+              </For>
+              <Show when={recipe.fermentables.length > 0}>
                 <div class="row footer">
                   <div class="bill right muted">100﹪</div>
                   <div class="amount right">
@@ -514,162 +531,151 @@ const App: Component = () => {
                   </Show>
                   <div class="break break-small"></div>
                 </div>
-              </div>
-              <div class="cal right long">
-                {Math.round(stats().calories)}
-                <span class="suffix">Cal</span> / {recipe.servingSizeMl}
-                <span class="suffix">ml</span>
-              </div>
+              </Show>
             </div>
+            <div class="cal right long">
+              {Math.round(stats().calories)}
+              <span class="suffix">Cal</span> / {recipe.servingSizeMl}
+              <span class="suffix">ml</span>
+            </div>
+          </div>
 
-            <div>
-              <h2>
-                Bittering & Aroma Hops
+          <div>
+            <h2>
+              🥬 Bittering & Aroma Hops
+              <Show when={edit()}>
+                <button class="primary" onClick={addHop}>
+                  &plus;
+                </button>
+              </Show>
+            </h2>
+
+            <div class="ingredient hops">
+              <div class="row header">
+                <div class="bill right muted">Bill</div>
+                <div class="time right">Time</div>
+                <div class="use">Use</div>
+                <div class="weight right long">Wt</div>
+                <div class="name">Name</div>
+                <div class="form long">Form</div>
+                <div class="alpha-acid right long">AA%</div>
+                <div class="ibu right long">IBU</div>
                 <Show when={edit()}>
-                  <button class="primary" onClick={addHop}>
-                    &plus;
-                  </button>
+                  <div class="delete"></div>
                 </Show>
-              </h2>
-
-              <div class="ingredient hops">
-                <div class="row header">
-                  <div class="bill right muted">Bill</div>
-                  <div class="time right">Time</div>
-                  <div class="use">Use</div>
-                  <div class="weight right long">Wt</div>
-                  <div class="name">Name</div>
-                  <div class="form long">Form</div>
-                  <div class="alpha-acid right long">AA%</div>
-                  <div class="ibu right long">IBU</div>
-                  <Show when={edit()}>
-                    <div class="delete"></div>
-                  </Show>
-                  <div class="break"></div>
-                </div>
-                <For each={recipe.hops}>
-                  {(hop, i) => (
-                    <div class="row">
-                      <div class="bill right muted">
-                        {Math.round((hop.grams / hopStats().grams) * 100)}%
-                      </div>
-                      <div class="time right">
-                        <Editable
-                          show={edit()}
-                          type="number"
-                          suffix={hop.use === "dry hop" ? "d" : "m"}
-                          value={hop.time}
-                          oninput={(e) =>
-                            setRecipe(
-                              "hops",
-                              i(),
-                              "time",
-                              parseInt(e.currentTarget.value)
-                            )
-                          }
-                        />
-                      </div>
-                      <div class="use">
-                        <select
-                          value={hop.use}
-                          oninput={(e) =>
-                            setRecipe("hops", i(), "use", e.currentTarget.value)
-                          }
-                        >
-                          <option>mash</option>
-                          <option>boil</option>
-                          <option>aroma</option>
-                          <option>dry hop</option>
-                        </select>
-                      </div>
-                      <div class="weight right break-small">
-                        <Editable
-                          show={edit()}
-                          type="number"
-                          suffix="g"
-                          value={hop.grams}
-                          oninput={(e) =>
-                            setRecipe(
-                              "hops",
-                              i(),
-                              "grams",
-                              parseInt(e.currentTarget.value)
-                            )
-                          }
-                        />
-                      </div>
-                      <div class="name">
-                        <Editable
-                          show={edit()}
-                          type="text"
-                          value={hop.name}
-                          oninput={(e) =>
-                            setRecipe(
-                              "hops",
-                              i(),
-                              "name",
-                              e.currentTarget.value
-                            )
-                          }
-                        />
-                      </div>
-                      <div class="form break-small">
-                        <select
-                          value={hop.form}
-                          oninput={(e) =>
-                            setRecipe(
-                              "hops",
-                              i(),
-                              "form",
-                              e.currentTarget.value
-                            )
-                          }
-                        >
-                          <option>pellet</option>
-                          <option>leaf</option>
-                          <option>plug</option>
-                        </select>
-                      </div>
-                      <div class="alpha-acid right break-small">
-                        <Editable
-                          show={edit()}
-                          type="number"
-                          prefix="AA"
-                          prefixShort={true}
-                          suffix="%"
-                          value={hop.aa}
-                          oninput={(e) =>
-                            setRecipe(
-                              "hops",
-                              i(),
-                              "aa",
-                              parseFloat(e.currentTarget.value)
-                            )
-                          }
-                        />
-                      </div>
-                      <div class="ibu right break-small">
-                        {hopStats().ibuMap[hop.id]?.toFixed(1) ?? "-"}
-                        <span class="suffix short"> IBU</span>
-                      </div>
-                      <Show when={edit()}>
-                        <div class="delete">
-                          <button
-                            onclick={() =>
-                              setRecipeNow(
-                                "hops",
-                                removeIndex(recipe.hops, i())
-                              )
-                            }
-                          >
-                            ✕
-                          </button>
-                        </div>
-                      </Show>
-                      <div class="break"></div>
+                <div class="break"></div>
+              </div>
+              <For each={recipe.hops} fallback={<div>No hops.</div>}>
+                {(hop, i) => (
+                  <div class="row">
+                    <div class="bill right muted">
+                      {Math.round((hop.grams / hopStats().grams) * 100)}%
                     </div>
-                  )}
-                </For>
+                    <div class="time right">
+                      <Editable
+                        show={edit()}
+                        type="number"
+                        suffix={hop.use === "dry hop" ? "d" : "m"}
+                        value={hop.time}
+                        oninput={(e) =>
+                          setRecipe(
+                            "hops",
+                            i(),
+                            "time",
+                            parseInt(e.currentTarget.value)
+                          )
+                        }
+                      />
+                    </div>
+                    <div class="use">
+                      <select
+                        value={hop.use}
+                        oninput={(e) =>
+                          setRecipe("hops", i(), "use", e.currentTarget.value)
+                        }
+                      >
+                        <option>mash</option>
+                        <option>boil</option>
+                        <option>aroma</option>
+                        <option>dry hop</option>
+                      </select>
+                    </div>
+                    <div class="weight right break-small">
+                      <Editable
+                        show={edit()}
+                        type="number"
+                        suffix="g"
+                        value={hop.grams}
+                        oninput={(e) =>
+                          setRecipe(
+                            "hops",
+                            i(),
+                            "grams",
+                            parseInt(e.currentTarget.value)
+                          )
+                        }
+                      />
+                    </div>
+                    <div class="name">
+                      <Editable
+                        show={edit()}
+                        type="text"
+                        value={hop.name}
+                        oninput={(e) =>
+                          setRecipe("hops", i(), "name", e.currentTarget.value)
+                        }
+                      />
+                    </div>
+                    <div class="form break-small">
+                      <select
+                        value={hop.form}
+                        oninput={(e) =>
+                          setRecipe("hops", i(), "form", e.currentTarget.value)
+                        }
+                      >
+                        <option>pellet</option>
+                        <option>leaf</option>
+                        <option>plug</option>
+                      </select>
+                    </div>
+                    <div class="alpha-acid right break-small">
+                      <Editable
+                        show={edit()}
+                        type="number"
+                        prefix="AA"
+                        prefixShort={true}
+                        suffix="%"
+                        value={hop.aa}
+                        oninput={(e) =>
+                          setRecipe(
+                            "hops",
+                            i(),
+                            "aa",
+                            parseFloat(e.currentTarget.value)
+                          )
+                        }
+                      />
+                    </div>
+                    <div class="ibu right break-small">
+                      {hopStats().ibuMap[i()]?.toFixed(1) ?? "-"}
+                      <span class="suffix short"> IBU</span>
+                    </div>
+                    <Show when={edit()}>
+                      <div class="delete">
+                        <button
+                          onclick={() =>
+                            setRecipeNow("hops", removeIndex(recipe.hops, i()))
+                          }
+                        >
+                          ✕
+                        </button>
+                      </div>
+                    </Show>
+                    <div class="break"></div>
+                  </div>
+                )}
+              </For>
+              <Show when={recipe.fermentables.length > 0}>
                 <div class="row footer">
                   <div class="bill right muted">100%</div>
                   <div class="time right break-small"></div>
@@ -692,298 +698,301 @@ const App: Component = () => {
                   </Show>
                   <div class="break"></div>
                 </div>
-              </div>
+              </Show>
             </div>
+          </div>
 
-            <div>
-              <h2>
-                Miscellaneous
+          <div>
+            <h2>
+              🍱 Miscellaneous
+              <Show when={edit()}>
+                <button class="primary" onClick={addMisc}>
+                  &plus;
+                </button>
+              </Show>
+            </h2>
+
+            <div class="ingredient miscs">
+              <div class="row header">
+                <div class="time right long break-small">Time</div>
+                <div class="use long break-small">Use</div>
+                <div class="amount right long break-small">Amt</div>
+                <div class="units long break-small">Units</div>
+                <div class="name">Name</div>
                 <Show when={edit()}>
-                  <button class="primary" onClick={addMisc}>
-                    &plus;
-                  </button>
+                  <div class="delete"></div>
                 </Show>
-              </h2>
-
-              <div class="ingredient miscs">
-                <div class="row header">
-                  <div class="time right long break-small">Time</div>
-                  <div class="use long break-small">Use</div>
-                  <div class="amount right long break-small">Amt</div>
-                  <div class="units long break-small">Units</div>
-                  <div class="name">Name</div>
-                  <Show when={edit()}>
-                    <div class="delete"></div>
-                  </Show>
-                  <div class="break"></div>
-                </div>
-                <For each={recipe.miscs}>
-                  {(misc, i) => (
-                    <div class="row">
-                      <div class="time right break-small">
-                        <Editable
-                          show={edit()}
-                          type="number"
-                          suffix={
-                            misc.use === "mash" || misc.use === "boil"
-                              ? "m"
-                              : "d"
-                          }
-                          value={misc.time}
-                          oninput={(e) =>
-                            setRecipe(
-                              "miscs",
-                              i(),
-                              "time",
-                              parseInt(e.currentTarget.value)
-                            )
-                          }
-                        />
-                      </div>
-                      <div class="use break-small">
-                        <select
-                          value={misc.use}
-                          oninput={(e) => {
-                            setRecipe(
-                              "miscs",
-                              i(),
-                              "use",
-                              e.currentTarget.value
-                            );
-                          }}
-                        >
-                          <option>mash</option>
-                          <option>boil</option>
-                          <option>primary</option>
-                          <option>secondary</option>
-                          <option>bottling</option>
-                        </select>
-                      </div>
-                      <div class="amount right break-small">
-                        <Editable
-                          show={edit()}
-                          type="number"
-                          value={misc.amount}
-                          oninput={(e) =>
-                            setRecipe(
-                              "miscs",
-                              i(),
-                              "amount",
-                              parseInt(e.currentTarget.value)
-                            )
-                          }
-                        />
-                      </div>
-                      <div class="units break-small">
-                        <select
-                          value={misc.units}
-                          oninput={(e) => {
-                            setRecipe(
-                              "miscs",
-                              i(),
-                              "units",
-                              e.currentTarget.value
-                            );
-                          }}
-                        >
-                          <option>g</option>
-                          <option>ml</option>
-                          <option>each</option>
-                          <option>tsp</option>
-                          <option>tbsp</option>
-                          <option>mg/l</option>
-                        </select>
-                      </div>
-                      <div class="name">
-                        <Editable
-                          show={edit()}
-                          type="text"
-                          value={misc.name}
-                          oninput={(e) =>
-                            setRecipe(
-                              "miscs",
-                              i(),
-                              "name",
-                              e.currentTarget.value
-                            )
-                          }
-                        />
-                      </div>
-                      <Show when={edit()}>
-                        <div class="delete">
-                          {" "}
-                          <button
-                            onclick={() =>
-                              setRecipeNow(
-                                "miscs",
-                                removeIndex(recipe.miscs, i())
-                              )
-                            }
-                          >
-                            ✕
-                          </button>
-                        </div>
-                      </Show>
-                      <div class="break"></div>
+                <div class="break"></div>
+              </div>
+              <For
+                each={recipe.miscs}
+                fallback={<div>No spices, herbs, etc.</div>}
+              >
+                {(misc, i) => (
+                  <div class="row">
+                    <div class="time right break-small">
+                      <Editable
+                        show={edit()}
+                        type="number"
+                        suffix={
+                          misc.use === "mash" || misc.use === "boil" ? "m" : "d"
+                        }
+                        value={misc.time}
+                        oninput={(e) =>
+                          setRecipe(
+                            "miscs",
+                            i(),
+                            "time",
+                            parseInt(e.currentTarget.value)
+                          )
+                        }
+                      />
                     </div>
-                  )}
-                </For>
-              </div>
-            </div>
-
-            <div>
-              <h2>
-                Yeast & Bugs
-                <Show when={edit()}>
-                  <button class="primary" onClick={addYeast}>
-                    &plus;
-                  </button>
-                </Show>
-              </h2>
-
-              <div class="ingredient yeasts">
-                <div class="row header">
-                  <div class="amount right">Amt</div>
-                  <div class="units">Units</div>
-                  <div class="name">Name</div>
-                  <div class="type long">Type</div>
-                  <div class="form long">Form</div>
-                  <div class="attenuation long">Attenuation</div>
-                  <Show when={edit()}>
-                    <div class="delete"></div>
-                  </Show>
-                  <div class="break"></div>
-                </div>
-                <For each={recipe.yeasts}>
-                  {(yeast, i) => (
-                    <div class="row">
-                      <div class="amount right">
-                        <Editable
-                          show={edit()}
-                          type="number"
-                          value={yeast.amount}
-                          oninput={(e) =>
-                            setRecipe(
-                              "yeasts",
-                              i(),
-                              "amount",
-                              parseInt(e.currentTarget.value)
-                            )
-                          }
-                        />
-                      </div>
-                      <div class="units">
-                        <select
-                          value={yeast.units}
-                          oninput={(e) =>
-                            setRecipe(
-                              "yeasts",
-                              i(),
-                              "units",
-                              e.currentTarget.value
-                            )
-                          }
-                        >
-                          <option>g</option>
-                          <option>ml</option>
-                          <option>pkt</option>
-                        </select>
-                      </div>
-                      <div class="name">
-                        <Editable
-                          show={edit()}
-                          type="text"
-                          value={yeast.name}
-                          oninput={(e) =>
-                            setRecipe(
-                              "yeasts",
-                              i(),
-                              "name",
-                              e.currentTarget.value
-                            )
-                          }
-                        />
-                      </div>
-                      <div class="type break-small">
+                    <div class="use break-small">
+                      <select
+                        value={misc.use}
+                        oninput={(e) => {
+                          setRecipe("miscs", i(), "use", e.currentTarget.value);
+                        }}
+                      >
+                        <option>mash</option>
+                        <option>boil</option>
+                        <option>primary</option>
+                        <option>secondary</option>
+                        <option>bottling</option>
+                      </select>
+                    </div>
+                    <div class="amount right break-small">
+                      <Editable
+                        show={edit()}
+                        type="number"
+                        value={misc.amount}
+                        oninput={(e) =>
+                          setRecipe(
+                            "miscs",
+                            i(),
+                            "amount",
+                            parseInt(e.currentTarget.value)
+                          )
+                        }
+                      />
+                    </div>
+                    <div class="units break-small">
+                      <select
+                        value={misc.units}
+                        oninput={(e) => {
+                          setRecipe(
+                            "miscs",
+                            i(),
+                            "units",
+                            e.currentTarget.value
+                          );
+                        }}
+                      >
+                        <option>g</option>
+                        <option>ml</option>
+                        <option>each</option>
+                        <option>tsp</option>
+                        <option>tbsp</option>
+                        <option>mg/l</option>
+                      </select>
+                    </div>
+                    <div class="name">
+                      <Editable
+                        show={edit()}
+                        type="text"
+                        value={misc.name}
+                        oninput={(e) =>
+                          setRecipe("miscs", i(), "name", e.currentTarget.value)
+                        }
+                      />
+                    </div>
+                    <Show when={edit()}>
+                      <div class="delete">
                         {" "}
-                        <select
-                          value={yeast.type}
-                          oninput={(e) =>
-                            setRecipe(
-                              "yeasts",
-                              i(),
-                              "type",
-                              e.currentTarget.value
+                        <button
+                          onclick={() =>
+                            setRecipeNow(
+                              "miscs",
+                              removeIndex(recipe.miscs, i())
                             )
                           }
                         >
-                          <option>ale</option>
-                          <option>lager</option>
-                          <option>cider</option>
-                          <option>wine</option>
-                          <option>other</option>
-                        </select>
+                          ✕
+                        </button>
                       </div>
-                      <div class="form break-small">
-                        <select
-                          value={yeast.form}
-                          oninput={(e) =>
-                            setRecipe(
-                              "yeasts",
-                              i(),
-                              "form",
-                              e.currentTarget.value
-                            )
-                          }
-                        >
-                          <option>liquid</option>
-                          <option>dry</option>
-                        </select>
-                      </div>
-                      <div class="attenuation break-small">
-                        <Editable
-                          show={edit()}
-                          type="number"
-                          prefix="Attenuation"
-                          prefixShort={true}
-                          suffix="%"
-                          value={yeast.attenuation}
-                          oninput={(e) =>
-                            setRecipe(
-                              "yeasts",
-                              i(),
-                              "attenuation",
-                              parseInt(e.currentTarget.value)
-                            )
-                          }
-                        />
-                      </div>
-                      <Show when={edit()}>
-                        <div class="delete">
-                          <button
-                            onclick={() =>
-                              setRecipeNow(
-                                "yeasts",
-                                removeIndex(recipe.yeasts, i())
-                              )
-                            }
-                          >
-                            ✕
-                          </button>
-                        </div>
-                      </Show>
-                      <div class="break"></div>
-                    </div>
-                  )}
-                </For>
-              </div>
+                    </Show>
+                    <div class="break"></div>
+                  </div>
+                )}
+              </For>
             </div>
+          </div>
 
+          <div>
+            <h2>
+              <span>
+                <span style="filter: hue-rotate(285deg) saturate(0.4) brightness(1.1);">
+                  🦠
+                </span>{" "}
+                Yeast & Bugs
+              </span>
+              <Show when={edit()}>
+                <button class="primary" onClick={addYeast}>
+                  &plus;
+                </button>
+              </Show>
+            </h2>
+
+            <div class="ingredient yeasts">
+              <div class="row header">
+                <div class="amount right">Amt</div>
+                <div class="units">Units</div>
+                <div class="name">Name</div>
+                <div class="type long">Type</div>
+                <div class="form long">Form</div>
+                <div class="attenuation long">Attenuation</div>
+                <Show when={edit()}>
+                  <div class="delete"></div>
+                </Show>
+                <div class="break"></div>
+              </div>
+              <For
+                each={recipe.yeasts}
+                fallback={<div>No yeasts or bugs defined.</div>}
+              >
+                {(yeast, i) => (
+                  <div class="row">
+                    <div class="amount right">
+                      <Editable
+                        show={edit()}
+                        type="number"
+                        value={yeast.amount}
+                        oninput={(e) =>
+                          setRecipe(
+                            "yeasts",
+                            i(),
+                            "amount",
+                            parseInt(e.currentTarget.value)
+                          )
+                        }
+                      />
+                    </div>
+                    <div class="units">
+                      <select
+                        value={yeast.units}
+                        oninput={(e) =>
+                          setRecipe(
+                            "yeasts",
+                            i(),
+                            "units",
+                            e.currentTarget.value
+                          )
+                        }
+                      >
+                        <option>g</option>
+                        <option>ml</option>
+                        <option>pkt</option>
+                      </select>
+                    </div>
+                    <div class="name">
+                      <Editable
+                        show={edit()}
+                        type="text"
+                        value={yeast.name}
+                        oninput={(e) =>
+                          setRecipe(
+                            "yeasts",
+                            i(),
+                            "name",
+                            e.currentTarget.value
+                          )
+                        }
+                      />
+                    </div>
+                    <div class="type break-small">
+                      {" "}
+                      <select
+                        value={yeast.type}
+                        oninput={(e) =>
+                          setRecipe(
+                            "yeasts",
+                            i(),
+                            "type",
+                            e.currentTarget.value
+                          )
+                        }
+                      >
+                        <option>ale</option>
+                        <option>lager</option>
+                        <option>cider</option>
+                        <option>wine</option>
+                        <option>other</option>
+                      </select>
+                    </div>
+                    <div class="form break-small">
+                      <select
+                        value={yeast.form}
+                        oninput={(e) =>
+                          setRecipe(
+                            "yeasts",
+                            i(),
+                            "form",
+                            e.currentTarget.value
+                          )
+                        }
+                      >
+                        <option>liquid</option>
+                        <option>dry</option>
+                      </select>
+                    </div>
+                    <div class="attenuation break-small">
+                      <Editable
+                        show={edit()}
+                        type="number"
+                        prefix="Attenuation"
+                        prefixShort={true}
+                        suffix="%"
+                        value={yeast.attenuation}
+                        oninput={(e) =>
+                          setRecipe(
+                            "yeasts",
+                            i(),
+                            "attenuation",
+                            parseInt(e.currentTarget.value)
+                          )
+                        }
+                      />
+                    </div>
+                    <Show when={edit()}>
+                      <div class="delete">
+                        <button
+                          onclick={() =>
+                            setRecipeNow(
+                              "yeasts",
+                              removeIndex(recipe.yeasts, i())
+                            )
+                          }
+                        >
+                          ✕
+                        </button>
+                      </div>
+                    </Show>
+                    <div class="break"></div>
+                  </div>
+                )}
+              </For>
+            </div>
+          </div>
+
+          <Show when={recipe.type != "extract"}>
             <div>
               <h2>
-                Mash Schedule
+                🌡 Mash Schedule
                 <Show when={edit()}>
-                  <button class="primary">&plus;</button>
+                  <button class="primary" onclick={addMashStep}>
+                    &plus;
+                  </button>
                 </Show>
               </h2>
 
@@ -998,7 +1007,10 @@ const App: Component = () => {
                   </Show>
                   <div class="break"></div>
                 </div>
-                <For each={recipe.mashSteps}>
+                <For
+                  each={recipe.mashSteps}
+                  fallback={<div>No mash steps.</div>}
+                >
                   {(step, i) => (
                     <div class="row">
                       <div class="name">
@@ -1086,7 +1098,7 @@ const App: Component = () => {
             </div>
 
             <div>
-              <h2>Target Water Profile</h2>
+              <h2>💧 Target Water Profile</h2>
 
               <div class="ingredient water">
                 <div class="row header">
@@ -1205,19 +1217,98 @@ const App: Component = () => {
                 </div>
               </div>
             </div>
+          </Show>
+        </div>
+      </article>
+      <footer class="col gap">
+        <div class="row gap" style="justify-content: space-between">
+          <div class="col">
+            <span class="header">Software</span>
+            <ul>
+              <li>
+                <a href="https://beersmith.com/">Beersmith</a>
+              </li>
+              <li>
+                <a href="https://www.brewersfriend.com/">Brewer's Friend</a>
+              </li>
+              <li>
+                <a href="https://brewfather.app/">Brewfather</a>
+              </li>
+            </ul>
           </div>
-          <p>
-            EBC:
-            <span
-              class="color-block"
-              style={{ "background-color": ebcToCss(ebc()) }}
+          <div class="col">
+            <span class="header">Stores</span>
+            <ul>
+              <li>
+                <a href="https://austinhomebrew.com/">Austin Homebrew</a>
+              </li>
+              <li>
+                <a href="https://www.midwestsupplies.com/">Midwest Supplies</a>
+              </li>
+              <li>
+                <a href="https://www.morebeer.com/">More Beer</a>
+              </li>
+              <li>
+                <a href="https://www.northernbrewer.com/">Northern Brewer</a>
+              </li>
+            </ul>
+          </div>
+          <div class="col">
+            <span class="header">Magazines</span>
+            <ul>
+              <li>
+                <a href="https://byo.com/">Brew Your Own</a>
+              </li>
+              <li>
+                <a href="https://beerandbrewing.com/">Craft Beer & Brewing</a>
+              </li>
+              <li>
+                <a href="https://www.homebrewersassociation.org/magazine/zymurgy-online/">
+                  Zymurgy
+                </a>
+              </li>
+            </ul>
+          </div>
+          <div class="col">
+            <span class="header">Misc</span>
+            <ul>
+              <li>
+                <a href="https://github.com/homebrewing/malt.io">
+                  GitHub Source
+                </a>
+              </li>
+              <li>
+                <a href="https://www.bjcp.org/">BJCP</a>
+              </li>
+              <li>
+                <a href="https://www.bjcp.org/style/2021/beer/">
+                  BJCP Style Guide
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="row">
+          Made with&nbsp;
+          <span style="color: var(--color-beer); text-shadow: 0px 0px 1px #fff">
+            ♥
+          </span>
+          &nbsp;&amp; 🍺 in Seattle
+        </div>
+        <div class="row">
+          {" "}
+          <a
+            rel="license"
+            href="http://creativecommons.org/licenses/by-sa/4.0/"
+          >
+            <img
+              alt="Creative Commons License"
+              style="border-width:0"
+              src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png"
             />
-            {Math.round(ebc())} OG: {stats().og.toFixed(3)} FG:{" "}
-            {stats().fg.toFixed(3)} IBU:{hopStats().ibu.toFixed(1)} ABV:
-            {stats().abv.toFixed(1)}% Cal:{Math.round(stats().calories)}
-          </p>
-        </article>
-      </div>
+          </a>
+        </div>
+      </footer>
     </div>
   );
 };

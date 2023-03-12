@@ -891,6 +891,12 @@ UZIP.F._writeLit = function (ch, ltree, out, pos) {
   return pos + ltree[(ch << 1) + 1];
 };
 
+/**
+ * @param {Uint8Array} data
+ * @param {Uint8Array} buf
+ * @param {Uint8Array} dict
+ * @returns {Uint8Array}
+ */
 UZIP.F.inflate = function (data, buf, dict) {
   var u8 = Uint8Array;
   if (data[0] == 3 && data[1] == 0) return buf ? buf : new u8(0);

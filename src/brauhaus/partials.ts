@@ -20,7 +20,6 @@ export function createBrauhaus(props: Partial<Brauhaus>): Brauhaus {
 
 export function createFermentable(props: Partial<Fermentable>): Fermentable {
   return {
-    id: props.id ?? Math.floor(Math.random() * 1000),
     name: props.name ?? "New Fermentable",
     grams: props.grams ?? 1000,
     percentYield: props.percentYield ?? 75,
@@ -30,7 +29,6 @@ export function createFermentable(props: Partial<Fermentable>): Fermentable {
 
 export function createMisc(props: Partial<Misc>): Misc {
   return {
-    id: props.id ?? Math.floor(Math.random() * 1000),
     name: props.name ?? "New Hop",
     time: props.time ?? 60,
     use: props.use ?? "boil",
@@ -41,7 +39,6 @@ export function createMisc(props: Partial<Misc>): Misc {
 
 export function createHop(props: Partial<Hop>): Hop {
   return {
-    id: props.id ?? Math.floor(Math.random() * 1000),
     name: props.name ?? "New Hop",
     grams: props.grams ?? 28,
     aa: props.aa ?? 5,
@@ -53,7 +50,6 @@ export function createHop(props: Partial<Hop>): Hop {
 
 export function createYeast(props: Partial<Yeast>): Yeast {
   return {
-    id: props.id ?? Math.floor(Math.random() * 1000),
     name: props.name ?? "New Yeast",
     amount: props.amount ?? 1,
     units: props.units ?? "pkt",
@@ -65,7 +61,6 @@ export function createYeast(props: Partial<Yeast>): Yeast {
 
 export function createMashStep(props: Partial<MashStep>): MashStep {
   return {
-    id: props.id ?? Math.floor(Math.random() * 1000),
     name: props.name ?? "Saccharification",
     waterGrainRatio: props.waterGrainRatio ?? 3,
     temperature: props.temperature ?? 68,
@@ -78,6 +73,7 @@ export function createRecipe(props: Partial<Recipe>): Recipe {
   return {
     name: props.name ?? "New Recipe",
     description: props.description ?? "",
+    type: props.type ?? "all grain",
     batchSize: props.batchSize ?? 20,
     boilSize: props.boilSize ?? 25,
     efficiency: props.efficiency ?? 75,

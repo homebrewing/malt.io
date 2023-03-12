@@ -14,22 +14,52 @@ export const Editable: Component<{
 }> = (props) => {
   const onEnter = (e: KeyboardEvent) => {
     if (e.key == "Enter" && e.currentTarget) {
-      const td = (e.currentTarget as HTMLInputElement).closest("td");
-      const tr = (e.currentTarget as HTMLInputElement).closest("tr");
-      console.log(td, tr);
-      if (td && tr) {
-        const index = Array.prototype.indexOf.call(tr.childNodes, td);
+      const row = (e.currentTarget as HTMLInputElement).closest(".row");
+
+      if (row) {
+        // Find index of this input within the row
+        let index = 0;
+        for (let i = 0; i < row.childNodes.length; i++) {
+          if (row.childNodes[i].contains(e.currentTarget as HTMLInputElement)) {
+            index = i;
+            break;
+          }
+        }
+
+        // Find the next or previous row
         let next: any = null;
         if (!e.shiftKey) {
-          next = tr.nextSibling;
+          if (
+            row.nextSibling &&
+            (row.nextSibling as HTMLElement).className.indexOf("footer") === -1
+          ) {
+            next = row.nextSibling?.childNodes[index];
+          } else {
+            // End of the table, so go to the next one if we can.
+            next = (row as any)
+              ?.closest(".ingredient")
+              .parentNode?.nextSibling?.querySelector(
+                ".ingredient .row:not(.header)"
+              );
+          }
         } else {
-          next = tr.previousSibling;
+          if (
+            row.previousSibling &&
+            (row.previousSibling as HTMLElement).className.indexOf("header") ===
+              -1
+          ) {
+            next = row.previousSibling?.childNodes[index];
+          } else {
+            // Beginning of the table, so go to the previous one if we can.
+            next = (row as any)
+              ?.closest(".ingredient")
+              .parentNode?.previousSibling?.querySelector("input:last-of-type")
+              ?.focus();
+          }
         }
         console.log(index, next);
-        console.log(next?.childNodes[index]);
-        console.log(next?.childNodes[index].querySelector("input"));
-        const input = next?.childNodes[index].querySelector("input");
-        input?.focus();
+        console.log(next?.querySelector("input"));
+        next?.querySelector("input")?.focus();
       }
     }
   };

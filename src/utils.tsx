@@ -8,7 +8,10 @@ export function createURLStore<T extends object>(
   init: T
 ): [Store<T>, SetStoreFunction<T>] {
   let urlState = init;
-  if (window.location.pathname.startsWith(prefix)) {
+  if (
+    window.location.pathname.startsWith(prefix) &&
+    window.location.pathname.length > prefix.length
+  ) {
     urlState = unmarshal(window.location.pathname.slice(prefix.length));
   }
 

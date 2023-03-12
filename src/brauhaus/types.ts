@@ -7,7 +7,6 @@ export type Brauhaus = {
 };
 
 export type Fermentable = {
-  id: number;
   name: string;
   grams: number;
   percentYield: number;
@@ -15,7 +14,6 @@ export type Fermentable = {
 };
 
 export type Hop = {
-  id: number;
   name: string;
   grams: number;
   aa: number;
@@ -25,7 +23,6 @@ export type Hop = {
 };
 
 export type Misc = {
-  id: number;
   name: string;
   time: number;
   use: "mash" | "boil" | "primary" | "secondary" | "bottling";
@@ -34,7 +31,6 @@ export type Misc = {
 };
 
 export type Yeast = {
-  id: number;
   amount: number;
   units: "g" | "ml" | "pkt";
   name: string;
@@ -44,7 +40,6 @@ export type Yeast = {
 };
 
 export type MashStep = {
-  id: number;
   name: string;
   waterGrainRatio: number;
   temperature: number;
@@ -64,6 +59,7 @@ export type WaterProfile = {
 export type Recipe = {
   name: string;
   description: string;
+  type: "all grain" | "extract" | "partial mash";
   boilSize: number;
   batchSize: number;
   efficiency: number;
