@@ -1,37 +1,6 @@
-import { Accessor, createEffect, on } from "solid-js";
 import { SetStoreFunction, Store, createStore } from "solid-js/store";
 
-export function createURLStore<T extends object>(
-  prefix: string,
-  marshal: (state: T) => string,
-  unmarshal: (state: string) => T,
-  init: T
-): [Store<T>, SetStoreFunction<T>] {
-  let urlState = init;
-  if (
-    window.location.pathname.startsWith(prefix) &&
-    window.location.pathname.length > prefix.length
-  ) {
-    urlState = unmarshal(window.location.pathname.slice(prefix.length));
-  }
-
-  const [state, setState] = createStore<T>(urlState);
-
-  window.onpopstate = (e) => {
-    setState(unmarshal(window.location.pathname.slice(prefix.length)));
-  };
-
-  createEffect(() => {
-    // TODO: any way to avoid marshalling each time to determine if it's time
-    // to update the URL?
-    const url = prefix + marshal(state);
-    if (window.location.pathname !== url) {
-      window.history.pushState({}, "", url);
-    }
-  });
-
-  return [state, setState];
-}
+import { createEffect } from "solid-js";
 
 export function createLocalStore<T extends object>(
   name: string,
@@ -57,14 +26,4 @@ export function createLocalStore<T extends object>(
 
 export function removeIndex<T>(array: readonly T[], index: number): T[] {
   return [...array.slice(0, index), ...array.slice(index + 1)];
-}
-
-export function saveSelection<Args extends unknown[]>(
-  callback: (...args: Args) => void
-): (...args: Args) => void {
-  return (...args) => {
-    // TODO: save selection
-    callback(...args);
-    // TODO: restore selection
-  };
 }
