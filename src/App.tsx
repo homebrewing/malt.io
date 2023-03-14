@@ -3,7 +3,7 @@ import { Component, Suspense } from "solid-js";
 
 import { lazy } from "solid-js";
 
-const editorPromise = import("./editor");
+const editorPromise = import("./Editor");
 const Editor = lazy(() => editorPromise);
 
 const About = lazy(() => import("./About"));
