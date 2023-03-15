@@ -58,7 +58,7 @@ export default function createURLStore<T extends object>(
       return;
     }
     fromNavigate = true;
-    navigate(prefix + save(store));
+    navigate(prefix + save(store), { scroll: false });
   });
 
   initial = false;
