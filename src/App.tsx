@@ -1,6 +1,7 @@
 import { A, Route, Routes } from "@solidjs/router";
 import { Component, Suspense } from "solid-js";
 
+import ccLicense from "./assets/cc-by-sa.svg";
 import { lazy } from "solid-js";
 
 const editorPromise = import("./Editor");
@@ -108,11 +109,7 @@ const App: Component = () => {
         </div>
         <div class="row">
           <a href="https://github.com/homebrewing/malt.io">Open source</a>
-          &nbsp;made with&nbsp;
-          <span style="color: var(--color-beer); text-shadow: 0px 0px 1px #fff">
-            ♥
-          </span>
-          &nbsp;&amp; 🍺 in Seattle
+          &nbsp;made with ♥ &amp; 🍺 in Seattle
         </div>
         <div class="row">
           {" "}
@@ -123,7 +120,9 @@ const App: Component = () => {
             <img
               alt="Creative Commons License"
               style="border-width:0"
-              src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png"
+              width="120"
+              height="42"
+              src={ccLicense}
             />
           </a>
         </div>

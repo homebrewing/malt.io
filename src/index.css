@@ -8,6 +8,11 @@
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 
+@font-face {
+  font-family: "color-emoji";
+  src: local("Apple Color Emoji"), local("Segoe UI Emoji"), local("Segoe UI Symbol"), local("Noto Color Emoji");
+}
+
 :root {
   --primary: #188B7D;
   --secondary: #083D77;
@@ -21,7 +26,7 @@
 }
 
 body {
-  font-family: sans-serif;
+  font-family: sans-serif, color-emoji;
   color: #aaa;
   background-color: #3a3a3a;
 }
@@ -122,7 +127,7 @@ button.share.active span.msg {
 }
 
 h1, h2 {
-  font-family: 'germania one', cursive, sans-serif;
+  font-family: 'germania one', cursive, sans-serif, color-emoji;
 }
 
 .button-group {
@@ -283,7 +288,7 @@ nav {
 }
 
 nav h1 {
-  font-family: 'germania one', cursive, sans-serif;
+  font-family: 'germania one', cursive, sans-serif, color-emoji;
   margin: 0;
 }
 
@@ -539,7 +544,7 @@ footer ul {
 }
 
 .germania {
-  font-family: 'Germania One', cursive, sans-serif;
+  font-family: 'Germania One', cursive, sans-serif, color-emoji;
 }
 
 .large {
