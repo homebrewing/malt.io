@@ -7,20 +7,68 @@ export function encodeBinary(r: Recipe): ArrayBuffer {
   const data = new Uint8Array(4096);
   const buf = ByteBuf.from(data);
 
-  // 0b 000000 00
-  //           type
+  // 0b 000 000          00
+  //        serving_size type
   let mask = 0;
 
-  if (r.type === "partial mash") mask |= 0b00000001;
-  if (r.type === "extract") mask |= 0b00000010;
+  if (r.type === "partial mash") mask |= 0b000000_01;
+  if (r.type === "extract") mask |= 0b000000_10;
+
+  let customServingSize = 0;
+  switch (r.servingSizeMl) {
+    case 300:
+      mask |= 0b000_000_00;
+      break;
+    case 330:
+      mask |= 0b000_001_00;
+      break;
+    case 355: // 12oz
+      mask |= 0b000_010_00;
+      break;
+    case 375:
+      mask |= 0b000_011_00;
+      break;
+    case 473: // 16oz (US pint)
+      mask |= 0b000_100_00;
+      break;
+    case 500:
+      mask |= 0b000_101_00;
+      break;
+    case 568: // UK pint
+      mask |= 0b000_110_00;
+      break;
+    default:
+      mask |= 0b000_111_00;
+      customServingSize = r.servingSizeMl;
+  }
 
   buf.writeUint8(mask);
+
+  // 122 styles BJCP 2021, needs 7 bits
+  // 0b 0          0000000
+  //    size_small style
+  mask = r.style & 0b01111111;
+  if (r.batchSize < 64 && r.boilSize < 64) {
+    mask |= 0b10000000;
+  }
+  buf.writeUint8(mask);
+
   buf.writeVarString(r.name);
   buf.writeVarString(r.description);
-  buf.writeVarUint(r.batchSize);
-  buf.writeVarUint(r.boilSize);
-  buf.writeVarUint(r.servingSizeMl);
-  buf.writeUint8(r.style);
+
+  if (r.batchSize < 32 && r.boilSize - r.batchSize < 8) {
+    // 0b 00000 000
+    //    batch (boil - batch diff)
+    // batch vs boil will usually be about ~4L/1gal difference.
+    buf.writeUint8((r.batchSize << 3) | (r.boilSize - r.batchSize));
+  } else {
+    buf.writeVarUint(r.batchSize);
+    buf.writeVarUint(r.boilSize);
+  }
+
+  if (customServingSize) {
+    buf.writeVarUint(r.servingSizeMl);
+  }
 
   // Counts of fermentables (0-15), hops (0-31), miscs (0-15), yeasts (0-7)
   // 0b0000         0000
@@ -196,28 +244,42 @@ export function encodeBinary(r: Recipe): ArrayBuffer {
 export function decodeBinary(data: Uint8Array): Recipe {
   const buf = ByteBuf.from(data);
 
-  const mask = buf.readUint8();
+  const mask1 = buf.readUint8();
+  const mask2 = buf.readUint8();
 
   const r: Recipe = createRecipe({
     type: "all grain",
     name: buf.readVarString(),
     description: buf.readVarString(),
-    batchSize: buf.readVarUint(),
-    boilSize: buf.readVarUint(),
-    servingSizeMl: buf.readVarUint(),
-    style: buf.readUint8(),
+    style: mask2 & 0b01111111,
   });
 
-  if (mask & 0b00000001) r.type = "partial mash";
-  if (mask & 0b00000010) r.type = "extract";
+  if (mask1 & 0b000_000_01) r.type = "partial mash";
+  if (mask1 & 0b000_000_10) r.type = "extract";
+
+  if (mask2 & 0b1_0000000) {
+    const size = buf.readUint8();
+    r.batchSize = size >> 3;
+    r.boilSize = (size & 0b00000_111) + r.batchSize;
+  } else {
+    r.batchSize = buf.readVarUint();
+    r.boilSize = buf.readVarUint();
+  }
+
+  const servingSize = (mask1 & 0b000_111_00) >> 2;
+  if (servingSize === 7) {
+    r.servingSizeMl = buf.readVarUint();
+  } else {
+    r.servingSizeMl = [300, 330, 355, 375, 473, 500, 568][servingSize];
+  }
 
   const counts1 = buf.readUint8();
   const counts2 = buf.readUint8();
 
   const fermentableCount = counts1 >> 4;
-  const miscCount = counts1 & 0b00001111;
+  const miscCount = counts1 & 0b0000_1111;
   const hopCount = counts2 >> 3;
-  const yeastCount = counts2 & 0b00000111;
+  const yeastCount = counts2 & 0b00000_111;
 
   for (let i = 0; i < fermentableCount; i++) {
     r.fermentables.push({
@@ -238,12 +300,12 @@ export function decodeBinary(data: Uint8Array): Recipe {
       time: 60,
     };
     const mask = buf.readUint8();
-    if (mask & 0b00000001) h.use = "dry hop";
-    if (mask & 0b00000010) h.use = "mash";
-    if (mask & 0b00000011) h.use = "aroma";
-    if (mask & 0b00000100) h.form = "leaf";
-    if (mask & 0b00001000) h.form = "plug";
-    if (mask & 0b00010000) h.time = buf.readVarUint();
+    if (mask & 0b000_0_00_01) h.use = "dry hop";
+    if (mask & 0b000_0_00_10) h.use = "mash";
+    if (mask & 0b000_0_00_11) h.use = "aroma";
+    if (mask & 0b000_0_01_00) h.form = "leaf";
+    if (mask & 0b000_0_10_00) h.form = "plug";
+    if (mask & 0b000_1_00_00) h.time = buf.readVarUint();
     r.hops.push(h);
   }
 
@@ -257,10 +319,10 @@ export function decodeBinary(data: Uint8Array): Recipe {
     };
     const mask = buf.readUint8();
     m.use = ["boil", "mash", "primary", "secondary", "bottling"][
-      (mask & 0b00111000) >> 3
+      (mask & 0b00_111_000) >> 3
     ] as any;
     m.units = ["g", "ml", "each", "tsp", "tbsp", "mg/l"][
-      mask & 0b00000111
+      mask & 0b00_000_111
     ] as any;
     r.miscs.push(m);
   }
@@ -275,14 +337,14 @@ export function decodeBinary(data: Uint8Array): Recipe {
       amount: 1,
     };
     const mask = buf.readUint8();
-    if (mask & 0b00000001) y.form = "liquid";
-    if (mask & 0b00000100) y.units = "g";
-    if (mask & 0b00001000) y.units = "ml";
-    if (mask & 0b00010000) y.type = "lager";
-    if (mask & 0b00100000) y.type = "cider";
-    if (mask & 0b00110000) y.type = "wine";
-    if (mask & 0b01000000) y.type = "other";
-    if (mask & 0b10000000) y.amount = buf.readVarUint();
+    if (mask & 0b0_0000_00_1) y.form = "liquid";
+    if (mask & 0b0_0000_10_0) y.units = "g";
+    if (mask & 0b0_0001_00_0) y.units = "ml";
+    if (mask & 0b0_0010_00_0) y.type = "lager";
+    if (mask & 0b0_0100_00_0) y.type = "cider";
+    if (mask & 0b0_0110_00_0) y.type = "wine";
+    if (mask & 0b0_1000_00_0) y.type = "other";
+    if (mask & 0b1_0000_00_0) y.amount = buf.readVarUint();
     r.yeasts.push(y);
   }
 
