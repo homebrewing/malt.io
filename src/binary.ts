@@ -83,10 +83,30 @@ export function encodeBinary(r: Recipe): ArrayBuffer {
   buf.writeUint8((r.hops.length << 3) | r.yeasts.length);
 
   for (const f of r.fermentables) {
-    buf.writeVarString(f.name);
-    buf.writeVarUint(f.grams);
-    buf.writeVarUint(Math.round(f.ebc * 10));
-    buf.writeUint8(f.percentYield);
+    // 0b 00    0000000 0000000
+    //    units yield   name.len
+    // Units can be one of g, kg, oz, lb
+    let mask = 0;
+
+    let weight = f.grams;
+    if (f.grams == Math.round(Math.round(f.grams / gPerKg) * gPerKg)) {
+      mask |= 0b01_0000000_0000000;
+      weight = Math.round(f.grams / gPerKg);
+    } else if (f.grams == Math.round(Math.round(f.grams / gPerLb) * gPerLb)) {
+      mask |= 0b11_0000000_0000000;
+      weight = Math.round(f.grams / gPerLb);
+    } else if (f.grams == Math.round(Math.round(f.grams / gPerOz) * gPerOz)) {
+      mask |= 0b10_0000000_0000000;
+      weight = Math.round(f.grams / gPerOz);
+    }
+
+    mask |= (f.percentYield & 0b1111111) << 7;
+    mask |= f.name.length & 0b1111111;
+    buf.writeUint16(mask);
+
+    buf.writeString(f.name);
+    buf.writeVarUint(weight);
+    buf.writeVarUint(f.ebc);
   }
 
   for (const h of r.hops) {
@@ -286,11 +306,17 @@ export function decodeBinary(data: Uint8Array): Recipe {
   const yeastCount = counts2 & 0b00000_111;
 
   for (let i = 0; i < fermentableCount; i++) {
+    const mask = buf.readUint16();
+
+    const units = (mask & 0b11_0000000_0000000) >> 14;
+    const percentYield = (mask & 0b00_1111111_0000000) >> 7;
+    const nameLen = mask & 0b00_0000000_1111111;
+
     r.fermentables.push({
-      name: buf.readVarString(),
-      grams: buf.readVarUint(),
-      ebc: buf.readVarUint() / 10,
-      percentYield: buf.readUint8(),
+      name: buf.readString(nameLen),
+      grams: Math.round(buf.readVarUint() * [1, gPerKg, gPerOz, gPerLb][units]),
+      ebc: buf.readVarUint(),
+      percentYield: percentYield,
     });
   }
 
