@@ -1,0 +1,1392 @@
+[
+  {
+    "styles": [
+      {
+        "stats": {
+          "ABV": [2.8, 4.2],
+          "FG": [0.998, 1.008],
+          "IBUs": [8, 12],
+          "OG": [1.028, 1.04],
+          "SRM": [2, 3]
+        },
+        "title": "1A. American Light Lager"
+      },
+      {
+        "stats": {
+          "ABV": [4.2, 5.3],
+          "FG": [1.004, 1.01],
+          "IBUs": [8, 18],
+          "OG": [1.04, 1.05],
+          "SRM": [2, 3.5]
+        },
+        "title": "1B. American Lager"
+      },
+      {
+        "stats": {
+          "ABV": [4.2, 5.6],
+          "FG": [1.006, 1.012],
+          "IBUs": [8, 20],
+          "OG": [1.042, 1.055],
+          "SRM": [2, 5]
+        },
+        "title": "1C. Cream Ale"
+      },
+      {
+        "stats": {
+          "ABV": [4, 5.5],
+          "FG": [1.008, 1.013],
+          "IBUs": [15, 30],
+          "OG": [1.04, 1.055],
+          "SRM": [3, 6]
+        },
+        "title": "1D. American Wheat Beer"
+      }
+    ],
+    "title": "1. Standard American Beer"
+  },
+  {
+    "styles": [
+      {
+        "stats": {
+          "ABV": [4.5, 6],
+          "FG": [1.008, 1.012],
+          "IBUs": [18, 25],
+          "OG": [1.042, 1.05],
+          "SRM": [2, 6]
+        },
+        "title": "2A. International Pale Lager"
+      },
+      {
+        "stats": {
+          "ABV": [4.5, 6],
+          "FG": [1.008, 1.014],
+          "IBUs": [8, 25],
+          "OG": [1.042, 1.055],
+          "SRM": [6, 14]
+        },
+        "title": "2B. International Amber Lager"
+      },
+      {
+        "stats": {
+          "ABV": [4.2, 6],
+          "FG": [1.008, 1.012],
+          "IBUs": [8, 20],
+          "OG": [1.044, 1.056],
+          "SRM": [14, 30]
+        },
+        "title": "2C. International Dark Lager"
+      }
+    ],
+    "title": "2. International Lager"
+  },
+  {
+    "styles": [
+      {
+        "stats": {
+          "ABV": [3, 4.1],
+          "FG": [1.008, 1.014],
+          "IBUs": [20, 35],
+          "OG": [1.028, 1.044],
+          "SRM": [3, 6]
+        },
+        "title": "3A. Czech Pale Lager"
+      },
+      {
+        "stats": {
+          "ABV": [4.2, 5.8],
+          "FG": [1.013, 1.017],
+          "IBUs": [30, 45],
+          "OG": [1.044, 1.06],
+          "SRM": [3.5, 6]
+        },
+        "title": "3B. Czech Premium Pale Lager"
+      },
+      {
+        "stats": {
+          "ABV": [4.4, 5.8],
+          "FG": [1.013, 1.017],
+          "IBUs": [20, 35],
+          "OG": [1.044, 1.06],
+          "SRM": [10, 16]
+        },
+        "title": "3C. Czech Amber Lager"
+      },
+      {
+        "stats": {
+          "ABV": [4.4, 5.8],
+          "FG": [1.013, 1.017],
+          "IBUs": [18, 34],
+          "OG": [1.044, 1.06],
+          "SRM": [17, 35]
+        },
+        "title": "3D. Czech Dark Lager"
+      }
+    ],
+    "title": "3. Czech Lager"
+  },
+  {
+    "styles": [
+      {
+        "stats": {
+          "ABV": [4.7, 5.4],
+          "FG": [1.006, 1.012],
+          "IBUs": [16, 22],
+          "OG": [1.044, 1.048],
+          "SRM": [3, 5]
+        },
+        "title": "4A. Munich Helles"
+      },
+      {
+        "stats": {
+          "ABV": [5.8, 6.3],
+          "FG": [1.01, 1.012],
+          "IBUs": [18, 25],
+          "OG": [1.054, 1.057],
+          "SRM": [4, 6]
+        },
+        "title": "4B. Festbier"
+      },
+      {
+        "stats": {
+          "ABV": [6.3, 7.4],
+          "FG": [1.011, 1.018],
+          "IBUs": [23, 35],
+          "OG": [1.064, 1.072],
+          "SRM": [6, 9]
+        },
+        "title": "4C. Helles Bock"
+      }
+    ],
+    "title": "4. Pale Malty European Lager"
+  },
+  {
+    "styles": [
+      {
+        "stats": {
+          "ABV": [2.4, 3.6],
+          "FG": [1.006, 1.01],
+          "IBUs": [15, 28],
+          "OG": [1.026, 1.034],
+          "SRM": [1.5, 4]
+        },
+        "title": "5A. German Leichtbier"
+      },
+      {
+        "stats": {
+          "ABV": [4.4, 5.2],
+          "FG": [1.007, 1.011],
+          "IBUs": [18, 30],
+          "OG": [1.044, 1.05],
+          "SRM": [3.5, 5]
+        },
+        "title": "5B. Kölsch"
+      },
+      {
+        "stats": {
+          "ABV": [5, 6],
+          "FG": [1.008, 1.015],
+          "IBUs": [20, 30],
+          "OG": [1.05, 1.058],
+          "SRM": [4, 6]
+        },
+        "title": "5C. German Helles Exportbier"
+      },
+      {
+        "stats": {
+          "ABV": [4.4, 5.2],
+          "FG": [1.008, 1.013],
+          "IBUs": [22, 40],
+          "OG": [1.044, 1.05],
+          "SRM": [2, 4]
+        },
+        "title": "5D. German Pils"
+      }
+    ],
+    "title": "5. Pale Bitter European Beer"
+  },
+  {
+    "styles": [
+      {
+        "stats": {
+          "ABV": [5.6, 6.3],
+          "FG": [1.01, 1.014],
+          "IBUs": [18, 24],
+          "OG": [1.054, 1.06],
+          "SRM": [8, 17]
+        },
+        "title": "6A. Märzen"
+      },
+      {
+        "stats": {
+          "ABV": [4.8, 6],
+          "FG": [1.012, 1.016],
+          "IBUs": [20, 30],
+          "OG": [1.05, 1.057],
+          "SRM": [12, 22]
+        },
+        "title": "6B. Rauchbier"
+      },
+      {
+        "stats": {
+          "ABV": [6.3, 7.2],
+          "FG": [1.013, 1.019],
+          "IBUs": [20, 27],
+          "OG": [1.064, 1.072],
+          "SRM": [14, 22]
+        },
+        "title": "6C. Dunkles Bock"
+      }
+    ],
+    "title": "6. Amber Malty European Lager"
+  },
+  {
+    "styles": [
+      {
+        "stats": {
+          "ABV": [4.7, 5.5],
+          "FG": [1.01, 1.014],
+          "IBUs": [18, 30],
+          "OG": [1.048, 1.055],
+          "SRM": [9, 15]
+        },
+        "title": "7A. Vienna Lager"
+      },
+      {
+        "stats": {
+          "ABV": [4.3, 5.5],
+          "FG": [1.008, 1.014],
+          "IBUs": [25, 50],
+          "OG": [1.044, 1.052],
+          "SRM": [9, 17]
+        },
+        "title": "7B. Altbier"
+      }
+    ],
+    "title": "7. Amber Bitter European Beer"
+  },
+  {
+    "styles": [
+      {
+        "stats": {
+          "ABV": [4.5, 5.6],
+          "FG": [1.01, 1.016],
+          "IBUs": [18, 28],
+          "OG": [1.048, 1.056],
+          "SRM": [17, 28]
+        },
+        "title": "8A. Munich Dunkel"
+      },
+      {
+        "stats": {
+          "ABV": [4.4, 5.4],
+          "FG": [1.01, 1.016],
+          "IBUs": [20, 35],
+          "OG": [1.046, 1.052],
+          "SRM": [19, 30]
+        },
+        "title": "8B. Schwarzbier"
+      }
+    ],
+    "title": "8. Dark European Lager"
+  },
+  {
+    "styles": [
+      {
+        "stats": {
+          "ABV": [7, 10],
+          "FG": [1.016, 1.024],
+          "IBUs": [16, 26],
+          "OG": [1.072, 1.112],
+          "SRM": [6, 25]
+        },
+        "title": "9A. Doppelbock"
+      },
+      {
+        "stats": {
+          "ABV": [9, 14],
+          "FG": [1.02, 1.035],
+          "IBUs": [25, 35],
+          "OG": [1.078, 1.12],
+          "SRM": [17, 30]
+        },
+        "title": "9B. Eisbock"
+      },
+      {
+        "stats": {
+          "ABV": [6.5, 9.5],
+          "FG": [1.016, 1.024],
+          "IBUs": [20, 40],
+          "OG": [1.06, 1.09],
+          "SRM": [17, 30]
+        },
+        "title": "9C. Baltic Porter"
+      }
+    ],
+    "title": "9. Strong European Beer"
+  },
+  {
+    "styles": [
+      {
+        "stats": {
+          "ABV": [4.3, 5.6],
+          "FG": [1.008, 1.014],
+          "IBUs": [8, 15],
+          "OG": [1.044, 1.053],
+          "SRM": [2, 6]
+        },
+        "title": "10A. Weissbier"
+      },
+      {
+        "stats": {
+          "ABV": [4.3, 5.6],
+          "FG": [1.008, 1.014],
+          "IBUs": [10, 18],
+          "OG": [1.044, 1.057],
+          "SRM": [14, 23]
+        },
+        "title": "10B. Dunkles Weissbier"
+      },
+      {
+        "stats": {
+          "ABV": [6.5, 9],
+          "FG": [1.015, 1.022],
+          "IBUs": [15, 30],
+          "OG": [1.064, 1.09],
+          "SRM": [6, 25]
+        },
+        "title": "10C. Weizenbock"
+      }
+    ],
+    "title": "10. German Wheat Beer"
+  },
+  {
+    "styles": [
+      {
+        "stats": {
+          "ABV": [3.2, 3.8],
+          "FG": [1.007, 1.011],
+          "IBUs": [25, 35],
+          "OG": [1.03, 1.039],
+          "SRM": [8, 14]
+        },
+        "title": "11A. Ordinary Bitter"
+      },
+      {
+        "stats": {
+          "ABV": [3.8, 4.6],
+          "FG": [1.008, 1.012],
+          "IBUs": [25, 40],
+          "OG": [1.04, 1.048],
+          "SRM": [8, 16]
+        },
+        "title": "11B. Best Bitter"
+      },
+      {
+        "stats": {
+          "ABV": [4.6, 6.2],
+          "FG": [1.01, 1.016],
+          "IBUs": [30, 50],
+          "OG": [1.048, 1.06],
+          "SRM": [8, 18]
+        },
+        "title": "11C. Strong Bitter"
+      }
+    ],
+    "title": "11. British Bitter"
+  },
+  {
+    "styles": [
+      {
+        "stats": {
+          "ABV": [3.8, 5],
+          "FG": [1.006, 1.012],
+          "IBUs": [20, 45],
+          "OG": [1.038, 1.053],
+          "SRM": [2, 5]
+        },
+        "title": "12A. British Golden Ale"
+      },
+      {
+        "stats": {
+          "ABV": [4.5, 6],
+          "FG": [1.004, 1.006],
+          "IBUs": [20, 35],
+          "OG": [1.038, 1.05],
+          "SRM": [4, 7]
+        },
+        "title": "12B. Australian Sparkling Ale"
+      },
+      {
+        "stats": {
+          "ABV": [5, 7.5],
+          "FG": [1.01, 1.015],
+          "IBUs": [40, 60],
+          "OG": [1.05, 1.07],
+          "SRM": [6, 14]
+        },
+        "title": "12C. English IPA"
+      }
+    ],
+    "title": "12. Pale Commonwealth Beer"
+  },
+  {
+    "styles": [
+      {
+        "stats": {
+          "ABV": [3, 3.8],
+          "FG": [1.008, 1.013],
+          "IBUs": [10, 25],
+          "OG": [1.03, 1.038],
+          "SRM": [14, 25]
+        },
+        "title": "13A. Dark Mild"
+      },
+      {
+        "stats": {
+          "ABV": [4.2, 5.9],
+          "FG": [1.008, 1.013],
+          "IBUs": [20, 30],
+          "OG": [1.04, 1.052],
+          "SRM": [12, 22]
+        },
+        "title": "13B. British Brown Ale"
+      },
+      {
+        "stats": {
+          "ABV": [4, 5.4],
+          "FG": [1.008, 1.014],
+          "IBUs": [18, 35],
+          "OG": [1.04, 1.052],
+          "SRM": [20, 30]
+        },
+        "title": "13C. English Porter"
+      }
+    ],
+    "title": "13. Brown British Beer"
+  },
+  {
+    "styles": [
+      {
+        "stats": {
+          "ABV": [2.5, 3.3],
+          "FG": [1.01, 1.013],
+          "IBUs": [10, 20],
+          "OG": [1.03, 1.035],
+          "SRM": [17, 25]
+        },
+        "title": "14A. Scottish Light"
+      },
+      {
+        "stats": {
+          "ABV": [3.3, 3.9],
+          "FG": [1.01, 1.015],
+          "IBUs": [10, 20],
+          "OG": [1.035, 1.04],
+          "SRM": [12, 20]
+        },
+        "title": "14B. Scottish Heavy"
+      },
+      {
+        "stats": {
+          "ABV": [3.9, 6],
+          "FG": [1.01, 1.016],
+          "IBUs": [15, 30],
+          "OG": [1.04, 1.06],
+          "SRM": [12, 20]
+        },
+        "title": "14C. Scottish Export"
+      }
+    ],
+    "title": "14. Scottish Ale"
+  },
+  {
+    "styles": [
+      {
+        "stats": {
+          "ABV": [3.8, 5],
+          "FG": [1.01, 1.014],
+          "IBUs": [18, 28],
+          "OG": [1.036, 1.046],
+          "SRM": [9, 14]
+        },
+        "title": "15A. Irish Red Ale"
+      },
+      {
+        "stats": {
+          "ABV": [3.8, 5],
+          "FG": [1.007, 1.011],
+          "IBUs": [25, 45],
+          "OG": [1.036, 1.044],
+          "SRM": [25, 40]
+        },
+        "title": "15B. Irish Stout"
+      },
+      {
+        "stats": {
+          "ABV": [5, 6.5],
+          "FG": [1.01, 1.014],
+          "IBUs": [35, 50],
+          "OG": [1.052, 1.062],
+          "SRM": [30, 40]
+        },
+        "title": "15C. Irish Extra Stout"
+      }
+    ],
+    "title": "15. Irish Beer"
+  },
+  {
+    "styles": [
+      {
+        "stats": {
+          "ABV": [4, 6],
+          "FG": [1.012, 1.024],
+          "IBUs": [20, 40],
+          "OG": [1.044, 1.06],
+          "SRM": [30, 40]
+        },
+        "title": "16A. Sweet Stout"
+      },
+      {
+        "stats": {
+          "ABV": [4.2, 5.9],
+          "FG": [1.01, 1.018],
+          "IBUs": [25, 40],
+          "OG": [1.045, 1.065],
+          "SRM": [22, 40]
+        },
+        "title": "16B. Oatmeal Stout"
+      },
+      {
+        "stats": {
+          "ABV": [5.5, 8],
+          "FG": [1.01, 1.018],
+          "IBUs": [30, 50],
+          "OG": [1.056, 1.075],
+          "SRM": [30, 40]
+        },
+        "title": "16C. Tropical Stout"
+      },
+      {
+        "stats": {
+          "ABV": [6.3, 8],
+          "FG": [1.01, 1.018],
+          "IBUs": [50, 70],
+          "OG": [1.056, 1.075],
+          "SRM": [30, 40]
+        },
+        "title": "16D. Foreign Extra Stout"
+      }
+    ],
+    "title": "16. Dark British Beer"
+  },
+  {
+    "styles": [
+      {
+        "stats": {
+          "ABV": [5.5, 8],
+          "FG": [1.015, 1.022],
+          "IBUs": [30, 60],
+          "OG": [1.055, 1.08],
+          "SRM": [8, 22]
+        },
+        "title": "17A. British Strong Ale"
+      },
+      {
+        "stats": {
+          "ABV": [5.5, 9],
+          "FG": [1.015, 1.022],
+          "IBUs": [30, 60],
+          "OG": [1.055, 1.088],
+          "SRM": [10, 22]
+        },
+        "title": "17B. Old Ale"
+      },
+      {
+        "stats": {
+          "ABV": [6.5, 10],
+          "FG": [1.018, 1.04],
+          "IBUs": [17, 35],
+          "OG": [1.07, 1.13],
+          "SRM": [14, 25]
+        },
+        "title": "17C. Wee Heavy"
+      },
+      {
+        "stats": {
+          "ABV": [8, 12],
+          "FG": [1.018, 1.03],
+          "IBUs": [35, 70],
+          "OG": [1.08, 1.12],
+          "SRM": [8, 22]
+        },
+        "title": "17D. English Barley Wine"
+      }
+    ],
+    "title": "17. Strong British Ale"
+  },
+  {
+    "styles": [
+      {
+        "stats": {
+          "ABV": [3.8, 5.5],
+          "FG": [1.008, 1.013],
+          "IBUs": [15, 28],
+          "OG": [1.038, 1.054],
+          "SRM": [3, 6]
+        },
+        "title": "18A. Blonde Ale"
+      },
+      {
+        "stats": {
+          "ABV": [4.5, 6.2],
+          "FG": [1.01, 1.015],
+          "IBUs": [30, 50],
+          "OG": [1.045, 1.06],
+          "SRM": [5, 10]
+        },
+        "title": "18B. American Pale Ale"
+      }
+    ],
+    "title": "18. Pale American Ale"
+  },
+  {
+    "styles": [
+      {
+        "stats": {
+          "ABV": [4.5, 6.2],
+          "FG": [1.01, 1.015],
+          "IBUs": [25, 40],
+          "OG": [1.045, 1.06],
+          "SRM": [10, 17]
+        },
+        "title": "19A. American Amber Ale"
+      },
+      {
+        "stats": {
+          "ABV": [4.5, 5.5],
+          "FG": [1.011, 1.014],
+          "IBUs": [30, 45],
+          "OG": [1.048, 1.054],
+          "SRM": [9, 14]
+        },
+        "title": "19B. California Common"
+      },
+      {
+        "stats": {
+          "ABV": [4.3, 6.2],
+          "FG": [1.01, 1.016],
+          "IBUs": [20, 30],
+          "OG": [1.045, 1.06],
+          "SRM": [18, 35]
+        },
+        "title": "19C. American Brown Ale"
+      }
+    ],
+    "title": "19. Amber and Brown American Beer"
+  },
+  {
+    "styles": [
+      {
+        "stats": {
+          "ABV": [4.8, 6.5],
+          "FG": [1.012, 1.018],
+          "IBUs": [25, 50],
+          "OG": [1.05, 1.07],
+          "SRM": [22, 40]
+        },
+        "title": "20A. American Porter"
+      },
+      {
+        "stats": {
+          "ABV": [5, 7],
+          "FG": [1.01, 1.022],
+          "IBUs": [35, 75],
+          "OG": [1.05, 1.075],
+          "SRM": [30, 40]
+        },
+        "title": "20B. American Stout"
+      },
+      {
+        "stats": {
+          "ABV": [8, 12],
+          "FG": [1.018, 1.03],
+          "IBUs": [50, 90],
+          "OG": [1.075, 1.115],
+          "SRM": [30, 40]
+        },
+        "title": "20C. Imperial Stout"
+      }
+    ],
+    "title": "20. American Porter and Stout"
+  },
+  {
+    "styles": [
+      {
+        "stats": {
+          "ABV": [5.5, 7.5],
+          "FG": [1.008, 1.014],
+          "IBUs": [40, 70],
+          "OG": [1.056, 1.07],
+          "SRM": [6, 14]
+        },
+        "title": "21A. American IPA"
+      },
+      {
+        "stats": {
+          "ABV": [6.2, 9.5],
+          "FG": [1.008, 1.016],
+          "IBUs": [50, 100],
+          "OG": [1.058, 1.08],
+          "SRM": [5, 8]
+        },
+        "title": "Specialty IPA: Belgian IPA"
+      },
+      {
+        "stats": {
+          "ABV": [5.5, 9],
+          "FG": [1.01, 1.018],
+          "IBUs": [50, 90],
+          "OG": [1.05, 1.085],
+          "SRM": [25, 40]
+        },
+        "title": "Specialty IPA: Black IPA"
+      },
+      {
+        "stats": {
+          "ABV": [5.5, 7.5],
+          "FG": [1.008, 1.016],
+          "IBUs": [40, 70],
+          "OG": [1.056, 1.07],
+          "SRM": [18, 35]
+        },
+        "title": "Specialty IPA: Brown IPA"
+      },
+      {
+        "stats": {
+          "ABV": [5.5, 7.5],
+          "FG": [1.008, 1.016],
+          "IBUs": [40, 70],
+          "OG": [1.056, 1.07],
+          "SRM": [11, 17]
+        },
+        "title": "Specialty IPA: Red IPA"
+      },
+      {
+        "stats": {
+          "ABV": [5.5, 8],
+          "FG": [1.008, 1.014],
+          "IBUs": [50, 75],
+          "OG": [1.056, 1.075],
+          "SRM": [6, 14]
+        },
+        "title": "Specialty IPA: Rye IPA"
+      },
+      {
+        "stats": {
+          "ABV": [5.5, 7],
+          "FG": [1.01, 1.016],
+          "IBUs": [40, 70],
+          "OG": [1.056, 1.065],
+          "SRM": [5, 6]
+        },
+        "title": "Specialty IPA: White IPA"
+      },
+      {
+        "stats": {
+          "ABV": [6, 7.5],
+          "FG": [0.99, 1.004],
+          "IBUs": [20, 30],
+          "OG": [1.046, 1.057],
+          "SRM": [2, 4]
+        },
+        "title": "Specialty IPA: Brut IPA"
+      },
+      {
+        "stats": {
+          "ABV": [6, 9],
+          "FG": [1.01, 1.015],
+          "IBUs": [25, 60],
+          "OG": [1.06, 1.085],
+          "SRM": [3, 7]
+        },
+        "title": "21C. Hazy IPA"
+      }
+    ],
+    "title": "21. IPA"
+  },
+  {
+    "styles": [
+      {
+        "stats": {
+          "ABV": [7.5, 10],
+          "FG": [1.008, 1.018],
+          "IBUs": [60, 100],
+          "OG": [1.065, 1.085],
+          "SRM": [6, 14]
+        },
+        "title": "22A. Double IPA"
+      },
+      {
+        "stats": {
+          "ABV": [6.3, 10],
+          "FG": [1.014, 1.024],
+          "IBUs": [50, 100],
+          "OG": [1.062, 1.09],
+          "SRM": [7, 18]
+        },
+        "title": "22B. American Strong Ale"
+      },
+      {
+        "stats": {
+          "ABV": [8, 12],
+          "FG": [1.016, 1.03],
+          "IBUs": [50, 100],
+          "OG": [1.08, 1.12],
+          "SRM": [9, 18]
+        },
+        "title": "22C. American Barleywine"
+      },
+      {
+        "stats": {
+          "ABV": [8, 12],
+          "FG": [1.016, 1.03],
+          "IBUs": [30, 60],
+          "OG": [1.08, 1.12],
+          "SRM": [6, 14]
+        },
+        "title": "22D. Wheatwine"
+      }
+    ],
+    "title": "22. Strong American Ale"
+  },
+  {
+    "styles": [
+      {
+        "stats": {
+          "ABV": [2.8, 3.8],
+          "FG": [1.003, 1.006],
+          "IBUs": [3, 8],
+          "OG": [1.028, 1.032],
+          "SRM": [2, 3]
+        },
+        "title": "23A. Berliner Weisse"
+      },
+      {
+        "stats": {
+          "ABV": [4.6, 6.5],
+          "FG": [1.002, 1.012],
+          "IBUs": [10, 25],
+          "OG": [1.048, 1.057],
+          "SRM": [10, 17]
+        },
+        "title": "23B. Flanders Red Ale"
+      },
+      {
+        "stats": {
+          "ABV": [4, 8],
+          "FG": [1.008, 1.012],
+          "IBUs": [20, 25],
+          "OG": [1.04, 1.074],
+          "SRM": [17, 22]
+        },
+        "title": "23C. Oud Bruin"
+      },
+      {
+        "stats": {
+          "ABV": [5, 6.5],
+          "FG": [1.001, 1.01],
+          "IBUs": [0, 10],
+          "OG": [1.04, 1.054],
+          "SRM": [3, 6]
+        },
+        "title": "23D. Lambic"
+      },
+      {
+        "stats": {
+          "ABV": [5, 8],
+          "FG": [1, 1.006],
+          "IBUs": [0, 10],
+          "OG": [1.04, 1.054],
+          "SRM": [5, 6]
+        },
+        "title": "23E. Gueuze"
+      },
+      {
+        "stats": {
+          "ABV": [5, 7],
+          "FG": [1, 1.01],
+          "IBUs": [0, 10],
+          "OG": [1.04, 1.06],
+          "SRM": [3, 7]
+        },
+        "title": "23F. Fruit Lambic"
+      },
+      {
+        "stats": {
+          "ABV": [4.2, 4.8],
+          "FG": [1.006, 1.01],
+          "IBUs": [5, 12],
+          "OG": [1.036, 1.056],
+          "SRM": [3, 4]
+        },
+        "title": "23G. Gose"
+      }
+    ],
+    "title": "23. European Sour Ale"
+  },
+  {
+    "styles": [
+      {
+        "stats": {
+          "ABV": [4.5, 5.5],
+          "FG": [1.008, 1.012],
+          "IBUs": [8, 20],
+          "OG": [1.044, 1.052],
+          "SRM": [2, 4]
+        },
+        "title": "24A. Witbier"
+      },
+      {
+        "stats": {
+          "ABV": [4.8, 5.5],
+          "FG": [1.01, 1.014],
+          "IBUs": [20, 30],
+          "OG": [1.048, 1.054],
+          "SRM": [8, 14]
+        },
+        "title": "24B. Belgian Pale Ale"
+      },
+      {
+        "stats": {
+          "ABV": [6, 8.5],
+          "FG": [1.008, 1.016],
+          "IBUs": [18, 28],
+          "OG": [1.06, 1.08],
+          "SRM": [6, 19]
+        },
+        "title": "24C. Bière de Garde"
+      }
+    ],
+    "title": "24. Belgian Ale"
+  },
+  {
+    "styles": [
+      {
+        "stats": {
+          "ABV": [6, 7.5],
+          "FG": [1.008, 1.018],
+          "IBUs": [15, 30],
+          "OG": [1.062, 1.075],
+          "SRM": [4, 6]
+        },
+        "title": "25A. Belgian Blond Ale"
+      },
+      {
+        "stats": {
+          "ABV": [3.5, 9.5],
+          "FG": [1.002, 1.008],
+          "IBUs": [20, 35],
+          "OG": [1.048, 1.068],
+          "SRM": [5, 22]
+        },
+        "title": "25B. Saison"
+      },
+      {
+        "stats": {
+          "ABV": [7.5, 10.5],
+          "FG": [1.005, 1.016],
+          "IBUs": [22, 35],
+          "OG": [1.07, 1.095],
+          "SRM": [3, 6]
+        },
+        "title": "25C. Belgian Golden Strong Ale"
+      }
+    ],
+    "title": "25. Strong Belgian Ale"
+  },
+  {
+    "styles": [
+      {
+        "stats": {
+          "ABV": [4.8, 6],
+          "FG": [1.004, 1.01],
+          "IBUs": [25, 45],
+          "OG": [1.044, 1.054],
+          "SRM": [3, 5]
+        },
+        "title": "26A. Belgian Single"
+      },
+      {
+        "stats": {
+          "ABV": [6, 7.6],
+          "FG": [1.008, 1.018],
+          "IBUs": [15, 25],
+          "OG": [1.062, 1.075],
+          "SRM": [10, 17]
+        },
+        "title": "26B. Belgian Dubbel"
+      },
+      {
+        "stats": {
+          "ABV": [7.5, 9.5],
+          "FG": [1.008, 1.014],
+          "IBUs": [20, 40],
+          "OG": [1.075, 1.085],
+          "SRM": [4.5, 7]
+        },
+        "title": "26C. Belgian Tripel"
+      },
+      {
+        "stats": {
+          "ABV": [8, 12],
+          "FG": [1.01, 1.024],
+          "IBUs": [20, 35],
+          "OG": [1.075, 1.11],
+          "SRM": [12, 22]
+        },
+        "title": "26D. Belgian Dark Strong Ale"
+      }
+    ],
+    "title": "26. Monastic Ale"
+  },
+  {
+    "styles": [
+      {
+        "stats": {
+          "ABV": [0.1, 0.1],
+          "FG": [0.1, 0.1],
+          "IBUs": [0.1, 0.1],
+          "OG": [0.1, 0.1],
+          "SRM": [0.1, 0.1]
+        },
+        "title": "Historical Beer: Kellerbier"
+      },
+      {
+        "stats": {
+          "ABV": [4, 5.5],
+          "FG": [1.01, 1.018],
+          "IBUs": [15, 30],
+          "OG": [1.044, 1.055],
+          "SRM": [11, 20]
+        },
+        "title": "Historical Beer: Kentucky Common"
+      },
+      {
+        "stats": {
+          "ABV": [3.5, 4.7],
+          "FG": [1.004, 1.008],
+          "IBUs": [5, 12],
+          "OG": [1.032, 1.04],
+          "SRM": [3, 6]
+        },
+        "title": "Historical Beer: Lichtenhainer"
+      },
+      {
+        "stats": {
+          "ABV": [2.8, 3.6],
+          "FG": [1.012, 1.015],
+          "IBUs": [15, 20],
+          "OG": [1.033, 1.038],
+          "SRM": [22, 35]
+        },
+        "title": "Historical Beer: London Brown Ale"
+      },
+      {
+        "stats": {
+          "ABV": [2.5, 3.3],
+          "FG": [1.006, 1.012],
+          "IBUs": [20, 35],
+          "OG": [1.028, 1.032],
+          "SRM": [3, 6]
+        },
+        "title": "Historical Beer: Piwo Grodziskie"
+      },
+      {
+        "stats": {
+          "ABV": [4.5, 6],
+          "FG": [1.01, 1.015],
+          "IBUs": [25, 40],
+          "OG": [1.044, 1.06],
+          "SRM": [3, 6]
+        },
+        "title": "Historical Beer: Pre-Prohibition Lager"
+      },
+      {
+        "stats": {
+          "ABV": [4.5, 6],
+          "FG": [1.01, 1.016],
+          "IBUs": [20, 30],
+          "OG": [1.046, 1.06],
+          "SRM": [20, 30]
+        },
+        "title": "Historical Beer: Pre-Prohibition Porter"
+      },
+      {
+        "stats": {
+          "ABV": [4.5, 6],
+          "FG": [1.01, 1.014],
+          "IBUs": [10, 20],
+          "OG": [1.046, 1.056],
+          "SRM": [14, 19]
+        },
+        "title": "Historical Beer: Roggenbier"
+      },
+      {
+        "stats": {
+          "ABV": [7, 11],
+          "FG": [1.016, 1.038],
+          "IBUs": [0, 15],
+          "OG": [1.076, 1.12],
+          "SRM": [4, 22]
+        },
+        "title": "Historical Beer: Sahti"
+      }
+    ],
+    "title": "27. Historical Beer"
+  },
+  {
+    "styles": [
+      {
+        "stats": {
+          "ABV": [0.1, 0.1],
+          "FG": [0.1, 0.1],
+          "IBUs": [0.1, 0.1],
+          "OG": [0.1, 0.1],
+          "SRM": [0.1, 0.1]
+        },
+        "title": "28A. Brett Beer"
+      },
+      {
+        "stats": {
+          "ABV": [0.1, 0.1],
+          "FG": [0.1, 0.1],
+          "IBUs": [0.1, 0.1],
+          "OG": [0.1, 0.1],
+          "SRM": [0.1, 0.1]
+        },
+        "title": "28B. Mixed-Fermentation Sour Beer"
+      },
+      {
+        "stats": {
+          "ABV": [0.1, 0.1],
+          "FG": [0.1, 0.1],
+          "IBUs": [0.1, 0.1],
+          "OG": [0.1, 0.1],
+          "SRM": [0.1, 0.1]
+        },
+        "title": "28C. Wild Specialty Beer"
+      },
+      {
+        "stats": {
+          "ABV": [4.5, 7],
+          "FG": [1.006, 1.013],
+          "IBUs": [3, 8],
+          "OG": [1.048, 1.065],
+          "SRM": [2, 3]
+        },
+        "title": "28D. Straight Sour Beer"
+      }
+    ],
+    "title": "28. American Wild Ale"
+  },
+  {
+    "styles": [
+      {
+        "stats": {
+          "ABV": [0.1, 0.1],
+          "FG": [0.1, 0.1],
+          "IBUs": [0.1, 0.1],
+          "OG": [0.1, 0.1],
+          "SRM": [0.1, 0.1]
+        },
+        "title": "29A. Fruit Beer"
+      },
+      {
+        "stats": {
+          "ABV": [0.1, 0.1],
+          "FG": [0.1, 0.1],
+          "IBUs": [0.1, 0.1],
+          "OG": [0.1, 0.1],
+          "SRM": [0.1, 0.1]
+        },
+        "title": "29B. Fruit and Spice Beer"
+      },
+      {
+        "stats": {
+          "ABV": [0.1, 0.1],
+          "FG": [0.1, 0.1],
+          "IBUs": [0.1, 0.1],
+          "OG": [0.1, 0.1],
+          "SRM": [0.1, 0.1]
+        },
+        "title": "29C. Specialty Fruit Beer"
+      },
+      {
+        "stats": {
+          "ABV": [6, 8.5],
+          "FG": [1.004, 1.013],
+          "IBUs": [10, 30],
+          "OG": [1.059, 1.075],
+          "SRM": [4, 8]
+        },
+        "title": "29D. Grape Ale"
+      }
+    ],
+    "title": "29. Fruit Beer"
+  },
+  {
+    "styles": [
+      {
+        "stats": {
+          "ABV": [0.1, 0.1],
+          "FG": [0.1, 0.1],
+          "IBUs": [0.1, 0.1],
+          "OG": [0.1, 0.1],
+          "SRM": [0.1, 0.1]
+        },
+        "title": "30A. Spice, Herb, or Vegetable Beer"
+      },
+      {
+        "stats": {
+          "ABV": [0.1, 0.1],
+          "FG": [0.1, 0.1],
+          "IBUs": [0.1, 0.1],
+          "OG": [0.1, 0.1],
+          "SRM": [0.1, 0.1]
+        },
+        "title": "30B. Autumn Seasonal Beer"
+      },
+      {
+        "stats": {
+          "ABV": [0.1, 0.1],
+          "FG": [0.1, 0.1],
+          "IBUs": [0.1, 0.1],
+          "OG": [0.1, 0.1],
+          "SRM": [0.1, 0.1]
+        },
+        "title": "30C. Winter Seasonal Beer"
+      },
+      {
+        "stats": {
+          "ABV": [0.1, 0.1],
+          "FG": [0.1, 0.1],
+          "IBUs": [0.1, 0.1],
+          "OG": [0.1, 0.1],
+          "SRM": [0.1, 0.1]
+        },
+        "title": "30D. Specialty Spice Beer"
+      }
+    ],
+    "title": "30. Spiced Beer"
+  },
+  {
+    "styles": [
+      {
+        "stats": {
+          "ABV": [0.1, 0.1],
+          "FG": [0.1, 0.1],
+          "IBUs": [0.1, 0.1],
+          "OG": [0.1, 0.1],
+          "SRM": [0.1, 0.1]
+        },
+        "title": "31A. Alternative Grain Beer"
+      },
+      {
+        "stats": {
+          "ABV": [0.1, 0.1],
+          "FG": [0.1, 0.1],
+          "IBUs": [0.1, 0.1],
+          "OG": [0.1, 0.1],
+          "SRM": [0.1, 0.1]
+        },
+        "title": "31B. Alternative Sugar Beer"
+      }
+    ],
+    "title": "31. Alternative Fermentables Beer"
+  },
+  {
+    "styles": [
+      {
+        "stats": {
+          "ABV": [0.1, 0.1],
+          "FG": [0.1, 0.1],
+          "IBUs": [0.1, 0.1],
+          "OG": [0.1, 0.1],
+          "SRM": [0.1, 0.1]
+        },
+        "title": "32A. Classic Style Smoked Beer"
+      },
+      {
+        "stats": {
+          "ABV": [0.1, 0.1],
+          "FG": [0.1, 0.1],
+          "IBUs": [0.1, 0.1],
+          "OG": [0.1, 0.1],
+          "SRM": [0.1, 0.1]
+        },
+        "title": "32B. Specialty Smoked Beer"
+      }
+    ],
+    "title": "32. Smoked Beer"
+  },
+  {
+    "styles": [
+      {
+        "stats": {
+          "ABV": "varies with base style, typically above-average",
+          "FG": "varies with base style",
+          "IBUs": "varies with base style",
+          "OG": "varies with base style, typically above-average",
+          "SRM": "varies with base style, often darker than the unadulterated base style"
+        },
+        "title": "33A. Wood-Aged Beer"
+      },
+      {
+        "stats": {
+          "ABV": "varies with base style, typically above-average",
+          "FG": "varies with base style",
+          "IBUs": "varies with base style",
+          "OG": "varies with base style, typically above-average",
+          "SRM": "varies with base style, often darker than the unadulterated base style"
+        },
+        "title": "33B. Specialty Wood-Aged Beer"
+      }
+    ],
+    "title": "33. Wood Beer"
+  },
+  {
+    "styles": [
+      {
+        "stats": {
+          "ABV": [0.1, 0.1],
+          "FG": [0.1, 0.1],
+          "IBUs": [0.1, 0.1],
+          "OG": [0.1, 0.1],
+          "SRM": [0.1, 0.1]
+        },
+        "title": "34A. Commercial Specialty Beer"
+      },
+      {
+        "stats": {
+          "ABV": [0.1, 0.1],
+          "FG": [0.1, 0.1],
+          "IBUs": [0.1, 0.1],
+          "OG": [0.1, 0.1],
+          "SRM": [0.1, 0.1]
+        },
+        "title": "34B. Mixed-Style Beer"
+      },
+      {
+        "stats": {
+          "ABV": [0.1, 0.1],
+          "FG": [0.1, 0.1],
+          "IBUs": [0.1, 0.1],
+          "OG": [0.1, 0.1],
+          "SRM": [0.1, 0.1]
+        },
+        "title": "34C. Experimental Beer"
+      }
+    ],
+    "title": "34. Specialty Beer"
+  }
+]

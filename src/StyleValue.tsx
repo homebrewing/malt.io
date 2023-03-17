@@ -1,4 +1,4 @@
-import { Component, JSX, Show, createEffect } from "solid-js";
+import { Component, Show } from "solid-js";
 
 export const StyleValue: Component<{
   label: string;

@@ -1,6 +1,7 @@
 import { A, Route, Routes } from "@solidjs/router";
 import { Component, Suspense } from "solid-js";
 
+import { StylePicker } from "./StylePicker";
 import ccLicense from "./assets/cc-by-sa.svg";
 import { lazy } from "solid-js";
 
@@ -32,7 +33,7 @@ const App: Component = () => {
       <Suspense fallback={<article>Loading...</article>}>
         <Routes>
           <Route path="/" element={<article>Nothing to see here</article>} />
-          <Route path="/r/:encoded?" component={Editor} />
+          <Route path="/r/:encoded?/:dialog?" component={Editor} />
           <Route path="/about" component={About} />
         </Routes>
       </Suspense>

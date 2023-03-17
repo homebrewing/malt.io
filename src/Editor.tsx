@@ -3,10 +3,12 @@ import {
   Show,
   createEffect,
   createMemo,
+  createResource,
   createSignal,
   on,
   onCleanup,
 } from "solid-js";
+import { Outlet, useNavigate, useParams } from "@solidjs/router";
 import {
   calculateColor,
   calculateFermentables,
@@ -32,19 +34,81 @@ import { crush, load } from "./crush";
 
 import type { Component } from "solid-js";
 import { Editable } from "./Editable";
+import { StylePicker } from "./StylePicker";
 import { StyleValue } from "./StyleValue";
+import bjcp2021 from "./assets/bjcp2021.json?url";
 import { createStore } from "solid-js/store";
 import createURLStore from "./urlstore";
 import { debounce } from "@solid-primitives/scheduled";
 import { removeIndex } from "./utils";
 import tulip from "./assets/tulip.svg";
 
+type StyleCategory = {
+  title: string;
+  styles: Array<Style>;
+};
+
+type Style = {
+  title: string;
+  stats: {
+    OG: [number, number];
+    FG: [number, number];
+    IBUs: [number, number];
+    ABV: [number, number];
+    SRM: [number, number];
+  };
+};
+
+const EMPTY_STYLE: Style = {
+  title: "None",
+  stats: {
+    OG: [1, 1.12],
+    FG: [0.992, 1.035],
+    IBUs: [0, 120],
+    ABV: [2, 15],
+    SRM: [0, 50],
+  },
+};
+
 function contrast([r, b, g]: [number, number, number]): string {
   const yiq = (r * 299 + g * 587 + b * 114) / 1000;
   return yiq >= 128 ? "#000" : "#fff";
 }
 
+async function fetchJSON(url: string) {
+  return (await fetch(url)).json();
+}
+
 const Editor: Component = () => {
+  const params = useParams();
+  const navigate = useNavigate();
+
+  const [styles] = createResource(bjcp2021, async (url: string) => {
+    const json = (await (await fetch(url)).json()) as StyleCategory[];
+    json.unshift({ title: "None", styles: [EMPTY_STYLE] });
+    return json;
+  });
+
+  const [selectedStyle, setSelectedStyle] = createSignal(EMPTY_STYLE);
+
+  const lookup: { [key: number]: any } = {};
+
+  createEffect(() => {
+    const s = styles();
+    if (s) {
+      let i = 0;
+      s.forEach((category) => {
+        category.styles.forEach((style) => {
+          lookup[i] = style;
+          if (i == recipe.style) {
+            setSelectedStyle(style);
+          }
+          i++;
+        });
+      });
+    }
+  });
+
   const [edit, setEdit] = createSignal(true);
 
   createEffect(
@@ -289,15 +353,15 @@ const Editor: Component = () => {
           <StyleValue
             label="ABV"
             suffix="%"
-            min={2.0}
-            max={15.0}
+            min={selectedStyle().stats.ABV[0]}
+            max={selectedStyle().stats.ABV[1]}
             value={stats().abv}
             precision={1}
           />
           <StyleValue
             label="OG"
-            min={1.0}
-            max={1.12}
+            min={selectedStyle().stats.OG[0]}
+            max={selectedStyle().stats.OG[1]}
             value={stats().og}
             precision={3}
             altFunc={(v) => sgToPlato(v).toFixed(1)}
@@ -305,8 +369,8 @@ const Editor: Component = () => {
           />
           <StyleValue
             label="FG"
-            min={0.992}
-            max={1.035}
+            min={selectedStyle().stats.FG[0]}
+            max={selectedStyle().stats.FG[1]}
             value={stats().fg}
             precision={3}
             altFunc={(v) => sgToPlato(v).toFixed(1)}
@@ -314,8 +378,8 @@ const Editor: Component = () => {
           />
           <StyleValue
             label="EBC"
-            min={1}
-            max={100}
+            min={srmToEbc(selectedStyle().stats.SRM[0])}
+            max={srmToEbc(selectedStyle().stats.SRM[1])}
             value={ebc()}
             precision={0}
             altFunc={(v) => Math.round(ebcToSrm(v))}
@@ -323,14 +387,21 @@ const Editor: Component = () => {
           />
           <StyleValue
             label="IBU"
-            min={1}
-            max={120}
+            min={selectedStyle().stats.IBUs[0]}
+            max={selectedStyle().stats.IBUs[1]}
             value={hopStats().ibu}
             precision={0}
           />
-          <div>No BJCP style selected</div>
+          <div>Style: {selectedStyle().title.replace(".", "")}</div>
           <Show when={edit()}>
-            <button class="primary">Change target style</button>
+            <button
+              class="primary"
+              onclick={() => {
+                navigate(location.pathname + "/styles");
+              }}
+            >
+              Change target style
+            </button>
           </Show>
         </div>
       </header>
@@ -1143,6 +1214,15 @@ const Editor: Component = () => {
           </div>
         </Show>
       </div>
+      <Show when={params.dialog == "styles"}>
+        <StylePicker
+          styles={styles()}
+          setStyle={(s: number) => {
+            setRecipeNow("style", s);
+            // navigate("/r/" + params.encoded);
+          }}
+        />
+      </Show>
     </article>
   );
 };

@@ -628,6 +628,114 @@ header {
   flex: 1;
 }
 
+.modal {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(100, 100, 100, 0.95);
+  animation: fade-in 0.15s ease-in;
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+.modal .header {
+  color: white;
+  background: linear-gradient(#3a3a3a, #303030 48%, #343434 48%, #222 51%, #111);
+  padding: 0 12px;
+}
+
+.modal .header h2 {
+  margin: 12px;
+}
+
+.modal .contents {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  color: var(--color);
+  background: var(--bg-color);
+  margin: auto;
+  max-height: 95vh;
+  max-width: 600px;
+  border-bottom-left-radius: 12px;
+  border-bottom-right-radius: 12px;
+  overflow: scroll;
+  box-shadow: 0px 1px 25px rgba(0, 0, 0, 0.3);
+  animation: slide-down 0.15s ease-in-out;
+}
+
+@keyframes slide-down {
+  0% {
+    transform: translateY(-100%);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.modal .body {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-height: 85vh;
+  overflow: scroll;
+  padding: 0 12px;
+}
+
+.modal input {
+  min-height: 22px;
+}
+
+.modal ol {
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.modal li {
+  padding: 4px;
+  padding-left: 12px;
+}
+
+.modal li:hover {
+  background-color: rgba(128, 128, 128, 0.1);
+  cursor: pointer;
+}
+
+.modal li.category {
+  padding-left: 0;
+  border-bottom: 1px solid rgba(128, 128, 128, 0.25);
+}
+
+.modal li.category:hover {
+  background: none;
+  cursor: default;
+}
+
+.modal .footer {
+  padding: 0 12px 12px 12px;
+}
+
+.modal .footer .buttons {
+  display: flex;
+  gap: 12px;
+  flex-direction: row;
+  justify-content: end;
+}
+
 .style {
   min-width: 300px;
   flex: 2;

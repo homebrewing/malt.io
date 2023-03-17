@@ -3,6 +3,10 @@ import { Hop, MashStep, Misc, Recipe, Yeast } from "./brauhaus/types";
 import { ByteBuf } from "bytebuf";
 import { createRecipe } from "./brauhaus/partials";
 
+const gPerKg = 1000;
+const gPerOz = 28.3495;
+const gPerLb = 453.592;
+
 export function encodeBinary(r: Recipe): ArrayBuffer {
   const data = new Uint8Array(4096);
   const buf = ByteBuf.from(data);
