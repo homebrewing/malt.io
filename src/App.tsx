@@ -32,8 +32,17 @@ const App: Component = () => {
       </nav>
       <Suspense fallback={<article>Loading...</article>}>
         <Routes>
-          <Route path="/" element={<article>Nothing to see here</article>} />
+          <Route
+            path="/"
+            element={
+              <article style="padding: 12px">Nothing to see here</article>
+            }
+          />
           <Route path="/r/:encoded?/:dialog?" component={Editor} />
+          <Route
+            path="/settings"
+            element={<article style="padding: 12px">Coming soon...</article>}
+          />
           <Route path="/about" component={About} />
         </Routes>
       </Suspense>
