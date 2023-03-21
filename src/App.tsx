@@ -1,6 +1,7 @@
 import { A, Route, Routes } from "@solidjs/router";
 import { Component, Suspense } from "solid-js";
 
+import Format from "./Format";
 import { StylePicker } from "./StylePicker";
 import ccLicense from "./assets/cc-by-sa.svg";
 import { lazy } from "solid-js";
@@ -44,6 +45,7 @@ const App: Component = () => {
             element={<article style="padding: 12px">Coming soon...</article>}
           />
           <Route path="/about" component={About} />
+          <Route path="/about/format" component={Format} />
         </Routes>
       </Suspense>
       <footer class="col gap">
@@ -99,15 +101,15 @@ const App: Component = () => {
             <span class="header">Misc</span>
             <ul>
               <li>
+                <A href="/about/format">Recipe Format</A>
+              </li>
+              <li>
                 <a href="https://github.com/homebrewing/malt.io">
                   GitHub Source
                 </a>
               </li>
               <li>
                 <a href="https://www.beer-analytics.com/">Beer Analytics</a>
-              </li>
-              <li>
-                <a href="https://www.bjcp.org/">BJCP</a>
               </li>
               <li>
                 <a href="https://www.bjcp.org/style/2021/beer/">

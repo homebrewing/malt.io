@@ -30,7 +30,7 @@ export function createFermentable(props: Partial<Fermentable>): Fermentable {
 export function createMisc(props: Partial<Misc>): Misc {
   return {
     name: props.name ?? "New Hop",
-    time: props.time ?? 60,
+    time: props.time ?? 5,
     use: props.use ?? "boil",
     amount: props.amount ?? 1,
     units: props.units ?? "g",
@@ -76,14 +76,12 @@ export function createRecipe(props: Partial<Recipe>): Recipe {
     type: props.type ?? "all grain",
     batchSize: props.batchSize ?? 20,
     boilSize: props.boilSize ?? 25,
-    efficiency: props.efficiency ?? 75,
     servingSizeMl: props.servingSizeMl ?? 355,
     style: props.style ?? 0,
     fermentables: props.fermentables ?? [],
     hops: props.hops ?? [],
     miscs: props.miscs ?? [],
     yeasts: props.yeasts ?? [],
-    pH: props.pH ?? 5.2,
     water: props.water ?? {
       ca: 0,
       mg: 0,
@@ -93,13 +91,7 @@ export function createRecipe(props: Partial<Recipe>): Recipe {
       hco3: 0,
     },
     mashSteps: props.mashSteps ?? [],
-    primaryDays: props.primaryDays ?? 7,
-    primaryTemp: props.primaryTemp ?? 20,
-    secondaryDays: props.secondaryDays ?? 0,
-    secondaryTemp: props.secondaryTemp ?? 0,
-    tertiaryDays: props.tertiaryDays ?? 0,
-    tertiaryTemp: props.tertiaryTemp ?? 0,
-    agingDays: props.agingDays ?? 0,
-    agingTemp: props.agingTemp ?? 0,
+    fermentationSteps: props.fermentationSteps ?? [],
+    carbonation: props.carbonation ?? 2.4,
   };
 }

@@ -164,7 +164,7 @@ export function calculateFermentables(
     const addition = getAddition(fermentable);
     // console.log(`${fermentable.name} is ${addition} addition`);
     const efficiency = {
-      mash: recipe.efficiency / 100,
+      mash: 75 / 100,
       boil: 1.0,
       late: 1.0,
     }[addition];
@@ -254,7 +254,7 @@ export function calculateHops(bh: Brauhaus, recipe: Recipe): HopStats {
     // TODO: prevent calculating this twice...
     const addition = getAddition(fermentable);
     const efficiency = {
-      mash: recipe.efficiency / 100,
+      mash: 75 / 100,
       boil: 1,
       late: 1,
     }[addition];

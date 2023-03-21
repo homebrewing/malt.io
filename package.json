@@ -8,7 +8,8 @@
     "dev": "vite",
     "build": "vite build",
     "serve": "vite preview",
-    "wrangler": "vite build && wrangler pages dev dist"
+    "wrangler": "vite build && wrangler pages dev dist",
+    "diagrams": "npx bytefield-svg -s docs/types.clj -o src/assets/types.svg && npx bytefield-svg -s docs/recipe.clj -o src/assets/recipe.svg && npx bytefield-svg -s docs/fermentable.clj -o src/assets/fermentable.svg && npx bytefield-svg -s docs/hop.clj -o src/assets/hop.svg && npx bytefield-svg -s docs/misc.clj -o src/assets/misc.svg && npx bytefield-svg -s docs/yeast.clj -o src/assets/yeast.svg && npx bytefield-svg -s docs/mash.clj -o src/assets/mash.svg && npx bytefield-svg -s docs/fermstep.clj -o src/assets/fermstep.svg"
   },
   "license": "MIT",
   "devDependencies": {

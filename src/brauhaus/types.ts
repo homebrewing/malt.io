@@ -25,7 +25,7 @@ export type Hop = {
 export type Misc = {
   name: string;
   time: number;
-  use: "mash" | "boil" | "primary" | "secondary" | "bottling";
+  use: "mash" | "sparge" | "boil" | "primary" | "secondary" | "bottling";
   amount: number;
   units: "g" | "ml" | "each" | "tsp" | "tbsp" | "mg/l";
 };
@@ -56,13 +56,18 @@ export type WaterProfile = {
   hco3: number;
 };
 
+export type FermentationStep = {
+  type: "primary" | "secondary" | "tertiary" | "aging";
+  temperature: number;
+  duration: number;
+};
+
 export type Recipe = {
   name: string;
   description: string;
   type: "all grain" | "extract" | "partial mash";
   boilSize: number;
   batchSize: number;
-  efficiency: number;
   servingSizeMl: number;
 
   style: number;
@@ -72,19 +77,12 @@ export type Recipe = {
   miscs: Misc[];
   yeasts: Yeast[];
 
-  pH: number;
   mashSteps: MashStep[];
 
   water: WaterProfile;
 
-  primaryDays: number;
-  primaryTemp: number;
-  secondaryDays: number;
-  secondaryTemp: number;
-  tertiaryDays: number;
-  tertiaryTemp: number;
-  agingDays: number;
-  agingTemp: number;
+  fermentationSteps: FermentationStep[];
+  carbonation: number;
 };
 
 export type RecipeStats = {

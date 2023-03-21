@@ -222,6 +222,13 @@ const Editor: Component = () => {
     ]);
   };
 
+  const addFermentationStep = () => {
+    setRecipeNow("fermentationSteps", [
+      ...recipe.fermentationSteps,
+      { type: "primary", temperature: 20, duration: 7 },
+    ]);
+  };
+
   return (
     <article class="col gap">
       <header>
@@ -397,7 +404,7 @@ const Editor: Component = () => {
             <button
               class="primary"
               onclick={() => {
-                navigate(location.pathname + "/styles");
+                navigate(location.pathname + "/styles", { scroll: false });
               }}
             >
               Change target style
@@ -802,6 +809,7 @@ const Editor: Component = () => {
                       }}
                     >
                       <option>mash</option>
+                      <option>sparge</option>
                       <option>boil</option>
                       <option>primary</option>
                       <option>secondary</option>
@@ -1213,13 +1221,127 @@ const Editor: Component = () => {
             </div>
           </div>
         </Show>
+
+        <div>
+          <h2>
+            🫧 Fermentation Schedule
+            <Show when={edit()}>
+              <button class="primary" onclick={addFermentationStep}>
+                &plus;
+              </button>
+            </Show>
+          </h2>
+
+          <div class="ingredient fermentation">
+            <div class="row header">
+              <div class="type grow">Type</div>
+              <div class="time right grow">Time</div>
+              <div class="temp right grow">Temp</div>
+              <Show when={edit()}>
+                <div class="delete"></div>
+              </Show>
+              <div class="break"></div>
+            </div>
+            <For
+              each={recipe.fermentationSteps}
+              fallback={<div>No fermentation steps.</div>}
+            >
+              {(step, i) => (
+                <div class="row">
+                  <div class="type grow">
+                    <select
+                      value={step.type}
+                      oninput={(e) =>
+                        setRecipe(
+                          "fermentationSteps",
+                          i(),
+                          "type",
+                          e.currentTarget.value
+                        )
+                      }
+                    >
+                      <option>primary</option>
+                      <option>secondary</option>
+                      <option>tertiary</option>
+                      <option>aging</option>
+                    </select>
+                  </div>
+                  <div class="time right grow">
+                    <Editable
+                      show={edit()}
+                      type="number"
+                      suffix="d"
+                      value={step.duration}
+                      oninput={(e) =>
+                        setRecipe(
+                          "fermentationSteps",
+                          i(),
+                          "duration",
+                          parseInt(e.currentTarget.value)
+                        )
+                      }
+                    />
+                  </div>
+                  <div class="temp right grow">
+                    <Editable
+                      show={edit()}
+                      type="number"
+                      suffix="°C"
+                      value={step.temperature}
+                      oninput={(e) =>
+                        setRecipe(
+                          "fermentationSteps",
+                          i(),
+                          "temperature",
+                          parseInt(e.currentTarget.value)
+                        )
+                      }
+                    />
+                  </div>
+                  <Show when={edit()}>
+                    <div class="delete">
+                      <button
+                        onclick={() =>
+                          setRecipeNow(
+                            "fermentationSteps",
+                            removeIndex(recipe.fermentationSteps, i())
+                          )
+                        }
+                      >
+                        ✕
+                      </button>
+                    </div>
+                  </Show>
+                </div>
+              )}
+            </For>
+          </div>
+          <div
+            class="row grow gap"
+            style="align-items: baseline; justify-content: end"
+          >
+            <span>
+              Carbonation CO<sub>2</sub>{" "}
+            </span>
+            <div style="width: 66px">
+              <Editable
+                show={edit()}
+                type="number"
+                suffix="vol"
+                value={recipe.carbonation}
+                oninput={(e) =>
+                  setRecipe("carbonation", parseFloat(e.currentTarget.value))
+                }
+              />
+            </div>
+          </div>
+        </div>
       </div>
       <Show when={params.dialog == "styles"}>
         <StylePicker
           styles={styles()}
           setStyle={(s: number) => {
             setRecipeNow("style", s);
-            // navigate("/r/" + params.encoded);
           }}
         />
       </Show>

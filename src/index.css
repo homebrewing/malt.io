@@ -130,6 +130,19 @@ h1, h2 {
   font-family: 'germania one', cursive, sans-serif, color-emoji;
 }
 
+h1.tenet {
+  font-size: 350%;
+  margin: 0 12px;
+  padding: 24px;
+  /* color: var(--slightly-muted); */
+  border: 1px dotted var(--slightly-muted);
+  border-radius: 15px;
+}
+
+h1.tenet::first-letter {
+  font-size: 150%;
+}
+
 .button-group {
   display: flex;
   flex-wrap: wrap;
@@ -248,28 +261,30 @@ select {
   background-repeat: no-repeat;
 }
 
-table select {
-  width: 100%;
-}
-
 table {
-  width: 100%;
+  width: 90%;
+  margin: 2em auto;
   border: none;
   border-collapse: collapse;
   border-spacing: 0;
   text-align: left;
 }
 
-table input {
-  width: calc(100% - 12px);
-}
-
 thead {
   border-bottom: 2px solid rgba(128, 128, 128, 0.15);
 }
 
-th {
-  padding: 2px 4px;
+th, td {
+  padding: 4px 6px;
+  white-space: nowrap;
+}
+
+td:last-child {
+  white-space: normal;
+}
+
+tbody tr:nth-child(even) {
+  background-color: rgba(128, 128, 128, 0.05);
 }
 
 tfoot {
@@ -330,6 +345,11 @@ article {
   color: var(--color);
   background-color: var(--bg-color);
   padding: 24px 0;
+}
+
+.diagram {
+  text-align: center;
+  margin: 2em 0;
 }
 
 .batch, .boil {
@@ -457,6 +477,14 @@ article {
   width: calc(16% - 2px);
 }
 
+.fermentation .type {
+  min-width: 70px;
+}
+
+.fermentation .time, .fermentation .temp {
+  min-width: 40px;
+}
+
 .ingredient select {
   width: 100%;
 }
@@ -497,6 +525,10 @@ article {
   align-items: stretch;
 }
 
+.wrap {
+  flex-wrap: wrap;
+}
+
 footer {
   padding: 12px;
 }
@@ -504,10 +536,6 @@ footer {
 footer .row {
   justify-content: center;
   flex-wrap: wrap;
-}
-
-footer .row div {
-  /* flex: 1; */
 }
 
 footer a {
@@ -832,7 +860,27 @@ header {
   }
 }
 
+@container(width < 760px) {
+  .tenets {
+      flex-wrap: wrap;
+    }
+}
+
 @container(width < 540px) {
+  img {
+    width: 100%;
+  }
+
+  table {
+    width: 100%;
+    margin: 0;
+  }
+
+  td {
+    white-space: normal;
+    word-break: break-all;
+  }
+
   .recipe-info {
     min-width: 250px;
   }
@@ -929,5 +977,10 @@ header {
     --muted: #666;
     --slightly-muted: #aaa;
     --bg-color: #222;
+  }
+
+  .diagram {
+    /* Turn black lines and text white while trying to keep colors similar */
+    filter: brightness(0.8) invert(1.0) brightness(1.3) hue-rotate(180deg);
   }
 }
