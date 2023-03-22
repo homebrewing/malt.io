@@ -1349,15 +1349,17 @@ const Editor: Component = () => {
 
         <div
           class="ingredient qr"
-          innerHTML={
-            params.encoded &&
-            new QRCode({
-              content: window.location.href,
-              join: true,
-              container: "svg-viewbox",
-              padding: 0,
-            }).svg()
-          }
+          innerHTML={new QRCode({
+            content:
+              window.location.protocol +
+              "//" +
+              window.location.host +
+              "/r/" +
+              params.encoded,
+            join: true,
+            container: "svg-viewbox",
+            padding: 0,
+          }).svg()}
         ></div>
       </div>
       <Show when={params.dialog == "styles"}>
