@@ -318,7 +318,16 @@ export function encodeBinary(r: Recipe): ArrayBuffer {
     }
   }
 
-  if (r.carbonation !== 2.4 || r.fermentationSteps.length) {
+  if (
+    r.carbonation !== 2.4 ||
+    (r.fermentationSteps.length > 0 &&
+      !(
+        r.fermentationSteps.length === 1 &&
+        r.fermentationSteps[0].type === "primary" &&
+        r.fermentationSteps[0].temperature === 20 &&
+        r.fermentationSteps[0].duration === 14
+      ))
+  ) {
     // 0b 00000 000
     //    co2   steps
     mask = 0;

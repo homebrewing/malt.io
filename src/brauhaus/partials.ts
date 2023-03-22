@@ -91,7 +91,9 @@ export function createRecipe(props: Partial<Recipe>): Recipe {
       hco3: 0,
     },
     mashSteps: props.mashSteps ?? [],
-    fermentationSteps: props.fermentationSteps ?? [],
+    fermentationSteps: props.fermentationSteps ?? [
+      { type: "primary", temperature: 20, duration: 14 },
+    ],
     carbonation: props.carbonation ?? 2.4,
   };
 }

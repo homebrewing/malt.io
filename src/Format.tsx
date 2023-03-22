@@ -1,4 +1,11 @@
+import Pako, { deflateRaw } from "pako";
+import { fromUint8Array, toUint8Array } from "js-base64";
+
+import { A } from "@solidjs/router";
 import type { Component } from "solid-js";
+import { Recipe } from "./brauhaus/types";
+import { dictionary } from "./dict";
+import { encodeBinary } from "./binary";
 import fermStepDiagram from "./assets/fermstep.svg?url";
 import fermentableDiagram from "./assets/fermentable.svg?url";
 import hopDiagram from "./assets/hop.svg?url";
@@ -7,6 +14,125 @@ import miscDiagram from "./assets/misc.svg?url";
 import recipeDiagram from "./assets/recipe.svg?url";
 import typesDiagram from "./assets/types.svg?url";
 import yeastDiagram from "./assets/yeast.svg?url";
+
+const fatTire: Recipe = {
+  name: "Fat Tire Clone",
+  description: "BYO Dec 2010",
+  type: "all grain",
+  batchSize: 20,
+  boilSize: 26,
+  servingSizeMl: 355,
+  style: 57,
+  fermentables: [
+    {
+      percentYield: 80,
+      grams: 4536,
+      ebc: 8,
+      name: "Pale Ale",
+    },
+    {
+      percentYield: 80,
+      grams: 454,
+      ebc: 14,
+      name: "Munich Light",
+    },
+    {
+      percentYield: 72,
+      grams: 227,
+      ebc: 73,
+      name: "Victory",
+    },
+    {
+      percentYield: 74,
+      grams: 173,
+      ebc: 212,
+      name: "Crystal 80L",
+    },
+  ],
+  hops: [
+    {
+      name: "Target",
+      grams: 11,
+      aa: 11,
+      use: "boil",
+      form: "pellet",
+      time: 60,
+    },
+    {
+      name: "Willamette",
+      grams: 14,
+      aa: 5,
+      use: "boil",
+      form: "pellet",
+      time: 10,
+    },
+    {
+      name: "East Kent Goldings",
+      grams: 14,
+      aa: 5,
+      use: "aroma",
+      form: "pellet",
+      time: 0,
+    },
+  ],
+  miscs: [],
+  yeasts: [
+    {
+      name: "California Ale V Yeast WLP051",
+      attenuation: 72,
+      form: "dry",
+      units: "pkt",
+      type: "ale",
+      amount: 1,
+    },
+  ],
+  water: {
+    ca: 15,
+    mg: 3,
+    na: 8,
+    cl: 12,
+    so4: 3,
+    hco3: 52,
+  },
+  mashSteps: [
+    {
+      name: "Single Infusion",
+      temperature: 68,
+      duration: 40,
+      waterGrainRatio: 3.1,
+      rampTime: 0,
+    },
+    {
+      name: "Mash Out",
+      temperature: 77,
+      duration: 10,
+      waterGrainRatio: 3.1,
+      rampTime: 0,
+    },
+  ],
+  fermentationSteps: [
+    {
+      type: "primary",
+      temperature: 20,
+      duration: 14,
+    },
+  ],
+  carbonation: 2.4,
+};
+
+const fatTireJSONPretty = JSON.stringify(fatTire, null, 2);
+const fatTireJSON = JSON.stringify(fatTire);
+const fatTireJSONDeflate = deflateRaw(fatTireJSON, { level: 9 });
+const fatTireJSONDictDeflate = deflateRaw(fatTireJSON, {
+  level: 9,
+  dictionary,
+});
+const fatTireBin = encodeBinary(fatTire);
+const fatTireDeflate = deflateRaw(fatTireBin, {
+  level: 9,
+  dictionary: dictionary,
+});
+const fatTireB64 = fromUint8Array(new Uint8Array(fatTireDeflate), true);
 
 const Format: Component = () => {
   return (
@@ -393,7 +519,7 @@ const Format: Component = () => {
                 <code>cl</code>
               </td>
               <td>variable uint</td>
-              <td>Target chlorine ppm.</td>
+              <td>Target chloride ppm.</td>
             </tr>
             <tr>
               <td>
@@ -913,6 +1039,161 @@ const Format: Component = () => {
             </tr>
           </tbody>
         </table>
+        <h2 id="example">
+          <a href="#example">Example Recipe</a>
+        </h2>
+        <p>
+          Let's use a New Belgium Fat Tire clone recipe from BYO as an example.
+          The{" "}
+          <a href="/assets/FatTire.xml">
+            BeerXML representation of this recipe
+          </a>{" "}
+          is 4,388 bytes. First, let's convert it to Brauhaus JSON, which takes
+          1,765 bytes pretty printed or 1,116 bytes minified:
+        </p>
+        <code>
+          <pre>{JSON.stringify(fatTire, null, 2)}</pre>
+        </code>
+        <p>
+          Encoding to the custom binary format uses {fatTireBin.byteLength}{" "}
+          bytes.
+        </p>
+        <div class="row gap">
+          <code style="width: 70%">
+            {new Uint8Array(fatTireBin).reduce(
+              (t, x) => t + " " + x.toString(16).padStart(2, "0"),
+              ""
+            )}
+          </code>
+          <code style="width: 30%">{new TextDecoder().decode(fatTireBin)}</code>
+        </div>
+        <p>
+          After running deflate with the custom dictionary there are{" "}
+          {fatTireDeflate.byteLength} bytes left.
+        </p>
+        <div class="row gap">
+          <code style="width: 70%">
+            {fatTireDeflate.reduce(
+              (t, x) => t + " " + x.toString(16).padStart(2, "0"),
+              ""
+            )}
+          </code>
+          <code style="width: 30%; white-space: wrap; word-break: break-all;">
+            {new TextDecoder().decode(fatTireDeflate)}
+          </code>
+        </div>
+        <p>
+          Unfortunately those bytes are not safe to use in a URL, so we base64
+          encode the result, increasing the size to a final{" "}
+          {new TextEncoder().encode(fatTireB64).byteLength} bytes:
+        </p>
+        <p>
+          <A href={"/r/" + fatTireB64}>{fatTireB64}</A>
+        </p>
+        <h3>Results</h3>
+        <p>The following table shows the encoding and compression results:</p>
+        <table>
+          <thead>
+            <tr>
+              <th>Format</th>
+              <th class="right">Size (bytes)</th>
+              <th class="right">Diff</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>BeerXML</td>
+              <td class="right">
+                <code>4388</code>
+              </td>
+              <td class="right">
+                <code>100.0%</code>
+              </td>
+            </tr>
+            <tr>
+              <td>Brauhaus JSON (pretty)</td>
+              <td class="right">
+                <code>{fatTireJSONPretty.length}</code>
+              </td>
+              <td class="right">
+                <code>
+                  {((fatTireJSONPretty.length / 4388) * 100).toFixed(1)}%
+                </code>
+              </td>
+            </tr>
+            <tr>
+              <td>Brauhaus JSON (minified)</td>
+              <td class="right">
+                <code>{fatTireJSON.length}</code>
+              </td>
+              <td class="right">
+                <code>{((fatTireJSON.length / 4388) * 100).toFixed(1)}%</code>
+              </td>
+            </tr>
+            <tr>
+              <td>Brauhaus JSON (minified+deflate)</td>
+              <td class="right">
+                <code>{fatTireJSONDeflate.byteLength}</code>
+              </td>
+              <td class="right">
+                <code>
+                  {((fatTireJSONDeflate.byteLength / 4388) * 100).toFixed(1)}%
+                </code>
+              </td>
+            </tr>
+            <tr>
+              <td>Brauhaus JSON (minified+deflate custom dictionary)</td>
+              <td class="right">
+                <code>{fatTireJSONDictDeflate.byteLength}</code>
+              </td>
+              <td class="right">
+                <code>
+                  {((fatTireJSONDictDeflate.byteLength / 4388) * 100).toFixed(
+                    1
+                  )}
+                  %
+                </code>
+              </td>
+            </tr>
+            <tr>
+              <td>Malt.io format (binary)</td>
+              <td class="right">
+                <code>{fatTireBin.byteLength}</code>
+              </td>
+              <td class="right">
+                <code>
+                  {((fatTireBin.byteLength / 4388) * 100).toFixed(1)}%
+                </code>
+              </td>
+            </tr>
+            <tr>
+              <td>Malt.io format (binary + deflate custom dict)</td>
+              <td class="right">
+                <code>{fatTireDeflate.byteLength}</code>
+              </td>
+              <td class="right">
+                <code>
+                  {((fatTireDeflate.byteLength / 4388) * 100).toFixed(1)}%
+                </code>
+              </td>
+            </tr>
+            <tr style="background-color: var(--secondary);">
+              <td>
+                Malt.io recipe URL (binary + deflate custom dict + base64)
+              </td>
+              <td class="right">
+                <code>{fatTireB64.length}</code>
+              </td>
+              <td class="right">
+                <code>{((fatTireB64.length / 4388) * 100).toFixed(1)}%</code>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <p>
+          As you can see, the custom recipe format crushes the alternatives for
+          our example recipe. Happy brewing! 🍻
+        </p>
       </div>
     </article>
   );
