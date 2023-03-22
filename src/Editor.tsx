@@ -463,6 +463,14 @@ const Editor: Component = () => {
                           parseInt(e.currentTarget.value || "0")
                         )
                       }
+                      onchange={(e) => {
+                        setRecipe(
+                          "fermentables",
+                          [...recipe.fermentables].sort(
+                            (a, b) => b.grams - a.grams
+                          )
+                        );
+                      }}
                     />
                   </div>
                   <div class="name">
@@ -1328,6 +1336,7 @@ const Editor: Component = () => {
                 show={edit()}
                 type="number"
                 suffix="vol"
+                step={0.1}
                 value={recipe.carbonation}
                 oninput={(e) =>
                   setRecipe("carbonation", parseFloat(e.currentTarget.value))

@@ -11,6 +11,7 @@ export const Editable: Component<{
   prefixShort?: boolean;
   suffix?: string;
   placeholder?: string;
+  step?: number;
 }> = (props) => {
   const onEnter = (e: KeyboardEvent) => {
     if (e.key == "Enter" && e.currentTarget) {
@@ -92,6 +93,7 @@ export const Editable: Component<{
           oninput={props.oninput}
           onchange={props.onchange}
           onkeydown={onEnter}
+          step={props.step}
         />
       </div>
     </Show>
