@@ -34,6 +34,7 @@ import { crush, load } from "./crush";
 
 import type { Component } from "solid-js";
 import { Editable } from "./Editable";
+import QRCode from "qrcode-svg";
 import { StylePicker } from "./StylePicker";
 import { StyleValue } from "./StyleValue";
 import bjcp2021 from "./assets/bjcp2021.json?url";
@@ -1345,6 +1346,19 @@ const Editor: Component = () => {
             </div>
           </div>
         </div>
+
+        <div
+          class="ingredient qr"
+          innerHTML={
+            params.encoded &&
+            new QRCode({
+              content: window.location.href,
+              join: true,
+              container: "svg-viewbox",
+              padding: 0,
+            }).svg()
+          }
+        ></div>
       </div>
       <Show when={params.dialog == "styles"}>
         <StylePicker

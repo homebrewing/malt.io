@@ -498,6 +498,11 @@ article {
   width: 100%;
 }
 
+.qr svg {
+  max-width: 260px;
+  margin: auto;
+}
+
 .stats {
   display: flex;
   flex-direction: row;

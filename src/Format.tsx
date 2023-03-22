@@ -1177,7 +1177,7 @@ const Format: Component = () => {
                 </code>
               </td>
             </tr>
-            <tr style="background-color: var(--secondary);">
+            <tr style="color: white; background-color: var(--secondary);">
               <td>
                 Malt.io recipe URL (binary + deflate custom dict + base64)
               </td>
