@@ -65,22 +65,75 @@ export const srmToLovibond = (srm: number): number => (srm + 0.76) / 1.3546;
 export const lovibondToSrm = (lovibond: number): number =>
   lovibond * 1.3546 - 0.76;
 export const srmToRgb = (srm: number): [number, number, number] => {
-  const r = Math.round(Math.min(255, Math.max(0, 255 * Math.pow(0.975, srm))));
-  const g = Math.round(Math.min(255, Math.max(0, 245 * Math.pow(0.88, srm))));
-  const b = Math.round(Math.min(255, Math.max(0, 220 * Math.pow(0.7, srm))));
+  let r = 0,
+    g = 0,
+    b = 0;
+
+  // The following formulas are based on Wolfram Alpha regression analysis of
+  // the sRGB values in the BJCP beer color chart at:
+  // https://www.bjcp.org/education-training/education-resources/color-guide/
+  // R^2 is around 0.999 for red/green while blue is closer to 0.95 due to
+  // its nonlinear and nonperiodic nature, though in practice that just
+  // means +/- around 3 on the blue channel. Good enough 😁
+  if (srm <= 17) {
+    r = Math.round(
+      Math.min(
+        255,
+        Math.max(0, 0.108328 * Math.pow(srm, 2) - 7.51456 * srm + 247.646)
+      )
+    );
+  } else {
+    r = Math.round(
+      Math.min(
+        255,
+        Math.max(
+          0,
+          -0.000244245 * Math.pow(srm, 3) +
+            0.0732848 * Math.pow(srm, 2) -
+            7.46959 * srm +
+            258.417
+        )
+      )
+    );
+  }
+
+  if (srm <= 35) {
+    g = Math.round(
+      Math.min(
+        250,
+        Math.max(
+          0,
+          0.000326545 * Math.pow(srm, 4) -
+            0.0329897 * Math.pow(srm, 3) +
+            1.26377 * Math.pow(srm, 2) -
+            24.8129 * srm +
+            260.181
+        )
+      )
+    );
+  } else {
+    g = Math.max(0, Math.round(34 - 0.5 * srm));
+  }
+
+  if (srm <= 4) {
+    b = Math.round(
+      Math.min(220, Math.max(0, 189.333 - 96.6606 * Math.log(srm)))
+    );
+  } else if (srm >= 100) {
+    b = 0;
+  } else {
+    b = Math.round(
+      Math.min(
+        255,
+        Math.max(0, 0.00417922 * Math.pow(srm, 2) - 1.27523 * srm + 58.7472)
+      )
+    );
+  }
+
   return [r, g, b];
 };
 export const ebcToRgb = (ebc: number): [number, number, number] => {
-  const r = Math.round(
-    Math.min(255, Math.max(0, 255 * Math.pow(0.975, ebc / 1.97)))
-  );
-  const g = Math.round(
-    Math.min(255, Math.max(0, 245 * Math.pow(0.88, ebc / 1.97)))
-  );
-  const b = Math.round(
-    Math.min(255, Math.max(0, 220 * Math.pow(0.7, ebc / 1.97)))
-  );
-  return [r, g, b];
+  return srmToRgb(ebc / 1.97);
 };
 export const ebcToCss = (srm: number): string => {
   const [r, g, b] = ebcToRgb(srm);

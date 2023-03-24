@@ -71,9 +71,8 @@ const EMPTY_STYLE: Style = {
   },
 };
 
-function contrast([r, b, g]: [number, number, number]): string {
-  const yiq = (r * 299 + g * 587 + b * 114) / 1000;
-  return yiq >= 128 ? "#000" : "#fff";
+function contrast(srm: number): string {
+  return srm < 15 ? "#000" : "#fff";
 }
 
 async function fetchJSON(url: string) {
@@ -514,7 +513,7 @@ const Editor: Component = () => {
                       min="0"
                       max="1000"
                       style={{
-                        color: contrast(ebcToRgb(fermentable.ebc)),
+                        color: contrast(fermentable.ebc),
                         "background-color": ebcToCss(fermentable.ebc),
                         width: "30px",
                       }}
@@ -570,7 +569,7 @@ const Editor: Component = () => {
                   <span
                     class="color-block"
                     style={{
-                      color: contrast(ebcToRgb(ebc())),
+                      color: contrast(ebc()),
                       "background-color": ebcToCss(ebc()),
                     }}
                   >
