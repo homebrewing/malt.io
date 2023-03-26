@@ -9,17 +9,27 @@ import {
   onCleanup,
 } from "solid-js";
 import { Outlet, useNavigate, useParams } from "@solidjs/router";
+import { SetStoreFunction, createStore } from "solid-js/store";
 import {
+  cToF,
   calculateColor,
   calculateFermentables,
   calculateHops,
   ebcToCss,
   ebcToRgb,
   ebcToSrm,
+  fToC,
+  gToOz,
+  gallonsToLiters,
+  kgToLbOz,
+  lbToKg,
+  litersToGallons,
   lovibondToSrm,
+  ozToG,
   ppgToYield,
   sgToPlato,
   srmToEbc,
+  srmToLovibond,
 } from "./brauhaus/calculate";
 import {
   createBrauhaus,
@@ -30,18 +40,19 @@ import {
   createRecipe,
   createYeast,
 } from "./brauhaus/partials";
+import { createLocalStore, removeIndex } from "./utils";
 import { crush, load } from "./crush";
 
+import { Brauhaus } from "./brauhaus/types";
 import type { Component } from "solid-js";
 import { Editable } from "./Editable";
+import { LbOz } from "./LbOz";
 import QRCode from "qrcode-svg";
 import { StylePicker } from "./StylePicker";
 import { StyleValue } from "./StyleValue";
 import bjcp2021 from "./assets/bjcp2021.json?url";
-import { createStore } from "solid-js/store";
 import createURLStore from "./urlstore";
 import { debounce } from "@solid-primitives/scheduled";
-import { removeIndex } from "./utils";
 import tulip from "./assets/tulip.svg";
 
 type StyleCategory = {
@@ -79,7 +90,10 @@ async function fetchJSON(url: string) {
   return (await fetch(url)).json();
 }
 
-const Editor: Component = () => {
+const Editor: Component<{
+  bh: Brauhaus;
+  setBh: SetStoreFunction<Brauhaus>;
+}> = (props) => {
   const params = useParams();
   const navigate = useNavigate();
 
@@ -120,9 +134,6 @@ const Editor: Component = () => {
       { defer: true }
     )
   );
-
-  // TODO: Load from local storage
-  const [bh, setBh] = createStore(createBrauhaus({}));
 
   const [recipe, setRecipeNow] = createURLStore(
     "/r/",
@@ -174,12 +185,12 @@ const Editor: Component = () => {
 
   const stats = createMemo(() => {
     console.log("Calculating stats...");
-    return calculateFermentables(bh, recipe);
+    return calculateFermentables(props.bh, recipe);
   });
 
   const hopStats = createMemo(() => {
     console.log("Calculating hops...");
-    return calculateHops(bh, recipe);
+    return calculateHops(props.bh, recipe);
   });
 
   // Set up a random bubble animation
@@ -335,10 +346,24 @@ const Editor: Component = () => {
               <Editable
                 show={edit()}
                 type="number"
-                suffix="L"
-                value={recipe.batchSize}
+                step={props.bh.units.volume === "liters" ? 1 : 0.5}
+                suffix={props.bh.units.volume === "liters" ? "L" : "G"}
+                value={
+                  props.bh.units.volume === "liters"
+                    ? recipe.batchSize
+                    : Math.round(litersToGallons(recipe.batchSize) * 2) / 2
+                }
                 oninput={(e) =>
-                  setRecipe("batchSize", parseInt(e.currentTarget.value || "0"))
+                  setRecipe(
+                    "batchSize",
+                    props.bh.units.volume === "liters"
+                      ? parseInt(e.currentTarget.value || "0")
+                      : Math.round(
+                          gallonsToLiters(
+                            parseFloat(e.currentTarget.value || "0")
+                          )
+                        )
+                  )
                 }
               />
             </div>
@@ -347,10 +372,24 @@ const Editor: Component = () => {
               <Editable
                 show={edit()}
                 type="number"
-                suffix="L"
-                value={recipe.boilSize}
+                step={props.bh.units.volume === "liters" ? 1 : 0.5}
+                suffix={props.bh.units.volume === "liters" ? "L" : "G"}
+                value={
+                  props.bh.units.volume === "liters"
+                    ? recipe.boilSize
+                    : Math.round(litersToGallons(recipe.boilSize) * 2) / 2
+                }
                 oninput={(e) =>
-                  setRecipe("boilSize", parseInt(e.currentTarget.value || "0"))
+                  setRecipe(
+                    "boilSize",
+                    props.bh.units.volume === "liters"
+                      ? parseInt(e.currentTarget.value || "0")
+                      : Math.round(
+                          gallonsToLiters(
+                            parseFloat(e.currentTarget.value || "0")
+                          )
+                        )
+                  )
                 }
               />
             </div>
@@ -384,13 +423,19 @@ const Editor: Component = () => {
             altSuffix="°P"
           />
           <StyleValue
-            label="EBC"
-            min={srmToEbc(selectedStyle().stats.SRM[0])}
-            max={srmToEbc(selectedStyle().stats.SRM[1])}
-            value={ebc()}
+            label={props.bh.units.color === "ebc" ? "EBC" : "SRM"}
+            min={
+              props.bh.units.color === "ebc"
+                ? srmToEbc(selectedStyle().stats.SRM[0])
+                : selectedStyle().stats.SRM[0]
+            }
+            max={
+              props.bh.units.color === "ebc"
+                ? srmToEbc(selectedStyle().stats.SRM[1])
+                : selectedStyle().stats.SRM[1]
+            }
+            value={props.bh.units.color === "ebc" ? ebc() : ebcToSrm(ebc())}
             precision={0}
-            altFunc={(v) => Math.round(ebcToSrm(v))}
-            altSuffix="SRM"
           />
           <StyleValue
             label="IBU"
@@ -427,10 +472,30 @@ const Editor: Component = () => {
           <div class="ingredient fermentable">
             <div class="row header">
               <div class="bill right muted">Bill</div>
-              <div class="amount right">Amount</div>
+              <Show
+                when={props.bh.units.weight === "kg"}
+                fallback={
+                  <>
+                    <div class="lbs right">Lbs</div>
+                    <div class="oz right">Oz</div>
+                  </>
+                }
+              >
+                <div class="amount right">Grams</div>
+              </Show>
               <div class="name">Name</div>
-              <div class="yield right long">Yield</div>
-              <div class="ebc right long">&deg;EBC</div>
+              <Show
+                when={props.bh.units.yield === "percent"}
+                fallback={<div class="ppg right long">PPG</div>}
+              >
+                <div class="yield right long">Yield</div>
+              </Show>
+              <Show
+                when={props.bh.units.color === "ebc"}
+                fallback={<div class="lovibond right long">&deg;L</div>}
+              >
+                <div class="ebc right long">&deg;EBC</div>
+              </Show>
               <div class="abv right long">ABV</div>
               <Show when={edit()}>
                 <div class="delete"></div>
@@ -449,30 +514,52 @@ const Editor: Component = () => {
                     )}
                     ﹪
                   </div>
-                  <div class="amount right">
-                    <Editable
-                      show={edit()}
-                      type="number"
-                      value={fermentable.grams}
-                      suffix="g"
-                      oninput={(e) =>
-                        setRecipeNow(
-                          "fermentables",
-                          i(),
-                          "grams",
-                          parseInt(e.currentTarget.value || "0")
-                        )
-                      }
-                      onchange={(e) => {
-                        setRecipe(
-                          "fermentables",
-                          [...recipe.fermentables].sort(
-                            (a, b) => b.grams - a.grams
+                  <Show
+                    when={props.bh.units.weight === "kg"}
+                    fallback={
+                      <LbOz
+                        show={edit()}
+                        g={fermentable.grams}
+                        oninput={(v) =>
+                          setRecipeNow("fermentables", i(), "grams", v)
+                        }
+                        onchange={() => {
+                          setRecipe(
+                            "fermentables",
+                            [...recipe.fermentables].sort(
+                              (a, b) => b.grams - a.grams
+                            )
+                          );
+                        }}
+                      />
+                    }
+                  >
+                    <div class="amount right">
+                      <Editable
+                        show={edit()}
+                        type="number"
+                        value={fermentable.grams}
+                        suffix="g"
+                        oninput={(e) =>
+                          setRecipeNow(
+                            "fermentables",
+                            i(),
+                            "grams",
+                            parseInt(e.currentTarget.value || "0")
                           )
-                        );
-                      }}
-                    />
-                  </div>
+                        }
+                        onchange={(e) => {
+                          setRecipe(
+                            "fermentables",
+                            [...recipe.fermentables].sort(
+                              (a, b) => b.grams - a.grams
+                            )
+                          );
+                        }}
+                      />
+                    </div>
+                  </Show>
+
                   <div class="name">
                     <Editable
                       show={edit()}
@@ -488,47 +575,106 @@ const Editor: Component = () => {
                       }
                     />
                   </div>
-                  <div class="yield right break-small">
-                    <Editable
-                      show={edit()}
-                      type="number"
-                      value={Math.round(fermentable.percentYield)}
-                      prefix="Yield"
-                      prefixShort={true}
-                      suffix="﹪"
-                      oninput={(e) =>
-                        setRecipe(
-                          "fermentables",
-                          i(),
-                          "percentYield",
-                          parseInt(e.currentTarget.value || "0")
-                        )
-                      }
-                    />
-                  </div>
-                  <div class="ebc right break-small">
-                    <input
-                      class="color"
-                      type="number"
-                      min="0"
-                      max="1000"
-                      style={{
-                        color: contrast(fermentable.ebc),
-                        "background-color": ebcToCss(fermentable.ebc),
-                        width: "30px",
-                      }}
-                      value={Math.round(fermentable.ebc)}
-                      oninput={(e) =>
-                        setRecipe(
-                          "fermentables",
-                          i(),
-                          "ebc",
-                          parseInt(e.currentTarget.value || "0")
-                        )
-                      }
-                    />
-                    <span class="suffix short">&deg;EBC</span>
-                  </div>
+                  <Show
+                    when={props.bh.units.yield === "percent"}
+                    fallback={
+                      <div class="ppg right break-small">
+                        <Editable
+                          show={edit()}
+                          type="number"
+                          value={Math.round(fermentable.percentYield * 0.46)}
+                          prefix="PPG"
+                          prefixShort={true}
+                          oninput={(e) =>
+                            setRecipe(
+                              "fermentables",
+                              i(),
+                              "percentYield",
+                              parseInt(e.currentTarget.value || "0") / 0.46
+                            )
+                          }
+                        />
+                      </div>
+                    }
+                  >
+                    <div class="yield right break-small">
+                      <Editable
+                        show={edit()}
+                        type="number"
+                        value={Math.round(fermentable.percentYield)}
+                        prefix="Yield"
+                        prefixShort={true}
+                        suffix="﹪"
+                        oninput={(e) =>
+                          setRecipe(
+                            "fermentables",
+                            i(),
+                            "percentYield",
+                            parseInt(e.currentTarget.value || "0")
+                          )
+                        }
+                      />
+                    </div>
+                  </Show>
+
+                  <Show
+                    when={props.bh.units.color === "ebc"}
+                    fallback={
+                      <div class="srm right break-small">
+                        <input
+                          class="color"
+                          type="number"
+                          min="0"
+                          max="1000"
+                          style={{
+                            color: contrast(fermentable.ebc),
+                            "background-color": ebcToCss(fermentable.ebc),
+                            width: "30px",
+                          }}
+                          value={Math.round(
+                            srmToLovibond(ebcToSrm(fermentable.ebc))
+                          )}
+                          oninput={(e) =>
+                            setRecipe(
+                              "fermentables",
+                              i(),
+                              "ebc",
+                              srmToEbc(
+                                lovibondToSrm(
+                                  parseInt(e.currentTarget.value || "0")
+                                )
+                              )
+                            )
+                          }
+                        />
+                        <span class="suffix short">&deg;L</span>
+                      </div>
+                    }
+                  >
+                    <div class="ebc right break-small">
+                      <input
+                        class="color"
+                        type="number"
+                        min="0"
+                        max="1000"
+                        style={{
+                          color: contrast(fermentable.ebc),
+                          "background-color": ebcToCss(fermentable.ebc),
+                          width: "30px",
+                        }}
+                        value={Math.round(fermentable.ebc)}
+                        oninput={(e) =>
+                          setRecipe(
+                            "fermentables",
+                            i(),
+                            "ebc",
+                            parseInt(e.currentTarget.value || "0")
+                          )
+                        }
+                      />
+                      <span class="suffix short">&deg;EBC</span>
+                    </div>
+                  </Show>
                   <div class="abv right break-small">
                     {(
                       stats().abv *
@@ -559,12 +705,34 @@ const Editor: Component = () => {
             <Show when={recipe.fermentables.length > 0}>
               <div class="row footer">
                 <div class="bill right muted">100﹪</div>
-                <div class="amount right">
-                  {stats().fermentableGrams}
-                  <span class="suffix">g</span>
-                </div>
+                <Show
+                  when={props.bh.units.weight === "kg"}
+                  fallback={
+                    <>
+                      <div class="lbs right">
+                        {kgToLbOz(stats().fermentableGrams / 1000).lb}
+                        <span class="suffix">lb</span>
+                      </div>
+                      <div class="oz right">
+                        {Math.round(
+                          kgToLbOz(stats().fermentableGrams / 1000).oz
+                        )}
+                        <span class="suffix">oz</span>
+                      </div>
+                    </>
+                  }
+                >
+                  <div class="amount right">
+                    {stats().fermentableGrams}
+                    <span class="suffix">g</span>
+                  </div>
+                </Show>
                 <div class="name break-small"></div>
-                <div class="yield right break-small"></div>
+                <div class="yield right long">
+                  <Show when={props.bh.units.color === "srm"}>
+                    <span class="prefix">&deg;SRM</span>
+                  </Show>
+                </div>
                 <div class="ebc right">
                   <span
                     class="color-block"
@@ -573,9 +741,13 @@ const Editor: Component = () => {
                       "background-color": ebcToCss(ebc()),
                     }}
                   >
-                    {Math.round(ebc())}
+                    {Math.round(
+                      props.bh.units.color === "ebc" ? ebc() : ebcToSrm(ebc())
+                    )}
                   </span>
-                  <span class="suffix short">&deg;EBC</span>
+                  <span class="suffix short">
+                    &deg;{props.bh.units.color === "ebc" ? "EBC" : "SRM"}
+                  </span>
                 </div>
                 <div class="abv right">
                   {stats().abv.toFixed(1)}
@@ -661,22 +833,48 @@ const Editor: Component = () => {
                       <option>dry hop</option>
                     </select>
                   </div>
-                  <div class="weight right break-small">
-                    <Editable
-                      show={edit()}
-                      type="number"
-                      suffix="g"
-                      value={hop.grams}
-                      oninput={(e) =>
-                        setRecipe(
-                          "hops",
-                          i(),
-                          "grams",
-                          parseInt(e.currentTarget.value)
-                        )
-                      }
-                    />
-                  </div>
+                  <Show
+                    when={props.bh.units.weight === "kg"}
+                    fallback={
+                      <div class="oz right break-small">
+                        <Editable
+                          show={edit()}
+                          type="number"
+                          step={0.1}
+                          suffix="oz"
+                          value={gToOz(hop.grams).toFixed(1)}
+                          oninput={(e) =>
+                            setRecipe(
+                              "hops",
+                              i(),
+                              "grams",
+                              Math.round(
+                                ozToG(parseFloat(e.currentTarget.value))
+                              )
+                            )
+                          }
+                        />
+                      </div>
+                    }
+                  >
+                    <div class="weight right break-small">
+                      <Editable
+                        show={edit()}
+                        type="number"
+                        suffix={"g"}
+                        value={hop.grams}
+                        oninput={(e) =>
+                          setRecipe(
+                            "hops",
+                            i(),
+                            "grams",
+                            parseInt(e.currentTarget.value)
+                          )
+                        }
+                      />
+                    </div>
+                  </Show>
+
                   <div class="name">
                     <Editable
                       show={edit()}
@@ -741,12 +939,24 @@ const Editor: Component = () => {
                 <div class="bill right muted">100%</div>
                 <div class="time right break-small"></div>
                 <div class="use break-small"></div>
-                <div class="weight right">
-                  <span class="value">
-                    {hopStats().grams}
-                    <span class="suffix">g</span>
-                  </span>
-                </div>
+                <Show
+                  when={props.bh.units.weight === "kg"}
+                  fallback={
+                    <div class="oz right">
+                      <span class="value">
+                        {gToOz(hopStats().grams).toFixed(1)}
+                        <span class="suffix">oz</span>
+                      </span>
+                    </div>
+                  }
+                >
+                  <div class="weight right">
+                    <span class="value">
+                      {hopStats().grams}
+                      <span class="suffix">g</span>
+                    </span>
+                  </div>
+                </Show>
                 <div class="name break-small"></div>
                 <div class="form"></div>
                 <div class="alpha-acid right"></div>
@@ -1063,14 +1273,22 @@ const Editor: Component = () => {
                       <Editable
                         show={edit()}
                         type="number"
-                        suffix="°C"
-                        value={step.temperature}
+                        suffix={
+                          "°" + (props.bh.units.temperature === "c" ? "C" : "F")
+                        }
+                        value={
+                          props.bh.units.temperature === "c"
+                            ? Math.round(step.temperature)
+                            : Math.round(cToF(step.temperature))
+                        }
                         oninput={(e) =>
                           setRecipe(
                             "mashSteps",
                             i(),
                             "temperature",
-                            parseInt(e.currentTarget.value)
+                            props.bh.units.temperature === "c"
+                              ? parseInt(e.currentTarget.value)
+                              : fToC(parseInt(e.currentTarget.value))
                           )
                         }
                       />
@@ -1095,14 +1313,23 @@ const Editor: Component = () => {
                       <Editable
                         show={edit()}
                         type="number"
-                        value={step.waterGrainRatio}
-                        suffix="L/kg"
+                        step={0.1}
+                        value={
+                          props.bh.units.volume === "liters"
+                            ? step.waterGrainRatio.toFixed(1)
+                            : (step.waterGrainRatio / 2.086).toFixed(1)
+                        }
+                        suffix={
+                          props.bh.units.volume === "liters" ? "L/kg" : "qt/G"
+                        }
                         oninput={(e) =>
                           setRecipe(
                             "mashSteps",
                             i(),
                             "waterGrainRatio",
-                            parseFloat(e.currentTarget.value)
+                            props.bh.units.volume === "liters"
+                              ? parseFloat(e.currentTarget.value)
+                              : parseFloat(e.currentTarget.value) * 2.086
                           )
                         }
                       />
@@ -1294,14 +1521,22 @@ const Editor: Component = () => {
                     <Editable
                       show={edit()}
                       type="number"
-                      suffix="°C"
-                      value={step.temperature}
+                      suffix={
+                        "°" + (props.bh.units.temperature === "c" ? "C" : "F")
+                      }
+                      value={
+                        props.bh.units.temperature === "c"
+                          ? Math.round(step.temperature)
+                          : Math.round(cToF(step.temperature))
+                      }
                       oninput={(e) =>
                         setRecipe(
                           "fermentationSteps",
                           i(),
                           "temperature",
-                          parseInt(e.currentTarget.value)
+                          props.bh.units.temperature === "c"
+                            ? parseInt(e.currentTarget.value)
+                            : fToC(parseInt(e.currentTarget.value))
                         )
                       }
                     />

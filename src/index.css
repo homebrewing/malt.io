@@ -344,6 +344,15 @@ header label {
   text-overflow: ellipsis;
 }
 
+.toggle label {
+  display: flex;
+  align-items: center;
+  color: #aaa;
+  margin-left: 0;
+  margin-top: 4px;
+  margin-bottom: 4px;
+}
+
 .page {
   margin: auto;
   /* max-width: 1200px; */
@@ -417,8 +426,16 @@ article {
   width: 70px;
 }
 
-.fermentable .yield {
+.fermentable .lbs, .fermentable .oz {
   width: 50px;
+}
+
+.fermentable .yield, .fermentable .ppg {
+  width: 50px;
+}
+
+.fermentable .ebc, .fermentable .lovibond {
+  width: 40px;
 }
 
 .fermentable .abv {
@@ -427,6 +444,10 @@ article {
 
 .ingredient .bill, .hops .time, .hops .weight, .hops .alpha-acid {
   width: 50px;
+}
+
+.hops .oz {
+  width: 56px;
 }
 
 .hops .ibu {
@@ -466,7 +487,7 @@ article {
 }
 
 .mash .temp {
-  width: 52px;
+  width: 56px;
 }
 
 .mash .time {
@@ -611,6 +632,7 @@ footer ul {
 }
 
 .color-block {
+  position: relative;
   display: inline-flex;
   justify-content: end;
   align-items: center;
@@ -895,6 +917,10 @@ header {
     word-break: break-all;
   }
 
+  .toggle {
+    display: none;
+  }
+
   .recipe-info {
     min-width: 250px;
   }
@@ -918,6 +944,19 @@ header {
     width: 82px;
   }
 
+  .fermentable .ppg {
+    margin-left: 56px;
+    width: 70px;
+  }
+
+  .fermentable .ebc {
+    width: 72px;
+  }
+
+  .fermentable .srm {
+    width: 56px;
+  }
+
   .fermentable .abv {
     width: 62px;
   }
@@ -929,11 +968,11 @@ header {
     margin-left: 12px;
   }
 
-  .hops .weight {
+  .hops .weight, .hops .oz {
     margin-left: 56px;
   }
 
-  .hops .footer .weight {
+  .hops .footer .weight, .hops .footer .oz {
     margin-left: 0;
   }
 

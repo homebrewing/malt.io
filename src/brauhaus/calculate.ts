@@ -32,11 +32,22 @@ export let RELATIVE_SUGAR_DENSITY = {
 // Conversions
 
 // Kilograms <=> Pounds / Ounces
+export const gToOz = (g: number): number => g * 0.035274;
+export const ozToG = (oz: number): number => oz * 28.3495;
 export const kgToLb = (kg: number): number => kg * 2.20462;
 export const lbToKg = (lb: number): number => lb / 2.20462;
-export const kgToLbOz = (kg: number): { lb: number; oz: number } => {
-  const lb = kgToLb(kg);
-  return { lb: Math.floor(lb), oz: (lb - Math.floor(lb)) * 16.0 };
+export const kgToLbOz = (
+  kg: number,
+  int?: boolean
+): { lb: number; oz: number } => {
+  let lb = kgToLb(kg);
+  let oz = (lb - Math.floor(lb)) * 16.0;
+  if (int) {
+    oz = Math.round(oz);
+    lb += Math.floor(oz / 16.0);
+    oz = oz % 16.0;
+  }
+  return { lb: Math.floor(lb), oz: oz };
 };
 export const lbOzToKg = (lb: number, oz: number): number =>
   lbToKg(lb + oz / 16.0);

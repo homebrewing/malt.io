@@ -256,7 +256,7 @@ export function encodeBinary(r: Recipe): ArrayBuffer {
       // ratio 5 bits single fixed decimal: 1.6 - 4.7
       // ramp time 2 bits: 0, 15, 20, other (adds varint)
       let mask = 0;
-      mask |= (ms.temperature - 25) << 10;
+      mask |= (Math.round(ms.temperature) - 25) << 10;
       switch (ms.duration) {
         case 5:
           break;

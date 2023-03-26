@@ -12,6 +12,8 @@ export const Editable: Component<{
   suffix?: string;
   placeholder?: string;
   step?: number;
+  min?: number;
+  max?: number;
 }> = (props) => {
   const onEnter = (e: KeyboardEvent) => {
     if (e.key == "Enter" && e.currentTarget) {
@@ -73,7 +75,7 @@ export const Editable: Component<{
           <Show when={props.prefix}>
             <span class="prefix short">{props.prefix}</span>
           </Show>
-          {props.value || props.placeholder}
+          {props.value || props.placeholder || "0"}
           <Show when={props.suffix}>
             <span class="suffix">{props.suffix ?? ""}</span>
           </Show>
@@ -94,6 +96,8 @@ export const Editable: Component<{
           onchange={props.onchange}
           onkeydown={onEnter}
           step={props.step}
+          min={props.min}
+          max={props.max}
         />
       </div>
     </Show>

@@ -1,4 +1,12 @@
 export type Brauhaus = {
+  units: {
+    volume: "liters" | "gallons";
+    weight: "kg" | "lb";
+    temperature: "c" | "f";
+    yield: "percent" | "ppg";
+    gravity: "sg" | "plato";
+    color: "ebc" | "srm";
+  };
   roomTemp: number;
   grainTemp: number;
   burnerEnergy: number;

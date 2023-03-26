@@ -10,6 +10,14 @@ import {
 
 export function createBrauhaus(props: Partial<Brauhaus>): Brauhaus {
   return {
+    units: {
+      temperature: props.units?.temperature ?? "c",
+      volume: props.units?.volume ?? "liters",
+      weight: props.units?.weight ?? "kg",
+      yield: props.units?.yield ?? "percent",
+      gravity: props.units?.gravity ?? "sg",
+      color: props.units?.color ?? "ebc",
+    },
     roomTemp: props.roomTemp ?? 23,
     grainTemp: props.grainTemp ?? 23,
     burnerEnergy: props.burnerEnergy ?? 9000,

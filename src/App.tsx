@@ -2,8 +2,9 @@ import { A, Route, Routes } from "@solidjs/router";
 import { Component, Suspense } from "solid-js";
 
 import Format from "./Format";
-import { StylePicker } from "./StylePicker";
 import ccLicense from "./assets/cc-by-sa.svg";
+import { createBrauhaus } from "./brauhaus/partials";
+import { createLocalStore } from "./utils";
 import { lazy } from "solid-js";
 
 const editorPromise = import("./Editor");
@@ -12,6 +13,8 @@ const Editor = lazy(() => editorPromise);
 const About = lazy(() => import("./About"));
 
 const App: Component = () => {
+  const [bh, setBh] = createLocalStore("brauhaus", createBrauhaus({}));
+
   return (
     <div class="page">
       <nav>
@@ -20,7 +23,42 @@ const App: Component = () => {
             Malt<span style="opacity: 0.65">.io</span>
           </A>
         </h1>
-        <div>
+        <div class="row">
+          <div class="toggle row">
+            <input
+              id="usMetric"
+              type="checkbox"
+              checked={bh.units.weight === "kg"}
+              oninput={(e) => {
+                const metric = (e.target as HTMLInputElement).checked;
+                setBh("units", {
+                  weight: metric ? "kg" : "lb",
+                  volume: metric ? "liters" : "gallons",
+                  temperature: metric ? "c" : "f",
+                  gravity: metric ? "plato" : "sg",
+                  yield: metric ? "percent" : "ppg",
+                  color: metric ? "ebc" : "srm",
+                });
+              }}
+              hidden
+            />
+            <label
+              for="usMetric"
+              class="btn"
+              classList={{ primary: bh.units.weight !== "kg" }}
+              style="border-top-right-radius: 0; border-bottom-right-radius: 0"
+            >
+              US
+            </label>
+            <label
+              for="usMetric"
+              class="btn"
+              classList={{ primary: bh.units.weight === "kg" }}
+              style="border-top-left-radius: 0; border-bottom-left-radius: 0"
+            >
+              Metric
+            </label>
+          </div>
           <A href="/r/">
             <span style="color: var(--primary); filter: brightness(1.3)">
               ✚
@@ -39,7 +77,10 @@ const App: Component = () => {
               <article style="padding: 12px">Nothing to see here</article>
             }
           />
-          <Route path="/r/:encoded?/:dialog?" component={Editor} />
+          <Route
+            path="/r/:encoded?/:dialog?"
+            element={<Editor bh={bh} setBh={setBh} />}
+          />
           <Route
             path="/settings"
             element={<article style="padding: 12px">Coming soon...</article>}
