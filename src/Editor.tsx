@@ -25,7 +25,9 @@ import {
   lbToKg,
   litersToGallons,
   lovibondToSrm,
+  mlToOz,
   ozToG,
+  ozToMl,
   ppgToYield,
   sgToPlato,
   srmToEbc,
@@ -756,8 +758,26 @@ const Editor: Component<{
                 </div>
                 <div class="cal right short">
                   {Math.round(stats().calories)}
-                  <span class="suffix">Cal</span> / {recipe.servingSizeMl}
-                  <span class="suffix">ml</span>
+                  <span class="suffix">Cal</span> /{" "}
+                  <Editable
+                    class="serving-size"
+                    show={edit()}
+                    type="number"
+                    suffix={props.bh.units.volume === "liters" ? "ml" : "oz"}
+                    value={
+                      props.bh.units.volume === "liters"
+                        ? recipe.servingSizeMl
+                        : Math.round(mlToOz(recipe.servingSizeMl))
+                    }
+                    oninput={(e) =>
+                      setRecipeNow(
+                        "servingSizeMl",
+                        props.bh.units.volume === "liters"
+                          ? parseInt(e.currentTarget.value)
+                          : Math.round(ozToMl(parseInt(e.currentTarget.value)))
+                      )
+                    }
+                  />
                 </div>
                 <Show when={edit()}>
                   <div class="delete break-small"></div>
@@ -766,10 +786,28 @@ const Editor: Component<{
               </div>
             </Show>
           </div>
-          <div class="cal right long">
+          <div class="row cal right long">
             {Math.round(stats().calories)}
-            <span class="suffix">Cal</span> / {recipe.servingSizeMl}
-            <span class="suffix">ml</span>
+            <span class="suffix">Cal</span> /{" "}
+            <Editable
+              class="serving-size"
+              show={edit()}
+              type="number"
+              suffix={props.bh.units.volume === "liters" ? "ml" : "oz"}
+              value={
+                props.bh.units.volume === "liters"
+                  ? recipe.servingSizeMl
+                  : Math.round(mlToOz(recipe.servingSizeMl))
+              }
+              oninput={(e) =>
+                setRecipeNow(
+                  "servingSizeMl",
+                  props.bh.units.volume === "liters"
+                    ? parseInt(e.currentTarget.value)
+                    : Math.round(ozToMl(parseInt(e.currentTarget.value)))
+                )
+              }
+            />
           </div>
         </div>
 

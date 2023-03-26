@@ -365,6 +365,16 @@ article {
   padding: 24px 0;
 }
 
+.row {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+}
+
+.wrap {
+  flex-wrap: wrap;
+}
+
 .diagram {
   text-align: center;
   margin: 2em 0;
@@ -440,6 +450,17 @@ article {
 
 .fermentable .abv {
   width: 46px;
+}
+
+.cal {
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  gap: 4px;
+}
+
+.serving-size {
+  max-width: 70px;
 }
 
 .ingredient .bill, .hops .time, .hops .weight, .hops .alpha-acid {
@@ -550,20 +571,6 @@ article {
   padding: 0 8px;
 }
 
-.long {
-  display: none;
-}
-
-.row {
-  display: flex;
-  flex-direction: row;
-  align-items: stretch;
-}
-
-.wrap {
-  flex-wrap: wrap;
-}
-
 footer {
   padding: 12px;
 }
@@ -624,6 +631,7 @@ footer ul {
 
 .right {
   text-align: right;
+  justify-content: end;
 }
 
 .icon {
@@ -917,6 +925,10 @@ header {
     word-break: break-all;
   }
 
+  .long {
+    display: none;
+  }
+
   .toggle {
     display: none;
   }
@@ -1005,8 +1017,8 @@ header {
     display: none;
   }
 
-  .long {
-    display: block;
+  .fermentable .short {
+    display: none;
   }
 }
 

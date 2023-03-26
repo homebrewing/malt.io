@@ -55,6 +55,8 @@ export const lbOzToKg = (lb: number, oz: number): number =>
 // Liters <=> Gallons
 export const litersToGallons = (liters: number): number => liters * 0.264172;
 export const gallonsToLiters = (gallons: number): number => gallons / 0.264172;
+export const mlToOz = (ml: number): number => ml / 29.5735;
+export const ozToMl = (oz: number): number => oz * 29.5735;
 export const litersPerKgToQuartsPerLb = (litersPerKg: number): number =>
   litersPerKg * 0.479305709;
 export const quartsPerLbToLitersPerKg = (quartsPerLb: number): number =>
