@@ -537,11 +537,11 @@ const Format: Component = () => {
             </tr>
             <tr>
               <td>
-                <code>co2</code>
+                <code>co2.1</code>
               </td>
               <td>5 bits, value 0-63</td>
               <td>
-                Carbonation CO<sub>2</sub> in volumes.
+                Carbonation CO<sub>2</sub> in volumes to one decimal place.
               </td>
             </tr>
             <tr>
@@ -931,9 +931,15 @@ const Format: Component = () => {
               </td>
               <td>6 bits, value 0-63</td>
               <td>
-                Step temperature in degrees Celcius, shifted by 25&deg;C so that
-                it can represent a range of 25-88&deg;C. For example, a value of{" "}
-                <code>43</code> corresponds to <code>68</code>&deg; Celcius.
+                Step temperature enum in &deg;F. Fahrenheit is used because it
+                can represent any celcius temperature, but the inverse is not
+                true. One of 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105,
+                106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118,
+                119, 120, 121, 122, 123, 124, 125, 126, 127, 128, 129, 130, 142,
+                143, 144, 145, 146, 147, 148, 149, 150, 151, 152, 153, 154, 155,
+                156, 157, 158, 159, 160, 161, 162, 167, 168, 169, 170, 171, 212,
+                or other. If other, then a custom temperature will be written
+                later.
               </td>
             </tr>
             <tr>
@@ -950,7 +956,7 @@ const Format: Component = () => {
             </tr>
             <tr>
               <td>
-                <code>ratio</code>
+                <code>ratio.1</code>
               </td>
               <td>fixed-point</td>
               <td>
@@ -968,6 +974,14 @@ const Format: Component = () => {
                 other, which adds a <code>custom_ramp</code> field.
               </td>
             </tr>
+            <tr>
+              <td>
+                <code>custom_temp</code>
+              </td>
+              <td>uint</td>
+              <td>Temperature in &deg;F.</td>
+            </tr>
+            <tr></tr>
             <tr>
               <td>
                 <code>custom_duration</code>

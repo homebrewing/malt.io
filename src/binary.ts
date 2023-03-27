@@ -1,4 +1,5 @@
 import { Hop, MashStep, Misc, Recipe, Yeast } from "./brauhaus/types";
+import { cToF, fToC } from "./brauhaus/calculate";
 
 import { ByteBuf } from "bytebuf";
 import { createRecipe } from "./brauhaus/partials";
@@ -6,6 +7,26 @@ import { createRecipe } from "./brauhaus/partials";
 const gPerKg = 1000;
 const gPerOz = 28.3495;
 const gPerLb = 453.592;
+
+const mashTemps = [
+  // Acid  rests
+  95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110,
+  111, 112, 113,
+
+  // Protein rests
+  114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 124, 125, 126, 127, 128,
+  129, 130,
+
+  // Alpha/Beta saccharification rests
+  142, 143, 144, 145, 146, 147, 148, 149, 150, 151, 152, 153, 154, 155, 156,
+  157, 158, 159, 160, 161, 162,
+
+  // Mash out
+  167, 168, 169, 170, 171,
+
+  // Boiling additions
+  212,
+];
 
 export function encodeBinary(r: Recipe): ArrayBuffer {
   const data = new Uint8Array(4096);
@@ -251,12 +272,16 @@ export function encodeBinary(r: Recipe): ArrayBuffer {
 
       // 0b 000000 000 00000 00
       //    temp   dur ratio ramp
-      // temp 6 bits: 25-88C
+      // temp 6 bits: mashTemps enum or other (adds uint8)
       // dur 3 bits: 5, 10, 15, 20, 30, 45, 60, other (adds varint)
       // ratio 5 bits single fixed decimal: 1.6 - 4.7
       // ramp time 2 bits: 0, 15, 20, other (adds varint)
       let mask = 0;
-      mask |= (Math.round(ms.temperature) - 25) << 10;
+
+      const tempIndex = mashTemps.indexOf(Math.round(cToF(ms.temperature)));
+      if (tempIndex !== -1) mask |= tempIndex << 10;
+      else mask |= 0b111111_000_00000_00;
+
       switch (ms.duration) {
         case 5:
           break;
@@ -297,6 +322,10 @@ export function encodeBinary(r: Recipe): ArrayBuffer {
           customRampTime = ms.rampTime;
       }
       buf.writeUint16(mask);
+
+      if (tempIndex === -1) {
+        buf.writeUint8(Math.round(cToF(ms.temperature)));
+      }
 
       if (customDuration) {
         buf.writeVarUint(customDuration);
@@ -519,7 +548,8 @@ export function decodeBinary(data: Uint8Array): Recipe {
         rampTime: 0,
       };
 
-      ms.temperature = (mask >> 10) + 25;
+      if (mask >> 10 === 0b111111) ms.temperature = fToC(buf.readUint8());
+      else ms.temperature = fToC(mashTemps[mask >> 10]);
 
       const dur = [5, 10, 15, 20, 30, 45, 60, -1][
         (mask & 0b000000_111_00000_00) >> 7

@@ -89,7 +89,7 @@
 (draw-box "if co2 != 2.4 or has_fermentation_steps" {:span 16 :borders #{}})
 (next-row)
 (draw-column-headers)
-(vlqcolor "co2" 5 :fixed)
+(vlqcolor "co2.1" 5 :fixed)
 (draw-box "ferm_len" [{:span 3} :uint])
 (draw-gap "fermentation_steps")
 (draw-bottom)
