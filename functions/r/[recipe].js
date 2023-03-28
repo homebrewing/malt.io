@@ -14,6 +14,14 @@ export async function onRequest(context) {
 
   const recipe = load(context.params.recipe);
 
+  if (context.request.url.endsWith(".json")) {
+    return new Response(JSON.stringify(recipe), {
+      headers: {
+        "content-type": "application/json;charset=UTF-8",
+      },
+    });
+  }
+
   const ogtag = `
     <meta property="og:title" content="${recipe.name}" />
     <meta property="og:description" content="${recipe.description}" />
