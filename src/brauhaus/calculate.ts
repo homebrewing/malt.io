@@ -253,6 +253,28 @@ export function calculateFermentables(
     attenuation = 75;
   }
 
+  // Adjust attenuation for mash temp, if possible. From:
+  // http://www.woodlandbrew.com/2013/01/measured-mash-temperature-effects.html
+  // See also https://braukaiser.com/wiki/index.php/Understanding_Attenuation
+  let mashTemp = 0;
+  for (let step of recipe.mashSteps) {
+    // No support for step mashes for now, if a low saccharification temp is
+    // found then it'll just use that. Need to do some experiments at some
+    // point to determine the impact of two-part saccharification resting on
+    // attenuation as I can't find anything online about it.
+    if (step.temperature >= 60 && step.temperature <= 72) {
+      mashTemp = cToF(step.temperature);
+    }
+  }
+  if (mashTemp > 0 && (mashTemp < 145 || mashTemp > 151)) {
+    // Quadratic function generated from the tabular data at the link above.
+    const adjust = Math.min(
+      10,
+      0.0540504 * Math.pow(mashTemp, 2) - 15.9457 * mashTemp + 1175.94
+    );
+    attenuation -= adjust;
+  }
+
   const fg = og - ((og - 1.0) * attenuation) / 100.0;
   const abv = ((1.05 * (og - fg)) / fg / 0.79) * 100.0;
 
