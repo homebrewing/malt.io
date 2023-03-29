@@ -100,6 +100,9 @@ export type RecipeStats = {
   ogPlato: number;
   fgPlato: number;
   abv: number;
+  abvMap: {
+    [key: number]: number;
+  };
   calories: number;
 };
 

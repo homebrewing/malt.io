@@ -224,25 +224,6 @@ export function calculateFermentables(
 
   let fermentableGrams = 0.0;
 
-  for (let fermentable of recipe.fermentables) {
-    fermentableGrams += fermentable.grams;
-
-    const addition = getAddition(fermentable);
-    // console.log(`${fermentable.name} is ${addition} addition`);
-    const efficiency = {
-      mash: 75 / 100,
-      boil: 1.0,
-      late: 1.0,
-    }[addition];
-
-    // gu = parts per gallon * weight in pounds / gallons
-    const ppg = yieldToPpg(fermentable.percentYield);
-    const weightLb = kgToLb(fermentable.grams / 1000);
-    const gu = (ppg * weightLb) / litersToGallons(recipe.batchSize);
-    const gravity = (gu * efficiency) / 1000.0;
-    og += gravity;
-  }
-
   for (let yeast of recipe.yeasts) {
     if (yeast.attenuation > attenuation) {
       attenuation = yeast.attenuation;
@@ -275,6 +256,38 @@ export function calculateFermentables(
     attenuation -= adjust;
   }
 
+  const abvMap: { [key: number]: number } = {};
+
+  let i = 0;
+  for (let fermentable of recipe.fermentables) {
+    fermentableGrams += fermentable.grams;
+
+    const addition = getAddition(fermentable);
+    // console.log(`${fermentable.name} is ${addition} addition`);
+    const efficiency = {
+      mash: recipe.type === "extract" ? 0.25 : 0.75,
+      boil: 1.0,
+      late: 1.0,
+    }[addition];
+
+    abvMap[i] = efficiency;
+
+    // gu = parts per gallon * weight in pounds / gallons
+    const ppg = yieldToPpg(fermentable.percentYield);
+    const weightLb = kgToLb(fermentable.grams / 1000);
+    const gu = (ppg * weightLb) / litersToGallons(recipe.batchSize);
+    const gravity = (gu * efficiency) / 1000.0;
+    og += gravity;
+
+    // Calculate ABV contribution for each fermentable since we need to take
+    // efficiency into account.
+    const fog = 1.0 + gravity;
+    const ffg = fog - ((fog - 1.0) * attenuation) / 100.0;
+    abvMap[i] = ((1.05 * (fog - ffg)) / ffg / 0.79) * 100.0;
+
+    i++;
+  }
+
   const fg = og - ((og - 1.0) * attenuation) / 100.0;
   const abv = ((1.05 * (og - fg)) / fg / 0.79) * 100.0;
 
@@ -299,6 +312,7 @@ export function calculateFermentables(
     ogPlato,
     fgPlato,
     abv,
+    abvMap,
     calories,
   };
 }

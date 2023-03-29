@@ -678,10 +678,7 @@ const Editor: Component<{
                     </div>
                   </Show>
                   <div class="abv right break-small">
-                    {(
-                      stats().abv *
-                      (fermentable.grams / stats().fermentableGrams)
-                    ).toFixed(1)}
+                    {stats().abvMap[i()].toFixed(1)}
                     <span class="suffix">﹪</span>
                     <span class="suffix short">ABV</span>
                   </div>
