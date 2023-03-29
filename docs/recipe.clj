@@ -46,7 +46,7 @@
 (next-row)
 (draw-column-headers)
 (vlq "large_batch" 8)
-(vlq "boil - large_batch" 8)
+(vlq "boil" 8)
 (draw-box "end if" {:span 16 :borders #{}})
 (next-row)
 (draw-box "if serving_size == 0b111" {:span 16 :borders #{}})

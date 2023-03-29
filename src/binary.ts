@@ -72,8 +72,12 @@ export function encodeBinary(r: Recipe): ArrayBuffer {
   // 122 styles BJCP 2021, needs 7 bits
   // 0b 0          0000000
   //    size_small style
-  mask = r.style & 0b01111111;
-  if (r.batchSize < 32 && r.boilSize - r.batchSize < 8) {
+  mask = r.style & 0b0_1111111;
+  if (
+    r.batchSize < 32 &&
+    r.boilSize > r.batchSize &&
+    r.boilSize - r.batchSize < 8
+  ) {
     mask |= 0b10000000;
   }
   buf.writeUint8(mask);
@@ -81,14 +85,14 @@ export function encodeBinary(r: Recipe): ArrayBuffer {
   buf.writeVarString(r.name);
   buf.writeVarString(r.description);
 
-  if (r.batchSize < 32 && r.boilSize - r.batchSize < 8) {
+  if (mask & 0b1_0000000) {
     // 0b 00000 000
     //    batch (boil - batch diff)
     // batch vs boil will usually be about ~4L/1gal difference.
     buf.writeUint8((r.batchSize << 3) | (r.boilSize - r.batchSize));
   } else {
     buf.writeVarUint(r.batchSize);
-    buf.writeVarUint(r.boilSize - r.batchSize);
+    buf.writeVarUint(r.boilSize);
   }
 
   if (customServingSize) {
@@ -404,7 +408,7 @@ export function decodeBinary(data: Uint8Array): Recipe {
     r.boilSize = (size & 0b00000_111) + r.batchSize;
   } else {
     r.batchSize = buf.readVarUint();
-    r.boilSize = buf.readVarUint() + r.batchSize;
+    r.boilSize = buf.readVarUint();
   }
 
   const servingSize = (mask1 & 0b000_111_00) >> 2;
