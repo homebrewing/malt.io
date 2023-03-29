@@ -14,7 +14,7 @@ class ElementHandler {
 export async function onRequest(context) {
   let res = await context.next();
 
-  const recipe = load(context.params.recipe);
+  const recipe = load(context.params.recipe.split(".")[0]);
 
   if (context.request.url.endsWith(".json")) {
     return new Response(JSON.stringify(recipe), {
