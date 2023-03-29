@@ -1,4 +1,6 @@
+import { createBrauhaus } from "../../src/brauhaus/partials";
 import { load } from "../../src/crush";
+import { toBeerXML } from "../../src/brauhaus/xml";
 
 class ElementHandler {
   constructor(ogtag) {
@@ -18,6 +20,12 @@ export async function onRequest(context) {
     return new Response(JSON.stringify(recipe), {
       headers: {
         "content-type": "application/json;charset=UTF-8",
+      },
+    });
+  } else if (context.request.url.endsWith(".xml")) {
+    return new Response(toBeerXML(createBrauhaus({}), recipe), {
+      headers: {
+        "content-type": "application/xml;charset=UTF-8",
       },
     });
   }
