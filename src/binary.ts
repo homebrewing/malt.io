@@ -594,6 +594,7 @@ export function decodeBinary(data: Uint8Array): Recipe {
     const mask = buf.readUint8();
     r.carbonation = (mask >> 3) / 10;
 
+    r.fermentationSteps = [];
     for (let i = 0; i < (mask & 0b00000_111); i++) {
       const typeTemp = buf.readUint8();
       r.fermentationSteps.push({
