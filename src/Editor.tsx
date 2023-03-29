@@ -1630,7 +1630,7 @@ const Editor: Component<{
               params.encoded,
             join: true,
             container: "svg-viewbox",
-            padding: 0,
+            padding: 2,
           }).svg()}
         ></div>
       </div>

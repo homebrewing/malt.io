@@ -1,16 +1,16 @@
 import { A, Route, Routes } from "@solidjs/router";
 import { Component, Suspense } from "solid-js";
 
-import Format from "./Format";
+import { Home } from "./Home";
 import ccLicense from "./assets/cc-by-sa.svg";
 import { createBrauhaus } from "./brauhaus/partials";
 import { createLocalStore } from "./utils";
 import { lazy } from "solid-js";
 
-const editorPromise = import("./Editor");
-const Editor = lazy(() => editorPromise);
+const Editor = lazy(() => import("./Editor"));
 
 const About = lazy(() => import("./About"));
+const Format = lazy(() => import("./Format"));
 
 const App: Component = () => {
   const [bh, setBh] = createLocalStore("brauhaus", createBrauhaus({}));
@@ -71,12 +71,7 @@ const App: Component = () => {
       </nav>
       <Suspense fallback={<article>Loading...</article>}>
         <Routes>
-          <Route
-            path="/"
-            element={
-              <article style="padding: 12px">Nothing to see here</article>
-            }
-          />
+          <Route path="/" element={<Home bh={bh} />} />
           <Route
             path="/r/:encoded?/:dialog?"
             element={<Editor bh={bh} setBh={setBh} />}
@@ -162,7 +157,7 @@ const App: Component = () => {
         </div>
         <div class="row">
           <a href="https://github.com/homebrewing/malt.io">Open source</a>
-          &nbsp;made with ♥ &amp; 🍺 in Seattle
+          &nbsp;made with ❤ &amp; 🍺 in Seattle
         </div>
         <div class="row">
           {" "}
