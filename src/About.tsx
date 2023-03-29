@@ -161,10 +161,14 @@ const About: Component = () => {
           file CDN to deliver fast access speeds anywhere in the world.
           Everything else runs client-side in the browser using{" "}
           <a href="https://www.solidjs.com/">Solid.js</a> and{" "}
-          <a href="https://www.typescriptlang.org/">TypeScript</a>. The one
-          exception is some social sharing functionality provided by Cloudflare
-          edge functions to get pretty previews, which is only necessary because
-          we can't do it client-side.
+          <a href="https://www.typescriptlang.org/">TypeScript</a>. The only
+          exceptions are JSON/XML export and some social sharing functionality
+          provided by a{" "}
+          <a href="https://github.com/homebrewing/malt.io/blob/main/functions/r/%5Brecipe%5D.js">
+            tiny Cloudflare edge function
+          </a>{" "}
+          to get pretty previews, which is only necessary because you can't do
+          these client-side.
         </p>
         <p>
           The site's code is{" "}
@@ -173,19 +177,6 @@ const About: Component = () => {
           access. Anytime a new commit is made it auto-deploys worldwide within
           a few seconds.
         </p>
-        <h2>Links</h2>
-        <ul>
-          <li>
-            <a href="https://github.com/homebrewing/malt.io">
-              GitHub source code
-            </a>
-          </li>
-          <li>
-            <a href="https://github.com/homebrewing/malt.io/issues">
-              Report an issue
-            </a>
-          </li>
-        </ul>
       </div>
     </article>
   );

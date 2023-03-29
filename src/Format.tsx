@@ -3,6 +3,7 @@ import { fromUint8Array, toUint8Array } from "js-base64";
 
 import { A } from "@solidjs/router";
 import type { Component } from "solid-js";
+import QRCode from "qrcode-svg";
 import { Recipe } from "./brauhaus/types";
 import { dictionary } from "./dict";
 import { encodeBinary } from "./binary";
@@ -326,7 +327,10 @@ const Format: Component = () => {
               </td>
               <td>1 bit boolean</td>
               <td>
-                True if <code>batch &lt; 32 && (boil - batch) &lt; 8</code>
+                True if{" "}
+                <code>
+                  batch &lt; 32 && boil &gt; batch && (boil - batch) &lt; 8
+                </code>
               </td>
             </tr>
             <tr>
@@ -390,10 +394,10 @@ const Format: Component = () => {
             </tr>
             <tr>
               <td>
-                <code>boil - large_batch</code>
+                <code>boil</code>
               </td>
               <td>variable uint</td>
-              <td>The different between the boil and batch size in liters.</td>
+              <td>The boil size in liters</td>
             </tr>
             <tr>
               <td>
@@ -1104,6 +1108,24 @@ const Format: Component = () => {
         <p>
           <A href={"/r/" + fatTireB64}>{fatTireB64}</A>
         </p>
+        <p>
+          Here is how that same link looks as a QR code you can scan with your
+          phone. Remember, this QR code <strong>is</strong> the entire recipe!
+        </p>
+        <div
+          class="ingredient qr"
+          innerHTML={new QRCode({
+            content:
+              window.location.protocol +
+              "//" +
+              window.location.host +
+              "/r/" +
+              fatTireB64,
+            join: true,
+            container: "svg-viewbox",
+            padding: 2,
+          }).svg()}
+        ></div>
         <h3>Results</h3>
         <p>The following table shows the encoding and compression results:</p>
         <table>
