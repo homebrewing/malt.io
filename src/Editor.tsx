@@ -1,3 +1,4 @@
+import { Brauhaus, Recipe } from "./brauhaus/types";
 import {
   For,
   Show,
@@ -7,8 +8,9 @@ import {
   createSignal,
   on,
   onCleanup,
+  untrack,
 } from "solid-js";
-import { Outlet, useNavigate, useParams } from "@solidjs/router";
+import { Outlet, useLocation, useNavigate, useParams } from "@solidjs/router";
 import { SetStoreFunction, createStore } from "solid-js/store";
 import {
   cToF,
@@ -45,7 +47,6 @@ import {
 import { createLocalStore, removeIndex } from "./utils";
 import { crush, load } from "./crush";
 
-import { Brauhaus } from "./brauhaus/types";
 import type { Component } from "solid-js";
 import { Editable } from "./Editable";
 import { LbOz } from "./LbOz";
@@ -125,17 +126,14 @@ const Editor: Component<{
     }
   });
 
-  const [edit, setEdit] = createSignal(true);
-
-  createEffect(
-    on(
-      edit,
-      () => {
-        console.log(`Edit mode: ${edit()}`);
-      },
-      { defer: true }
-    )
+  const loc = useLocation();
+  const [edit, setEdit] = createSignal(
+    loc.pathname === "/r/" || window.location.hash === "#edit"
   );
+
+  createEffect(() => {
+    if (loc.pathname === "/r/") setEdit(true);
+  });
 
   const [recipe, setRecipeNow] = createURLStore(
     "/r/",

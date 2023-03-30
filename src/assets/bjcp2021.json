@@ -1053,11 +1053,11 @@
     "styles": [
       {
         "stats": {
-          "ABV": [0.1, 0.1],
-          "FG": [0.1, 0.1],
-          "IBUs": [0.1, 0.1],
-          "OG": [0.1, 0.1],
-          "SRM": [0.1, 0.1]
+          "ABV": [2, 15],
+          "FG": [0.992, 1.035],
+          "IBUs": [0, 120],
+          "OG": [1, 1.12],
+          "SRM": [0, 50]
         },
         "title": "Historical Beer: Kellerbier"
       },
@@ -1148,31 +1148,31 @@
     "styles": [
       {
         "stats": {
-          "ABV": [0.1, 0.1],
-          "FG": [0.1, 0.1],
-          "IBUs": [0.1, 0.1],
-          "OG": [0.1, 0.1],
-          "SRM": [0.1, 0.1]
+          "ABV": [2, 15],
+          "FG": [0.992, 1.035],
+          "IBUs": [0, 120],
+          "OG": [1, 1.12],
+          "SRM": [0, 50]
         },
         "title": "28A. Brett Beer"
       },
       {
         "stats": {
-          "ABV": [0.1, 0.1],
-          "FG": [0.1, 0.1],
-          "IBUs": [0.1, 0.1],
-          "OG": [0.1, 0.1],
-          "SRM": [0.1, 0.1]
+          "ABV": [2, 15],
+          "FG": [0.992, 1.035],
+          "IBUs": [0, 120],
+          "OG": [1, 1.12],
+          "SRM": [0, 50]
         },
         "title": "28B. Mixed-Fermentation Sour Beer"
       },
       {
         "stats": {
-          "ABV": [0.1, 0.1],
-          "FG": [0.1, 0.1],
-          "IBUs": [0.1, 0.1],
-          "OG": [0.1, 0.1],
-          "SRM": [0.1, 0.1]
+          "ABV": [2, 15],
+          "FG": [0.992, 1.035],
+          "IBUs": [0, 120],
+          "OG": [1, 1.12],
+          "SRM": [0, 50]
         },
         "title": "28C. Wild Specialty Beer"
       },
@@ -1193,31 +1193,31 @@
     "styles": [
       {
         "stats": {
-          "ABV": [0.1, 0.1],
-          "FG": [0.1, 0.1],
-          "IBUs": [0.1, 0.1],
-          "OG": [0.1, 0.1],
-          "SRM": [0.1, 0.1]
+          "ABV": [2, 15],
+          "FG": [0.992, 1.035],
+          "IBUs": [0, 120],
+          "OG": [1, 1.12],
+          "SRM": [0, 50]
         },
         "title": "29A. Fruit Beer"
       },
       {
         "stats": {
-          "ABV": [0.1, 0.1],
-          "FG": [0.1, 0.1],
-          "IBUs": [0.1, 0.1],
-          "OG": [0.1, 0.1],
-          "SRM": [0.1, 0.1]
+          "ABV": [2, 15],
+          "FG": [0.992, 1.035],
+          "IBUs": [0, 120],
+          "OG": [1, 1.12],
+          "SRM": [0, 50]
         },
         "title": "29B. Fruit and Spice Beer"
       },
       {
         "stats": {
-          "ABV": [0.1, 0.1],
-          "FG": [0.1, 0.1],
-          "IBUs": [0.1, 0.1],
-          "OG": [0.1, 0.1],
-          "SRM": [0.1, 0.1]
+          "ABV": [2, 15],
+          "FG": [0.992, 1.035],
+          "IBUs": [0, 120],
+          "OG": [1, 1.12],
+          "SRM": [0, 50]
         },
         "title": "29C. Specialty Fruit Beer"
       },
@@ -1238,41 +1238,41 @@
     "styles": [
       {
         "stats": {
-          "ABV": [0.1, 0.1],
-          "FG": [0.1, 0.1],
-          "IBUs": [0.1, 0.1],
-          "OG": [0.1, 0.1],
-          "SRM": [0.1, 0.1]
+          "ABV": [2, 15],
+          "FG": [0.992, 1.035],
+          "IBUs": [0, 120],
+          "OG": [1, 1.12],
+          "SRM": [0, 50]
         },
         "title": "30A. Spice, Herb, or Vegetable Beer"
       },
       {
         "stats": {
-          "ABV": [0.1, 0.1],
-          "FG": [0.1, 0.1],
-          "IBUs": [0.1, 0.1],
-          "OG": [0.1, 0.1],
-          "SRM": [0.1, 0.1]
+          "ABV": [2, 15],
+          "FG": [0.992, 1.035],
+          "IBUs": [0, 120],
+          "OG": [1, 1.12],
+          "SRM": [0, 50]
         },
         "title": "30B. Autumn Seasonal Beer"
       },
       {
         "stats": {
-          "ABV": [0.1, 0.1],
-          "FG": [0.1, 0.1],
-          "IBUs": [0.1, 0.1],
-          "OG": [0.1, 0.1],
-          "SRM": [0.1, 0.1]
+          "ABV": [6, 15],
+          "FG": [1.004, 1.035],
+          "IBUs": [0, 120],
+          "OG": [1.059, 1.12],
+          "SRM": [0, 50]
         },
         "title": "30C. Winter Seasonal Beer"
       },
       {
         "stats": {
-          "ABV": [0.1, 0.1],
-          "FG": [0.1, 0.1],
-          "IBUs": [0.1, 0.1],
-          "OG": [0.1, 0.1],
-          "SRM": [0.1, 0.1]
+          "ABV": [2, 15],
+          "FG": [0.992, 1.035],
+          "IBUs": [0, 120],
+          "OG": [1, 1.12],
+          "SRM": [0, 50]
         },
         "title": "30D. Specialty Spice Beer"
       }
@@ -1283,21 +1283,21 @@
     "styles": [
       {
         "stats": {
-          "ABV": [0.1, 0.1],
-          "FG": [0.1, 0.1],
-          "IBUs": [0.1, 0.1],
-          "OG": [0.1, 0.1],
-          "SRM": [0.1, 0.1]
+          "ABV": [2, 15],
+          "FG": [0.992, 1.035],
+          "IBUs": [0, 120],
+          "OG": [1, 1.12],
+          "SRM": [0, 50]
         },
         "title": "31A. Alternative Grain Beer"
       },
       {
         "stats": {
-          "ABV": [0.1, 0.1],
-          "FG": [0.1, 0.1],
-          "IBUs": [0.1, 0.1],
-          "OG": [0.1, 0.1],
-          "SRM": [0.1, 0.1]
+          "ABV": [2, 15],
+          "FG": [0.992, 1.035],
+          "IBUs": [0, 120],
+          "OG": [1, 1.12],
+          "SRM": [0, 50]
         },
         "title": "31B. Alternative Sugar Beer"
       }
@@ -1308,21 +1308,21 @@
     "styles": [
       {
         "stats": {
-          "ABV": [0.1, 0.1],
-          "FG": [0.1, 0.1],
-          "IBUs": [0.1, 0.1],
-          "OG": [0.1, 0.1],
-          "SRM": [0.1, 0.1]
+          "ABV": [2, 15],
+          "FG": [0.992, 1.035],
+          "IBUs": [0, 120],
+          "OG": [1, 1.12],
+          "SRM": [0, 50]
         },
         "title": "32A. Classic Style Smoked Beer"
       },
       {
         "stats": {
-          "ABV": [0.1, 0.1],
-          "FG": [0.1, 0.1],
-          "IBUs": [0.1, 0.1],
-          "OG": [0.1, 0.1],
-          "SRM": [0.1, 0.1]
+          "ABV": [2, 15],
+          "FG": [0.992, 1.035],
+          "IBUs": [0, 120],
+          "OG": [1, 1.12],
+          "SRM": [0, 50]
         },
         "title": "32B. Specialty Smoked Beer"
       }
@@ -1333,21 +1333,21 @@
     "styles": [
       {
         "stats": {
-          "ABV": "varies with base style, typically above-average",
-          "FG": "varies with base style",
-          "IBUs": "varies with base style",
-          "OG": "varies with base style, typically above-average",
-          "SRM": "varies with base style, often darker than the unadulterated base style"
+          "ABV": [2, 15],
+          "FG": [0.992, 1.035],
+          "IBUs": [0, 120],
+          "OG": [1, 1.12],
+          "SRM": [0, 50]
         },
         "title": "33A. Wood-Aged Beer"
       },
       {
         "stats": {
-          "ABV": "varies with base style, typically above-average",
-          "FG": "varies with base style",
-          "IBUs": "varies with base style",
-          "OG": "varies with base style, typically above-average",
-          "SRM": "varies with base style, often darker than the unadulterated base style"
+          "ABV": [2, 15],
+          "FG": [0.992, 1.035],
+          "IBUs": [0, 120],
+          "OG": [1, 1.12],
+          "SRM": [0, 50]
         },
         "title": "33B. Specialty Wood-Aged Beer"
       }
@@ -1358,31 +1358,31 @@
     "styles": [
       {
         "stats": {
-          "ABV": [0.1, 0.1],
-          "FG": [0.1, 0.1],
-          "IBUs": [0.1, 0.1],
-          "OG": [0.1, 0.1],
-          "SRM": [0.1, 0.1]
+          "ABV": [2, 15],
+          "FG": [0.992, 1.035],
+          "IBUs": [0, 120],
+          "OG": [1, 1.12],
+          "SRM": [0, 50]
         },
         "title": "34A. Commercial Specialty Beer"
       },
       {
         "stats": {
-          "ABV": [0.1, 0.1],
-          "FG": [0.1, 0.1],
-          "IBUs": [0.1, 0.1],
-          "OG": [0.1, 0.1],
-          "SRM": [0.1, 0.1]
+          "ABV": [2, 15],
+          "FG": [0.992, 1.035],
+          "IBUs": [0, 120],
+          "OG": [1, 1.12],
+          "SRM": [0, 50]
         },
         "title": "34B. Mixed-Style Beer"
       },
       {
         "stats": {
-          "ABV": [0.1, 0.1],
-          "FG": [0.1, 0.1],
-          "IBUs": [0.1, 0.1],
-          "OG": [0.1, 0.1],
-          "SRM": [0.1, 0.1]
+          "ABV": [2, 15],
+          "FG": [0.992, 1.035],
+          "IBUs": [0, 120],
+          "OG": [1, 1.12],
+          "SRM": [0, 50]
         },
         "title": "34C. Experimental Beer"
       }
