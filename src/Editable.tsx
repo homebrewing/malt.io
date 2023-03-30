@@ -1,9 +1,9 @@
-import { Component, JSX, Show } from "solid-js";
+import { JSX, ParentComponent, Show } from "solid-js";
 
-export const Editable: Component<{
+export const Editable: ParentComponent<{
   class?: string;
   show: boolean;
-  type: "text" | "number";
+  type: "text" | "number" | "select";
   value: number | string;
   oninput?: JSX.EventHandler<HTMLInputElement, Event>;
   onchange?: JSX.EventHandler<HTMLInputElement, Event>;
@@ -71,7 +71,7 @@ export const Editable: Component<{
     <Show
       when={props.show}
       fallback={
-        <span class={"value " + props.class}>
+        <span class={"value" + (props.class ? " " + props.class : "")}>
           <Show when={props.prefix}>
             <span class="prefix short">{props.prefix}</span>
           </Show>
@@ -88,17 +88,26 @@ export const Editable: Component<{
         data-prefix-short={props.prefixShort}
         data-suffix={props.suffix}
       >
-        <input
-          type={props.type}
-          value={props.value}
-          placeholder={props.placeholder}
-          oninput={props.oninput}
-          onchange={props.onchange}
-          onkeydown={onEnter}
-          step={props.step}
-          min={props.min}
-          max={props.max}
-        />
+        <Show
+          when={props.type !== "select"}
+          fallback={
+            <select value={props.value} oninput={props.oninput as any}>
+              {props.children}
+            </select>
+          }
+        >
+          <input
+            type={props.type}
+            value={props.value}
+            placeholder={props.placeholder}
+            oninput={props.oninput}
+            onchange={props.onchange}
+            onkeydown={onEnter}
+            step={props.step}
+            min={props.min}
+            max={props.max}
+          />
+        </Show>
       </div>
     </Show>
   );

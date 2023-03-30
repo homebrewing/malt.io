@@ -332,14 +332,16 @@ const Editor: Component<{
             </div>
             <div class="col">
               <label>Type</label>
-              <select
+              <Editable
+                show={edit()}
+                type="select"
                 value={recipe.type}
                 oninput={(e) => setRecipe("type", e.currentTarget.value)}
               >
                 <option>all grain</option>
                 <option>partial mash</option>
                 <option>extract</option>
-              </select>
+              </Editable>
             </div>
             <div class="batch col right">
               <label>Batch</label>
@@ -622,6 +624,7 @@ const Editor: Component<{
                     fallback={
                       <div class="srm right break-small">
                         <input
+                          disabled={!edit()}
                           class="color"
                           type="number"
                           min="0"
@@ -653,6 +656,7 @@ const Editor: Component<{
                   >
                     <div class="ebc right break-small">
                       <input
+                        disabled={!edit()}
                         class="color"
                         type="number"
                         min="0"
@@ -854,7 +858,9 @@ const Editor: Component<{
                     />
                   </div>
                   <div class="use">
-                    <select
+                    <Editable
+                      show={edit()}
+                      type="select"
                       value={hop.use}
                       oninput={(e) =>
                         setRecipe("hops", i(), "use", e.currentTarget.value)
@@ -864,7 +870,7 @@ const Editor: Component<{
                       <option>boil</option>
                       <option>aroma</option>
                       <option>dry hop</option>
-                    </select>
+                    </Editable>
                   </div>
                   <Show
                     when={props.bh.units.weight === "kg"}
@@ -919,7 +925,9 @@ const Editor: Component<{
                     />
                   </div>
                   <div class="form break-small">
-                    <select
+                    <Editable
+                      show={edit()}
+                      type="select"
                       value={hop.form}
                       oninput={(e) =>
                         setRecipe("hops", i(), "form", e.currentTarget.value)
@@ -928,7 +936,7 @@ const Editor: Component<{
                       <option>pellet</option>
                       <option>leaf</option>
                       <option>plug</option>
-                    </select>
+                    </Editable>
                   </div>
                   <div class="alpha-acid right break-small">
                     <Editable
@@ -1053,7 +1061,9 @@ const Editor: Component<{
                     />
                   </div>
                   <div class="use break-small">
-                    <select
+                    <Editable
+                      show={edit()}
+                      type="select"
                       value={misc.use}
                       oninput={(e) => {
                         setRecipe("miscs", i(), "use", e.currentTarget.value);
@@ -1065,7 +1075,7 @@ const Editor: Component<{
                       <option>primary</option>
                       <option>secondary</option>
                       <option>bottling</option>
-                    </select>
+                    </Editable>
                   </div>
                   <div class="amount right break-small">
                     <Editable
@@ -1083,7 +1093,9 @@ const Editor: Component<{
                     />
                   </div>
                   <div class="units break-small">
-                    <select
+                    <Editable
+                      show={edit()}
+                      type="select"
                       value={misc.units}
                       oninput={(e) => {
                         setRecipe("miscs", i(), "units", e.currentTarget.value);
@@ -1095,7 +1107,7 @@ const Editor: Component<{
                       <option>tsp</option>
                       <option>tbsp</option>
                       <option>mg/l</option>
-                    </select>
+                    </Editable>
                   </div>
                   <div class="name">
                     <Editable
@@ -1148,7 +1160,7 @@ const Editor: Component<{
               <div class="name">Name</div>
               <div class="type long">Type</div>
               <div class="form long">Form</div>
-              <div class="attenuation long">Attenuation</div>
+              <div class="attenuation right long">ATT</div>
               <Show when={edit()}>
                 <div class="delete"></div>
               </Show>
@@ -1176,7 +1188,9 @@ const Editor: Component<{
                     />
                   </div>
                   <div class="units">
-                    <select
+                    <Editable
+                      show={edit()}
+                      type="select"
                       value={yeast.units}
                       oninput={(e) =>
                         setRecipe("yeasts", i(), "units", e.currentTarget.value)
@@ -1185,7 +1199,7 @@ const Editor: Component<{
                       <option>g</option>
                       <option>ml</option>
                       <option>pkt</option>
-                    </select>
+                    </Editable>
                   </div>
                   <div class="name">
                     <Editable
@@ -1199,7 +1213,9 @@ const Editor: Component<{
                   </div>
                   <div class="type break-small">
                     {" "}
-                    <select
+                    <Editable
+                      show={edit()}
+                      type="select"
                       value={yeast.type}
                       oninput={(e) =>
                         setRecipe("yeasts", i(), "type", e.currentTarget.value)
@@ -1210,10 +1226,12 @@ const Editor: Component<{
                       <option>cider</option>
                       <option>wine</option>
                       <option>other</option>
-                    </select>
+                    </Editable>
                   </div>
                   <div class="form break-small">
-                    <select
+                    <Editable
+                      show={edit()}
+                      type="select"
                       value={yeast.form}
                       oninput={(e) =>
                         setRecipe("yeasts", i(), "form", e.currentTarget.value)
@@ -1221,9 +1239,9 @@ const Editor: Component<{
                     >
                       <option>liquid</option>
                       <option>dry</option>
-                    </select>
+                    </Editable>
                   </div>
-                  <div class="attenuation break-small">
+                  <div class="attenuation right break-small">
                     <Editable
                       show={edit()}
                       type="number"
@@ -1517,7 +1535,9 @@ const Editor: Component<{
               {(step, i) => (
                 <div class="row">
                   <div class="type grow">
-                    <select
+                    <Editable
+                      show={edit()}
+                      type="select"
                       value={step.type}
                       oninput={(e) =>
                         setRecipe(
@@ -1532,7 +1552,7 @@ const Editor: Component<{
                       <option>secondary</option>
                       <option>tertiary</option>
                       <option>aging</option>
-                    </select>
+                    </Editable>
                   </div>
                   <div class="time right grow">
                     <Editable
