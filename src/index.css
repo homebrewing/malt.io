@@ -422,6 +422,10 @@ a.plain {
   margin: 0;
 }
 
+.recipe-card svg {
+  pointer-events: none;
+}
+
 .batch, .boil {
   width: 48px;
 }
