@@ -188,6 +188,11 @@ input::-webkit-inner-spin-button {
   display: none;
 }
 
+input[type="search"] {
+  border-radius: 12px;
+  padding: 6px 12px;
+}
+
 .input {
   display: flex;
   flex-direction: row;
@@ -377,6 +382,10 @@ article {
   display: flex;
   flex-direction: row;
   align-items: stretch;
+}
+
+.row.center {
+  justify-content: center;
 }
 
 .wrap {
