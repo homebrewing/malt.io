@@ -422,7 +422,7 @@ a.plain {
   margin: 0;
 }
 
-.recipe-card svg {
+.recipe-card svg, svg.glass {
   pointer-events: none;
 }
 

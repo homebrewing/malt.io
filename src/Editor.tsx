@@ -855,6 +855,12 @@ const Editor: Component<{
                           parseInt(e.currentTarget.value)
                         )
                       }
+                      onchange={() => {
+                        setRecipe(
+                          "hops",
+                          [...recipe.hops].sort((a, b) => b.time - a.time)
+                        );
+                      }}
                     />
                   </div>
                   <div class="use">
@@ -1619,7 +1625,7 @@ const Editor: Component<{
             <span>
               Carbonation CO<sub>2</sub>{" "}
             </span>
-            <div style="width: 66px">
+            <div class="right" style="max-width: 66px">
               <Editable
                 show={edit()}
                 type="number"
