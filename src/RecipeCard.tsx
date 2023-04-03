@@ -10,6 +10,7 @@ import {
 
 import { A } from "@solidjs/router";
 import bjcp2021 from "./assets/bjcp2021.json?url";
+import { glassNames } from "./glassNames";
 import { glasses } from "./glasses";
 
 type StyleCategory = {

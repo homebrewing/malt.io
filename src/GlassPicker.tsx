@@ -1,5 +1,7 @@
 import { Component, For, createEffect, createSignal, onMount } from "solid-js";
-import { glasses, names } from "./glasses";
+
+import { glassNames } from "./glassNames";
+import { glasses } from "./glasses";
 
 export const GlassPicker: Component<{
   glass: string;
@@ -18,7 +20,7 @@ export const GlassPicker: Component<{
         </div>
         <div class="body">
           <div class="row gap wrap">
-            <For each={names}>
+            <For each={glassNames}>
               {(glass) => (
                 <div
                   class="item col"

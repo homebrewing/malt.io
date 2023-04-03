@@ -3,7 +3,7 @@ import { cToF, fToC } from "./brauhaus/calculate";
 
 import { ByteBuf } from "bytebuf";
 import { createRecipe } from "./brauhaus/partials";
-import { names as glassNames } from "./glasses";
+import { glassNames } from "./glassNames";
 
 const gPerKg = 1000;
 const gPerOz = 28.3495;
