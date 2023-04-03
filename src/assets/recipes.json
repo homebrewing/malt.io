@@ -1,0 +1,2087 @@
+[
+  {
+    "name": "Becks Pils Clone",
+    "description": "Becks, Bremen, Germany",
+    "type": "all grain",
+    "batchSize": 19,
+    "boilSize": 23,
+    "servingSizeMl": 330,
+    "style": 18,
+    "glass": "pilsner",
+    "fermentables": [
+      {
+        "percentYield": 80,
+        "grams": 3629,
+        "ebc": 3,
+        "name": "Pilsner Malt"
+      },
+      {
+        "percentYield": 69,
+        "grams": 340,
+        "ebc": 3,
+        "name": "Flaked Barley"
+      },
+      {
+        "percentYield": 75,
+        "grams": 170,
+        "ebc": 1,
+        "name": "CaraPils"
+      }
+    ],
+    "hops": [
+      {
+        "name": "Norther Brewer",
+        "grams": 14,
+        "aa": 8,
+        "use": "boil",
+        "form": "pellet",
+        "time": 60
+      },
+      {
+        "name": "Hersbrucker",
+        "grams": 14,
+        "aa": 4.5,
+        "use": "boil",
+        "form": "pellet",
+        "time": 30
+      },
+      {
+        "name": "Hersbrucker",
+        "grams": 14,
+        "aa": 4.5,
+        "use": "boil",
+        "form": "pellet",
+        "time": 5
+      }
+    ],
+    "miscs": [],
+    "yeasts": [
+      {
+        "name": "Wyeast 2042 Danish Lager",
+        "attenuation": 77,
+        "form": "liquid",
+        "units": "pkt",
+        "type": "ale",
+        "amount": 1
+      }
+    ],
+    "water": {
+      "ca": 0,
+      "mg": 0,
+      "na": 0,
+      "cl": 0,
+      "so4": 0,
+      "hco3": 0
+    },
+    "mashSteps": [
+      {
+        "name": "Saccharification",
+        "temperature": 65.55555555555556,
+        "duration": 60,
+        "waterGrainRatio": 3.1,
+        "rampTime": 0
+      }
+    ],
+    "fermentationSteps": [
+      {
+        "type": "primary",
+        "temperature": 10,
+        "duration": 14
+      }
+    ],
+    "carbonation": 2.4
+  },
+  {
+    "name": "Brrr Clone",
+    "description": "Widmer, Portland, OR",
+    "type": "all grain",
+    "batchSize": 19,
+    "boilSize": 25,
+    "servingSizeMl": 355,
+    "style": 112,
+    "glass": "pint",
+    "fermentables": [
+      {
+        "percentYield": 80,
+        "grams": 4309,
+        "ebc": 3,
+        "name": "Pale Ale Malt"
+      },
+      {
+        "percentYield": 75,
+        "grams": 907,
+        "ebc": 3,
+        "name": "CaraPils"
+      },
+      {
+        "percentYield": 80,
+        "grams": 340,
+        "ebc": 25,
+        "name": "Caramel 10L"
+      },
+      {
+        "percentYield": 75,
+        "grams": 340,
+        "ebc": 211,
+        "name": "Caramel 80L"
+      },
+      {
+        "percentYield": 75,
+        "grams": 85,
+        "ebc": 1119,
+        "name": "Dark Chocolate"
+      }
+    ],
+    "hops": [
+      {
+        "name": "Warrior",
+        "grams": 24,
+        "aa": 16,
+        "use": "boil",
+        "form": "pellet",
+        "time": 60
+      },
+      {
+        "name": "Eureka",
+        "grams": 28,
+        "aa": 18,
+        "use": "boil",
+        "form": "pellet",
+        "time": 0
+      },
+      {
+        "name": "Cascade",
+        "grams": 28,
+        "aa": 7,
+        "use": "boil",
+        "form": "pellet",
+        "time": 0
+      }
+    ],
+    "miscs": [],
+    "yeasts": [
+      {
+        "name": "Wyeast 1056 American Ale",
+        "attenuation": 77,
+        "form": "dry",
+        "units": "pkt",
+        "type": "ale",
+        "amount": 1
+      }
+    ],
+    "water": {
+      "ca": 0,
+      "mg": 0,
+      "na": 0,
+      "cl": 0,
+      "so4": 0,
+      "hco3": 0
+    },
+    "mashSteps": [
+      {
+        "name": "Saccharification",
+        "temperature": 65.55555555555556,
+        "duration": 60,
+        "waterGrainRatio": 3.1,
+        "rampTime": 0
+      }
+    ],
+    "fermentationSteps": [
+      {
+        "type": "primary",
+        "temperature": 20,
+        "duration": 14
+      }
+    ],
+    "carbonation": 2.4
+  },
+  {
+    "name": "Celebrator Clone",
+    "description": "Ayinger, Germany",
+    "type": "all grain",
+    "batchSize": 19,
+    "boilSize": 23,
+    "servingSizeMl": 355,
+    "style": 26,
+    "glass": "pilsner",
+    "fermentables": [
+      {
+        "percentYield": 80,
+        "grams": 4000,
+        "ebc": 3,
+        "name": "Pilsner"
+      },
+      {
+        "percentYield": 80,
+        "grams": 1950,
+        "ebc": 51,
+        "name": "Munich 20L"
+      },
+      {
+        "percentYield": 69,
+        "grams": 100,
+        "ebc": 1105,
+        "name": "Carafa II"
+      }
+    ],
+    "hops": [
+      {
+        "name": "Hallertau",
+        "grams": 34,
+        "aa": 4.5,
+        "use": "boil",
+        "form": "pellet",
+        "time": 90
+      }
+    ],
+    "miscs": [],
+    "yeasts": [
+      {
+        "name": "WLP833 German Bock Lager",
+        "attenuation": 74,
+        "form": "dry",
+        "units": "pkt",
+        "type": "lager",
+        "amount": 1
+      }
+    ],
+    "water": {
+      "ca": 0,
+      "mg": 0,
+      "na": 0,
+      "cl": 0,
+      "so4": 0,
+      "hco3": 0
+    },
+    "mashSteps": [
+      {
+        "name": "Protein Rest",
+        "temperature": 55,
+        "duration": 35,
+        "waterGrainRatio": 3,
+        "rampTime": 0
+      },
+      {
+        "name": "Saccharification",
+        "temperature": 68.88888888888889,
+        "duration": 45,
+        "waterGrainRatio": 3,
+        "rampTime": 0
+      },
+      {
+        "name": "Mash Out",
+        "temperature": 75,
+        "duration": 10,
+        "waterGrainRatio": 3,
+        "rampTime": 0
+      }
+    ],
+    "fermentationSteps": [
+      {
+        "type": "primary",
+        "temperature": 13,
+        "duration": 14
+      },
+      {
+        "type": "aging",
+        "temperature": 5,
+        "duration": 45
+      }
+    ],
+    "carbonation": 2.4
+  },
+  {
+    "name": "Chimay Red Clone",
+    "description": "Chimay, Belgium",
+    "type": "all grain",
+    "batchSize": 19,
+    "boilSize": 23,
+    "servingSizeMl": 330,
+    "style": 90,
+    "glass": "tulip",
+    "fermentables": [
+      {
+        "percentYield": 80,
+        "grams": 4082,
+        "ebc": 3,
+        "name": "Belgian Pilsner"
+      },
+      {
+        "percentYield": 69,
+        "grams": 567,
+        "ebc": 118,
+        "name": "Candi Syrup D-45"
+      },
+      {
+        "percentYield": 65,
+        "grams": 454,
+        "ebc": 14,
+        "name": "Cara 8"
+      },
+      {
+        "percentYield": 78,
+        "grams": 397,
+        "ebc": 3,
+        "name": "Torrified Wheat"
+      }
+    ],
+    "hops": [
+      {
+        "name": "Saaz",
+        "grams": 28,
+        "aa": 4,
+        "use": "boil",
+        "form": "pellet",
+        "time": 60
+      },
+      {
+        "name": "Hallertau",
+        "grams": 14,
+        "aa": 5,
+        "use": "boil",
+        "form": "pellet",
+        "time": 30
+      }
+    ],
+    "miscs": [],
+    "yeasts": [
+      {
+        "name": "Wyeast 1214 Belgian Abbey",
+        "attenuation": 80,
+        "form": "liquid",
+        "units": "pkt",
+        "type": "ale",
+        "amount": 1
+      }
+    ],
+    "water": {
+      "ca": 0,
+      "mg": 0,
+      "na": 0,
+      "cl": 0,
+      "so4": 0,
+      "hco3": 0
+    },
+    "mashSteps": [
+      {
+        "name": "Protease",
+        "temperature": 51.11111111111111,
+        "duration": 20,
+        "waterGrainRatio": 3.1,
+        "rampTime": 0
+      },
+      {
+        "name": "Saccharification",
+        "temperature": 64.44444444444444,
+        "duration": 60,
+        "waterGrainRatio": 3.1,
+        "rampTime": 0
+      }
+    ],
+    "fermentationSteps": [
+      {
+        "type": "primary",
+        "temperature": 22,
+        "duration": 14
+      }
+    ],
+    "carbonation": 2.4
+  },
+  {
+    "name": "Duvel Clone",
+    "description": "Duvel, Belgium",
+    "type": "all grain",
+    "batchSize": 19,
+    "boilSize": 23,
+    "servingSizeMl": 300,
+    "style": 88,
+    "glass": "tulip",
+    "fermentables": [
+      {
+        "percentYield": 80,
+        "grams": 5443,
+        "ebc": 3,
+        "name": "Belgian Pilsner"
+      },
+      {
+        "percentYield": 95,
+        "grams": 907,
+        "ebc": 1,
+        "name": "Clear Candi Syrup (late)"
+      }
+    ],
+    "hops": [
+      {
+        "name": "Styrian Goldings",
+        "grams": 43,
+        "aa": 4.5,
+        "use": "boil",
+        "form": "pellet",
+        "time": 60
+      },
+      {
+        "name": "Saaz",
+        "grams": 28,
+        "aa": 3,
+        "use": "boil",
+        "form": "pellet",
+        "time": 30
+      }
+    ],
+    "miscs": [],
+    "yeasts": [
+      {
+        "name": "Wyeast 1388 Belgian Strong",
+        "attenuation": 78,
+        "form": "liquid",
+        "units": "pkt",
+        "type": "ale",
+        "amount": 1
+      }
+    ],
+    "water": {
+      "ca": 0,
+      "mg": 0,
+      "na": 0,
+      "cl": 0,
+      "so4": 0,
+      "hco3": 0
+    },
+    "mashSteps": [
+      {
+        "name": "Saccharification",
+        "temperature": 63.33333333333333,
+        "duration": 60,
+        "waterGrainRatio": 3.1,
+        "rampTime": 0
+      },
+      {
+        "name": "Mash Out",
+        "temperature": 75.55555555555556,
+        "duration": 10,
+        "waterGrainRatio": 3.1,
+        "rampTime": 0
+      }
+    ],
+    "fermentationSteps": [
+      {
+        "type": "primary",
+        "temperature": 23,
+        "duration": 14
+      }
+    ],
+    "carbonation": 2.8
+  },
+  {
+    "name": "ESB Clone",
+    "description": "Redhook, Seattle, WA",
+    "type": "all grain",
+    "batchSize": 20,
+    "boilSize": 25,
+    "servingSizeMl": 355,
+    "style": 34,
+    "glass": "pint",
+    "fermentables": [
+      {
+        "percentYield": 80,
+        "grams": 4536,
+        "ebc": 3,
+        "name": "Pale 2-Row"
+      },
+      {
+        "percentYield": 71,
+        "grams": 454,
+        "ebc": 158,
+        "name": "Crystal 60L"
+      },
+      {
+        "percentYield": 73,
+        "grams": 113,
+        "ebc": 73,
+        "name": "Victory Malt"
+      }
+    ],
+    "hops": [
+      {
+        "name": "Willamette",
+        "grams": 28,
+        "aa": 5,
+        "use": "boil",
+        "form": "pellet",
+        "time": 60
+      },
+      {
+        "name": "Willamette",
+        "grams": 20,
+        "aa": 5,
+        "use": "boil",
+        "form": "pellet",
+        "time": 15
+      },
+      {
+        "name": "Willamette",
+        "grams": 43,
+        "aa": 5,
+        "use": "boil",
+        "form": "pellet",
+        "time": 2
+      }
+    ],
+    "miscs": [],
+    "yeasts": [
+      {
+        "name": "Wyeast 1056 American Ale",
+        "attenuation": 77,
+        "form": "dry",
+        "units": "pkt",
+        "type": "ale",
+        "amount": 1
+      }
+    ],
+    "water": {
+      "ca": 0,
+      "mg": 0,
+      "na": 0,
+      "cl": 0,
+      "so4": 0,
+      "hco3": 0
+    },
+    "mashSteps": [
+      {
+        "name": "Saccharification",
+        "temperature": 66.66666666666667,
+        "duration": 60,
+        "waterGrainRatio": 3,
+        "rampTime": 0
+      }
+    ],
+    "fermentationSteps": [
+      {
+        "type": "primary",
+        "temperature": 20,
+        "duration": 14
+      }
+    ],
+    "carbonation": 2.4
+  },
+  {
+    "name": "Fat Tire Clone",
+    "description": "New Belgium, Fort Collins, CO",
+    "type": "all grain",
+    "batchSize": 20,
+    "boilSize": 26,
+    "servingSizeMl": 355,
+    "style": 57,
+    "glass": "pint",
+    "fermentables": [
+      {
+        "percentYield": 80,
+        "grams": 4536,
+        "ebc": 8,
+        "name": "Pale Ale"
+      },
+      {
+        "percentYield": 80,
+        "grams": 454,
+        "ebc": 14,
+        "name": "Munich Light"
+      },
+      {
+        "percentYield": 72,
+        "grams": 227,
+        "ebc": 73,
+        "name": "Victory"
+      },
+      {
+        "percentYield": 74,
+        "grams": 173,
+        "ebc": 212,
+        "name": "Crystal 80L"
+      }
+    ],
+    "hops": [
+      {
+        "name": "Target",
+        "grams": 11,
+        "aa": 11,
+        "use": "boil",
+        "form": "pellet",
+        "time": 60
+      },
+      {
+        "name": "Willamette",
+        "grams": 14,
+        "aa": 5,
+        "use": "boil",
+        "form": "pellet",
+        "time": 10
+      },
+      {
+        "name": "East Kent Goldings",
+        "grams": 14,
+        "aa": 5,
+        "use": "aroma",
+        "form": "pellet",
+        "time": 0
+      }
+    ],
+    "miscs": [],
+    "yeasts": [
+      {
+        "name": "California Ale V Yeast WLP051",
+        "attenuation": 72,
+        "form": "dry",
+        "units": "pkt",
+        "type": "ale",
+        "amount": 1
+      }
+    ],
+    "water": {
+      "ca": 15,
+      "mg": 3,
+      "na": 8,
+      "cl": 12,
+      "so4": 3,
+      "hco3": 52
+    },
+    "mashSteps": [
+      {
+        "name": "Single Infusion",
+        "temperature": 67.77777777777777,
+        "duration": 40,
+        "waterGrainRatio": 3.1,
+        "rampTime": 0
+      },
+      {
+        "name": "Mash Out",
+        "temperature": 77.22222222222221,
+        "duration": 10,
+        "waterGrainRatio": 3.1,
+        "rampTime": 0
+      }
+    ],
+    "fermentationSteps": [
+      {
+        "type": "primary",
+        "temperature": 20,
+        "duration": 14
+      }
+    ],
+    "carbonation": 2.4
+  },
+  {
+    "name": "Guinness Extra Clone",
+    "description": "Guinness, Dublin, Ireland",
+    "type": "all grain",
+    "batchSize": 20,
+    "boilSize": 25,
+    "servingSizeMl": 355,
+    "style": 46,
+    "glass": "pint",
+    "fermentables": [
+      {
+        "percentYield": 80,
+        "grams": 4366,
+        "ebc": 3,
+        "name": "Pale Ale Malt"
+      },
+      {
+        "percentYield": 63,
+        "grams": 369,
+        "ebc": 1466,
+        "name": "Roasted Barley"
+      },
+      {
+        "percentYield": 73,
+        "grams": 113,
+        "ebc": 51,
+        "name": "Crystal"
+      },
+      {
+        "percentYield": 69,
+        "grams": 113,
+        "ebc": 3,
+        "name": "Flaked Barley"
+      },
+      {
+        "percentYield": 58,
+        "grams": 85,
+        "ebc": 6,
+        "name": "Acid Malt"
+      }
+    ],
+    "hops": [
+      {
+        "name": "Nugget",
+        "grams": 31,
+        "aa": 10,
+        "use": "boil",
+        "form": "pellet",
+        "time": 60
+      }
+    ],
+    "miscs": [],
+    "yeasts": [
+      {
+        "name": "Wyeast 1084 Irish Ale",
+        "attenuation": 75,
+        "form": "dry",
+        "units": "pkt",
+        "type": "ale",
+        "amount": 1
+      }
+    ],
+    "water": {
+      "ca": 0,
+      "mg": 0,
+      "na": 0,
+      "cl": 0,
+      "so4": 0,
+      "hco3": 0
+    },
+    "mashSteps": [
+      {
+        "name": "Saccharification",
+        "temperature": 65.55555555555556,
+        "duration": 60,
+        "waterGrainRatio": 3,
+        "rampTime": 0
+      }
+    ],
+    "fermentationSteps": [
+      {
+        "type": "primary",
+        "temperature": 20,
+        "duration": 14
+      }
+    ],
+    "carbonation": 2
+  },
+  {
+    "name": "Hefeweizen",
+    "description": "Paulaner, Munich, Germany",
+    "type": "all grain",
+    "batchSize": 19,
+    "boilSize": 23,
+    "servingSizeMl": 355,
+    "style": 29,
+    "glass": "weizen",
+    "fermentables": [
+      {
+        "percentYield": 75,
+        "grams": 1984,
+        "ebc": 3,
+        "name": "Wheat Malt"
+      },
+      {
+        "percentYield": 80,
+        "grams": 1984,
+        "ebc": 3,
+        "name": "Pilsner"
+      },
+      {
+        "percentYield": 80,
+        "grams": 170,
+        "ebc": 15,
+        "name": "Munich Malt"
+      },
+      {
+        "percentYield": 84,
+        "grams": 170,
+        "ebc": 17,
+        "name": "Dark Wheat Malt"
+      }
+    ],
+    "hops": [
+      {
+        "name": "Herkules",
+        "grams": 6,
+        "aa": 15,
+        "use": "boil",
+        "form": "pellet",
+        "time": 60
+      }
+    ],
+    "miscs": [],
+    "yeasts": [
+      {
+        "name": "Lalbrew Munich Classic",
+        "attenuation": 83,
+        "form": "dry",
+        "units": "pkt",
+        "type": "ale",
+        "amount": 1
+      }
+    ],
+    "water": {
+      "ca": 0,
+      "mg": 0,
+      "na": 0,
+      "cl": 0,
+      "so4": 0,
+      "hco3": 0
+    },
+    "mashSteps": [
+      {
+        "name": "Beta Glucan Rest",
+        "temperature": 43.333333333333336,
+        "duration": 20,
+        "waterGrainRatio": 3.1,
+        "rampTime": 0
+      },
+      {
+        "name": "Saccharification",
+        "temperature": 66.66666666666667,
+        "duration": 60,
+        "waterGrainRatio": 3.1,
+        "rampTime": 0
+      }
+    ],
+    "fermentationSteps": [
+      {
+        "type": "primary",
+        "temperature": 20,
+        "duration": 14
+      }
+    ],
+    "carbonation": 2.8
+  },
+  {
+    "name": "La Fin du Monde Clone",
+    "description": "Unibroue, Chambly, Canada",
+    "type": "all grain",
+    "batchSize": 19,
+    "boilSize": 23,
+    "servingSizeMl": 355,
+    "style": 91,
+    "glass": "tulip",
+    "fermentables": [
+      {
+        "percentYield": 80,
+        "grams": 4990,
+        "ebc": 3,
+        "name": "Pilsner"
+      },
+      {
+        "percentYield": 100,
+        "grams": 680,
+        "ebc": 1,
+        "name": "Sugar"
+      },
+      {
+        "percentYield": 82,
+        "grams": 680,
+        "ebc": 3,
+        "name": "Wheat Malt"
+      },
+      {
+        "percentYield": 71,
+        "grams": 113,
+        "ebc": 3,
+        "name": "CaraPils"
+      },
+      {
+        "percentYield": 80,
+        "grams": 57,
+        "ebc": 65,
+        "name": "Honey Malt"
+      },
+      {
+        "percentYield": 71,
+        "grams": 57,
+        "ebc": 99,
+        "name": "Aromatic Malt"
+      }
+    ],
+    "hops": [
+      {
+        "name": "Styrian Goldings",
+        "grams": 14,
+        "aa": 5.5,
+        "use": "boil",
+        "form": "pellet",
+        "time": 60
+      },
+      {
+        "name": "Hallertau Hersbrucker",
+        "grams": 43,
+        "aa": 4,
+        "use": "boil",
+        "form": "pellet",
+        "time": 15
+      }
+    ],
+    "miscs": [
+      {
+        "amount": 14,
+        "name": "Coriander",
+        "time": 5,
+        "use": "boil",
+        "units": "g"
+      },
+      {
+        "amount": 28,
+        "name": "Sweet Orange Peel",
+        "time": 5,
+        "use": "boil",
+        "units": "g"
+      },
+      {
+        "amount": 1,
+        "name": "Cinnamon",
+        "time": 5,
+        "use": "boil",
+        "units": "g"
+      }
+    ],
+    "yeasts": [
+      {
+        "name": "Wyeast 3864 Canadian/Belgian",
+        "attenuation": 80,
+        "form": "liquid",
+        "units": "pkt",
+        "type": "ale",
+        "amount": 1
+      }
+    ],
+    "water": {
+      "ca": 60,
+      "mg": 5,
+      "na": 10,
+      "cl": 95,
+      "so4": 55,
+      "hco3": 0
+    },
+    "mashSteps": [
+      {
+        "name": "Saccharification",
+        "temperature": 65.55555555555556,
+        "duration": 60,
+        "waterGrainRatio": 3.1,
+        "rampTime": 0
+      }
+    ],
+    "fermentationSteps": [
+      {
+        "type": "primary",
+        "temperature": 23,
+        "duration": 14
+      }
+    ],
+    "carbonation": 3
+  },
+  {
+    "name": "Newcastle Brown Clone",
+    "description": "Newcastle, England",
+    "type": "all grain",
+    "batchSize": 19,
+    "boilSize": 23,
+    "servingSizeMl": 355,
+    "style": 39,
+    "glass": "pint",
+    "fermentables": [
+      {
+        "percentYield": 80,
+        "grams": 3515,
+        "ebc": 3,
+        "name": "Pale Ale Malt"
+      },
+      {
+        "percentYield": 73,
+        "grams": 283,
+        "ebc": 145,
+        "name": "Crystal 55L"
+      },
+      {
+        "percentYield": 78,
+        "grams": 113,
+        "ebc": 3,
+        "name": "Torrified Wheat"
+      },
+      {
+        "percentYield": 73,
+        "grams": 28,
+        "ebc": 1132,
+        "name": "Chocolate Malt"
+      },
+      {
+        "percentYield": 69,
+        "grams": 28,
+        "ebc": 1599,
+        "name": "Black Malt"
+      }
+    ],
+    "hops": [
+      {
+        "name": "Kent Goldings",
+        "grams": 14,
+        "aa": 5,
+        "use": "boil",
+        "form": "pellet",
+        "time": 90
+      },
+      {
+        "name": "Kent Goldings",
+        "grams": 20,
+        "aa": 5,
+        "use": "boil",
+        "form": "pellet",
+        "time": 30
+      }
+    ],
+    "miscs": [],
+    "yeasts": [
+      {
+        "name": "Wyeast 1028 London Ale",
+        "attenuation": 77,
+        "form": "liquid",
+        "units": "pkt",
+        "type": "ale",
+        "amount": 1
+      }
+    ],
+    "water": {
+      "ca": 0,
+      "mg": 0,
+      "na": 0,
+      "cl": 0,
+      "so4": 0,
+      "hco3": 0
+    },
+    "mashSteps": [
+      {
+        "name": "Saccharification",
+        "temperature": 67.77777777777777,
+        "duration": 60,
+        "waterGrainRatio": 3.1,
+        "rampTime": 0
+      }
+    ],
+    "fermentationSteps": [
+      {
+        "type": "primary",
+        "temperature": 20,
+        "duration": 14
+      }
+    ],
+    "carbonation": 2.4
+  },
+  {
+    "name": "Oaked Sour Pale",
+    "description": "Small batch quick sour",
+    "type": "all grain",
+    "batchSize": 4,
+    "boilSize": 6,
+    "servingSizeMl": 355,
+    "style": 86,
+    "glass": "pilsner",
+    "fermentables": [
+      {
+        "percentYield": 80,
+        "grams": 907,
+        "ebc": 3,
+        "name": "Pislner"
+      },
+      {
+        "percentYield": 80,
+        "grams": 113,
+        "ebc": 6,
+        "name": "Vienna"
+      },
+      {
+        "percentYield": 78,
+        "grams": 57,
+        "ebc": 30,
+        "name": "Red X"
+      },
+      {
+        "percentYield": 78,
+        "grams": 57,
+        "ebc": 3,
+        "name": "Wheat"
+      }
+    ],
+    "hops": [
+      {
+        "name": "Saaz",
+        "grams": 6,
+        "aa": 3.5,
+        "use": "boil",
+        "form": "pellet",
+        "time": 60
+      },
+      {
+        "name": "Saaz",
+        "grams": 6,
+        "aa": 3.5,
+        "use": "boil",
+        "form": "pellet",
+        "time": 10
+      }
+    ],
+    "miscs": [
+      {
+        "amount": 20,
+        "name": "Medium Oak Cubes",
+        "time": 1,
+        "use": "boil",
+        "units": "g"
+      }
+    ],
+    "yeasts": [
+      {
+        "name": "Sourvisiae",
+        "attenuation": 80,
+        "form": "dry",
+        "units": "pkt",
+        "type": "ale",
+        "amount": 2
+      },
+      {
+        "name": "Lalbrew Abbaye",
+        "attenuation": 80,
+        "form": "dry",
+        "units": "pkt",
+        "type": "ale",
+        "amount": 2
+      }
+    ],
+    "water": {
+      "ca": 0,
+      "mg": 0,
+      "na": 0,
+      "cl": 0,
+      "so4": 0,
+      "hco3": 0
+    },
+    "mashSteps": [
+      {
+        "name": "Saccharification",
+        "temperature": 67.77777777777777,
+        "duration": 60,
+        "waterGrainRatio": 3.1,
+        "rampTime": 0
+      }
+    ],
+    "fermentationSteps": [
+      {
+        "type": "primary",
+        "temperature": 20,
+        "duration": 14
+      }
+    ],
+    "carbonation": 2.4
+  },
+  {
+    "name": "Old Rasputin Clone",
+    "description": "North Coast, Fort Bragg, CA",
+    "type": "all grain",
+    "batchSize": 19,
+    "boilSize": 23,
+    "servingSizeMl": 296,
+    "style": 62,
+    "glass": "pilsner",
+    "fermentables": [
+      {
+        "percentYield": 80,
+        "grams": 5897,
+        "ebc": 3,
+        "name": "Pale 2-Row"
+      },
+      {
+        "percentYield": 69,
+        "grams": 454,
+        "ebc": 318,
+        "name": "Crystal 120L"
+      },
+      {
+        "percentYield": 73,
+        "grams": 397,
+        "ebc": 91,
+        "name": "Carastan"
+      },
+      {
+        "percentYield": 73,
+        "grams": 227,
+        "ebc": 1119,
+        "name": "Chocolate Malt"
+      },
+      {
+        "percentYield": 69,
+        "grams": 227,
+        "ebc": 171,
+        "name": "Brown Malt"
+      },
+      {
+        "percentYield": 63,
+        "grams": 113,
+        "ebc": 1466,
+        "name": "Roast Barley"
+      }
+    ],
+    "hops": [
+      {
+        "name": "Cluster",
+        "grams": 85,
+        "aa": 7,
+        "use": "boil",
+        "form": "pellet",
+        "time": 60
+      },
+      {
+        "name": "Northern Brewer",
+        "grams": 28,
+        "aa": 9,
+        "use": "boil",
+        "form": "pellet",
+        "time": 2
+      },
+      {
+        "name": "Centennial",
+        "grams": 28,
+        "aa": 10,
+        "use": "boil",
+        "form": "pellet",
+        "time": 2
+      }
+    ],
+    "miscs": [],
+    "yeasts": [
+      {
+        "name": "Safale US-05",
+        "attenuation": 80,
+        "form": "dry",
+        "units": "pkt",
+        "type": "ale",
+        "amount": 1
+      }
+    ],
+    "water": {
+      "ca": 0,
+      "mg": 0,
+      "na": 0,
+      "cl": 0,
+      "so4": 0,
+      "hco3": 0
+    },
+    "mashSteps": [
+      {
+        "name": "Saccharification",
+        "temperature": 66.66666666666667,
+        "duration": 60,
+        "waterGrainRatio": 3.1,
+        "rampTime": 0
+      }
+    ],
+    "fermentationSteps": [
+      {
+        "type": "primary",
+        "temperature": 20,
+        "duration": 14
+      }
+    ],
+    "carbonation": 2.4
+  },
+  {
+    "name": "Pale Ale Clone",
+    "description": "Sierra Nevada, Chico, CA",
+    "type": "all grain",
+    "batchSize": 20,
+    "boilSize": 25,
+    "servingSizeMl": 355,
+    "style": 56,
+    "glass": "pint",
+    "fermentables": [
+      {
+        "percentYield": 80,
+        "grams": 4309,
+        "ebc": 3,
+        "name": "Pale 2-Row"
+      },
+      {
+        "percentYield": 73,
+        "grams": 340,
+        "ebc": 158,
+        "name": "Caramel 60L"
+      }
+    ],
+    "hops": [
+      {
+        "name": "Cascade",
+        "grams": 14,
+        "aa": 5,
+        "use": "boil",
+        "form": "leaf",
+        "time": 90
+      },
+      {
+        "name": "Cascade",
+        "grams": 21,
+        "aa": 5,
+        "use": "boil",
+        "form": "leaf",
+        "time": 60
+      },
+      {
+        "name": "Cascade",
+        "grams": 34,
+        "aa": 5,
+        "use": "boil",
+        "form": "leaf",
+        "time": 30
+      },
+      {
+        "name": "Cascade",
+        "grams": 57,
+        "aa": 5,
+        "use": "boil",
+        "form": "leaf",
+        "time": 0
+      }
+    ],
+    "miscs": [],
+    "yeasts": [
+      {
+        "name": "White Labs WLP001",
+        "attenuation": 82,
+        "form": "liquid",
+        "units": "pkt",
+        "type": "ale",
+        "amount": 1
+      }
+    ],
+    "water": {
+      "ca": 0,
+      "mg": 0,
+      "na": 0,
+      "cl": 0,
+      "so4": 0,
+      "hco3": 0
+    },
+    "mashSteps": [
+      {
+        "name": "Saccharification",
+        "temperature": 68.33333333333333,
+        "duration": 60,
+        "waterGrainRatio": 3.1,
+        "rampTime": 0
+      },
+      {
+        "name": "Mash out",
+        "temperature": 76.66666666666667,
+        "duration": 5,
+        "waterGrainRatio": 3.1,
+        "rampTime": 0
+      }
+    ],
+    "fermentationSteps": [
+      {
+        "type": "primary",
+        "temperature": 20,
+        "duration": 14
+      }
+    ],
+    "carbonation": 2.4
+  },
+  {
+    "name": "Pilsner Urquell Clone",
+    "description": "Plzeň, Czech Republic",
+    "type": "all grain",
+    "batchSize": 19,
+    "boilSize": 23,
+    "servingSizeMl": 355,
+    "style": 9,
+    "glass": "pilsner",
+    "fermentables": [
+      {
+        "percentYield": 80,
+        "grams": 3629,
+        "ebc": 3,
+        "name": "Pilsner Malt"
+      },
+      {
+        "percentYield": 75,
+        "grams": 113,
+        "ebc": 9,
+        "name": "Vienna Malt"
+      },
+      {
+        "percentYield": 80,
+        "grams": 113,
+        "ebc": 15,
+        "name": "Munich Malt"
+      }
+    ],
+    "hops": [
+      {
+        "name": "Saaz",
+        "grams": 43,
+        "aa": 3.5,
+        "use": "boil",
+        "form": "pellet",
+        "time": 60
+      },
+      {
+        "name": "Saaz",
+        "grams": 28,
+        "aa": 3.5,
+        "use": "boil",
+        "form": "pellet",
+        "time": 20
+      },
+      {
+        "name": "Saaz",
+        "grams": 28,
+        "aa": 3.5,
+        "use": "boil",
+        "form": "pellet",
+        "time": 5
+      }
+    ],
+    "miscs": [],
+    "yeasts": [
+      {
+        "name": "Wyeast 2001 Urquell Lager",
+        "attenuation": 73,
+        "form": "liquid",
+        "units": "pkt",
+        "type": "lager",
+        "amount": 1
+      }
+    ],
+    "water": {
+      "ca": 0,
+      "mg": 0,
+      "na": 0,
+      "cl": 0,
+      "so4": 0,
+      "hco3": 0
+    },
+    "mashSteps": [
+      {
+        "name": "Saccharification",
+        "temperature": 66.66666666666667,
+        "duration": 60,
+        "waterGrainRatio": 3.1,
+        "rampTime": 0
+      }
+    ],
+    "fermentationSteps": [
+      {
+        "type": "primary",
+        "temperature": 10,
+        "duration": 14
+      }
+    ],
+    "carbonation": 2.5
+  },
+  {
+    "name": "Roggenbier",
+    "description": "Rye ale from Bavaria",
+    "type": "all grain",
+    "batchSize": 20,
+    "boilSize": 25,
+    "servingSizeMl": 500,
+    "style": 100,
+    "glass": "weizen",
+    "fermentables": [
+      {
+        "percentYield": 80,
+        "grams": 2495,
+        "ebc": 6,
+        "name": "Rye Malt"
+      },
+      {
+        "percentYield": 80,
+        "grams": 1814,
+        "ebc": 3,
+        "name": "Pilsner"
+      },
+      {
+        "percentYield": 65,
+        "grams": 170,
+        "ebc": 638,
+        "name": "Chocolate Rye"
+      }
+    ],
+    "hops": [
+      {
+        "name": "Hallertau",
+        "grams": 17,
+        "aa": 4.5,
+        "use": "boil",
+        "form": "pellet",
+        "time": 60
+      },
+      {
+        "name": "Hallertau",
+        "grams": 28,
+        "aa": 4.5,
+        "use": "boil",
+        "form": "pellet",
+        "time": 5
+      }
+    ],
+    "miscs": [],
+    "yeasts": [
+      {
+        "name": "Lalbrew Munich Classic",
+        "attenuation": 82,
+        "form": "dry",
+        "units": "pkt",
+        "type": "ale",
+        "amount": 1
+      }
+    ],
+    "water": {
+      "ca": 0,
+      "mg": 0,
+      "na": 0,
+      "cl": 0,
+      "so4": 0,
+      "hco3": 0
+    },
+    "mashSteps": [
+      {
+        "name": "Beta Glucan / Protein Rest",
+        "temperature": 44.44444444444444,
+        "duration": 20,
+        "waterGrainRatio": 3.1,
+        "rampTime": 0
+      },
+      {
+        "name": "Saccharification",
+        "temperature": 67.22222222222221,
+        "duration": 60,
+        "waterGrainRatio": 3.1,
+        "rampTime": 0
+      }
+    ],
+    "fermentationSteps": [
+      {
+        "type": "primary",
+        "temperature": 20,
+        "duration": 14
+      }
+    ],
+    "carbonation": 2.6
+  },
+  {
+    "name": "Space Dust Clone",
+    "description": "Elysian, Seattle, WA",
+    "type": "all grain",
+    "batchSize": 21,
+    "boilSize": 25,
+    "servingSizeMl": 355,
+    "style": 72,
+    "glass": "pint",
+    "fermentables": [
+      {
+        "percentYield": 80,
+        "grams": 5897,
+        "ebc": 3,
+        "name": "Pale Ale Malt"
+      },
+      {
+        "percentYield": 75,
+        "grams": 907,
+        "ebc": 38,
+        "name": "Caramel/Crystal 15L"
+      },
+      {
+        "percentYield": 71,
+        "grams": 283,
+        "ebc": 3,
+        "name": "CaraPils"
+      }
+    ],
+    "hops": [
+      {
+        "name": "Chinook",
+        "grams": 28,
+        "aa": 13,
+        "use": "boil",
+        "form": "pellet",
+        "time": 60
+      },
+      {
+        "name": "Citra",
+        "grams": 43,
+        "aa": 11,
+        "use": "boil",
+        "form": "pellet",
+        "time": 10
+      },
+      {
+        "name": "Amarillo",
+        "grams": 43,
+        "aa": 8,
+        "use": "boil",
+        "form": "pellet",
+        "time": 10
+      },
+      {
+        "name": "Amarillo",
+        "grams": 28,
+        "aa": 8,
+        "use": "aroma",
+        "form": "pellet",
+        "time": 7
+      },
+      {
+        "name": "Citra",
+        "grams": 28,
+        "aa": 11,
+        "use": "aroma",
+        "form": "pellet",
+        "time": 7
+      }
+    ],
+    "miscs": [],
+    "yeasts": [
+      {
+        "name": "Safale US-05",
+        "attenuation": 81,
+        "form": "dry",
+        "units": "pkt",
+        "type": "ale",
+        "amount": 1
+      }
+    ],
+    "water": {
+      "ca": 0,
+      "mg": 0,
+      "na": 0,
+      "cl": 0,
+      "so4": 0,
+      "hco3": 0
+    },
+    "mashSteps": [
+      {
+        "name": "Saccharification",
+        "temperature": 65.55555555555556,
+        "duration": 60,
+        "waterGrainRatio": 3.1,
+        "rampTime": 0
+      }
+    ],
+    "fermentationSteps": [
+      {
+        "type": "primary",
+        "temperature": 20,
+        "duration": 14
+      }
+    ],
+    "carbonation": 2.2
+  },
+  {
+    "name": "Weissbier Dunkel Clone",
+    "description": "Benediktiner, Ettal, Germany",
+    "type": "all grain",
+    "batchSize": 19,
+    "boilSize": 23,
+    "servingSizeMl": 355,
+    "style": 30,
+    "glass": "weizen",
+    "fermentables": [
+      {
+        "percentYield": 80,
+        "grams": 2722,
+        "ebc": 3,
+        "name": "Wheat Malt"
+      },
+      {
+        "percentYield": 80,
+        "grams": 1361,
+        "ebc": 25,
+        "name": "Dark Munich Malt"
+      },
+      {
+        "percentYield": 73,
+        "grams": 227,
+        "ebc": 150,
+        "name": "CaraMunich"
+      },
+      {
+        "percentYield": 65,
+        "grams": 57,
+        "ebc": 1132,
+        "name": "Carafa Special"
+      }
+    ],
+    "hops": [
+      {
+        "name": "Hallertau",
+        "grams": 20,
+        "aa": 4,
+        "use": "boil",
+        "form": "pellet",
+        "time": 60
+      }
+    ],
+    "miscs": [],
+    "yeasts": [
+      {
+        "name": "Lalbrew Munich Classic",
+        "attenuation": 80,
+        "form": "dry",
+        "units": "pkt",
+        "type": "ale",
+        "amount": 1
+      }
+    ],
+    "water": {
+      "ca": 0,
+      "mg": 0,
+      "na": 0,
+      "cl": 0,
+      "so4": 0,
+      "hco3": 0
+    },
+    "mashSteps": [
+      {
+        "name": "Saccharification",
+        "temperature": 67.77777777777777,
+        "duration": 60,
+        "waterGrainRatio": 3.1,
+        "rampTime": 0
+      }
+    ],
+    "fermentationSteps": [
+      {
+        "type": "primary",
+        "temperature": 20,
+        "duration": 14
+      }
+    ],
+    "carbonation": 2.4
+  },
+  {
+    "name": "White House Honey Ale",
+    "description": "Washington DC, 2012",
+    "type": "extract",
+    "batchSize": 19,
+    "boilSize": 11,
+    "servingSizeMl": 355,
+    "style": 0,
+    "glass": "pint",
+    "fermentables": [
+      {
+        "percentYield": 75,
+        "grams": 3005,
+        "ebc": 9,
+        "name": "Light LME"
+      },
+      {
+        "percentYield": 75,
+        "grams": 454,
+        "ebc": 1,
+        "name": "Honey (late)"
+      },
+      {
+        "percentYield": 91,
+        "grams": 454,
+        "ebc": 9,
+        "name": "Light DME"
+      },
+      {
+        "percentYield": 80,
+        "grams": 340,
+        "ebc": 65,
+        "name": "Amber Crystal Malt"
+      },
+      {
+        "percentYield": 69,
+        "grams": 227,
+        "ebc": 59,
+        "name": "Biscuit Malt"
+      }
+    ],
+    "hops": [
+      {
+        "name": "Kent Goldings",
+        "grams": 43,
+        "aa": 5,
+        "use": "boil",
+        "form": "pellet",
+        "time": 45
+      },
+      {
+        "name": "Fuggles",
+        "grams": 43,
+        "aa": 4.5,
+        "use": "boil",
+        "form": "pellet",
+        "time": 1
+      }
+    ],
+    "miscs": [
+      {
+        "amount": 2,
+        "name": "Gypsum",
+        "time": 45,
+        "use": "boil",
+        "units": "tsp"
+      }
+    ],
+    "yeasts": [
+      {
+        "name": "Windsor dry ale",
+        "attenuation": 72,
+        "form": "dry",
+        "units": "pkt",
+        "type": "ale",
+        "amount": 1
+      }
+    ],
+    "water": {
+      "ca": 0,
+      "mg": 0,
+      "na": 0,
+      "cl": 0,
+      "so4": 0,
+      "hco3": 0
+    },
+    "mashSteps": [],
+    "fermentationSteps": [
+      {
+        "type": "primary",
+        "temperature": 21,
+        "duration": 7
+      },
+      {
+        "type": "secondary",
+        "temperature": 21,
+        "duration": 14
+      }
+    ],
+    "carbonation": 2
+  },
+  {
+    "name": "White House Honey Porter",
+    "description": "Washington DC, 2012",
+    "type": "extract",
+    "batchSize": 19,
+    "boilSize": 11,
+    "servingSizeMl": 355,
+    "style": 60,
+    "glass": "pint",
+    "fermentables": [
+      {
+        "percentYield": 75,
+        "grams": 3005,
+        "ebc": 9,
+        "name": "Light LME"
+      },
+      {
+        "percentYield": 75,
+        "grams": 454,
+        "ebc": 51,
+        "name": "Crystal 20L"
+      },
+      {
+        "percentYield": 75,
+        "grams": 454,
+        "ebc": 1,
+        "name": "Honey (late)"
+      },
+      {
+        "percentYield": 80,
+        "grams": 340,
+        "ebc": 14,
+        "name": "Munich Malt"
+      },
+      {
+        "percentYield": 60,
+        "grams": 170,
+        "ebc": 1332,
+        "name": "Black Malt"
+      },
+      {
+        "percentYield": 63,
+        "grams": 85,
+        "ebc": 932,
+        "name": "Chocolate Malt"
+      }
+    ],
+    "hops": [
+      {
+        "name": "Kent Goldings",
+        "grams": 28,
+        "aa": 5,
+        "use": "boil",
+        "form": "pellet",
+        "time": 45
+      },
+      {
+        "name": "Kent Goldings",
+        "grams": 28,
+        "aa": 5,
+        "use": "boil",
+        "form": "pellet",
+        "time": 30
+      },
+      {
+        "name": "Hallertau",
+        "grams": 14,
+        "aa": 4,
+        "use": "boil",
+        "form": "pellet",
+        "time": 0
+      }
+    ],
+    "miscs": [],
+    "yeasts": [
+      {
+        "name": "Nottingham",
+        "attenuation": 78,
+        "form": "dry",
+        "units": "pkt",
+        "type": "ale",
+        "amount": 1
+      }
+    ],
+    "water": {
+      "ca": 0,
+      "mg": 0,
+      "na": 0,
+      "cl": 0,
+      "so4": 0,
+      "hco3": 0
+    },
+    "mashSteps": [],
+    "fermentationSteps": [
+      {
+        "type": "primary",
+        "temperature": 20,
+        "duration": 4
+      },
+      {
+        "type": "secondary",
+        "temperature": 20,
+        "duration": 7
+      }
+    ],
+    "carbonation": 2
+  },
+  {
+    "name": "Witbier Clone",
+    "description": "Hoegaarden, Belgium",
+    "type": "all grain",
+    "batchSize": 19,
+    "boilSize": 23,
+    "servingSizeMl": 355,
+    "style": 83,
+    "glass": "jar",
+    "fermentables": [
+      {
+        "percentYield": 80,
+        "grams": 2041,
+        "ebc": 3,
+        "name": "Pilsner Malt"
+      },
+      {
+        "percentYield": 73,
+        "grams": 2041,
+        "ebc": 3,
+        "name": "Flaked Wheat"
+      }
+    ],
+    "hops": [
+      {
+        "name": "Nugget",
+        "grams": 5,
+        "aa": 12,
+        "use": "boil",
+        "form": "leaf",
+        "time": 75
+      },
+      {
+        "name": "Styrian Goldings",
+        "grams": 7,
+        "aa": 5,
+        "use": "boil",
+        "form": "pellet",
+        "time": 15
+      },
+      {
+        "name": "Czech Saaz",
+        "grams": 7,
+        "aa": 4.5,
+        "use": "boil",
+        "form": "leaf",
+        "time": 15
+      }
+    ],
+    "miscs": [
+      {
+        "amount": 14,
+        "name": "Coriander",
+        "time": 5,
+        "use": "boil",
+        "units": "g"
+      },
+      {
+        "amount": 7,
+        "name": "Bitter Orange Peel",
+        "time": 5,
+        "use": "boil",
+        "units": "g"
+      },
+      {
+        "amount": 14,
+        "name": "Coriander",
+        "time": 14,
+        "use": "boil",
+        "units": "g"
+      }
+    ],
+    "yeasts": [
+      {
+        "name": "Wyeast 3944 Belgian Witbier",
+        "attenuation": 76,
+        "form": "liquid",
+        "units": "pkt",
+        "type": "ale",
+        "amount": 1
+      }
+    ],
+    "water": {
+      "ca": 0,
+      "mg": 0,
+      "na": 0,
+      "cl": 0,
+      "so4": 0,
+      "hco3": 0
+    },
+    "mashSteps": [
+      {
+        "name": "Protein Rest",
+        "temperature": 50,
+        "duration": 30,
+        "waterGrainRatio": 3.1,
+        "rampTime": 0
+      },
+      {
+        "name": "Saccharification",
+        "temperature": 65.55555555555556,
+        "duration": 60,
+        "waterGrainRatio": 3.1,
+        "rampTime": 0
+      }
+    ],
+    "fermentationSteps": [
+      {
+        "type": "primary",
+        "temperature": 20,
+        "duration": 6
+      },
+      {
+        "type": "secondary",
+        "temperature": 20,
+        "duration": 14
+      }
+    ],
+    "carbonation": 2.4
+  }
+]

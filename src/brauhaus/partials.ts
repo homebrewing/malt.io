@@ -86,6 +86,7 @@ export function createRecipe(props: Partial<Recipe>): Recipe {
     boilSize: props.boilSize ?? 25,
     servingSizeMl: props.servingSizeMl ?? 355,
     style: props.style ?? 0,
+    glass: props.glass ?? "tulip",
     fermentables: props.fermentables ?? [],
     hops: props.hops ?? [],
     miscs: props.miscs ?? [],

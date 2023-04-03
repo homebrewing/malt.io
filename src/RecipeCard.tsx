@@ -10,8 +10,7 @@ import {
 
 import { A } from "@solidjs/router";
 import bjcp2021 from "./assets/bjcp2021.json?url";
-import { crush } from "./crush";
-import tulip from "./assets/tulip.svg";
+import { glasses } from "./glasses";
 
 type StyleCategory = {
   title: string;
@@ -32,17 +31,16 @@ type Style = {
 export const RecipeCard: Component<{
   bh: Brauhaus;
   recipe: Recipe;
+  crushed: string;
 }> = (props) => {
   let stats = calculateFermentables(props.bh, props.recipe);
   let ebc = calculateColor(props.recipe);
   let hops = calculateHops(props.bh, props.recipe);
-  let crushed = crush(props.recipe);
 
   createEffect(() => {
     stats = calculateFermentables(props.bh, props.recipe);
     ebc = calculateColor(props.recipe);
     hops = calculateHops(props.bh, props.recipe);
-    crushed = crush(props.recipe);
   });
 
   const [styles] = createResource(bjcp2021, async (url: string) => {
@@ -76,12 +74,12 @@ export const RecipeCard: Component<{
               "margin: 0 -24px 0 -38px; --color-beer: " + ebcToCss(ebc) + ";"
             }
           >
-            <use href={tulip + "#img"} />
+            <use href={glasses[props.recipe.glass] + "#img"} />
           </svg>
         </div>
         <div class="col gap grow">
           <h2>
-            <A href={"/r/" + crushed}>{props.recipe.name}</A>
+            <A href={"/r/" + props.crushed}>{props.recipe.name}</A>
           </h2>
           <div>{props.recipe.description || "No description"}</div>
           <div>{findStyle(props.recipe.style)}</div>
@@ -108,13 +106,13 @@ export const RecipeCard: Component<{
             </div>
           </div>
           <div class="row gap right">
-            <a class="btn" href={"/r/" + crushed + ".json"}>
+            <a class="btn" href={"/r/" + props.crushed + ".json"}>
               JSON
             </a>
-            <a class="btn" href={"/r/" + crushed + ".xml"}>
+            <a class="btn" href={"/r/" + props.crushed + ".xml"}>
               XML
             </a>
-            <A class="btn primary" href={"/r/" + crushed}>
+            <A class="btn primary" href={"/r/" + props.crushed}>
               View
             </A>
           </div>

@@ -3,10 +3,13 @@ import { cToF, fToC } from "./brauhaus/calculate";
 
 import { ByteBuf } from "bytebuf";
 import { createRecipe } from "./brauhaus/partials";
+import { names as glassNames } from "./glasses";
 
 const gPerKg = 1000;
 const gPerOz = 28.3495;
 const gPerLb = 453.592;
+
+const yeastTypes = ["ale", "lager", "cider", "wine", "other"];
 
 const mashTemps = [
   // Acid  rests
@@ -32,12 +35,12 @@ export function encodeBinary(r: Recipe): ArrayBuffer {
   const data = new Uint8Array(4096);
   const buf = ByteBuf.from(data);
 
-  // 0b 000 000          00
-  //        serving_size type
+  // 0b 000   000          00
+  //    glass serving_size type
   let mask = 0;
 
-  if (r.type === "partial mash") mask |= 0b000000_01;
-  if (r.type === "extract") mask |= 0b000000_10;
+  if (r.type === "partial mash") mask |= 0b000_000_01;
+  if (r.type === "extract") mask |= 0b000_000_10;
 
   let customServingSize = 0;
   switch (r.servingSizeMl) {
@@ -66,6 +69,8 @@ export function encodeBinary(r: Recipe): ArrayBuffer {
       mask |= 0b000_111_00;
       customServingSize = r.servingSizeMl;
   }
+
+  mask |= glassNames.indexOf(r.glass) << 5;
 
   buf.writeUint8(mask);
 
@@ -235,10 +240,7 @@ export function encodeBinary(r: Recipe): ArrayBuffer {
     if (y.form === "liquid") mask |= 0b0_000_00_01;
     if (y.units === "g") mask |= 0b0_000_01_00;
     if (y.units === "ml") mask |= 0b0_000_10_00;
-    if (y.type === "lager") mask |= 0b0_001_00_00;
-    if (y.type === "cider") mask |= 0b0_010_00_00;
-    if (y.type === "wine") mask |= 0b0_011_00_00;
-    if (y.type === "other") mask |= 0b0_100_00_00;
+    mask |= yeastTypes.indexOf(y.type) << 4;
     if (y.amount !== 1) mask |= 0b1_000_00_00;
     buf.writeUint8(mask);
 
@@ -396,6 +398,7 @@ export function decodeBinary(data: Uint8Array): Recipe {
     name: buf.readVarString(),
     description: buf.readVarString(),
     style: mask2 & 0b01111111,
+    glass: glassNames[(mask1 & 0b111_000_00) >> 5],
     carbonation: 2.4,
   });
 
@@ -450,16 +453,10 @@ export function decodeBinary(data: Uint8Array): Recipe {
       name: "",
       grams: previousWeight,
       aa: 0,
-      use: "boil",
-      form: "pellet",
+      use: ["boil", "dry hop", "mash", "aroma"][mask & 0b000_0_00_11] as any,
+      form: ["pellet", "leaf", "plug"][(mask & 0b000_0_11_00) >> 2] as any,
       time: previousTime,
     };
-
-    if (mask & 0b000_0_00_01) h.use = "dry hop";
-    if (mask & 0b000_0_00_10) h.use = "mash";
-    if (mask & 0b000_0_00_11) h.use = "aroma";
-    if (mask & 0b000_0_01_00) h.form = "leaf";
-    if (mask & 0b000_0_10_00) h.form = "plug";
 
     // 60, 20, 15, 10, 5, 0, previous, or custom time
     let time = mask >> 5;
@@ -514,23 +511,17 @@ export function decodeBinary(data: Uint8Array): Recipe {
   }
 
   for (let i = 0; i < yeastCount; i++) {
+    const mask = buf.readUint8();
     const y: Yeast = {
       name: "",
       attenuation: 0,
-      form: "dry",
-      units: "pkt",
-      type: "ale",
+      form: ["dry", "liquid"][mask & 0b0_000_00_11] as any,
+      units: ["pkt", "g", "ml"][(mask & 0b0_000_11_00) << 2] as any,
+      type: yeastTypes[(mask & 0b0_111_00_00) >> 4] as any,
       amount: 1,
     };
-    const mask = buf.readUint8();
-    if (mask & 0b0_0000_00_1) y.form = "liquid";
-    if (mask & 0b0_0000_10_0) y.units = "g";
-    if (mask & 0b0_0001_00_0) y.units = "ml";
-    if (mask & 0b0_0010_00_0) y.type = "lager";
-    if (mask & 0b0_0100_00_0) y.type = "cider";
-    if (mask & 0b0_0110_00_0) y.type = "wine";
-    if (mask & 0b0_1000_00_0) y.type = "other";
-    if (mask & 0b1_0000_00_0) y.amount = buf.readVarUint();
+
+    if (mask & 0b1_000_00_00) y.amount = buf.readVarUint();
 
     y.attenuation = buf.readUint8();
     y.name = buf.readVarString();

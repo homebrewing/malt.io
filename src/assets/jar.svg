@@ -1,0 +1,123 @@
+<svg id="img" viewBox="0 0 256 256" fill="none" xmlns="http://www.w3.org/2000/svg">
+	<defs>
+		<linearGradient gradientUnits="userSpaceOnUse" x1="106.527" y1="76.68" x2="106.527" y2="190.997" id="gradient-0"
+			gradientTransform="matrix(0.918558, -0.309876, 0.205865, 0.610242, 0.149064, 68.881764)">
+			<stop offset="0" style="stop-color: rgba(0, 0, 0, 0.17);"></stop>
+			<stop offset="1" style="stop-color: rgba(0, 0, 0, 0);"></stop>
+		</linearGradient>
+		<linearGradient gradientUnits="userSpaceOnUse" x1="106.527" y1="76.68" x2="106.527" y2="190.997" id="gradient-1"
+			gradientTransform="matrix(0.918558, -0.309876, 0.205865, 0.610242, -32.230892, 68.81591)">
+			<stop offset="0" style="stop-color: rgba(0, 0, 0, 0.17);"></stop>
+			<stop offset="1" style="stop-color: rgba(0, 0, 0, 0);"></stop>
+		</linearGradient>
+		<linearGradient gradientUnits="userSpaceOnUse" x1="106.527" y1="76.68" x2="106.527" y2="190.997" id="gradient-2"
+			gradientTransform="matrix(0.918558, -0.309876, 0.205865, 0.610242, 32.109226, 69.050817)">
+			<stop offset="0" style="stop-color: rgba(0, 0, 0, 0.17);"></stop>
+			<stop offset="1" style="stop-color: rgba(0, 0, 0, 0);"></stop>
+		</linearGradient>
+	</defs>
+	<path style="stroke: var(--color, black); fill: rgb(255, 245, 220); stroke-width: 2px;"
+		d="M 91.869 12.722 C 91.971 3.011 165.228 2.41 164.835 12.982"></path>
+	<path style="fill: rgb(255, 245, 220);"
+		d="M 82.633 13.821 C 79.339 24.95 79.951 46.445 79.951 46.445 L 172.637 45.507 C 172.637 45.507 173.062 19.7 171.6 13.461 C 171.515 12.293 145.925 11.556 130.86 11.589 C 117.031 11.619 84.103 12.862 82.633 13.821 Z">
+	</path>
+	<path
+		d="M 172.628 45.501 C 173.312 54.219 173.199 60.68 173.479 72.49 C 169.036 72.379 164.77 93.399 158.784 179.344 C 158.432 184.4 126.61 187.301 126.61 187.301 C 126.61 187.301 95.958 184.602 95.643 180.422 C 89.431 98.031 84.733 72.778 79.683 72.823 C 79.683 72.823 78.632 61.004 79.989 46.375 C 80.024 45.999 172.576 44.837 172.628 45.501 Z"
+		style="stroke-width: 3px; fill: var(--color-beer, #da6e18);"></path>
+	<path style="stroke: var(--color, black); stroke-width: 3px;"
+		d="M 92.219 189.918 C 93.203 194.633 125.112 197.04 125.112 197.04 C 125.112 197.04 161.927 194.601 162.745 189.662 C 165.242 174.578 169.574 75.997 177.156 75.905 C 179.482 75.892 179.792 14.753 175.932 14.336 C 168.542 8.692 92.358 8.628 79.089 14.558 C 74.065 15.568 73.737 75.29 75.232 75.223 C 83.736 74.843 89.846 178.551 92.219 189.918 Z">
+	</path>
+	<path
+		d="M 86.697 11.804 C 86.687 11.495 94.34 11.495 94.352 11.804 L 94.371 12.715 C 94.333 12.527 86.679 12.527 86.717 12.715 L 86.697 11.804 Z"
+		style="fill: var(--bg-color, white);"
+		transform="matrix(0.994963, -0.100242, 0.100242, 0.994963, -0.761289, 9.136476)"></path>
+	<rect x="133.442" y="58.538" width="1.237" height="0.913" style="fill: var(--bg-color, white);"
+		transform="matrix(0.98744, -0.157992, 0.192258, 0.981958, -59.446171, -23.727579)"></rect>
+	<path
+		d="M 156.82 11.566 C 156.841 11.262 171.299 11.262 171.277 11.566 L 171.294 12.474 C 171.226 11.987 156.77 11.987 156.836 12.474 L 156.82 11.566 Z"
+		style="fill: var(--bg-color, white);"
+		transform="matrix(0.990369, 0.138451, -0.138451, 0.990369, 3.228385, -22.599196)"></path>
+	<path style="fill: var(--color-beer, #da6e18);"
+		d="M 96.321 185.224 C 96.419 184.916 115.791 189.723 126.93 189.733 C 138.554 189.743 155.039 185.383 155.122 185.695 C 155.463 186.966 133.815 191.742 126.864 191.612 C 121.061 191.505 95.939 186.424 96.321 185.224 Z">
+	</path>
+	<path style="stroke: var(--color, black); stroke-width: 3px;"
+		d="M 92.199 189.535 C 91.77 195.018 125.021 197.929 125.021 197.929 C 125.021 197.929 163.077 195.168 162.751 189.299">
+	</path>
+	<path style="fill: var(--bg-color, white);"
+		d="M 144.683 194.768 C 148.708 194.654 155.866 192.786 159.164 191.194 L 158.823 192.605 C 156.166 194.255 149.725 195.757 145.336 196.115 L 144.683 194.768 Z">
+	</path>
+	<path style="fill: var(--bg-color, white);"
+		d="M 105.729 195.677 C 103.508 195.537 101.706 194.968 99.566 194.245 L 99.89 192.894 C 102.438 193.73 104.578 194.253 106.382 194.332 L 105.729 195.677 Z M 96.029 192.733 L 95.688 191.324 C 96.461 191.697 97.45 192.085 98.557 192.462 L 98.242 193.78 C 97.364 193.446 96.607 193.094 96.029 192.733 Z">
+	</path>
+	<ellipse style="stroke: rgb(255, 255, 255); stroke-width: 3px; fill: var(--color-beer, #da6e18); stroke-opacity: 0.6;"
+		cx="140.484" cy="32.91" rx="4.108" ry="4.108"></ellipse>
+	<ellipse style="stroke: rgb(255, 255, 255); stroke-width: 3px; fill: var(--color-beer, #da6e18); stroke-opacity: 0.6;"
+		cx="141.965" cy="43.341" rx="4.108" ry="4.108"></ellipse>
+	<ellipse style="stroke: rgb(255, 255, 255); stroke-width: 3px; fill: var(--color-beer, #da6e18); stroke-opacity: 0.6;"
+		cx="150.512" cy="47.461" rx="2.324" ry="2.324"></ellipse>
+	<ellipse style="stroke: rgb(255, 255, 255); stroke-width: 3px; fill: var(--color-beer, #da6e18); stroke-opacity: 0.6;"
+		cx="143.924" cy="52.437" rx="2.371" ry="2.371"></ellipse>
+	<ellipse style="stroke: rgb(255, 255, 255); stroke-width: 3px; fill: var(--color-beer, #da6e18); stroke-opacity: 0.6;"
+		cx="150.328" cy="55.452" rx="1.57" ry="1.57"></ellipse>
+	<ellipse style="stroke: rgb(255, 255, 255); stroke-width: 3px; fill: var(--color-beer, #da6e18); stroke-opacity: 0.6;"
+		cx="147.712" cy="60.73" rx="0.888" ry="0.888"></ellipse>
+	<ellipse style="stroke: rgb(255, 255, 255); stroke-width: 3px; fill: var(--color-beer, #da6e18); stroke-opacity: 0.6;"
+		cx="149.771" cy="66.928" rx="0.888" ry="0.888"></ellipse>
+	<ellipse style="stroke: rgb(255, 255, 255); stroke-width: 3px; fill: var(--color-beer, #da6e18); stroke-opacity: 0.6;"
+		cx="147.638" cy="34.894" rx="2.932" ry="2.932"></ellipse>
+	<ellipse style="stroke: rgb(255, 255, 255); stroke-width: 3px; fill: var(--color-beer, #da6e18); stroke-opacity: 0.6;"
+		cx="134.617" cy="31.677" rx="1.909" ry="1.909"></ellipse>
+	<path style="fill: url(#gradient-0); mix-blend-mode: multiply;"
+		d="M 111.101 80.055 C 112 72.359 140.026 71.395 141.795 80.215 L 140.118 186.385 L 117.981 187.039 L 111.101 80.055 Z">
+	</path>
+	<ellipse style="stroke: white; stroke-width: 3px; fill: var(--color-beer, #da6e18); stroke-opacity: 0.6;" cx="121.656"
+		cy="122.33" rx="0.822" ry="0.868"></ellipse>
+	<ellipse style="stroke: white; stroke-width: 3px; fill: var(--color-beer, #da6e18); stroke-opacity: 0.6;" cx="119.523"
+		cy="151.134" rx="0.822" ry="0.868"></ellipse>
+	<path style="fill: white;"
+		d="M 87.701 14.969 L 85.161 69.558 L 92.55 69.764 L 93.032 14.001 C 93.032 14.001 88.006 15.028 87.701 14.969 Z">
+	</path>
+	<path style="fill: var(--color, black);"
+		d="M 81.804 17.454 C 81.043 18.225 80.283 19.735 81.578 19.816 C 85.803 15.986 108.457 14.452 111.777 14.923 C 112.12 13.456 83.792 14.646 81.804 17.454 Z">
+	</path>
+	<path style="fill: white; fill-opacity: 0.75;"
+		d="M 158.114 14.454 L 164.943 70.421 L 168.707 71.27 C 168.707 71.27 172.627 27.29 167.306 17.528 C 165.908 14.963 158.114 14.454 158.114 14.454 Z">
+	</path>
+	<path style="fill: var(--color, black);"
+		d="M 167.299 16.322 C 168.131 14.693 172.613 15.556 173.564 18.196 C 174.081 19.63 174.021 21.313 173.637 22.637 C 173.172 24.234 172.921 24.7 173.43 27.571 C 170.94 24.357 175.051 18.426 167.299 16.322 Z">
+	</path>
+	<path style="mix-blend-mode: multiply; fill: url(#gradient-1);"
+		d="M 83.745 77.24 C 83.668 73.603 105.741 71.462 109.415 80.149 L 108.001 185.568 L 97.6 182.818 C 93.259 127.912 90.634 99.526 83.745 77.24 Z">
+	</path>
+	<path style="mix-blend-mode: multiply; fill: url(#gradient-2);"
+		d="M 144.042 80.147 C 144.941 72.45 168.75 73.245 169.801 77.777 C 163.68 90.218 159.959 144.365 157.021 181.924 L 149.424 184.795 L 144.042 80.147 Z">
+	</path>
+	<path style="stroke: rgb(255, 255, 255); stroke-width: 2px; stroke-opacity: 0.3; stroke-linejoin: bevel;"
+		d="M 80.136 75.533 C 84.925 68.941 108.346 71.533 110.048 77.758 C 110.712 70.517 139.177 69.116 143.004 77.728 C 144.646 71.222 168.103 69.486 172.664 75.7">
+	</path>
+	<path style="fill: rgb(216, 216, 216); stroke: rgb(255, 255, 255); stroke-width: 2px; stroke-opacity: 0.3;"
+		d="M 110.034 77.893 L 110.763 186.176"></path>
+	<path style="fill: rgb(216, 216, 216); stroke: rgb(255, 255, 255); stroke-width: 2px; stroke-opacity: 0.3;"
+		d="M 142.938 78.092 L 146.084 187.1"></path>
+	<ellipse style="stroke: rgb(255, 255, 255); stroke-width: 3px; fill: var(--color-beer, #da6e18); stroke-opacity: 0.6;"
+		cx="145.648" cy="164.844" rx="0.822" ry="0.868"></ellipse>
+	<ellipse style="stroke: rgb(255, 255, 255); stroke-width: 3px; fill: var(--color-beer, #da6e18); stroke-opacity: 0.6;"
+		cx="143.143" cy="176.124" rx="0.822" ry="0.868"></ellipse>
+	<path style="fill: white;"
+		d="M 84.913 25.193 C 89.996 27.106 99.931 143.567 95.73 143.509 L 101.298 144.76 C 105.228 144.76 91.749 24.611 84.913 25.193 Z"
+		transform="matrix(1, 0, 0, 1, 1.490167, 47.319867)"></path>
+	<path style="fill: white; mix-blend-mode: lighten; fill-opacity: 0.4;"
+		d="M 147.536 79.262 C 145.088 79.262 147.975 183.6 148.997 183.6 C 147.767 183.6 147.093 78.243 154.292 77.733 C 153.685 76.348 146.929 77.876 147.536 79.262 Z">
+	</path>
+	<ellipse style="stroke: rgb(255, 255, 255); stroke-width: 3px; fill: var(--color-beer, #da6e18); stroke-opacity: 0.6;"
+		cx="148.989" cy="170.584" rx="1.454" ry="1.533"></ellipse>
+	<path style="fill: white; fill-opacity: 0.4;"
+		d="M 114.02 79.352 C 111.572 79.352 114.351 182.914 115.373 182.914 C 114.143 182.914 113.527 78.204 121.084 77.313 C 120.917 76.396 113.738 77.811 114.02 79.352 Z">
+	</path>
+	<ellipse style="stroke: rgb(255, 255, 255); stroke-width: 3px; fill: var(--color-beer, #da6e18); stroke-opacity: 0.6;"
+		cx="122.647" cy="143.433" rx="2.197" ry="2.316"></ellipse>
+	<ellipse style="stroke: rgb(255, 255, 255); stroke-width: 3px; fill: var(--color-beer, #da6e18); stroke-opacity: 0.6;"
+		cx="120.909" cy="132.762" rx="3.808" ry="4.013"></ellipse>
+	<ellipse style="stroke: rgb(255, 255, 255); stroke-width: 3px; fill: var(--color-beer, #da6e18); stroke-opacity: 0.6;"
+		cx="147.877" cy="156.413" rx="0.822" ry="0.868"></ellipse>
+</svg>

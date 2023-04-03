@@ -409,7 +409,7 @@ a.plain {
   margin: 24px 12px;
 }
 
-.recipe-card {
+.recipe-card, .item {
   display: flex;
   flex-direction: column;
   gap: 12px;
@@ -423,8 +423,12 @@ a.plain {
   text-overflow: ellipsis;
 }
 
-.recipe-card:hover {
+.recipe-card:hover, .item:hover {
   border-color: var(--primary);
+}
+
+.item:hover {
+  cursor: pointer;
 }
 
 .recipe-card h2 {
@@ -738,6 +742,16 @@ header {
   min-width: 380px;
 }
 
+.glass-container {
+  border: 1px solid transparent;
+  transition: border-color 0.2s ease-in;
+}
+
+.glass-container.edit:hover {
+  cursor: pointer;
+  border-color: var(--primary);
+}
+
 .glass {
   display: inline-block;
   position: relative;
@@ -967,6 +981,14 @@ header {
 }
 
 @container(width < 540px) {
+  h1.hero {
+    font-size: 700% !important;
+  }
+
+  h1.hero + div {
+    font-size: 170% !important;
+  }
+
   img {
     width: 100%;
   }

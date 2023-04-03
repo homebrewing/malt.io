@@ -1,0 +1,84 @@
+<svg id="img" viewBox="0 0 256 256" fill="none" xmlns="http://www.w3.org/2000/svg">
+	<defs></defs>
+	<path style="stroke: var(--color, black); fill: rgb(255, 245, 220); stroke-width: 2px;"
+		d="M 91.869 12.722 C 91.971 3.011 165.228 2.41 164.835 12.982"></path>
+	<path style="fill: rgb(255, 245, 220);"
+		d="M 90.633 13.821 C 87.339 24.95 87.951 46.445 87.951 46.445 L 165.637 45.507 C 165.637 45.507 166.062 19.7 164.6 13.461 C 164.515 12.293 145.925 11.556 130.86 11.589 C 117.031 11.619 92.103 12.862 90.633 13.821 Z">
+	</path>
+	<path
+		d="M 165.628 45.501 C 167.993 70.811 157.727 178.303 156.784 187.344 C 156.255 192.384 148.169 194.074 126.61 193.936 C 106.625 193.809 97.758 192.613 97.643 188.422 C 97.372 178.384 85.317 69.838 87.989 46.375 C 88.032 46 165.566 44.838 165.628 45.501 Z"
+		style="stroke-width: 3px; fill: var(--color-beer, #da6e18);"></path>
+	<ellipse style="stroke: rgb(255, 255, 255); stroke-width: 3px; fill: var(--color-beer, #da6e18); stroke-opacity: 0.6;"
+		cx="117.909" cy="154.762" rx="3.808" ry="4.013"></ellipse>
+	<ellipse style="stroke: rgb(255, 255, 255); stroke-width: 3px; fill: var(--color-beer, #da6e18); stroke-opacity: 0.6;"
+		cx="119.647" cy="165.433" rx="2.197" ry="2.316"></ellipse>
+	<ellipse style="stroke: rgb(255, 255, 255); stroke-width: 3px; fill: var(--color-beer, #da6e18); stroke-opacity: 0.6;"
+		cx="138.143" cy="188.124" rx="0.822" ry="0.868"></ellipse>
+	<ellipse style="stroke: rgb(255, 255, 255); stroke-width: 3px; fill: var(--color-beer, #da6e18); stroke-opacity: 0.6;"
+		cx="143.989" cy="182.584" rx="1.454" ry="1.533"></ellipse>
+	<ellipse style="stroke: rgb(255, 255, 255); stroke-width: 3px; fill: var(--color-beer, #da6e18); stroke-opacity: 0.6;"
+		cx="140.648" cy="176.844" rx="0.822" ry="0.868"></ellipse>
+	<path style="stroke: var(--color, black); stroke-width: 3px;"
+		d="M 94.219 196.918 C 96.197 206.844 159.001 206.052 160.745 196.662 C 163.053 184.231 167.598 106.431 171.156 65.905 C 172.676 48.562 171.994 14.218 168.932 14.336 C 161.542 8.692 100.358 8.628 87.089 14.558 C 82.154 15.568 80.896 48.132 81.802 65.223 C 83.986 106.353 91.945 185.511 94.219 196.918 Z">
+	</path>
+	<path style="fill: var(--color, black);"
+		d="M 160.299 16.322 C 161.131 14.693 165.613 15.556 166.564 18.196 C 167.081 19.63 167.021 21.313 166.637 22.637 C 166.172 24.234 165.921 24.7 166.43 27.571 C 163.94 24.357 168.051 18.426 160.299 16.322 Z">
+	</path>
+	<path
+		d="M 99.343 11.251 C 99.333 10.942 106.986 10.942 106.998 11.251 L 107.017 12.162 C 106.979 11.974 99.325 11.974 99.363 12.162 L 99.343 11.251 Z"
+		style="fill: var(--bg-color, white);"
+		transform="matrix(0.994963, -0.100242, 0.100242, 0.994963, -0.642158, 10.401339)"></path>
+	<rect x="133.442" y="58.538" width="1.237" height="0.913" style="fill: var(--bg-color, white);"
+		transform="matrix(0.98744, -0.157992, 0.192258, 0.981958, -46.801315, -24.280775)"></rect>
+	<path
+		d="M 148.929 11.351 C 148.95 11.047 163.408 11.047 163.386 11.351 L 163.403 12.259 C 163.335 11.772 148.879 11.772 148.945 12.259 L 148.929 11.351 Z"
+		style="fill: var(--bg-color, white);"
+		transform="matrix(0.990369, 0.138451, -0.138451, 0.990369, 3.122612, -21.508706)"></path>
+	<path style="fill: white;"
+		d="M 99.184 14.219 C 99.184 14.219 93.095 51.545 94.826 68.063 C 97.507 93.657 101.085 196.848 101.085 196.848 L 108.991 198.982 C 108.991 198.982 104.61 89.26 102.848 63.823 C 101.672 46.853 104.515 13.251 104.515 13.251 C 104.515 13.251 99.489 14.278 99.184 14.219 Z">
+	</path>
+	<path style="fill: var(--color, black);"
+		d="M 89.804 17.454 C 89.043 18.225 88.283 19.735 89.578 19.816 C 93.803 15.986 116.457 14.452 119.777 14.923 C 120.12 13.456 91.792 14.646 89.804 17.454 Z">
+	</path>
+	<path style="fill: white; fill-opacity: 0.85;"
+		d="M 150.605 12.516 C 150.605 12.516 156.621 44.557 156.815 58.844 C 156.985 71.355 152.66 191.243 152.66 191.243 C 152.66 191.243 162.997 76.487 162.667 63.694 C 162.327 50.504 165.118 25.352 159.797 15.59 C 158.399 13.025 150.605 12.516 150.605 12.516 Z">
+	</path>
+	<path style="fill: var(--color-beer, #da6e18);"
+		d="M 109.552 195.736 C 109.753 195.107 146.485 195.183 146.648 195.793 C 146.989 197.064 133.815 198.742 126.864 198.612 C 121.061 198.505 109.17 196.936 109.552 195.736 Z">
+	</path>
+	<path style="fill: white; fill-opacity: 0.75;"
+		d="M 105.668 108.326 C 105.668 108.326 107.323 75.302 106.93 61.03 C 106.585 48.521 105.581 -17.295 105.581 -17.295 C 105.581 -17.295 109.886 48.073 111.048 60.867 C 112.233 73.899 113.772 94.018 110.725 103.78 C 109.922 106.344 105.668 108.326 105.668 108.326 Z"
+		transform="matrix(-1, 0, 0, -1, 217.180638, 129.114999)"></path>
+	<ellipse style="stroke: white; stroke-width: 3px; fill: var(--color-beer, #da6e18); stroke-opacity: 0.6;" cx="121.523"
+		cy="172.134" rx="0.822" ry="0.868"></ellipse>
+	<path style="stroke: var(--color, black); stroke-width: 3px;"
+		d="M 94.199 196.535 C 93.303 207.991 161.377 207.555 160.751 196.299"></path>
+	<path style="fill: var(--bg-color, white);"
+		d="M 143.683 202.768 C 147.708 202.654 154.866 200.786 158.164 199.194 L 157.823 200.605 C 155.166 202.255 148.725 203.757 144.336 204.115 L 143.683 202.768 Z">
+	</path>
+	<path style="fill: var(--bg-color, white);"
+		d="M 106.729 203.677 C 104.508 203.537 102.706 202.968 100.566 202.245 L 100.89 200.894 C 103.438 201.73 105.578 202.253 107.382 202.332 L 106.729 203.677 Z M 97.029 200.733 L 96.688 199.324 C 97.461 199.697 98.45 200.085 99.557 200.462 L 99.242 201.78 C 98.364 201.446 97.607 201.094 97.029 200.733 Z">
+	</path>
+	<ellipse style="stroke: white; stroke-width: 3px; fill: var(--color-beer, #da6e18); stroke-opacity: 0.6;" cx="120.656"
+		cy="146.33" rx="0.822" ry="0.868"></ellipse>
+	<ellipse style="stroke: rgb(255, 255, 255); stroke-width: 3px; fill: var(--color-beer, #da6e18); stroke-opacity: 0.6;"
+		cx="136.289" cy="32.91" rx="4.108" ry="4.108"></ellipse>
+	<ellipse style="stroke: rgb(255, 255, 255); stroke-width: 3px; fill: var(--color-beer, #da6e18); stroke-opacity: 0.6;"
+		cx="137.77" cy="43.341" rx="4.108" ry="4.108"></ellipse>
+	<ellipse style="stroke: rgb(255, 255, 255); stroke-width: 3px; fill: var(--color-beer, #da6e18); stroke-opacity: 0.6;"
+		cx="146.317" cy="47.461" rx="2.324" ry="2.324"></ellipse>
+	<ellipse style="stroke: rgb(255, 255, 255); stroke-width: 3px; fill: var(--color-beer, #da6e18); stroke-opacity: 0.6;"
+		cx="139.729" cy="52.437" rx="2.371" ry="2.371"></ellipse>
+	<ellipse style="stroke: rgb(255, 255, 255); stroke-width: 3px; fill: var(--color-beer, #da6e18); stroke-opacity: 0.6;"
+		cx="146.133" cy="55.452" rx="1.57" ry="1.57"></ellipse>
+	<ellipse style="stroke: rgb(255, 255, 255); stroke-width: 3px; fill: var(--color-beer, #da6e18); stroke-opacity: 0.6;"
+		cx="143.517" cy="60.73" rx="0.888" ry="0.888"></ellipse>
+	<ellipse style="stroke: rgb(255, 255, 255); stroke-width: 3px; fill: var(--color-beer, #da6e18); stroke-opacity: 0.6;"
+		cx="145.576" cy="66.928" rx="0.888" ry="0.888"></ellipse>
+	<ellipse style="stroke: rgb(255, 255, 255); stroke-width: 3px; fill: var(--color-beer, #da6e18); stroke-opacity: 0.6;"
+		cx="143.443" cy="34.894" rx="2.932" ry="2.932"></ellipse>
+	<ellipse style="stroke: rgb(255, 255, 255); stroke-width: 3px; fill: var(--color-beer, #da6e18); stroke-opacity: 0.6;"
+		cx="130.422" cy="31.677" rx="1.909" ry="1.909"></ellipse>
+	<ellipse style="stroke: rgb(255, 255, 255); stroke-width: 3px; fill: var(--color-beer, #da6e18); stroke-opacity: 0.6;"
+		cx="144.701" cy="75.325" rx="0.888" ry="0.888"></ellipse>
+</svg>

@@ -24,6 +24,7 @@ const fatTire: Recipe = {
   boilSize: 26,
   servingSizeMl: 355,
   style: 57,
+  glass: "tulip",
   fermentables: [
     {
       percentYield: 80,

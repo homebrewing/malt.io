@@ -69,21 +69,21 @@ const App: Component = () => {
           <A href="/about">👤 About</A>
         </div>
       </nav>
-      <Suspense fallback={<article>Loading...</article>}>
-        <Routes>
-          <Route path="/" element={<Home bh={bh} />} />
-          <Route
-            path="/r/:encoded?/:dialog?"
-            element={<Editor bh={bh} setBh={setBh} />}
-          />
-          <Route
-            path="/settings"
-            element={<article style="padding: 12px">Coming soon...</article>}
-          />
-          <Route path="/about" component={About} />
-          <Route path="/about/format" component={Format} />
-        </Routes>
-      </Suspense>
+      {/* <Suspense fallback={<article>Loading...</article>}> */}
+      <Routes>
+        <Route path="/" element={<Home bh={bh} />} />
+        <Route
+          path="/r/:encoded?/:dialog?"
+          element={<Editor bh={bh} setBh={setBh} />}
+        />
+        <Route
+          path="/settings"
+          element={<article style="padding: 12px">Coming soon...</article>}
+        />
+        <Route path="/about" component={About} />
+        <Route path="/about/format" component={Format} />
+      </Routes>
+      {/* </Suspense> */}
       <footer class="col gap">
         <div class="row gap" style="justify-content: space-between">
           <div class="col">

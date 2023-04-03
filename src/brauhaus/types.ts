@@ -79,6 +79,7 @@ export type Recipe = {
   servingSizeMl: number;
 
   style: number;
+  glass: string;
 
   fermentables: Fermentable[];
   hops: Hop[];

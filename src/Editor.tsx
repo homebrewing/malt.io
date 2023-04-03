@@ -49,6 +49,7 @@ import { crush, load } from "./crush";
 
 import type { Component } from "solid-js";
 import { Editable } from "./Editable";
+import { GlassPicker } from "./GlassPicker";
 import { LbOz } from "./LbOz";
 import QRCode from "qrcode-svg";
 import { StylePicker } from "./StylePicker";
@@ -56,7 +57,7 @@ import { StyleValue } from "./StyleValue";
 import bjcp2021 from "./assets/bjcp2021.json?url";
 import createURLStore from "./urlstore";
 import { debounce } from "@solid-primitives/scheduled";
-import tulip from "./assets/tulip.svg";
+import { glasses } from "./glasses";
 
 type StyleCategory = {
   title: string;
@@ -243,7 +244,15 @@ const Editor: Component<{
   return (
     <article class="col gap">
       <header>
-        <div class="glass-container col gap">
+        <div
+          class="glass-container col gap"
+          classList={{ edit: edit() }}
+          onclick={(e) => {
+            if (edit()) {
+              navigate(location.pathname + "/glasses", { scroll: false });
+            }
+          }}
+        >
           <div
             id="bubble"
             onanimationend={(e) => e.currentTarget.classList.remove("animated")}
@@ -254,7 +263,7 @@ const Editor: Component<{
             height="160px"
             style="margin: 0 -26px"
           >
-            <use href={tulip + "#img"} />
+            <use href={glasses[recipe.glass] + "#img"} />
           </svg>
         </div>
         <div class="recipe-info col gap">
@@ -299,8 +308,8 @@ const Editor: Component<{
                   for="edit"
                   style="padding: 6px 6px; margin: 0"
                 >
-                  <Show when={edit()} fallback="🗂 Edit">
-                    💾 Save
+                  <Show when={edit()} fallback="✏ Edit">
+                    👀 View
                   </Show>
                 </label>
               </div>
@@ -1655,6 +1664,12 @@ const Editor: Component<{
           }).svg()}
         ></div>
       </div>
+      <Show when={params.dialog == "glasses"}>
+        <GlassPicker
+          glass={recipe.glass}
+          setGlass={(g) => setRecipe("glass", g)}
+        />
+      </Show>
       <Show when={params.dialog == "styles"}>
         <StylePicker
           styles={styles()}
