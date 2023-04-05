@@ -1,5 +1,5 @@
 var UZIP = {};
-if (typeof module == "object") module.exports = UZIP;
+// if (typeof module == "object") module.exports = UZIP;
 
 UZIP["parse"] = function (
   buf,

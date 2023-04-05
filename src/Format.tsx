@@ -296,10 +296,12 @@ const Format: Component = () => {
           <tbody>
             <tr>
               <td>
-                <code>glass</code>
+                <code>version</code>
               </td>
               <td>3 bits, value 0-7</td>
-              <td>TODO</td>
+              <td>
+                Recipe format version, currenlty <code>0</code>.
+              </td>
             </tr>
             <tr>
               <td>
@@ -324,14 +326,40 @@ const Format: Component = () => {
             </tr>
             <tr>
               <td>
+                <code>glass</code>
+              </td>
+              <td>5 bits, 0-31</td>
+              <td>Glass type. Coming soon.</td>
+            </tr>
+            <tr>
+              <td>
+                <code>sub</code>
+              </td>
+              <td>1 bit boolean</td>
+              <td>
+                True if <code>boil_diff = batch - boil</code>, otherwise{" "}
+                <code>boil_diff = boil - batch</code>.
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <code>size_units</code>
+              </td>
+              <td>2 bits, value 0-3</td>
+              <td>
+                Describes the units for the <code>batch</code> and{" "}
+                <code>boil</code> sizes. One of <code>liters</code>,{" "}
+                <code>gallons</code>, or <code>half_gallons</code>.
+              </td>
+            </tr>
+            <tr>
+              <td>
                 <code>small</code>
               </td>
               <td>1 bit boolean</td>
               <td>
-                True if{" "}
-                <code>
-                  batch &lt; 32 && boil &gt; batch && (boil - batch) &lt; 8
-                </code>
+                True if <code>batch &lt; 32 && boil_diff &lt; 8</code> in{" "}
+                <code>size_units</code>.
               </td>
             </tr>
             <tr>
@@ -377,28 +405,40 @@ const Format: Component = () => {
                 <code>batch</code>
               </td>
               <td>5 bits, value 0-31</td>
-              <td>Recipe batch size in liters.</td>
+              <td>
+                Recipe batch size in <code>size_units</code>.
+              </td>
             </tr>
             <tr>
               <td>
-                <code>boil - batch</code>
+                <code>boil_diff</code>
               </td>
               <td>3 bits, value 0-7</td>
-              <td>The different between the boil and batch size in liters.</td>
+              <td>
+                The different between the boil and batch size in{" "}
+                <code>size_units</code>. Whether to add or subtract is
+                controlled by <code>sub</code>.
+              </td>
             </tr>
             <tr>
               <td>
                 <code>large_batch</code>
               </td>
               <td>variable uint</td>
-              <td>Recipe batch size in liters</td>
+              <td>
+                Recipe batch size in <code>size_units</code>.
+              </td>
             </tr>
             <tr>
               <td>
-                <code>boil</code>
+                <code>large_boil_diff</code>
               </td>
               <td>variable uint</td>
-              <td>The boil size in liters</td>
+              <td>
+                The different between the boil and batch size in{" "}
+                <code>size_units</code>. Whether to add or subtract is
+                controlled by <code>sub</code>.
+              </td>
             </tr>
             <tr>
               <td>

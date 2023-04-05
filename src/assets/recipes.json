@@ -163,7 +163,7 @@
       {
         "name": "Wyeast 1056 American Ale",
         "attenuation": 77,
-        "form": "dry",
+        "form": "liquid",
         "units": "pkt",
         "type": "ale",
         "amount": 1
@@ -239,7 +239,7 @@
       {
         "name": "WLP833 German Bock Lager",
         "attenuation": 74,
-        "form": "dry",
+        "form": "liquid",
         "units": "pkt",
         "type": "lager",
         "amount": 1
@@ -532,7 +532,7 @@
       {
         "name": "Wyeast 1056 American Ale",
         "attenuation": 77,
-        "form": "dry",
+        "form": "liquid",
         "units": "pkt",
         "type": "ale",
         "amount": 1
@@ -630,7 +630,7 @@
       {
         "name": "California Ale V Yeast WLP051",
         "attenuation": 72,
-        "form": "dry",
+        "form": "liquid",
         "units": "pkt",
         "type": "ale",
         "amount": 1
@@ -725,7 +725,7 @@
       {
         "name": "Wyeast 1084 Irish Ale",
         "attenuation": 75,
-        "form": "dry",
+        "form": "liquid",
         "units": "pkt",
         "type": "ale",
         "amount": 1

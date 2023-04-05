@@ -361,7 +361,7 @@ const Editor: Component<{
                 suffix={props.bh.units.volume === "liters" ? "L" : "G"}
                 value={
                   props.bh.units.volume === "liters"
-                    ? recipe.batchSize
+                    ? Math.round(recipe.batchSize)
                     : Math.round(litersToGallons(recipe.batchSize) * 2) / 2
                 }
                 oninput={(e) =>
@@ -369,10 +369,8 @@ const Editor: Component<{
                     "batchSize",
                     props.bh.units.volume === "liters"
                       ? parseInt(e.currentTarget.value || "0")
-                      : Math.round(
-                          gallonsToLiters(
-                            parseFloat(e.currentTarget.value || "0")
-                          )
+                      : gallonsToLiters(
+                          parseFloat(e.currentTarget.value || "0")
                         )
                   )
                 }
@@ -387,7 +385,7 @@ const Editor: Component<{
                 suffix={props.bh.units.volume === "liters" ? "L" : "G"}
                 value={
                   props.bh.units.volume === "liters"
-                    ? recipe.boilSize
+                    ? Math.round(recipe.boilSize)
                     : Math.round(litersToGallons(recipe.boilSize) * 2) / 2
                 }
                 oninput={(e) =>
@@ -395,10 +393,8 @@ const Editor: Component<{
                     "boilSize",
                     props.bh.units.volume === "liters"
                       ? parseInt(e.currentTarget.value || "0")
-                      : Math.round(
-                          gallonsToLiters(
-                            parseFloat(e.currentTarget.value || "0")
-                          )
+                      : gallonsToLiters(
+                          parseFloat(e.currentTarget.value || "0")
                         )
                   )
                 }

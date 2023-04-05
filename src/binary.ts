@@ -9,6 +9,8 @@ const gPerKg = 1000;
 const gPerOz = 28.3495;
 const gPerLb = 453.592;
 
+const litersPerGal = 3.78541;
+
 const yeastTypes = ["ale", "lager", "cider", "wine", "other"];
 
 const mashTemps = [
@@ -35,8 +37,8 @@ export function encodeBinary(r: Recipe): ArrayBuffer {
   const data = new Uint8Array(4096);
   const buf = ByteBuf.from(data);
 
-  // 0b 000   000          00
-  //    glass serving_size type
+  // 0b 000     000          00
+  //    version serving_size type
   let mask = 0;
 
   if (r.type === "partial mash") mask |= 0b000_000_01;
@@ -70,7 +72,45 @@ export function encodeBinary(r: Recipe): ArrayBuffer {
       customServingSize = r.servingSizeMl;
   }
 
-  mask |= glassNames.indexOf(r.glass) << 5;
+  buf.writeUint8(mask);
+
+  // 0b 00000 0        00
+  //    glass boil_sub size_units
+  mask = 0;
+  mask |= glassNames.indexOf(r.glass) << 3;
+
+  let batch = r.batchSize;
+  let boil = r.boilSize;
+  if (Math.ceil(batch) === batch && Math.ceil(boil) === boil) {
+    // Default: Liters
+  } else if (
+    Math.round(batch) ==
+      Math.round(Math.round(batch / litersPerGal) * litersPerGal) &&
+    Math.round(boil) ==
+      Math.round(Math.round(boil / litersPerGal) * litersPerGal)
+  ) {
+    // Gallons
+    mask |= 0b00000_0_01;
+    batch = Math.round(batch / litersPerGal);
+    boil = Math.round(boil / litersPerGal);
+  } else if (
+    Math.round(batch * 2) ==
+      Math.round(Math.round((batch * 2) / litersPerGal) * litersPerGal) &&
+    Math.round(boil * 2) ==
+      Math.round(Math.round((boil * 2) / litersPerGal) * litersPerGal)
+  ) {
+    // Half-gallons
+    mask |= 0b00000_0_10;
+    batch = Math.round((batch * 2) / litersPerGal);
+    boil = Math.round((boil * 2) / litersPerGal);
+  }
+
+  if (r.boilSize < r.batchSize) {
+    mask |= 0b00000_1_00;
+    boil = batch - boil;
+  } else {
+    boil = boil - batch;
+  }
 
   buf.writeUint8(mask);
 
@@ -78,26 +118,25 @@ export function encodeBinary(r: Recipe): ArrayBuffer {
   // 0b 0          0000000
   //    size_small style
   mask = r.style & 0b0_1111111;
-  if (
-    r.batchSize < 32 &&
-    r.boilSize > r.batchSize &&
-    r.boilSize - r.batchSize < 8
-  ) {
+
+  let small = false;
+  if (batch < 32 && boil < 8) {
     mask |= 0b10000000;
+    small = true;
   }
   buf.writeUint8(mask);
 
   buf.writeVarString(r.name);
   buf.writeVarString(r.description);
 
-  if (mask & 0b1_0000000) {
+  if (small) {
     // 0b 00000 000
-    //    batch (boil - batch diff)
+    //    batch boil_diff
     // batch vs boil will usually be about ~4L/1gal difference.
-    buf.writeUint8((r.batchSize << 3) | (r.boilSize - r.batchSize));
+    buf.writeUint8((batch << 3) | boil);
   } else {
-    buf.writeVarUint(r.batchSize);
-    buf.writeVarUint(r.boilSize);
+    buf.writeVarUint(batch);
+    buf.writeVarUint(boil);
   }
 
   if (customServingSize) {
@@ -392,27 +431,54 @@ export function decodeBinary(data: Uint8Array): Recipe {
 
   const mask1 = buf.readUint8();
   const mask2 = buf.readUint8();
+  const mask3 = buf.readUint8();
+
+  if (mask1 & 0b111_000_00) throw new Error("Unsupported version");
 
   const r: Recipe = createRecipe({
     type: "all grain",
     name: buf.readVarString(),
     description: buf.readVarString(),
-    style: mask2 & 0b01111111,
-    glass: glassNames[(mask1 & 0b111_000_00) >> 5],
+    style: mask3 & 0b01111111,
+    glass: glassNames[(mask2 & 0b11111_0_00) >> 3],
     carbonation: 2.4,
   });
 
   if (mask1 & 0b000_000_01) r.type = "partial mash";
   if (mask1 & 0b000_000_10) r.type = "extract";
 
-  if (mask2 & 0b1_0000000) {
+  const boil_sub = mask2 & 0b00000_1_00;
+  const size_units = mask2 & 0b00000_0_11;
+
+  let batch = 0,
+    boil = 0;
+  if (mask3 & 0b1_0000000) {
     const size = buf.readUint8();
-    r.batchSize = size >> 3;
-    r.boilSize = (size & 0b00000_111) + r.batchSize;
+    batch = size >> 3;
+    boil = size & 0b00000_111;
   } else {
-    r.batchSize = buf.readVarUint();
-    r.boilSize = buf.readVarUint();
+    batch = buf.readVarUint();
+    boil = buf.readVarUint();
   }
+
+  if (!boil_sub) {
+    boil += batch;
+  } else {
+    boil = batch - boil;
+  }
+
+  switch (size_units) {
+    case 1: // Gallons
+      batch *= litersPerGal;
+      boil *= litersPerGal;
+      break;
+    case 2: // Half-gallons
+      batch *= litersPerGal / 2;
+      boil *= litersPerGal / 2;
+  }
+
+  r.batchSize = batch;
+  r.boilSize = boil;
 
   const servingSize = (mask1 & 0b000_111_00) >> 2;
   if (servingSize === 7) {
